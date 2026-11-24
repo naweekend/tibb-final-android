@@ -1,0 +1,202 @@
+[
+  {
+    "id": "mild_fever",
+    "title_en": "Supportive Care for Mild Fever",
+    "title_ur": "ہلکے بخار کے لیے حفاظتی نگہداشت",
+    "title_roman": "Halkay Bukhar Ke Liye Hifazati Nigehdasht",
+    "steps_en": [
+      "Offer frequent sips of clean boiled or filtered water, lassi, or clear broth to prevent dehydration.",
+      "Dress the person in a single light cotton layer; avoid heavy blankets that trap body heat.",
+      "Keep the room comfortably ventilated and gently sponge the forehead, neck, and armpits with lukewarm water (never ice-cold water or spirit).",
+      "For breastfed infants, continue frequent breastfeeding on demand."
+    ],
+    "steps_ur": [
+      "پانی کی کمی سے بچاؤ کے لیے بار بار ابلا یا صاف پانی، لسی یا ہلکی یخنی پلائیں۔",
+      "مریض کو ہلکے سوتی کپڑے پہنائیں اور موٹے کمبل یا لحاف سے گریز کریں۔",
+      "کمرے میں تازہ ہوا کا انتظام رکھیں اور پیشانی، گردن اور بغلوں پر نیم گرم پانی کی پٹیاں رکھیں (برف کا ٹھنڈا پانی استعمال نہ کریں)۔",
+      "دودھ پیتے بچوں کو ماں کا دودھ معمول سے زیادہ بار پلائیں۔"
+    ],
+    "steps_roman": [
+      "Pani ki kami se bachao ke liye baar baar saaf ubla pani, lassi ya halki yakhni pilayein.",
+      "Mareez ko halkay sooti kapray pehnayein aur motay kambal se gurez karein.",
+      "Kamray mein taaza hawa rakhein aur maathay par neem garam pani ki pattiyan rakhein (baraf wala pani hargiz istemal na karein)."
+    ],
+    "contraindications_en": [
+      "Do not give self-prescribed antibiotics or unverified fever syrups without a licensed clinician.",
+      "Never use ice water or rubbing alcohol for sponging."
+    ],
+    "contraindications_ur": [
+      "ڈاکٹر کے مشورے کے بغیر خود سے اینٹی بائیوٹک یا بخار کی ادویات ہرگز نہ دیں۔",
+      "پٹیوں کے لیے برف یا اسپرٹ استعمال نہ کریں۔"
+    ],
+    "allowedNumericClaims": ["48", "24", "1", "2"],
+    "escalation_warning_en": "Stop home care and visit a BHU or doctor immediately if fever lasts over 48 hours, temperature spikes repeatedly, a rash appears, or breathing becomes fast.",
+    "escalation_warning_ur": "اگر بخار 48 گھنٹے سے زیادہ رہے، جسم پر سرخ دانے نکلیں یا سانس تیز ہو تو فوری قریبی مرکز صحت یا ڈاکٹر کے پاس جائیں۔",
+    "sourceCitation": "WHO IMCI Chart Booklet & Pakistan Primary Care Fever Guidance"
+  },
+  {
+    "id": "mild_cough_cold",
+    "title_en": "Supportive Care for Mild Cough & Throat Irritation",
+    "title_ur": "ہلکی کھانسی اور گلے کی خراش کے لیے نگہداشت",
+    "title_roman": "Halki Khansi Aur Galay Ki Kharash Ke Liye Nigehdasht",
+    "steps_en": [
+      "Keep the airway moist with warm clear liquids such as warm water, herbal tea, or light soup.",
+      "For adults and children strictly older than 12 months, half a teaspoon of clean honey in warm water can soothe throat irritation.",
+      "Use saline nasal drops (or mild warm-water steam inhalation for older children/adults) to clear nasal congestion.",
+      "Keep sleeping areas completely free of tobacco smoke, coal/wood stove smoke, and dust."
+    ],
+    "steps_ur": [
+      "گلے کو تر رکھنے کے لیے نیم گرم پانی، قہوہ یا ہلکا شوربہ پلائیں۔",
+      "بڑوں اور صرف 12 ماہ سے بڑے بچوں کو گلے کے آرام کے لیے نیم گرم پانی میں آدھا چمچ خالص شہد دیا جا سکتا ہے۔",
+      "ناک بند ہونے کی صورت میں سادہ نمکین قطرے استعمال کریں یا بھاپ لیں۔",
+      "مریض کو سگریٹ، لکڑی کے دھوئیں اور گرد و غبار سے دور رکھیں۔"
+    ],
+    "steps_roman": [
+      "Galay ko tar rakhnay ke liye neem garam pani, qahwa ya halka shorba pilayein.",
+      "Sirf 12 maah se baray bachon aur baron ko neem garam pani mein aadha chamach shehad diya ja sakta hai.",
+      "Mareez ko cigarette aur lakri ke dhooway se door rakhein."
+    ],
+    "contraindications_en": [
+      "CRITICAL SAFETY RULE: NEVER give honey to infants under 12 months of age due to infant botulism risk.",
+      "Do not give over-the-counter cough suppressants or antibiotics to young children."
+    ],
+    "contraindications_ur": [
+      "انتہائی اہم: 12 ماہ سے کم عمر بچوں کو شہد ہرگز نہ دیں۔",
+      "بچوں کو ڈاکٹر کے نسخے کے بغیر کھانسی کے شربت یا اینٹی بائیوٹک نہ دیں۔"
+    ],
+    "allowedNumericClaims": ["12", "48", "1", "2"],
+    "escalation_warning_en": "Seek urgent care immediately if chest indrawing, noisy breathing (stridor), fast breathing, or bluish lips develop.",
+    "escalation_warning_ur": "اگر پسلی چلنے لگے، سانس لیتے وقت سیٹی جیسی آواز آئے یا سانس تیز ہو تو فوری ہسپتال لے جائیں۔",
+    "sourceCitation": "WHO IMCI Cough & Cold Supportive Care Protocol"
+  },
+  {
+    "id": "mild_diarrhea_ors",
+    "title_en": "WHO Oral Rehydration (ORS) for Mild Diarrhea",
+    "title_ur": "ہلکے دستوں میں او آر ایس (نمکول) کا استعمال",
+    "title_roman": "Halkay Daston Mein ORS (Nimkol) Ka Istemal",
+    "steps_en": [
+      "Dissolve 1 standard WHO ORS packet in exactly 1 liter (4 clean glasses) of boiled and cooled drinking water. Discard unused mixture after 24 hours.",
+      "Give small, frequent sips by spoon or cup every 5 to 10 minutes; if vomiting occurs, wait 10 minutes and resume slowly.",
+      "Continue normal soft home foods (khichdi, mashed banana, yogurt) and frequent breastfeeding—do not starve the patient.",
+      "Wash hands thoroughly with soap and water before preparing ORS and after toilet use."
+    ],
+    "steps_ur": [
+      "او آر ایس (نمکول) کا 1 مکمل پیکٹ پورے 1 لیٹر (4 گلاس) ابال کر ٹھنڈے کیے گئے صاف پانی میں گھولیں۔ 24 گھنٹے بعد بچا ہوا محلول ضائع کر دیں۔",
+      "ہر 5 سے 10 منٹ بعد چمچ یا کپ سے تھوڑا تھوڑا کر کے پلائیں؛ اگر الٹی آ جائے تو 10 منٹ رک کر دوبارہ آہستہ آہستہ پلائیں۔",
+      "نرم غذا (کھچڑی، کیلا، دہی) اور ماں کا دودھ جاری رکھیں، مریض کو بھوکا نہ رکھیں۔",
+      "محلول بنانے سے پہلے اور بیت الخلا کے بعد صابن سے ہاتھ اچھی طرح دھوئیں۔"
+    ],
+    "steps_roman": [
+      "ORS ka 1 packet pooray 1 liter ublay hue thanday pani mein gholein aur 24 ghantay baad bacha hua pani zaya kar dein.",
+      "Har 5 se 10 minute baad chamach se thora thora pilayein; agar ulti aaye to 10 minute ruk kar dubara shuru karein.",
+      "Khichdi, kela, dahi aur maa ka doodh jari rakhein."
+    ],
+    "contraindications_en": [
+      "Avoid sugary sodas, energy drinks, and unprescribed anti-diarrheal or antibiotic medicines."
+    ],
+    "contraindications_ur": [
+      "میٹھے مشروبات، بوتلوں اور خود سے دست روکنے والی یا اینٹی بائیوٹک گولیوں سے پرہیز کریں۔"
+    ],
+    "allowedNumericClaims": ["1", "4", "24", "5", "10", "48"],
+    "escalation_warning_en": "Visit a BHU or hospital urgently if eyes become sunken, tears stop, skin pinch returns slowly, blood appears in stool, or urine stops for 6+ hours.",
+    "escalation_warning_ur": "اگر آنکھیں اندر دھنس جائیں، پیشاب 6 گھنٹے سے نہ آئے، پاخانے میں خون آئے یا مریض سست ہو جائے تو فوری ہسپتال جائیں۔",
+    "sourceCitation": "WHO Diarrhoea Treatment Plan A (Low-Osmolarity ORS)"
+  },
+  {
+    "id": "minor_abrasion",
+    "title_en": "First Aid for Minor Cuts & Scrapes",
+    "title_ur": "معمولی چوٹ اور خراش کے لیے ابتدائی طبی امداد",
+    "title_roman": "Mamooli Chot Aur Kharash Ke Liye First Aid",
+    "steps_en": [
+      "Wash your hands with soap before touching the wound.",
+      "Apply gentle steady pressure with clean gauze or cloth for 5 to 10 minutes if minor oozing is present.",
+      "Rinse thoroughly under clean running water for 2 to 5 minutes to clear dirt; gently clean around the wound with mild soap.",
+      "Cover with a clean sterile dressing or bandage and keep dry."
+    ],
+    "steps_ur": [
+      "زخم کو چھونے سے پہلے اپنے ہاتھ صابن سے اچھی طرح دھوئیں۔",
+      "اگر ہلکا خون رس رہا ہو تو صاف کپڑے یا پٹی سے 5 سے 10 منٹ تک ہلکا دباؤ رکھیں۔",
+      "مٹی اور گرد صاف کرنے کے لیے زخم کو 2 سے 5 منٹ تک صاف بہتے پانی سے دھوئیں۔",
+      "زخم کو صاف پٹی سے ڈھانپ کر خشک رکھیں۔"
+    ],
+    "steps_roman": [
+      "Zakham chhoonay se pehle haath saban se dho lein.",
+      "Agar halka khoon ho to saaf kapray se 5 se 10 minute halka dabao rakhein.",
+      "Saaf behtay pani se 2 se 5 minute tak zakham dho kar saaf patti bandh dein."
+    ],
+    "contraindications_en": [
+      "NEVER apply turmeric (haldi), ash, mud, toothpaste, or oil onto an open wound.",
+      "Deep, gaping, dirty, or animal-bite wounds require immediate clinic tetanus/rabies evaluation."
+    ],
+    "contraindications_ur": [
+      "کھلے زخم پر ہلدی، مٹی، راکھ، ٹوتھ پیسٹ یا تیل ہرگز نہ لگائیں۔",
+      "گہرے زخم یا جانور کے کاٹنے کی صورت میں فوری ہسپتال سے تشنج یا ریبیز کی ویکسین کروائیں۔"
+    ],
+    "allowedNumericClaims": ["5", "10", "2", "24", "48"],
+    "escalation_warning_en": "Seek clinic care if bleeding does not stop after 10 minutes of firm pressure, or if spreading redness, pus, or fever develops.",
+    "escalation_warning_ur": "اگر 10 منٹ دباؤ کے بعد بھی خون نہ رکے یا زخم میں پیپ، سوجن یا بخار ہو جائے تو فوری ڈاکٹر کو دکھائیں۔",
+    "sourceCitation": "WHO Basic Emergency Care — Minor Wound First Aid"
+  },
+  {
+    "id": "minor_burn_first_aid",
+    "title_en": "First Aid for Minor Thermal Burns",
+    "title_ur": "معمولی جلنے کی صورت میں ابتدائی طبی امداد",
+    "title_roman": "Mamooli Jalnay Ki Soorat Mein First Aid",
+    "steps_en": [
+      "Cool the burn immediately under cool (not ice-cold) running tap water for 20 full minutes.",
+      "Gently remove rings, watches, or tight non-sticking clothing before swelling begins.",
+      "Loosely cover the cooled area with clean cling film or a clean non-fluffy cotton cloth."
+    ],
+    "steps_ur": [
+      "جلنے کی جگہ پر فوراً 20 منٹ تک نل کا ٹھنڈا (برف والا نہیں) بہتا پانی ڈالیں۔",
+      "سوجن آنے سے پہلے انگوٹھی، گھڑی یا ڈھیلے کپڑے احتیاط سے اتار دیں۔",
+      "ٹھنڈا کرنے کے بعد صاف غیر روئیں دار کپڑے سے ڈھیلا سا ڈھانپ دیں۔"
+    ],
+    "steps_roman": [
+      "Jalnay wali jagah par foran 20 minute tak saaf thanda (baraf wala nahi) pani bahayein.",
+      "Soojan se pehle angoothi ya ghari utaar dein aur saaf kapray se dheela dhanp dein."
+    ],
+    "contraindications_en": [
+      "NEVER apply toothpaste, butter, oil, egg, ice, or ink to a burn.",
+      "Never pop blisters; burns on face, hands, joints, genitals, or larger than the palm require emergency hospital care."
+    ],
+    "contraindications_ur": [
+      "جلے ہوئے حصے پر ٹوتھ پیسٹ، مکھن، تیل، برف یا انڈا ہرگز نہ لگائیں اور چھالے نہ پھوڑیں۔",
+      "چہرے، ہاتھوں یا ہتھیلی سے بڑے زخم کے لیے فوری ہسپتال جائیں۔"
+    ],
+    "allowedNumericClaims": ["20", "48"],
+    "escalation_warning_en": "Go to the nearest emergency unit immediately for electrical/chemical burns, facial burns, or burns larger than the patient's palm.",
+    "escalation_warning_ur": "بجلی یا تیزاب سے جلنے، یا چہرے اور ہتھیلی سے بڑے جلنے کی صورت میں فوری ایمرجنسی جائیں۔",
+    "sourceCitation": "WHO Management of Burns in Primary Care"
+  },
+  {
+    "id": "heat_exhaustion_first_aid",
+    "title_en": "First Aid for Heat Exhaustion",
+    "title_ur": "شدید گرمی یا لو لگنے کی ابتدائی امداد",
+    "title_roman": "Shadeed Garmi Ya Loo Lagnay Ki Ibtidai Imdad",
+    "steps_en": [
+      "Move the person immediately into deep shade or an air-cooled room and lay them down with legs slightly elevated.",
+      "Loosen outer clothing and apply cool wet cloths to the neck, armpits, and groin while fanning continuously.",
+      "If fully alert and not vomiting, give small slow sips of cool WHO ORS or lightly salted lassi."
+    ],
+    "steps_ur": [
+      "مریض کو فوری طور پر سائے یا ٹھنڈے کمرے میں لٹائیں اور ٹانگیں ہلکی سی اونچی رکھیں۔",
+      "کپڑے ڈھیلے کریں اور گردن، بغلوں اور رانوں پر ٹھنڈے گیلے کپڑے رکھ کر پنکھا چلائیں۔",
+      "اگر مریض ہوش میں ہو اور الٹی نہ کر رہا ہو تو آہستہ آہستہ او آر ایس یا نمکین لسی پلائیں۔"
+    ],
+    "steps_roman": [
+      "Mareez ko foran saaye ya thanday kamray mein litayein aur kapray dheelay karein.",
+      "Gardan aur baghlon par thanda geela kapra rakhein aur agar hosh mein ho to ORS pilayein."
+    ],
+    "contraindications_en": [
+      "Do not give fluids by mouth if the person is confused, drowsy, or having fits."
+    ],
+    "contraindications_ur": [
+      "اگر مریض بے ہوش یا غنودگی میں ہو تو منہ کے ذریعے کوئی چیز ہرگز نہ پلائیں۔"
+    ],
+    "allowedNumericClaims": ["15", "30", "1"],
+    "escalation_warning_en": "Call 1122 immediately if confusion, slurred speech, fainting, or hot dry skin occurs (suspected Heatstroke).",
+    "escalation_warning_ur": "اگر مریض بہکی باتیں کرے، بے ہوش ہو یا جلد گرم و خشک ہو جائے تو فوری 1122 پر کال کریں۔",
+    "sourceCitation": "WHO Heat-Health Guidance & NDMA Pakistan First Aid"
+  }
+]

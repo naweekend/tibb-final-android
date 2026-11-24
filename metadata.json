@@ -1,0 +1,6 @@
+{
+  "name": "Tibb",
+  "description": "Offline-first Pakistani family clinical triage, WHO IMCI first aid, desi diet and workout coach, vitals estimator, medicine alarms, and encrypted health vault.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

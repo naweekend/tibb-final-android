@@ -1,0 +1,66 @@
+[
+  {
+    "id": "respiratory_imci",
+    "category": "RESPIRATORY",
+    "title_en": "Respiratory & Fast-Breathing Evaluation",
+    "title_ur": "سانس اور تیز تنفس کا معائنہ",
+    "verified_facts_en": [
+      "Normal resting respiratory rate thresholds under WHO IMCI: under 2 months must remain below 60 breaths/min; 2 to 11 months below 50 breaths/min; 12 months to 5 years below 40 breaths/min; over 5 years below 30 breaths/min.",
+      "Chest indrawing or stridor in a calm child requires urgent facility referral rather than home observation."
+    ],
+    "verified_facts_ur": [
+      "عالمی ادارہ صحت کے اصولوں کے مطابق سانس کی رفتار 2 ماہ سے کم عمر میں 60، 2 تا 11 ماہ میں 50، اور 1 تا 5 سال میں 40 فی منٹ سے کم ہونی چاہیے۔",
+      "پسلی چلنا یا سانس میں سیٹی کی آواز فوری ہسپتال ریفرل کی علامت ہے۔"
+    ],
+    "allowedNumericClaims": ["60", "50", "40", "30", "2", "11", "12", "5"],
+    "linkedHomeCareId": "mild_cough_cold"
+  },
+  {
+    "id": "fever_dengue_typhoid",
+    "category": "FEVER",
+    "title_en": "Fever, Dengue & Enteric Warning Evaluation",
+    "title_ur": "بخار، ڈینگی اور ٹائیفائیڈ کی علامات کا جائزہ",
+    "verified_facts_en": [
+      "Triage tools cannot confirm dengue, malaria, or typhoid without laboratory testing; clinical evaluation is required when fever persists beyond 48 hours.",
+      "Warning signs requiring immediate clinic or hospital visit include severe abdominal pain, persistent vomiting, mucosal bleeding, petechial rash, or extreme lethargy."
+    ],
+    "verified_facts_ur": [
+      "لیبارٹری ٹیسٹ کے بغیر ڈینگی، ملیریا یا ٹائیفائیڈ کی حتمی تشخیص ممکن نہیں؛ 48 گھنٹے سے زائد بخار پر ڈاکٹر سے معائنہ ضروری ہے۔",
+      "شدید پیٹ درد، مسلسل الٹیاں، ناک یا مسوڑھوں سے خون یا شدید کمزوری فوری ایمرجنسی کی علامت ہیں۔"
+    ],
+    "allowedNumericClaims": ["48", "24", "1", "2"],
+    "linkedHomeCareId": "mild_fever"
+  },
+  {
+    "id": "diarrhea_dehydration",
+    "category": "GI_HYDRATION",
+    "title_en": "Acute Watery Diarrhea & Dehydration Screening",
+    "title_ur": "اسہال اور جسم میں پانی کی کمی کا جائزہ",
+    "verified_facts_en": [
+      "Early oral rehydration with low-osmolarity WHO ORS (1 packet in 1 liter clean boiled water) prevents severe dehydration.",
+      "Blood in stool, inability to drink, sunken eyes, or absent urine for 6 hours requires urgent medical care."
+    ],
+    "verified_facts_ur": [
+      "ابتدائی مرحلے میں او آر ایس (1 پیکٹ 1 لیٹر پانی میں) پانی کی شدید کمی سے بچاتا ہے۔",
+      "پاخانے میں خون، آنکھیں اندر دھنسنا، پینے سے قاصر ہونا یا 6 گھنٹے سے پیشاب نہ آنا فوری علاج کی علامت ہے۔"
+    ],
+    "allowedNumericClaims": ["1", "4", "24", "6", "5", "10", "48"],
+    "linkedHomeCareId": "mild_diarrhea_ors"
+  },
+  {
+    "id": "wound_burn_first_aid",
+    "category": "FIRST_AID",
+    "title_en": "Trauma, Burn & Heat Exhaustion Triage",
+    "title_ur": "چوٹ، جلنے اور لو لگنے کی فوری جانچ",
+    "verified_facts_en": [
+      "Uncontrolled bleeding, deep wounds, electrical/chemical burns, or altered consciousness require emergency transport (1122) rather than home first aid.",
+      "Minor burns should be cooled under cool running water for 20 minutes without ice, toothpaste, or oil."
+    ],
+    "verified_facts_ur": [
+      "شدید خون بہنے، گہرے زخم، بجلی سے جلنے یا بے ہوشی میں فوری 1122 ایمبولینس بلائیں۔",
+      "معمولی جلنے پر 20 منٹ تک صاف ٹھنڈا پانی بہائیں اور ٹوتھ پیسٹ یا تیل نہ لگائیں۔"
+    ],
+    "allowedNumericClaims": ["20", "10", "5", "2", "1122"],
+    "linkedHomeCareId": "minor_burn_first_aid"
+  }
+]

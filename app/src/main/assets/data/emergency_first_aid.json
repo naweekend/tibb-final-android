@@ -1,0 +1,242 @@
+[
+  {
+    "id": "CHEST_PAIN",
+    "title_en": "Immediate First Aid: Suspected Cardiac Chest Pain",
+    "title_ur": "فوری ابتدائی طبی امداد: سینے میں شدید درد (ممکنہ دل کا دورہ)",
+    "do_now_en": [
+      "Stop all physical activity immediately and help the person sit upright in a comfortable half-sitting position (knees bent, back supported). Do not let them walk.",
+      "Loosen tight collars, ties, belts, or scarves to ease breathing.",
+      "Call Rescue 1122 or arrange immediate vehicle transport to the nearest Cardiac / Emergency hospital.",
+      "Keep the person calm, reassured, and monitor breathing continuously until medical help arrives."
+    ],
+    "do_now_ur": [
+      "مریض کو فوراً تمام جسمانی حرکت سے روک دیں اور ٹیک لگا کر نیم بیٹھی حالت میں بٹھائیں؛ ہرگز پیدل نہ چلائیں۔",
+      "سانس میں آسانی کے لیے کالر، بیلٹ، دوپٹہ یا تنگ کپڑے ڈھیلے کر دیں۔",
+      "فوری طور پر ریسکیو 1122 پر کال کریں یا قریبی کارڈیک/ایمرجنسی ہسپتال پہنچائیں۔",
+      "مریض کو پُرسکون رکھیں اور ایمبولینس آنے تک سانس اور ہوش پر مسلسل نظر رکھیں۔"
+    ],
+    "do_not_en": [
+      "Do NOT let the patient drive themselves or walk up stairs.",
+      "Do NOT give food, heavy liquids, or unprescribed painkillers/sedatives if drowsy or hypotensive."
+    ],
+    "do_not_ur": [
+      "مریض کو خود گاڑی چلانے یا سیڑھیاں چڑھنے نہ دیں۔",
+      "بے ہوشی یا غنودگی کی صورت میں منہ سے کچھ نہ کھلائیں پلائیں۔"
+    ],
+    "sourceCitation": "WHO Basic Emergency Care — Acute Chest Pain Protocol"
+  },
+  {
+    "id": "STROKE_FAST",
+    "title_en": "Immediate First Aid: Suspected Stroke (FAST Signs)",
+    "title_ur": "فوری ابتدائی طبی امداد: فالج کی ممکنہ علامات",
+    "do_now_en": [
+      "Note the exact clock time when symptoms started — hospital stroke teams need this urgently.",
+      "Lay the person on their side with head slightly raised (30 degrees) in case of vomiting.",
+      "Call 1122 immediately for rapid transfer to a tertiary hospital emergency."
+    ],
+    "do_now_ur": [
+      "علامات شروع ہونے کا درست وقت نوٹ کریں کیونکہ ہسپتال میں فوری علاج کے لیے یہ وقت انتہائی اہم ہے۔",
+      "قے سے بچاؤ کے لیے مریض کو ایک کروٹ لٹائیں اور سر کو ہلکا سا اونچا رکھیں۔",
+      "فوری طور پر 1122 ایمبولینس کے ذریعے بڑے ہسپتال کی ایمرجنسی میں منتقل کریں۔"
+    ],
+    "do_not_en": [
+      "NEVER give water, food, or medicines by mouth — swallowing muscles may be paralyzed and cause choking.",
+      "Do NOT wait to see if symptoms improve on their own."
+    ],
+    "do_not_ur": [
+      "منہ کے ذریعے پانی، خوراک یا کوئی گولی ہرگز نہ دیں کیونکہ نگلنے میں رکاوٹ سے سانس بند ہو سکتا ہے۔",
+      "علامات کے خود بخود ٹھیک ہونے کا انتظار نہ کریں۔"
+    ],
+    "sourceCitation": "WHO Emergency Triage — Acute Neurological Deficit"
+  },
+  {
+    "id": "BREATHING_DISTRESS",
+    "title_en": "Immediate First Aid: Severe Breathing Difficulty / Fast Breathing",
+    "title_ur": "فوری ابتدائی طبی امداد: سانس لینے میں شدید دشواری یا تیز سانس",
+    "do_now_en": [
+      "Keep the patient sitting upright leaning slightly forward (do not force them flat on their back).",
+      "Move to fresh, well-ventilated air and remove smoke, dust, or tight clothing around the chest.",
+      "If the patient already has a doctor-prescribed rescue inhaler, help them use their own inhaler as directed by their doctor while arranging urgent hospital care."
+    ],
+    "do_now_ur": [
+      "مریض کو سیدھا بٹھائیں اور ہلکا سا آگے کی طرف جھکا رہنے دیں (سیدھا پیٹھ کے بل نہ لٹائیں)۔",
+      "تازہ ہوا کا انتظام کریں، دھواں یا گرد دور رکھیں اور سینے کے گرد تنگ کپڑے ڈھیلے کریں۔",
+      "اگر مریض کے پاس ڈاکٹر کا تجویز کردہ اپنا انہیلر موجود ہے تو اس کے استعمال میں مدد کریں اور فوری ہسپتال لے جائیں۔"
+    ],
+    "do_not_en": [
+      "Do NOT lay a distressed child or adult flat on their back.",
+      "Do NOT cover the face or force fluids if breathing is laboured."
+    ],
+    "do_not_ur": [
+      "شدید سانس کی تکلیف میں مریض کو سیدھا چِت نہ لٹائیں۔",
+      "زبردستی پانی یا خوراک پلانے کی کوشش نہ کریں۔"
+    ],
+    "sourceCitation": "WHO IMCI & ETAT Respiratory Distress First Aid"
+  },
+  {
+    "id": "SEIZURE_CONVULSIONS",
+    "title_en": "Immediate First Aid: Convulsions / Fits",
+    "title_ur": "فوری ابتدائی طبی امداد: مرگی یا جھٹکے/دورے پڑنا",
+    "do_now_en": [
+      "Gently place the person on the floor on their side (recovery position) and cushion their head with a folded cloth.",
+      "Clear hard or sharp objects away from their body and note how long the fit lasts.",
+      "Call 1122 or rush to the nearest emergency hospital immediately, especially if fits last over 5 minutes or occur in an infant/child."
+    ],
+    "do_now_ur": [
+      "مریض کو زمین پر محفوظ طریقے سے ایک کروٹ لٹائیں اور سر کے نیچے نرم کپڑا یا تکیہ رکھ دیں۔",
+      "اردگرد سے سخت یا نوکیلی چیزیں ہٹا دیں اور دورے کا دورانیہ نوٹ کریں۔",
+      "فوری طور پر 1122 پر کال کریں یا قریبی ایمرجنسی ہسپتال پہنچائیں۔"
+    ],
+    "do_not_en": [
+      "NEVER put spoons, fingers, cloth, or water into the mouth during a seizure.",
+      "NEVER hold the limbs down forcefully or smell shoes/onions to wake them."
+    ],
+    "do_not_ur": [
+      "دورے کے دوران منہ میں چمچ، انگلی، کپڑا یا پانی ہرگز نہ ڈالیں۔",
+      "جھٹکوں کو زبردستی پکڑ کر روکنے کی کوشش نہ کریں۔"
+    ],
+    "sourceCitation": "WHO mhGAP & IMCI Acute Seizure First Aid"
+  },
+  {
+    "id": "UNCONTROLLED_BLEEDING",
+    "title_en": "Immediate First Aid: Severe / Uncontrolled Bleeding",
+    "title_ur": "فوری ابتدائی طبی امداد: شدید اور نہ رکنے والا خون بہنا",
+    "do_now_en": [
+      "Apply firm, continuous direct pressure directly over the wound using clean gauze, cloth, or folded clothing.",
+      "If blood soaks through, place another clean pad ON TOP without removing the first cloth.",
+      "Keep the person lying flat, keep them warm, and call 1122 for urgent trauma transfer."
+    ],
+    "do_now_ur": [
+      "صاف کپڑے یا پٹی سے زخم پر براہِ راست مضبوط اور مسلسل دباؤ رکھیں۔",
+      "اگر پہلا کپڑا خون سے بھیگ جائے تو اسے ہٹائے بغیر اس کے اوپر مزید صاف کپڑا رکھ کر دباؤ جاری رکھیں۔",
+      "مریض کو سیدھا لٹا کر گرم رکھیں اور فوری 1122 پر کال کر کے ہسپتال منتقل کریں۔"
+    ],
+    "do_not_en": [
+      "NEVER put turmeric (haldi), mud, ash, or coffee powder into an actively bleeding wound.",
+      "Do NOT remove an embedded sharp object—pad gently around it instead."
+    ],
+    "do_not_ur": [
+      "زخم میں ہلدی، مٹی، راکھ یا کوئی گھریلو چیز ہرگز نہ بھریں۔",
+      "اگر زخم میں کوئی شیشہ یا چیز پیوست ہو تو اسے باہر نہ کھینچیں۔"
+    ],
+    "sourceCitation": "WHO Basic Emergency Care — Hemorrhage Control"
+  },
+  {
+    "id": "SEVERE_BURN",
+    "title_en": "Immediate First Aid: Severe / Major Burn",
+    "title_ur": "فوری ابتدائی طبی امداد: شدید جلنے کا زخم",
+    "do_now_en": [
+      "Stop the burning process safely (switch off power for electrical burns before touching; rinse chemical burns with abundant running water).",
+      "Cool thermal burns with clean cool (not ice) running tap water for 20 minutes while keeping the rest of the body warm.",
+      "Cover loosely with clean plastic wrap or non-fluffy sterile sheet and transfer to emergency hospital immediately."
+    ],
+    "do_now_ur": [
+      "بجلی سے جھلسنے کی صورت میں پہلے مین سوئچ بند کریں؛ تیزاب یا کیمیکل لگنے پر فوراً وافر بہتے پانی سے دھوئیں۔",
+      "آگ یا گرم پانی سے جلنے پر 20 منٹ تک صاف نل کا ٹھنڈا پانی بہائیں (برف نہ لگائیں)۔",
+      "صاف غیر روئیں دار کپڑے یا کلنگ فلم سے ڈھیلا ڈھانپ کر فوری ہسپتال لے جائیں۔"
+    ],
+    "do_not_en": [
+      "NEVER apply toothpaste, butter, oil, ink, or ice.",
+      "Do NOT pull away clothing stuck firmly to burned skin and do NOT pop blisters."
+    ],
+    "do_not_ur": [
+      "جلے ہوئے حصے پر ٹوتھ پیسٹ، تیل، مکھن یا برف ہرگز نہ لگائیں۔",
+      "جلد سے چپکا ہوا کپڑا زبردستی نہ اتاریں اور چھالے نہ پھوڑیں۔"
+    ],
+    "sourceCitation": "WHO Primary Care Burn Emergency Management"
+  },
+  {
+    "id": "CHOKING",
+    "title_en": "Immediate First Aid: Airway Choking",
+    "title_ur": "فوری ابتدائی طبی امداد: گلے میں کوئی چیز پھنس جانا",
+    "do_now_en": [
+      "If the person can cough forcefully, encourage them to keep coughing.",
+      "If silent / unable to breathe (Adult or Child > 1 year): give 5 firm back blows between the shoulder blades followed by 5 abdominal thrusts (Heimlich maneuver) repeatedly.",
+      "For an infant under 1 year: support head face-down along your forearm, give 5 gentle-firm back slaps, then turn face-up and give 5 two-finger chest thrusts. Call 1122 immediately."
+    ],
+    "do_now_ur": [
+      "اگر مریض کھانس سکتا ہے تو اسے کھانستے رہنے دیں۔",
+      "اگر سانس رک جائے (بڑا یا 1 سال سے بڑا بچہ): کمر کے دونوں کندھوں کے درمیان 5 مضبوط تھپکیاں دیں، پھر پیٹ کے اوپری حصے پر اندر اور اوپر کی طرف 5 جھٹکے دیں۔",
+      "1 سال سے کم عمر بچے کو الٹا بازو پر لٹا کر کمر پر 5 تھپکیاں دیں، پھر سیدھا کر کے سینے پر دو انگلیوں سے 5 دباؤ دیں اور فوری 1122 بلائیں۔"
+    ],
+    "do_not_en": [
+      "Do NOT perform abdominal thrusts on an infant under 12 months.",
+      "Do NOT reach blindly down the throat with your fingers."
+    ],
+    "do_not_ur": [
+      "1 سال سے کم عمر بچے کے پیٹ پر دباؤ ہرگز نہ ڈالیں۔",
+      "اندازے سے گلے میں انگلی ڈال کر چیز اندر نہ دھکیلیں۔"
+    ],
+    "sourceCitation": "WHO Basic Emergency Care — Foreign Body Airway Obstruction"
+  },
+  {
+    "id": "UNCONSCIOUS_FAINTING",
+    "title_en": "Immediate First Aid: Unconscious / Non-Responsive Patient",
+    "title_ur": "فوری ابتدائی طبی امداد: بے ہوشی یا ہوش میں نہ آنا",
+    "do_now_en": [
+      "Check responsiveness and normal breathing for 10 seconds. Call 1122 immediately.",
+      "If breathing normally: turn gently onto their side into the Recovery Position with chin tilted slightly up to keep the airway open.",
+      "If NOT breathing normally and trained in CPR: begin chest compressions (100–120/min) at center of chest while ambulance is on the way."
+    ],
+    "do_now_ur": [
+      "10 سیکنڈ تک ہوش اور سانس کا جائزہ لیں اور فوری 1122 پر کال کریں۔",
+      "اگر سانس چل رہی ہو تو مریض کو ایک کروٹ (ریکوری پوزیشن) میں لٹا دیں اور ٹھوڑی ہلکی سی اوپر رکھیں تاکہ سانس کی نالی کھلی رہے۔",
+      "اگر سانس بند ہو تو ایمبولینس آنے تک سینے کے درمیان تیز اور گہرے دباؤ (سی پی آر) شروع کریں۔"
+    ],
+    "do_not_en": [
+      "NEVER pour water onto the face or force water/juice into an unconscious person's mouth.",
+      "Do NOT leave an unconscious person flat on their back unattended."
+    ],
+    "do_not_ur": [
+      "بے ہوش شخص کے منہ میں پانی یا مشروب ہرگز نہ ڈالیں۔",
+      "بے ہوش مریض کو سیدھا پیٹھ کے بل اکیلا نہ چھوڑیں۔"
+    ],
+    "sourceCitation": "WHO Basic Emergency Care — Unresponsive Patient"
+  },
+  {
+    "id": "MATERNAL_EMERGENCY",
+    "title_en": "Immediate First Aid: Pregnancy / Postpartum Emergency",
+    "title_ur": "فوری ابتدائی طبی امداد: دورانِ حمل یا زچگی ایمرجنسی",
+    "do_now_en": [
+      "Help the mother lie on her LEFT side (never flat on her back in late pregnancy) with head slightly supported.",
+      "Arrange immediate emergency transport (1122) to a tertiary hospital with 24/7 maternity emergency care.",
+      "Keep her warm and bring any maternity card or blood pressure records."
+    ],
+    "do_now_ur": [
+      "حاملہ خاتون کو بائیں کروٹ لٹائیں (آخری مہینوں میں سیدھا پیٹھ کے بل نہ لٹائیں)۔",
+      "فوری طور پر 1122 کے ذریعے 24 گھنٹے زچگی ایمرجنسی والے بڑے ہسپتال منتقل کریں۔",
+      "مریضہ کو گرم رکھیں اور زچگی کارڈ یا بلڈ پریشر کا ریکارڈ ساتھ لے جائیں۔"
+    ],
+    "do_not_en": [
+      "Do NOT delay transfer for home remedies when severe headache, blurred vision, fits, or vaginal bleeding occur."
+    ],
+    "do_not_ur": [
+      "شدید سر درد، دھندلی نظر، دوروں یا خون بہنے کی صورت میں گھریلو ٹوٹکوں میں وقت ضائع نہ کریں۔"
+    ],
+    "sourceCitation": "WHO Maternal & Newborn Emergency Triage"
+  },
+  {
+    "id": "PEDIATRIC_DANGER",
+    "title_en": "Immediate First Aid: Child Danger Signs (WHO IMCI)",
+    "title_ur": "فوری ابتدائی طبی امداد: بچے میں خطرے کی علامات",
+    "do_now_en": [
+      "Keep the child warm against the caregiver's body (skin-to-skin or light blanket) and avoid overheating.",
+      "If alert enough to swallow safely without choking, offer tiny frequent sips of breastmilk or ORS while traveling to the hospital.",
+      "Proceed immediately to the nearest 24/7 Pediatric Emergency unit or call 1122."
+    ],
+    "do_now_ur": [
+      "بچے کو ماں یا سرپرست کے جسم کے ساتھ لگا کر مناسب گرمائش دیں اور سانس کا راستہ کھلا رکھیں۔",
+      "اگر بچہ ہوش میں ہو اور نگل سکتا ہو تو ہسپتال جاتے ہوئے تھوڑا تھوڑا ماں کا دودھ یا او آر ایس پلاتے رہیں۔",
+      "فوری طور پر قریبی 24 گھنٹے بچوں کی ایمرجنسی یا 1122 سے رجوع کریں۔"
+    ],
+    "do_not_en": [
+      "Do NOT force fluids if the child is drowsy, unconscious, or having convulsions.",
+      "Do NOT give leftover adult syrups or antibiotics."
+    ],
+    "do_not_ur": [
+      "اگر بچہ بے ہوش، شدید سست ہو یا جھٹکے لگ رہے ہوں تو منہ سے کچھ نہ پلائیں۔",
+      "بچوں کو بڑوں کی ادویات یا اینٹی بائیوٹکس ہرگز نہ دیں۔"
+    ],
+    "sourceCitation": "WHO IMCI Pre-Referral Urgent Management"
+  }
+]
