@@ -61,9 +61,11 @@ import com.example.data.model.PatientProfile
 import com.example.data.model.TriageEvaluationResult
 import com.example.data.model.TriageTier
 import com.example.engine.AudioFeedbackManager
+import com.example.engine.HelpTopic
 import com.example.engine.TriageEngine
 import com.example.engine.TrilingualStrings
 import com.example.ui.components.QrBitmapImage
+import com.example.ui.components.SectionHelpButton
 import com.example.ui.components.StabilizationTimers
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
@@ -143,13 +145,20 @@ fun TriageResultView(
                     .padding(18.dp),
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(Icons.Rounded.Emergency, contentDescription = null, tint = c.dangerRed)
-                        Text(
-                            text = s.redBannerLabel,
-                            style = MaterialTheme.typography.labelLarge,
-                            color = c.dangerRed,
-                        )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.weight(1f)) {
+                            Icon(Icons.Rounded.Emergency, contentDescription = null, tint = c.dangerRed)
+                            Text(
+                                text = s.redBannerLabel,
+                                style = MaterialTheme.typography.labelLarge,
+                                color = c.dangerRed,
+                            )
+                        }
+                        SectionHelpButton(topic = HelpTopic.TRIAGE_RESULT, locale = locale)
                     }
                     Text(
                         text = s.redHeadline,
@@ -250,17 +259,24 @@ fun TriageResultView(
                     .padding(18.dp),
             ) {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(
-                            imageVector = if (isAmber) Icons.Rounded.Warning else Icons.Rounded.CheckCircle,
-                            contentDescription = null,
-                            tint = accentColor,
-                        )
-                        Text(
-                            text = if (isAmber) s.amberBannerLabel else s.greenBannerLabel,
-                            style = MaterialTheme.typography.labelLarge,
-                            color = accentColor,
-                        )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.weight(1f)) {
+                            Icon(
+                                imageVector = if (isAmber) Icons.Rounded.Warning else Icons.Rounded.CheckCircle,
+                                contentDescription = null,
+                                tint = accentColor,
+                            )
+                            Text(
+                                text = if (isAmber) s.amberBannerLabel else s.greenBannerLabel,
+                                style = MaterialTheme.typography.labelLarge,
+                                color = accentColor,
+                            )
+                        }
+                        SectionHelpButton(topic = HelpTopic.TRIAGE_RESULT, locale = locale)
                     }
                     if (result.amberReasons.isNotEmpty()) {
                         result.amberReasons.forEach { rsn ->
@@ -305,9 +321,16 @@ fun TriageResultView(
             // DRAP-Guarded Follow-Up Q&A
             TibbGlassCard(padding = 16.dp) {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Icon(Icons.Rounded.Shield, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
-                        Text(s.verifiedExplanationTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.weight(1f)) {
+                            Icon(Icons.Rounded.Shield, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
+                            Text(s.verifiedExplanationTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
+                        }
+                        SectionHelpButton(topic = HelpTopic.TRIAGE_RESULT, locale = locale)
                     }
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                         OutlinedTextField(
@@ -370,7 +393,15 @@ fun TriageResultView(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                Text(s.qrSlipTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Spacer(Modifier.size(36.dp))
+                    Text(s.qrSlipTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
+                    SectionHelpButton(topic = HelpTopic.TRIAGE_RESULT, locale = locale)
+                }
                 Text(s.qrSlipSubline, style = MaterialTheme.typography.bodySmall, color = c.muted)
                 val qrPayload = "${result.referralSlip.referralToken}|${patient.name}|${result.tier}|${result.referralSlip.ageBracket}|${result.referralSlip.primaryFlag}"
                 QrBitmapImage(content = qrPayload, sizeDp = 168)
@@ -396,9 +427,16 @@ fun TriageResultView(
         // Location-Explicit Verified Facilities
         TibbEspressoCard(padding = 18.dp) {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Icon(Icons.Rounded.LocalHospital, contentDescription = null, tint = Color(0xFF95CEA4))
-                    Text(s.nearestFacilitiesTitle, style = MaterialTheme.typography.titleMedium, color = Color(0xFFF2EFE4))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.weight(1f)) {
+                        Icon(Icons.Rounded.LocalHospital, contentDescription = null, tint = Color(0xFF95CEA4))
+                        Text(s.nearestFacilitiesTitle, style = MaterialTheme.typography.titleMedium, color = Color(0xFFF2EFE4))
+                    }
+                    SectionHelpButton(topic = HelpTopic.NEAREST_HOSPITALS, locale = locale, onDarkSurface = true)
                 }
                 Row(
                     modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),

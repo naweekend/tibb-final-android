@@ -54,7 +54,9 @@ import com.example.data.model.StoredEpisode
 import com.example.data.model.StoredLabRecord
 import com.example.data.model.UnitSystem
 import com.example.engine.HealthMath
+import com.example.engine.HelpTopic
 import com.example.engine.TrilingualStrings
+import com.example.ui.components.SectionHelpButton
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
 import com.example.ui.theme.TibbGlassCard
@@ -115,11 +117,19 @@ fun PersonRecordsVaultScreen(
         // Header + Edit + Print Summary
         TibbGlassCard(padding = 16.dp, borderColor = c.accent.copy(alpha = 0.45f)) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(
-                    text = s.recordsTitle,
-                    style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
-                    color = c.ink,
-                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = s.recordsTitle,
+                        style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
+                        color = c.ink,
+                        modifier = Modifier.weight(1f),
+                    )
+                    SectionHelpButton(topic = HelpTopic.SAVED_RECORDS, locale = locale)
+                }
                 Text(s.recordsSubtitle, style = MaterialTheme.typography.bodySmall, color = c.muted)
                 Text(
                     text = "${activePerson.name} · ${activePerson.bloodGroup.label} · ${HealthMath.formatWeightDisplay(activePerson.weightKg, unitSystem)} · ${HealthMath.formatHeightDisplay(activePerson.heightCm, unitSystem)}",
@@ -157,7 +167,14 @@ fun PersonRecordsVaultScreen(
         // Quick Log / Photo Upload Composer
         TibbGlassCard(padding = 16.dp) {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Text("Add Report, Prescription, Meal or Activity Note", style = MaterialTheme.typography.titleMedium, color = c.ink)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text("Add Report, Prescription, Meal or Activity Note", style = MaterialTheme.typography.titleMedium, color = c.ink, modifier = Modifier.weight(1f))
+                    SectionHelpButton(topic = HelpTopic.SAVED_RECORDS, locale = locale)
+                }
                 FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     listOf(
                         SavedReportKind.REPORT_PHOTO,

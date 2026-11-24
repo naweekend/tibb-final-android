@@ -77,9 +77,11 @@ import com.example.data.model.SugarMode
 import com.example.engine.AndroidSensorsManager
 import com.example.engine.AudioFeedbackManager
 import com.example.engine.HealthMath
+import com.example.engine.HelpTopic
 import com.example.engine.TriageEngine
 import com.example.engine.TrilingualStrings
 import com.example.ui.components.CyclicSighingPacer
+import com.example.ui.components.SectionHelpButton
 import com.example.ui.components.StabilizationTimers
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
@@ -248,6 +250,18 @@ fun VitalsEstimatorScreen(
             0 -> {
                 TibbGlassCard(padding = 16.dp) {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text(
+                                text = s.vitalsTabBpSugar,
+                                style = MaterialTheme.typography.titleMedium,
+                                color = c.ink,
+                            )
+                            SectionHelpButton(topic = HelpTopic.VITALS_BP_SUGAR, locale = locale)
+                        }
                         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                             OutlinedTextField(
                                 value = bpSysText,
@@ -375,6 +389,14 @@ fun VitalsEstimatorScreen(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text(s.vitalsTabTap, style = MaterialTheme.typography.titleMedium, color = c.ink)
+                            SectionHelpButton(topic = HelpTopic.VITALS_TAP, locale = locale)
+                        }
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
                             listOf(false to s.pulseCounterLabel, true to s.breathCounterLabel).forEach { (isBr, lbl) ->
                                 val sel = tapIsBreath == isBr
@@ -468,6 +490,14 @@ fun VitalsEstimatorScreen(
             2 -> {
                 TibbGlassCard(padding = 16.dp) {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text(s.vitalsTabCamera, style = MaterialTheme.typography.titleMedium, color = c.ink, modifier = Modifier.weight(1f))
+                            SectionHelpButton(topic = HelpTopic.VITALS_CAMERA_PULSE, locale = locale)
+                        }
                         Text(s.cameraDisclaimer, style = MaterialTheme.typography.bodySmall, color = c.amber)
 
                         if (ppgScanning && hasCameraPerm) {

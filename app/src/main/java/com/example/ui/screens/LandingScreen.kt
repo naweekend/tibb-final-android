@@ -23,6 +23,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowForward
+import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.Alarm
 import androidx.compose.material.icons.rounded.DarkMode
 import androidx.compose.material.icons.rounded.DirectionsWalk
@@ -45,8 +46,10 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.data.model.AppLocale
+import com.example.engine.HelpTopic
 import com.example.engine.TrilingualStrings
 import com.example.ui.components.OfflineStatusBadge
+import com.example.ui.components.SectionHelpButton
 import com.example.ui.components.TibbBrandMark
 import com.example.ui.components.TibbGlobe
 import com.example.ui.theme.LocalTibbColors
@@ -67,6 +70,7 @@ fun LandingScreen(
     onToggleDarkMode: () -> Unit,
     onStartWorkspace: () -> Unit,
     onOpenAuthVault: () -> Unit,
+    onOpenHelp: () -> Unit,
     onOpenLegal: () -> Unit,
 ) {
     val c = LocalTibbColors.current
@@ -128,9 +132,26 @@ fun LandingScreen(
                         }
 
                         IconButton(
+                            onClick = onOpenHelp,
+                            modifier = Modifier
+                                .size(40.dp)
+                                .clip(RoundedCornerShape(999.dp))
+                                .background(c.surface.copy(alpha = 0.72f))
+                                .border(1.dp, c.accent.copy(alpha = 0.42f), RoundedCornerShape(999.dp))
+                                .testTag("landing_help_btn"),
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Rounded.HelpOutline,
+                                contentDescription = "Open Simple Help Guide",
+                                tint = c.accent,
+                                modifier = Modifier.size(18.dp),
+                            )
+                        }
+
+                        IconButton(
                             onClick = onToggleDarkMode,
                             modifier = Modifier
-                                .size(44.dp)
+                                .size(40.dp)
                                 .clip(RoundedCornerShape(999.dp))
                                 .background(c.surface)
                                 .border(1.dp, c.border, RoundedCornerShape(999.dp))
@@ -316,11 +337,14 @@ private fun HeroVisualPreviewCard(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = if (isUr) "فیملی اور بی ایچ یو ہیلتھ ہب" else "PAKISTAN HOUSEHOLD & BHU HUB",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = c.mistInk.copy(alpha = 0.72f),
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Text(
+                            text = if (isUr) "فیملی اور بی ایچ یو ہیلتھ ہب" else "PAKISTAN HOUSEHOLD & BHU HUB",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = c.mistInk.copy(alpha = 0.72f),
+                        )
+                        SectionHelpButton(topic = HelpTopic.LANDING_OVERVIEW, locale = locale, onMistSurface = true)
+                    }
                     Text(
                         text = if (isUr) "مکمل آف لائن تحفظ" else "100% On-Device Clinical Core",
                         style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,

@@ -53,8 +53,10 @@ import com.example.data.model.DailyWellnessLog
 import com.example.data.model.PatientProfile
 import com.example.data.model.PersonalizedWellnessPlan
 import com.example.data.model.WellnessGoal
+import com.example.engine.HelpTopic
 import com.example.engine.RemediesAndPlans
 import com.example.engine.TrilingualStrings
+import com.example.ui.components.SectionHelpButton
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
 import com.example.ui.theme.TibbGlassCard
@@ -125,9 +127,13 @@ fun WellnessCoachScreen(
                         text = if (isUr) "جنوبی ایشیائی بی ایم آئی اور ہدف" else "South Asian BMI & Goal",
                         style = MaterialTheme.typography.titleMedium,
                         color = c.ink,
+                        modifier = Modifier.weight(1f),
                     )
-                    if (bmi.bmi != null) {
-                        Text("BMI ${bmi.bmi}", style = TabularNumberStyle.copy(fontWeight = FontWeight.Bold), color = c.accent)
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        if (bmi.bmi != null) {
+                            Text("BMI ${bmi.bmi}", style = TabularNumberStyle.copy(fontWeight = FontWeight.Bold), color = c.accent)
+                        }
+                        SectionHelpButton(topic = HelpTopic.COACH_BMI, locale = locale)
                     }
                 }
                 Text(if (isUr) bmi.labelUr else bmi.labelEn, style = MaterialTheme.typography.labelLarge, color = c.accent)
@@ -169,7 +175,14 @@ fun WellnessCoachScreen(
         when (subTab) {
             0 -> {
                 // Goal Selector + Rotate Button
-                Text(if (isUr) "صحت کا ہدف منتخب کریں" else "Select Wellness Goal", style = MaterialTheme.typography.labelLarge, color = c.ink)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(if (isUr) "صحت کا ہدف منتخب کریں" else "Select Wellness Goal", style = MaterialTheme.typography.labelLarge, color = c.ink)
+                    SectionHelpButton(topic = HelpTopic.COACH_DIET, locale = locale)
+                }
                 Row(
                     modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -290,9 +303,16 @@ fun WellnessCoachScreen(
                 // Live Workout Stopwatch
                 TibbGlassCard(padding = 18.dp, borderColor = c.accent.copy(alpha = 0.45f)) {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Icon(Icons.Rounded.FitnessCenter, contentDescription = null, tint = c.accent)
-                            Text("Workout Session Timer", style = MaterialTheme.typography.titleMedium, color = c.ink)
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                Icon(Icons.Rounded.FitnessCenter, contentDescription = null, tint = c.accent)
+                                Text("Workout Session Timer", style = MaterialTheme.typography.titleMedium, color = c.ink)
+                            }
+                            SectionHelpButton(topic = HelpTopic.COACH_WORKOUT, locale = locale)
                         }
                         val mm = workoutSec / 60
                         val ss = workoutSec % 60
@@ -354,6 +374,18 @@ fun WellnessCoachScreen(
                     "PAIN_RECOVERY" to "Pain & Sprains",
                     "STRESS_SLEEP" to "Sleep & Stress",
                 )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = if (isUr) "مستند گھریلو علاج اور احتیاط" else "Verified Home Remedies & Cautions",
+                        style = MaterialTheme.typography.titleSmall,
+                        color = c.ink,
+                    )
+                    SectionHelpButton(topic = HelpTopic.COACH_REMEDIES, locale = locale)
+                }
                 Row(
                     modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),

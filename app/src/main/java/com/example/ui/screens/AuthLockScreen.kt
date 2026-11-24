@@ -21,6 +21,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.ArrowDropDown
 import androidx.compose.material.icons.rounded.LockOpen
 import androidx.compose.material.icons.rounded.PersonAdd
@@ -29,6 +30,7 @@ import androidx.compose.material.icons.rounded.VerifiedUser
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -50,8 +52,11 @@ import androidx.compose.ui.unit.dp
 import com.example.data.model.AccountRecord
 import com.example.data.model.AppLocale
 import com.example.data.model.WorkspaceMode
+import androidx.compose.foundation.shape.CircleShape
+import com.example.engine.HelpTopic
 import com.example.engine.TrilingualStrings
 import com.example.ui.components.OfflineStatusBadge
+import com.example.ui.components.SectionHelpButton
 import com.example.ui.components.TibbBrandMark
 import com.example.ui.components.TibbGlobe
 import com.example.ui.theme.LocalTibbColors
@@ -71,6 +76,7 @@ fun AuthLockScreen(
     onCreateAccount: (displayName: String, pin: String, workspace: WorkspaceMode) -> Unit,
     onUnlockAccount: (accountId: String, pin: String) -> Unit,
     onQuickGuestVault: () -> Unit,
+    onOpenHelp: () -> Unit,
     onOpenLegal: () -> Unit,
 ) {
     val c = LocalTibbColors.current
@@ -111,7 +117,25 @@ fun AuthLockScreen(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     TibbBrandMark()
-                    OfflineStatusBadge(label = s.offlineEncryptedLabel)
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OfflineStatusBadge(label = s.offlineEncryptedLabel)
+                        IconButton(
+                            onClick = onOpenHelp,
+                            modifier = Modifier
+                                .size(38.dp)
+                                .clip(CircleShape)
+                                .background(c.surface.copy(alpha = 0.72f))
+                                .border(1.dp, c.accent.copy(alpha = 0.42f), CircleShape)
+                                .testTag("auth_help_btn"),
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Rounded.HelpOutline,
+                                contentDescription = "Open Simple Help Guide",
+                                tint = c.accent,
+                                modifier = Modifier.size(18.dp),
+                            )
+                        }
+                    }
                 }
 
                 // Locale Pills
@@ -161,11 +185,19 @@ fun AuthLockScreen(
 
                 TibbGlassCard(padding = 20.dp) {
                     Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
-                        Text(
-                            text = if (modeTab == 0) s.unlockVaultTitle else s.createVaultTitle,
-                            style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
-                            color = c.ink,
-                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text(
+                                text = if (modeTab == 0) s.unlockVaultTitle else s.createVaultTitle,
+                                style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
+                                color = c.ink,
+                                modifier = Modifier.weight(1f),
+                            )
+                            SectionHelpButton(topic = HelpTopic.AUTH_VAULT, locale = locale)
+                        }
 
                         Row(
                             modifier = Modifier
@@ -249,7 +281,14 @@ fun AuthLockScreen(
                                 }
                             }
                         } else {
-                            Text(s.workspaceRoleLabel, style = MaterialTheme.typography.labelMedium, color = c.muted)
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically,
+                            ) {
+                                Text(s.workspaceRoleLabel, style = MaterialTheme.typography.labelMedium, color = c.muted)
+                                SectionHelpButton(topic = HelpTopic.PIN_SECURITY, locale = locale)
+                            }
                             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                 WorkspaceMode.entries.forEach { mode ->
                                     val selected = selectedWorkspace == mode

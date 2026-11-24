@@ -39,7 +39,9 @@ import androidx.compose.ui.unit.dp
 import com.example.data.model.AppLocale
 import com.example.data.model.StoredEpisode
 import com.example.data.model.TriageTier
+import com.example.engine.HelpTopic
 import com.example.engine.TrilingualStrings
+import com.example.ui.components.SectionHelpButton
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
 import com.example.ui.theme.TibbGlassCard
@@ -111,7 +113,14 @@ fun BhuQueueScreen(
     ) {
         TibbGlassCard(padding = 16.dp) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(s.queueTitle, style = MaterialTheme.typography.titleLarge, color = c.ink)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(s.queueTitle, style = MaterialTheme.typography.titleLarge, color = c.ink, modifier = Modifier.weight(1f))
+                    SectionHelpButton(topic = HelpTopic.BHU_QUEUE, locale = locale)
+                }
                 Text(s.queueSubtitle, style = MaterialTheme.typography.bodySmall, color = c.muted)
 
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -137,7 +146,14 @@ fun BhuQueueScreen(
         // QR Verify Card
         TibbGlassCard(padding = 16.dp) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Text(s.queueVerifyTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(s.queueVerifyTitle, style = MaterialTheme.typography.titleMedium, color = c.ink, modifier = Modifier.weight(1f))
+                    SectionHelpButton(topic = HelpTopic.BHU_QUEUE, locale = locale)
+                }
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                     OutlinedTextField(
                         value = tokenQuery,

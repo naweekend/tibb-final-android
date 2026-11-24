@@ -31,6 +31,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.FactCheck
+import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Alarm
 import androidx.compose.material.icons.rounded.ArrowDropDown
@@ -82,6 +83,7 @@ import com.example.data.model.AppLocale
 import com.example.data.model.PatientProfile
 import com.example.data.model.WorkspaceMode
 import com.example.engine.AndroidSensorsManager
+import com.example.engine.HelpTopic
 import com.example.engine.TrilingualStrings
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.NotoNastaliqUrduFamily
@@ -171,6 +173,7 @@ fun TibbTopBar(
     locale: AppLocale,
     isPinProtected: Boolean,
     onCallSos: () -> Unit,
+    onOpenHelp: () -> Unit,
     onOpenSettings: () -> Unit,
     onOpenRecords: () -> Unit,
     onLockOrPin: () -> Unit,
@@ -189,7 +192,7 @@ fun TibbTopBar(
         TibbBrandMark(compact = true)
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
         ) {
             TibbPrimaryPillButton(
                 onClick = onCallSos,
@@ -199,24 +202,28 @@ fun TibbTopBar(
                     .height(40.dp)
                     .testTag("topbar_sos_1122"),
             ) {
-                Icon(Icons.Rounded.Call, contentDescription = null, modifier = Modifier.size(16.dp))
+                Icon(Icons.Rounded.Call, contentDescription = null, modifier = Modifier.size(15.dp))
                 Spacer(Modifier.width(4.dp))
-                Text(s.sosEmergency, style = MaterialTheme.typography.labelMedium)
+                Text(s.sosEmergency, style = MaterialTheme.typography.labelMedium, maxLines = 1)
             }
 
             IconButton(
-                onClick = onOpenRecords,
+                onClick = onOpenHelp,
                 modifier = Modifier
-                    .size(44.dp)
+                    .size(42.dp)
                     .clip(CircleShape)
-                    .background(c.surface)
-                    .border(1.dp, c.border, CircleShape)
-                    .testTag("topbar_records_btn"),
+                    .background(c.surface.copy(alpha = 0.72f))
+                    .border(1.dp, c.accent.copy(alpha = 0.42f), CircleShape)
+                    .testTag("topbar_help_btn"),
             ) {
                 Icon(
-                    imageVector = Icons.Rounded.FolderShared,
-                    contentDescription = s.navRecords,
-                    tint = c.ink,
+                    imageVector = Icons.AutoMirrored.Rounded.HelpOutline,
+                    contentDescription = when (locale) {
+                        AppLocale.UR -> "مکمل رہنمائی"
+                        AppLocale.ROMAN -> "Poori App Help"
+                        AppLocale.EN -> "Simple Help Guide"
+                    },
+                    tint = c.accent,
                     modifier = Modifier.size(20.dp),
                 )
             }
@@ -224,7 +231,7 @@ fun TibbTopBar(
             IconButton(
                 onClick = onLockOrPin,
                 modifier = Modifier
-                    .size(44.dp)
+                    .size(42.dp)
                     .clip(CircleShape)
                     .background(c.surface)
                     .border(1.dp, c.border, CircleShape)
@@ -234,14 +241,14 @@ fun TibbTopBar(
                     imageVector = if (isPinProtected) Icons.Rounded.Lock else Icons.Rounded.Security,
                     contentDescription = if (isPinProtected) s.lockVault else s.setPinBtn,
                     tint = c.accent,
-                    modifier = Modifier.size(20.dp),
+                    modifier = Modifier.size(19.dp),
                 )
             }
 
             IconButton(
                 onClick = onOpenSettings,
                 modifier = Modifier
-                    .size(44.dp)
+                    .size(42.dp)
                     .clip(CircleShape)
                     .background(c.surface)
                     .border(1.dp, c.border, CircleShape)
@@ -251,7 +258,7 @@ fun TibbTopBar(
                     imageVector = Icons.Rounded.Menu,
                     contentDescription = "Open Settings & Drawer",
                     tint = c.ink,
-                    modifier = Modifier.size(20.dp),
+                    modifier = Modifier.size(19.dp),
                 )
             }
         }
@@ -463,6 +470,8 @@ fun PersonSwitcherStrip(
             Spacer(Modifier.width(4.dp))
             Text(s.navRecords, style = MaterialTheme.typography.labelMedium, maxLines = 1)
         }
+
+        SectionHelpButton(topic = HelpTopic.PERSON_SWITCHER, locale = locale)
     }
 }
 

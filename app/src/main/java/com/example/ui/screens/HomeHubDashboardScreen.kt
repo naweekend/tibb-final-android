@@ -77,9 +77,11 @@ import com.example.data.model.StoredAlarm
 import com.example.data.model.TriageTier
 import com.example.data.model.UnitSystem
 import com.example.engine.HealthMath
+import com.example.engine.HelpTopic
 import com.example.engine.RemediesAndPlans
 import com.example.engine.TriageEngine
 import com.example.engine.TrilingualStrings
+import com.example.ui.components.SectionHelpButton
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
 import com.example.ui.theme.TibbEspressoCard
@@ -329,11 +331,17 @@ fun HomeHubDashboardScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Text(
-                text = if (isUr) "آج کے صحت اشارے" else "Daily Insights",
-                style = if (isUr) urduTextStyle(MaterialTheme.typography.headlineMedium) else MaterialTheme.typography.headlineMedium,
-                color = c.ink,
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                Text(
+                    text = if (isUr) "آج کے صحت اشارے" else "Daily Insights",
+                    style = if (isUr) urduTextStyle(MaterialTheme.typography.headlineMedium) else MaterialTheme.typography.headlineMedium,
+                    color = c.ink,
+                )
+                SectionHelpButton(topic = HelpTopic.DAILY_INSIGHTS_SCORE, locale = locale)
+            }
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(999.dp))
@@ -449,7 +457,7 @@ fun HomeHubDashboardScreen(
                             todayLog = todayLog,
                             sensorStepsActive = sensorStepsActive,
                             stepSensitivityHigh = stepSensitivityHigh,
-                            isUr = isUr,
+                            locale = locale,
                             onToggleSensor = {
                                 if (!sensorStepsActive && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
                                     val granted = ContextCompat.checkSelfPermission(
@@ -469,7 +477,7 @@ fun HomeHubDashboardScreen(
                         ProgressGoalsBentoCard(
                             met = activeGoalsCount,
                             total = 5,
-                            isUr = isUr,
+                            locale = locale,
                             onOpenCoach = { onNavigateTab(MainNavTab.COACH) },
                             modifier = Modifier.weight(1f),
                         )
@@ -477,13 +485,13 @@ fun HomeHubDashboardScreen(
                     Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
                         CheckInBentoCard(
                             todayLog = todayLog,
-                            isUr = isUr,
+                            locale = locale,
                             onClick = { showCheckInDialog = true },
                             modifier = Modifier.weight(1f),
                         )
                         WellnessBentoCard(
                             todayLog = todayLog,
-                            isUr = isUr,
+                            locale = locale,
                             onEditSleep = { showSleepEditor = !showSleepEditor },
                             onOpenVitals = { onNavigateTab(MainNavTab.VITALS) },
                             modifier = Modifier.weight(1f),
@@ -496,15 +504,15 @@ fun HomeHubDashboardScreen(
                         todayLog = todayLog,
                         sensorStepsActive = sensorStepsActive,
                         stepSensitivityHigh = stepSensitivityHigh,
-                        isUr = isUr,
+                        locale = locale,
                         onToggleSensor = { onToggleStepSensor(null) },
                         onToggleSensitivity = { onToggleStepSensor(!stepSensitivityHigh) },
                         onAddManualSteps = { onUpdateWellness(todayLog.copy(steps = todayLog.steps + 500)) },
                         modifier = Modifier.fillMaxWidth(),
                     )
-                    ProgressGoalsBentoCard(activeGoalsCount, 5, isUr, { onNavigateTab(MainNavTab.COACH) }, Modifier.fillMaxWidth())
-                    CheckInBentoCard(todayLog, isUr, { showCheckInDialog = true }, Modifier.fillMaxWidth())
-                    WellnessBentoCard(todayLog, isUr, { showSleepEditor = !showSleepEditor }, { onNavigateTab(MainNavTab.VITALS) }, Modifier.fillMaxWidth())
+                    ProgressGoalsBentoCard(activeGoalsCount, 5, locale, { onNavigateTab(MainNavTab.COACH) }, Modifier.fillMaxWidth())
+                    CheckInBentoCard(todayLog, locale, { showCheckInDialog = true }, Modifier.fillMaxWidth())
+                    WellnessBentoCard(todayLog, locale, { showSleepEditor = !showSleepEditor }, { onNavigateTab(MainNavTab.VITALS) }, Modifier.fillMaxWidth())
                 }
             }
         }
@@ -562,9 +570,10 @@ fun HomeHubDashboardScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                         Icon(Icons.Rounded.WaterDrop, contentDescription = null, tint = c.accent)
                         Text(if (isUr) "پانی و نمکیات (Hydration)" else "Daily Hydration", style = MaterialTheme.typography.titleMedium, color = c.ink)
+                        SectionHelpButton(topic = HelpTopic.HYDRATION, locale = locale)
                     }
                     Text(
                         text = "${todayLog.waterMl} / ${todayLog.waterGoalMl} ml",
@@ -603,9 +612,14 @@ fun HomeHubDashboardScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(6.dp),
+                        modifier = Modifier.weight(1f),
+                    ) {
                         Icon(Icons.Rounded.LocalHospital, contentDescription = null, tint = Color(0xFF95CEA4))
-                        Text(s.nearestFacilitiesTitle, style = MaterialTheme.typography.titleMedium, color = Color(0xFFF2EFE4))
+                        Text(s.nearestFacilitiesTitle, style = MaterialTheme.typography.titleMedium, color = Color(0xFFF2EFE4), modifier = Modifier.weight(1f, fill = false))
+                        SectionHelpButton(topic = HelpTopic.NEAREST_HOSPITALS, locale = locale, onDarkSurface = true)
                     }
                     TibbPrimaryPillButton(
                         onClick = { onOpenDialer("1122") },
@@ -846,19 +860,27 @@ private fun StepsBentoCard(
     todayLog: DailyWellnessLog,
     sensorStepsActive: Boolean,
     stepSensitivityHigh: Boolean,
-    isUr: Boolean,
+    locale: AppLocale,
     onToggleSensor: () -> Unit,
     onToggleSensitivity: () -> Unit,
     onAddManualSteps: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val c = LocalTibbColors.current
+    val isUr = locale == AppLocale.UR
     val pct = (todayLog.steps.toFloat() / todayLog.stepGoal.coerceAtLeast(1000)).coerceIn(0f, 1f)
     TibbGlassCard(modifier = modifier, padding = 14.dp) {
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                Icon(Icons.Rounded.DirectionsWalk, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
-                Text(if (isUr) "روزانہ قدم" else "Daily Steps", style = MaterialTheme.typography.titleMedium, color = c.ink)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.weight(1f)) {
+                    Icon(Icons.Rounded.DirectionsWalk, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
+                    Text(if (isUr) "روزانہ قدم" else "Daily Steps", style = MaterialTheme.typography.titleMedium, color = c.ink, maxLines = 1)
+                }
+                SectionHelpButton(topic = HelpTopic.BENTO_STEPS, locale = locale)
             }
             Box(modifier = Modifier.fillMaxWidth().height(76.dp), contentAlignment = Alignment.Center) {
                 Canvas(modifier = Modifier.size(72.dp)) {
@@ -918,16 +940,24 @@ private fun StepsBentoCard(
 private fun ProgressGoalsBentoCard(
     met: Int,
     total: Int,
-    isUr: Boolean,
+    locale: AppLocale,
     onOpenCoach: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val c = LocalTibbColors.current
+    val isUr = locale == AppLocale.UR
     TibbGlassCard(modifier = modifier.clickable(onClick = onOpenCoach), padding = 14.dp) {
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                Icon(Icons.Rounded.CheckCircle, contentDescription = null, tint = c.safeGreen, modifier = Modifier.size(18.dp))
-                Text(if (isUr) "آج کے اہداف" else "Progress Goals", style = MaterialTheme.typography.titleMedium, color = c.ink)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.weight(1f)) {
+                    Icon(Icons.Rounded.CheckCircle, contentDescription = null, tint = c.safeGreen, modifier = Modifier.size(18.dp))
+                    Text(if (isUr) "آج کے اہداف" else "Progress Goals", style = MaterialTheme.typography.titleMedium, color = c.ink, maxLines = 1)
+                }
+                SectionHelpButton(topic = HelpTopic.BENTO_GOALS, locale = locale)
             }
             Text(
                 "$met / $total",
@@ -952,11 +982,12 @@ private fun ProgressGoalsBentoCard(
 @Composable
 private fun CheckInBentoCard(
     todayLog: DailyWellnessLog,
-    isUr: Boolean,
+    locale: AppLocale,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val c = LocalTibbColors.current
+    val isUr = locale == AppLocale.UR
     TibbThoughtGlowCard(
         modifier = modifier
             .clickable(onClick = onClick)
@@ -964,9 +995,16 @@ private fun CheckInBentoCard(
         padding = 14.dp,
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                Icon(Icons.Rounded.MedicalServices, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
-                Text(if (isUr) "روزانہ چیک ان" else "Your Check-In", style = MaterialTheme.typography.titleMedium, color = c.ink)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.weight(1f)) {
+                    Icon(Icons.Rounded.MedicalServices, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
+                    Text(if (isUr) "روزانہ چیک ان" else "Your Check-In", style = MaterialTheme.typography.titleMedium, color = c.ink, maxLines = 1)
+                }
+                SectionHelpButton(topic = HelpTopic.BENTO_CHECKIN, locale = locale)
             }
             val check = todayLog.dailyCheckIn
             Text(
@@ -990,17 +1028,25 @@ private fun CheckInBentoCard(
 @Composable
 private fun WellnessBentoCard(
     todayLog: DailyWellnessLog,
-    isUr: Boolean,
+    locale: AppLocale,
     onEditSleep: () -> Unit,
     onOpenVitals: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val c = LocalTibbColors.current
+    val isUr = locale == AppLocale.UR
     TibbGlassCard(modifier = modifier, padding = 14.dp) {
         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                Icon(Icons.Rounded.Favorite, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
-                Text(if (isUr) "صحت اور نیند" else "Daily Wellness", style = MaterialTheme.typography.titleMedium, color = c.ink)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.weight(1f)) {
+                    Icon(Icons.Rounded.Favorite, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
+                    Text(if (isUr) "صحت اور نیند" else "Daily Wellness", style = MaterialTheme.typography.titleMedium, color = c.ink, maxLines = 1)
+                }
+                SectionHelpButton(topic = HelpTopic.BENTO_WELLNESS, locale = locale)
             }
             Text("HR: ${todayLog.restingHr?.let { "$it bpm" } ?: "--"}", style = TabularNumberStyle, color = c.ink)
             Text(

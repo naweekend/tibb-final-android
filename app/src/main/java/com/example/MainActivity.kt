@@ -35,6 +35,7 @@ import com.example.ui.components.PersonSwitcherStrip
 import com.example.ui.components.PinUpgradeDialog
 import com.example.ui.components.SettingsDrawerSheet
 import com.example.ui.components.TibbBottomBar
+import com.example.ui.components.TibbFullHelpSheet
 import com.example.ui.components.TibbNavigationRail
 import com.example.ui.components.TibbTopBar
 import com.example.ui.screens.AlarmsAndLabsScreen
@@ -81,6 +82,7 @@ private fun TibbAppRoot(
     } == true
     val snackbarHostState = remember { SnackbarHostState() }
     var showSettingsDrawer by remember { mutableStateOf(false) }
+    var showFullHelpSheet by remember { mutableStateOf(false) }
 
     LaunchedEffect(state.toastMessage) {
         val msg = state.toastMessage
@@ -112,6 +114,7 @@ private fun TibbAppRoot(
                         onCreateAccount = viewModel::createPinAccount,
                         onUnlockAccount = viewModel::unlockPinAccount,
                         onQuickGuestVault = viewModel::openDefaultQuickAccess,
+                        onOpenHelp = { showFullHelpSheet = true },
                         onOpenLegal = { viewModel.setShowLegalModal(true) },
                     )
                 }
@@ -125,6 +128,7 @@ private fun TibbAppRoot(
                         onToggleDarkMode = viewModel::toggleDarkMode,
                         onStartWorkspace = { viewModel.enterWorkspaceFromLanding(openOnboardingIfEmpty = true) },
                         onOpenAuthVault = { viewModel.lockVaultToAuthScreen() },
+                        onOpenHelp = { showFullHelpSheet = true },
                         onOpenLegal = { viewModel.setShowLegalModal(true) },
                     )
                 }
@@ -147,6 +151,7 @@ private fun TibbAppRoot(
                                 locale = state.locale,
                                 isPinProtected = isPinProtected,
                                 onCallSos = { viewModel.openEmergencyDialer("1122") },
+                                onOpenHelp = { showFullHelpSheet = true },
                                 onOpenSettings = { showSettingsDrawer = true },
                                 onOpenRecords = { viewModel.setActiveTab(MainNavTab.RECORDS) },
                                 onLockOrPin = {
@@ -359,6 +364,7 @@ private fun TibbAppRoot(
                     onOpenPinUpgrade = { viewModel.setShowPinUpgradeSheet(true) },
                     onLockVault = viewModel::lockVaultToAuthScreen,
                     onOpenLanding = viewModel::openLandingOverview,
+                    onOpenHelp = { showFullHelpSheet = true },
                     onOpenLegal = { viewModel.setShowLegalModal(true) },
                 )
             }
@@ -378,6 +384,13 @@ private fun TibbAppRoot(
                 LegalComplianceDialog(
                     locale = state.locale,
                     onDismiss = { viewModel.setShowLegalModal(false) },
+                )
+            }
+
+            if (showFullHelpSheet) {
+                TibbFullHelpSheet(
+                    locale = state.locale,
+                    onDismiss = { showFullHelpSheet = false },
                 )
             }
         }

@@ -63,7 +63,9 @@ import com.example.data.model.StoredLabRecord
 import com.example.engine.AndroidSensorsManager
 import com.example.engine.AudioFeedbackManager
 import com.example.engine.HealthMath
+import com.example.engine.HelpTopic
 import com.example.engine.TrilingualStrings
+import com.example.ui.components.SectionHelpButton
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
 import com.example.ui.theme.TibbGlassCard
@@ -224,12 +226,23 @@ fun AlarmsAndLabsScreen(
             // Alarms & Weekly PDF
             TibbGlassCard(padding = 16.dp) {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(Icons.Rounded.Alarm, contentDescription = null, tint = c.accent)
-                        Column {
-                            Text(s.alarmsTitle, style = if (isUr) urduTextStyle(MaterialTheme.typography.titleMedium) else MaterialTheme.typography.titleMedium, color = c.ink)
-                            Text(s.alarmsSubtitle, style = MaterialTheme.typography.bodySmall, color = c.muted)
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.Top,
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            modifier = Modifier.weight(1f),
+                        ) {
+                            Icon(Icons.Rounded.Alarm, contentDescription = null, tint = c.accent)
+                            Column {
+                                Text(s.alarmsTitle, style = if (isUr) urduTextStyle(MaterialTheme.typography.titleMedium) else MaterialTheme.typography.titleMedium, color = c.ink)
+                                Text(s.alarmsSubtitle, style = MaterialTheme.typography.bodySmall, color = c.muted)
+                            }
                         }
+                        SectionHelpButton(topic = HelpTopic.ALARMS_MEDICINE, locale = locale)
                     }
 
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -379,9 +392,16 @@ fun AlarmsAndLabsScreen(
             // Weekly Digest PDF Card
             TibbGlassCard(padding = 16.dp, borderColor = c.accent.copy(alpha = 0.45f)) {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(Icons.Rounded.PictureAsPdf, contentDescription = null, tint = c.accent)
-                        Text(s.weeklyDigestTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.weight(1f)) {
+                            Icon(Icons.Rounded.PictureAsPdf, contentDescription = null, tint = c.accent)
+                            Text(s.weeklyDigestTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
+                        }
+                        SectionHelpButton(topic = HelpTopic.ALARMS_MEDICINE, locale = locale)
                     }
                     Text(s.weeklyDigestSubtitle, style = MaterialTheme.typography.bodySmall, color = c.muted)
                     TibbPrimaryPillButton(
@@ -396,12 +416,23 @@ fun AlarmsAndLabsScreen(
             // Lab Report OCR
             TibbGlassCard(padding = 16.dp) {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(Icons.Rounded.Description, contentDescription = null, tint = c.accent)
-                        Column {
-                            Text(s.labsTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
-                            Text(s.labsSubtitle, style = MaterialTheme.typography.bodySmall, color = c.muted)
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.Top,
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            modifier = Modifier.weight(1f),
+                        ) {
+                            Icon(Icons.Rounded.Description, contentDescription = null, tint = c.accent)
+                            Column {
+                                Text(s.labsTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
+                                Text(s.labsSubtitle, style = MaterialTheme.typography.bodySmall, color = c.muted)
+                            }
                         }
+                        SectionHelpButton(topic = HelpTopic.LAB_OCR, locale = locale)
                     }
 
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {

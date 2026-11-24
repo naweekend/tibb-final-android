@@ -63,8 +63,10 @@ import com.example.data.model.TemperatureBand
 import com.example.data.model.TriageAnswers
 import com.example.data.model.TriageEvaluationResult
 import com.example.engine.AudioFeedbackManager
+import com.example.engine.HelpTopic
 import com.example.engine.TriageEngine
 import com.example.engine.TrilingualStrings
+import com.example.ui.components.SectionHelpButton
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
 import com.example.ui.theme.TibbGlassCard
@@ -251,9 +253,16 @@ fun GuidedIntakeForm(
                 // Direct RED Emergency Quick Chips
                 TibbGlassCard(padding = 14.dp, borderColor = c.dangerRed.copy(alpha = 0.5f)) {
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                            Icon(Icons.Rounded.Emergency, contentDescription = null, tint = c.dangerRed, modifier = Modifier.size(18.dp))
-                            Text("Immediate RED Emergency Bypass", style = MaterialTheme.typography.titleMedium, color = c.dangerRed)
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.weight(1f)) {
+                                Icon(Icons.Rounded.Emergency, contentDescription = null, tint = c.dangerRed, modifier = Modifier.size(18.dp))
+                                Text("Immediate RED Emergency Bypass", style = MaterialTheme.typography.titleMedium, color = c.dangerRed)
+                            }
+                            SectionHelpButton(topic = HelpTopic.GUIDED_CHECKUP, locale = locale)
                         }
                         FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                             listOf(
@@ -282,7 +291,14 @@ fun GuidedIntakeForm(
 
                 TibbGlassCard(padding = 16.dp) {
                     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                        Text("1. Primary Complaint", style = MaterialTheme.typography.titleMedium, color = c.ink)
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text("1. Primary Complaint", style = MaterialTheme.typography.titleMedium, color = c.ink)
+                            SectionHelpButton(topic = HelpTopic.GUIDED_CHECKUP, locale = locale)
+                        }
                         FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             PrimaryComplaint.entries.forEach { pc ->
                                 val sel = complaint == pc
@@ -379,7 +395,14 @@ fun GuidedIntakeForm(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.spacedBy(12.dp),
                     ) {
-                        Text("2. Tap Body Area Where Symptoms Are Strongest", style = MaterialTheme.typography.titleMedium, color = c.ink)
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text("2. Tap Body Area Where Symptoms Are Strongest", style = MaterialTheme.typography.titleMedium, color = c.ink, modifier = Modifier.weight(1f))
+                            SectionHelpButton(topic = HelpTopic.GUIDED_CHECKUP, locale = locale)
+                        }
 
                         // Interactive Canvas Anatomical Body Silhouette
                         Box(
@@ -507,13 +530,16 @@ fun GuidedIntakeForm(
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text("${s.oneQuestionLabel} · ${qIndex + 1}/${questions.size}", style = TabularNumberStyle, color = c.accent)
-                            TibbSecondaryPillButton(
-                                onClick = { audioManager.speakOfflineGuidance(q.promptUr, "ur-PK") },
-                                modifier = Modifier.testTag("guided_q_audio_btn"),
-                            ) {
-                                Icon(Icons.Rounded.VolumeUp, contentDescription = null, modifier = Modifier.size(16.dp))
-                                Spacer(Modifier.width(4.dp))
-                                Text(s.urduAudio, style = MaterialTheme.typography.labelSmall)
+                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                                TibbSecondaryPillButton(
+                                    onClick = { audioManager.speakOfflineGuidance(q.promptUr, "ur-PK") },
+                                    modifier = Modifier.testTag("guided_q_audio_btn"),
+                                ) {
+                                    Icon(Icons.Rounded.VolumeUp, contentDescription = null, modifier = Modifier.size(16.dp))
+                                    Spacer(Modifier.width(4.dp))
+                                    Text(s.urduAudio, style = MaterialTheme.typography.labelSmall)
+                                }
+                                SectionHelpButton(topic = HelpTopic.GUIDED_CHECKUP, locale = locale)
                             }
                         }
 
@@ -557,7 +583,14 @@ fun GuidedIntakeForm(
             4 -> {
                 TibbGlassCard(padding = 16.dp) {
                     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                        Text("4. Optional Vitals Before Final Triage", style = MaterialTheme.typography.titleMedium, color = c.ink)
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text("4. Optional Vitals Before Final Triage", style = MaterialTheme.typography.titleMedium, color = c.ink, modifier = Modifier.weight(1f))
+                            SectionHelpButton(topic = HelpTopic.GUIDED_CHECKUP, locale = locale)
+                        }
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             OutlinedTextField(
                                 value = rrText,

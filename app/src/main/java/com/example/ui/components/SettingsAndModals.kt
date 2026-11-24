@@ -19,6 +19,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.FactCheck
+import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.DarkMode
 import androidx.compose.material.icons.rounded.FolderShared
@@ -52,6 +53,7 @@ import androidx.compose.ui.unit.dp
 import com.example.data.model.AppLocale
 import com.example.data.model.UnitSystem
 import com.example.data.model.WorkspaceMode
+import com.example.engine.HelpTopic
 import com.example.engine.TrilingualStrings
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TibbPrimaryPillButton
@@ -77,6 +79,7 @@ fun SettingsDrawerSheet(
     onOpenPinUpgrade: () -> Unit,
     onLockVault: () -> Unit,
     onOpenLanding: () -> Unit,
+    onOpenHelp: () -> Unit,
     onOpenLegal: () -> Unit,
 ) {
     val c = LocalTibbColors.current
@@ -174,11 +177,18 @@ fun SettingsDrawerSheet(
             }
 
             // Workspace Mode
-            Text(
-                text = s.workspaceRoleLabel,
-                style = MaterialTheme.typography.labelLarge,
-                color = c.muted,
-            )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    text = s.workspaceRoleLabel,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = c.muted,
+                )
+                SectionHelpButton(topic = HelpTopic.PIN_SECURITY, locale = locale)
+            }
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 WorkspaceMode.entries.forEach { mode ->
                     val selected = workspaceMode == mode
@@ -235,6 +245,24 @@ fun SettingsDrawerSheet(
                 onClick = {
                     onDismiss()
                     onNavigateTab(MainNavTab.ANDROID_KIT)
+                },
+            )
+            DrawerNavRow(
+                icon = Icons.AutoMirrored.Rounded.HelpOutline,
+                title = when (locale) {
+                    AppLocale.UR -> "آسان مکمل رہنمائی (?)"
+                    AppLocale.ROMAN -> "Asaan Poori App Guide (?)"
+                    AppLocale.EN -> "Simple Help Guide (?)"
+                },
+                subtitle = when (locale) {
+                    AppLocale.UR -> "BHU، OCR، بی پی، شوگر اور ہر بٹن کی سادہ وضاحت"
+                    AppLocale.ROMAN -> "BHU, OCR, BP, Sugar aur har feature ka aasan matlab"
+                    AppLocale.EN -> "Plain-language explanation of BHU, OCR, BP & every feature"
+                },
+                testTag = "drawer_open_help",
+                onClick = {
+                    onDismiss()
+                    onOpenHelp()
                 },
             )
             DrawerNavRow(

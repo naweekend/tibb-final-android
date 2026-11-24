@@ -51,7 +51,9 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.data.model.AppLocale
 import com.example.data.model.AuditLogEntry
+import com.example.engine.HelpTopic
 import com.example.engine.TrilingualStrings
+import com.example.ui.components.SectionHelpButton
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
 import com.example.ui.theme.TibbGlassCard
@@ -114,9 +116,16 @@ fun AndroidKitScreen(
     ) {
         TibbGlassCard(padding = 16.dp) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    Icon(Icons.Rounded.Security, contentDescription = null, tint = c.accent)
-                    Text(s.kitTitle, style = MaterialTheme.typography.titleLarge, color = c.ink)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.weight(1f)) {
+                        Icon(Icons.Rounded.Security, contentDescription = null, tint = c.accent)
+                        Text(s.kitTitle, style = MaterialTheme.typography.titleLarge, color = c.ink)
+                    }
+                    SectionHelpButton(topic = HelpTopic.ANDROID_KIT, locale = locale)
                 }
                 Text(s.kitSubtitle, style = MaterialTheme.typography.bodySmall, color = c.muted)
             }
@@ -130,11 +139,14 @@ fun AndroidKitScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.weight(1f)) {
                         Icon(Icons.Rounded.Memory, contentDescription = null, tint = c.accent)
                         Text(s.kitMemoryTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
                     }
-                    Text("${runtimeMode.ramMb} / 1024 MB", style = TabularNumberStyle.copy(fontWeight = FontWeight.Bold), color = c.safeGreen)
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Text("${runtimeMode.ramMb} / 1024 MB", style = TabularNumberStyle.copy(fontWeight = FontWeight.Bold), color = c.safeGreen)
+                        SectionHelpButton(topic = HelpTopic.ANDROID_KIT, locale = locale)
+                    }
                 }
 
                 LinearProgressIndicator(
@@ -165,7 +177,14 @@ fun AndroidKitScreen(
         // Encrypted .tibb-backup Export & Restore
         TibbGlassCard(padding = 16.dp) {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Text(s.kitBackupTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(s.kitBackupTitle, style = MaterialTheme.typography.titleMedium, color = c.ink, modifier = Modifier.weight(1f))
+                    SectionHelpButton(topic = HelpTopic.ANDROID_KIT, locale = locale)
+                }
                 OutlinedTextField(
                     value = passphrase,
                     onValueChange = { passphrase = it },

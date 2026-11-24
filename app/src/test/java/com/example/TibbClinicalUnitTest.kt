@@ -2,6 +2,7 @@ package com.example
 
 import com.example.data.local.BundledDataLoader
 import com.example.data.local.VaultCrypto
+import com.example.data.model.AppLocale
 import com.example.data.model.BodyRegion
 import com.example.data.model.EpisodeInput
 import com.example.data.model.EpisodeVitals
@@ -17,7 +18,9 @@ import com.example.data.model.TriageTier
 import com.example.data.model.UnitSystem
 import com.example.data.model.WellnessGoal
 import com.example.engine.HealthMath
+import com.example.engine.HelpTopic
 import com.example.engine.RemediesAndPlans
+import com.example.engine.SimpleHelpCatalog
 import com.example.engine.TriageEngine
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -232,5 +235,27 @@ class TibbClinicalUnitTest {
         assertEquals(4, plan.dietMeals.size)
         assertTrue(plan.workoutRoutine.isNotEmpty())
         assertTrue(plan.avoidNotes_en.any { it.contains("sugary", ignoreCase = true) || it.contains("sweet", ignoreCase = true) })
+    }
+
+    @Test
+    fun `simple help catalog covers every feature topic in english urdu and roman with plain language`() {
+        val requiredTopics = HelpTopic.entries.filter { it != HelpTopic.FULL_GUIDE }
+        AppLocale.entries.forEach { loc ->
+            val entries = SimpleHelpCatalog.getAllEntries(loc)
+            assertEquals("Expected all 26 topics for $loc", requiredTopics.size, entries.size)
+            requiredTopics.forEach { topic ->
+                val entry = SimpleHelpCatalog.getEntry(topic, loc)
+                assertEquals(topic, entry.topic)
+                assertTrue("Empty badge for $topic in $loc", entry.badge.isNotBlank())
+                assertTrue("Empty title for $topic in $loc", entry.title.isNotBlank())
+                assertTrue("Empty summary for $topic in $loc", entry.simpleSummary.isNotBlank())
+                assertTrue("Empty howToUse for $topic in $loc", entry.howToUse.isNotBlank())
+                assertTrue("Empty safetyOrTip for $topic in $loc", entry.safetyOrTip.isNotBlank())
+            }
+            val bhuHelp = SimpleHelpCatalog.getEntry(HelpTopic.AUTH_VAULT, loc)
+            assertTrue("BHU must be explained plainly for $loc", bhuHelp.simpleSummary.contains("Basic Health Unit", ignoreCase = true) || bhuHelp.simpleSummary.contains("بنیادی مرکزِ صحت"))
+            val ocrHelp = SimpleHelpCatalog.getEntry(HelpTopic.LAB_OCR, loc)
+            assertTrue("OCR must be explained plainly for $loc", ocrHelp.simpleSummary.contains("OCR"))
+        }
     }
 }

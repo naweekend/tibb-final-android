@@ -60,10 +60,12 @@ import com.example.data.model.PatientProfile
 import com.example.data.model.TriageEvaluationResult
 import com.example.data.model.TriageTier
 import com.example.engine.AudioFeedbackManager
+import com.example.engine.HelpTopic
 import com.example.engine.TriageEngine
 import com.example.engine.TrilingualStrings
 import com.example.ui.components.CyclicSighingPacer
 import com.example.ui.components.OfflineStatusBadge
+import com.example.ui.components.SectionHelpButton
 import com.example.ui.components.SpeechDictationButton
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TibbGlassCard
@@ -218,7 +220,17 @@ fun CheckupAndChatScreen(
                 )
             }
         } else {
-            OfflineStatusBadge(label = s.activeEngineOffline)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                OfflineStatusBadge(
+                    label = s.activeEngineOffline,
+                    modifier = Modifier.weight(1f, fill = false),
+                )
+                SectionHelpButton(topic = HelpTopic.CHECKUP_CHAT_LIVE, locale = locale)
+            }
 
             // Thread Pills + New Chat
             Row(
