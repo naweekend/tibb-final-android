@@ -209,7 +209,7 @@ fun VitalsEstimatorScreen(
                 Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(
                         text = s.vitalsTitle,
-                        style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
+                        style = if (isUr) urduTextStyle(MaterialTheme.typography.headlineSmall) else MaterialTheme.typography.headlineSmall,
                         color = c.mistInk,
                     )
                     Text(

@@ -136,11 +136,11 @@ fun PersonRecordsVaultScreen(
                 ) {
                     Text(
                         text = s.recordsTitle,
-                        style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
+                        style = if (isUr) urduTextStyle(MaterialTheme.typography.headlineSmall) else MaterialTheme.typography.headlineSmall,
                         color = c.mistInk,
                         modifier = Modifier.weight(1f),
                     )
-                    SectionHelpButton(topic = HelpTopic.SAVED_RECORDS, locale = locale)
+                    SectionHelpButton(topic = HelpTopic.SAVED_RECORDS, locale = locale, onMistSurface = true)
                 }
                 Text(
                     text = "${activePerson.name} · ${activePerson.bloodGroup.label} · ${HealthMath.formatWeightDisplay(activePerson.weightKg, unitSystem)} · ${HealthMath.formatHeightDisplay(activePerson.heightCm, unitSystem)}",

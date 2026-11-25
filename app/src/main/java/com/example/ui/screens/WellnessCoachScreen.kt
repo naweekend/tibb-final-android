@@ -70,6 +70,7 @@ import com.example.ui.theme.TibbExpandableSection
 import com.example.ui.theme.TibbGlassCard
 import com.example.ui.theme.TibbPrimaryPillButton
 import com.example.ui.theme.TibbSecondaryPillButton
+import com.example.ui.theme.TibbSegmentedTabs
 import com.example.ui.theme.urduTextStyle
 import kotlinx.coroutines.delay
 
@@ -155,7 +156,7 @@ fun WellnessCoachScreen(
                 ) {
                     Text(
                         text = if (isUr) "جنوبی ایشیائی بی ایم آئی" else "South Asian BMI",
-                        style = MaterialTheme.typography.titleMedium,
+                        style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
                         color = c.ink,
                         modifier = Modifier.weight(1f),
                     )
@@ -172,44 +173,16 @@ fun WellnessCoachScreen(
         }
 
         // Unified Subtabs
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(IntrinsicSize.Max)
-                .clip(RoundedCornerShape(999.dp))
-                .background(c.surfaceMuted)
-                .border(1.dp, c.border, RoundedCornerShape(999.dp))
-                .padding(3.dp),
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
-        ) {
-            listOf(
+        TibbSegmentedTabs(
+            options = listOf(
                 0 to (if (isUr) "غذا پلان" else "Diet Plan"),
                 1 to (if (isUr) "ورزش" else "Workout"),
                 2 to (if (isUr) "گھریلو علاج" else "Remedies"),
-            ).forEach { (idx, lbl) ->
-                val sel = subTab == idx
-                Box(
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxHeight()
-                        .clip(RoundedCornerShape(999.dp))
-                        .background(if (sel) c.ctaBg else Color.Transparent)
-                        .clickable { subTab = idx }
-                        .padding(horizontal = 6.dp, vertical = 9.dp)
-                        .testTag("coach_subtab_$idx"),
-                    contentAlignment = Alignment.Center,
-                ) {
-                    Text(
-                        text = lbl,
-                        style = MaterialTheme.typography.labelMedium,
-                        color = if (sel) c.ctaInk else c.muted,
-                        textAlign = TextAlign.Center,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                }
-            }
-        }
+            ),
+            selected = subTab,
+            onSelect = { subTab = it },
+            tagPrefix = "coach_subtab",
+        )
 
         when (subTab) {
             0 -> {
@@ -367,7 +340,7 @@ fun WellnessCoachScreen(
                                 modifier = Modifier.weight(1f),
                             ) {
                                 Icon(Icons.Rounded.FitnessCenter, contentDescription = null, tint = c.accent)
-                                Text("Workout Timer", style = MaterialTheme.typography.titleMedium, color = c.ink)
+                                Text("Workout Timer", style = MaterialTheme.typography.titleLarge, color = c.ink)
                             }
                             SectionHelpButton(topic = HelpTopic.COACH_WORKOUT, locale = locale)
                         }
@@ -456,7 +429,7 @@ fun WellnessCoachScreen(
                 ) {
                     Text(
                         text = if (isUr) "مستند گھریلو علاج" else "Verified Home Remedies",
-                        style = MaterialTheme.typography.titleMedium,
+                        style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
                         color = c.ink,
                         modifier = Modifier.weight(1f),
                     )

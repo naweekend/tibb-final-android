@@ -53,6 +53,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -132,10 +133,10 @@ fun AuthLockScreen(
                     IconButton(
                         onClick = onOpenHelp,
                         modifier = Modifier
-                            .size(40.dp)
+                            .size(42.dp)
                             .clip(CircleShape)
-                            .background(c.surface)
-                            .border(1.dp, c.border, CircleShape)
+                            .background(c.surfaceElevated)
+                            .border(0.75.dp, c.border, CircleShape)
                             .testTag("auth_help_btn"),
                     ) {
                         Icon(
@@ -201,7 +202,7 @@ fun AuthLockScreen(
                 }
 
                 // Primary Lock / Create Vault Card
-                TibbGlassCard(padding = 18.dp, backgroundColor = c.surfaceElevated) {
+                TibbGlassCard(padding = 20.dp, backgroundColor = c.surfaceElevated) {
                     Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -210,7 +211,7 @@ fun AuthLockScreen(
                         ) {
                             Text(
                                 text = if (modeTab == 0) s.unlockVaultTitle else s.createVaultTitle,
-                                style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
+                                style = if (isUr) urduTextStyle(MaterialTheme.typography.headlineSmall) else MaterialTheme.typography.headlineSmall,
                                 color = c.ink,
                                 modifier = Modifier.weight(1f),
                             )
@@ -223,9 +224,8 @@ fun AuthLockScreen(
                                 .fillMaxWidth()
                                 .height(IntrinsicSize.Max)
                                 .clip(RoundedCornerShape(999.dp))
-                                .background(c.surfaceMuted)
-                                .border(1.dp, c.border, RoundedCornerShape(999.dp))
-                                .padding(3.dp),
+                                .background(c.lilacGrey.copy(alpha = 0.65f))
+                                .padding(4.dp),
                             horizontalArrangement = Arrangement.spacedBy(4.dp),
                         ) {
                             listOf(
@@ -239,7 +239,7 @@ fun AuthLockScreen(
                                         .fillMaxHeight()
                                         .heightIn(min = 40.dp)
                                         .clip(RoundedCornerShape(999.dp))
-                                        .background(if (active) c.ctaBg else c.surfaceMuted)
+                                        .background(if (active) c.ctaBg else Color.Transparent)
                                         .clickable {
                                             modeTab = idx
                                             pin = ""
@@ -251,7 +251,7 @@ fun AuthLockScreen(
                                     Text(
                                         text = label,
                                         style = MaterialTheme.typography.labelMedium,
-                                        color = if (active) c.ctaInk else c.muted,
+                                        color = if (active) c.ctaInk else c.ink.copy(alpha = 0.72f),
                                         textAlign = TextAlign.Center,
                                         maxLines = 2,
                                         overflow = TextOverflow.Ellipsis,

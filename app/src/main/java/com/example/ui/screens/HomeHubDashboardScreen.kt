@@ -94,7 +94,12 @@ import com.example.engine.TriageEngine
 import com.example.engine.TrilingualStrings
 import com.example.ui.components.PakistanLocationPickerDialog
 import com.example.ui.components.SectionHelpButton
+import com.example.ui.components.TibbBarComparisonChart
+import com.example.ui.components.TibbBarItem
+import com.example.ui.components.TibbDonutGauge
+import com.example.ui.components.TibbMetricProgressRow
 import com.example.ui.theme.LocalTibbColors
+import com.example.ui.theme.SoftCharcoal
 import com.example.ui.theme.TabularNumberStyle
 import com.example.ui.theme.TibbExpandableSection
 import com.example.ui.theme.TibbGlassCard
@@ -116,6 +121,7 @@ fun HomeHubDashboardScreen(
     profiles: List<PatientProfile>,
     activePerson: PatientProfile?,
     todayLog: DailyWellnessLog?,
+    wellnessLogs: List<DailyWellnessLog> = emptyList(),
     alarms: List<StoredAlarm>,
     triageEngine: TriageEngine,
     userGpsCoords: GeoCoords?,
@@ -187,6 +193,7 @@ fun HomeHubDashboardScreen(
     }
 
     var insightTab by remember { mutableIntStateOf(0) } // 0 = Reminders, 1 = Recommended
+    var activityChartMetric by remember { mutableIntStateOf(0) } // 0 = Steps, 1 = Water, 2 = Sleep
     var expandedSection by remember { mutableStateOf<String?>(null) } // Accordion: all collapsed by default
     var showCheckInDialog by remember { mutableStateOf(false) }
     var showBellDialog by remember { mutableStateOf(false) }
@@ -259,10 +266,10 @@ fun HomeHubDashboardScreen(
             ) {
                 Box(
                     modifier = Modifier
-                        .size(42.dp)
+                        .size(44.dp)
                         .clip(CircleShape)
                         .background(c.accentSoft)
-                        .border(1.dp, c.accent.copy(alpha = 0.5f), CircleShape),
+                        .border(0.75.dp, c.accentPastel.copy(alpha = 0.65f), CircleShape),
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
@@ -274,7 +281,7 @@ fun HomeHubDashboardScreen(
                 Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                     Text(
                         text = if (isUr) "السلام علیکم، ${activePerson.name}" else "Assalam-o-Alaikum, ${activePerson.name}",
-                        style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
+                        style = if (isUr) urduTextStyle(MaterialTheme.typography.headlineSmall) else MaterialTheme.typography.headlineSmall,
                         color = c.ink,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
@@ -296,10 +303,10 @@ fun HomeHubDashboardScreen(
                 IconButton(
                     onClick = onEditPerson,
                     modifier = Modifier
-                        .size(40.dp)
+                        .size(42.dp)
                         .clip(CircleShape)
-                        .background(c.surface)
-                        .border(1.dp, c.border, CircleShape)
+                        .background(c.surfaceElevated)
+                        .border(0.75.dp, c.border, CircleShape)
                         .testTag("home_edit_person_btn"),
                 ) {
                     Icon(Icons.Rounded.Edit, contentDescription = s.editProfileBtn, tint = c.muted, modifier = Modifier.size(18.dp))
@@ -308,10 +315,10 @@ fun HomeHubDashboardScreen(
                     IconButton(
                         onClick = { showBellDialog = true },
                         modifier = Modifier
-                            .size(40.dp)
+                            .size(42.dp)
                             .clip(CircleShape)
-                            .background(c.surface)
-                            .border(1.dp, c.border, CircleShape)
+                            .background(c.surfaceElevated)
+                            .border(0.75.dp, c.border, CircleShape)
                             .testTag("home_bell_btn"),
                     ) {
                         Icon(Icons.Rounded.Notifications, contentDescription = "Due Reminders", tint = c.ink, modifier = Modifier.size(19.dp))
@@ -332,7 +339,7 @@ fun HomeHubDashboardScreen(
             }
         }
 
-        // 2. Primary Hero Card (Combines Daily Score + Priority Next Action)
+        // 2. Primary Hero Card (Visual Readiness Donut + Priority Next Action)
         TibbMistCard(padding = 18.dp) {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Row(
@@ -340,32 +347,46 @@ fun HomeHubDashboardScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    Column(
                         modifier = Modifier.weight(1f),
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
                     ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        ) {
+                            Text(
+                                text = if (isUr) "آج کے صحت اشارے" else "Today's Focus",
+                                style = if (isUr) urduTextStyle(MaterialTheme.typography.titleMedium) else MaterialTheme.typography.titleMedium,
+                                color = c.mistInk,
+                                modifier = Modifier.weight(1f, fill = false),
+                            )
+                            SectionHelpButton(topic = HelpTopic.DAILY_INSIGHTS_SCORE, locale = locale, onMistSurface = true)
+                        }
                         Text(
-                            text = if (isUr) "آج کے صحت اشارے" else "Today's Focus",
-                            style = if (isUr) urduTextStyle(MaterialTheme.typography.titleMedium) else MaterialTheme.typography.titleMedium,
-                            color = c.mistInk,
-                            modifier = Modifier.weight(1f, fill = false),
+                            text = if (isUr) "تفصیل کے لیے گول اسکور پر ٹیپ کریں" else "Tap readiness ring for score breakdown",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = c.mistInk.copy(alpha = 0.68f),
                         )
-                        SectionHelpButton(topic = HelpTopic.DAILY_INSIGHTS_SCORE, locale = locale, onMistSurface = true)
                     }
+                    Spacer(Modifier.width(10.dp))
                     Box(
                         modifier = Modifier
-                            .clip(RoundedCornerShape(999.dp))
-                            .background(c.mistInk.copy(alpha = 0.12f))
+                            .clip(CircleShape)
                             .clickable { showScoreBreakdown = true }
-                            .padding(horizontal = 10.dp, vertical = 5.dp)
+                            .padding(2.dp)
                             .testTag("home_readiness_pill"),
                     ) {
-                        Text(
-                            text = "Score ${readiness.score}%",
-                            style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.labelMedium.fontSize, fontWeight = FontWeight.Bold),
-                            color = c.mistInk,
-                            maxLines = 1,
+                        TibbDonutGauge(
+                            progress = readiness.score / 100f,
+                            centerValue = "${readiness.score}%",
+                            centerCaption = if (isUr) "اسکور" else "Ready",
+                            size = 64.dp,
+                            strokeWidth = 6.dp,
+                            activeColor = c.ctaBg,
+                            trackColor = c.mistInk.copy(alpha = 0.14f),
+                            centerTextColor = c.mistInk,
+                            accessibilityLabel = "Readiness score ${readiness.score} percent",
                         )
                     }
                 }
@@ -376,7 +397,7 @@ fun HomeHubDashboardScreen(
                         .fillMaxWidth()
                         .height(IntrinsicSize.Max)
                         .clip(RoundedCornerShape(999.dp))
-                        .background(c.mistInk.copy(alpha = 0.10f))
+                        .background(c.mistInk.copy(alpha = 0.09f))
                         .padding(3.dp),
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                 ) {
@@ -390,7 +411,7 @@ fun HomeHubDashboardScreen(
                                 .weight(1f)
                                 .fillMaxHeight()
                                 .clip(RoundedCornerShape(999.dp))
-                                .background(if (sel) c.mistInk else Color.Transparent)
+                                .background(if (sel) c.ctaBg else Color.Transparent)
                                 .clickable { insightTab = idx }
                                 .padding(horizontal = 8.dp, vertical = 7.dp)
                                 .testTag(if (idx == 0) "home_tab_reminders" else "home_tab_recommended"),
@@ -399,7 +420,7 @@ fun HomeHubDashboardScreen(
                             Text(
                                 text = label,
                                 style = MaterialTheme.typography.labelMedium,
-                                color = if (sel) Color(0xFFF6F4EC) else c.mistInk.copy(alpha = 0.85f),
+                                color = if (sel) c.ctaInk else c.mistInk.copy(alpha = 0.80f),
                                 textAlign = TextAlign.Center,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis,
@@ -416,7 +437,7 @@ fun HomeHubDashboardScreen(
                     } else {
                         if (isUr) "ذاتی غذا اور ورزش کا پلان" else "Your Personalized Diet & WHO Checkup"
                     },
-                    style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
+                    style = if (isUr) urduTextStyle(MaterialTheme.typography.headlineSmall) else MaterialTheme.typography.headlineSmall,
                     color = c.mistInk,
                 )
 
@@ -428,7 +449,7 @@ fun HomeHubDashboardScreen(
                         if (isUr) bmiCheck.adviceUr else bmiCheck.adviceEn
                     },
                     style = if (isUr) urduTextStyle(MaterialTheme.typography.bodySmall) else MaterialTheme.typography.bodySmall,
-                    color = c.mistInk.copy(alpha = 0.82f),
+                    color = c.mistInk.copy(alpha = 0.80f),
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
                 )
@@ -443,8 +464,8 @@ fun HomeHubDashboardScreen(
                             onStartStructuredCheckup()
                         }
                     },
-                    containerColor = c.mistInk,
-                    contentColor = Color(0xFFF6F4EC),
+                    containerColor = c.ctaBg,
+                    contentColor = c.ctaInk,
                     modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).testTag("home_featured_cta"),
                 ) {
                     Text(
@@ -663,6 +684,95 @@ fun HomeHubDashboardScreen(
                     }
                 }
             }
+
+            // Recent Activity & Hydration Trend Chart
+            val trendLogs = remember(wellnessLogs, todayLog) {
+                val base = if (wellnessLogs.isNotEmpty()) wellnessLogs else listOf(todayLog)
+                base.sortedBy { it.dateKey }.takeLast(7)
+            }
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 6.dp)
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(c.surfaceMuted.copy(alpha = 0.55f))
+                    .padding(12.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = if (isUr) "حالیہ روزانہ رجحان (${trendLogs.size} دن)" else "Recent Trend (${trendLogs.size}d)",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = c.ink,
+                    )
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        listOf(
+                            0 to (if (isUr) "قدم" else "Steps"),
+                            1 to (if (isUr) "پانی" else "Water"),
+                            2 to (if (isUr) "نیند" else "Sleep"),
+                        ).forEach { (idx, lbl) ->
+                            val sel = activityChartMetric == idx
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(999.dp))
+                                    .background(if (sel) c.ctaBg else c.surfaceElevated)
+                                    .clickable { activityChartMetric = idx }
+                                    .padding(horizontal = 8.dp, vertical = 4.dp),
+                            ) {
+                                Text(lbl, style = MaterialTheme.typography.labelSmall, color = if (sel) c.ctaInk else c.muted)
+                            }
+                        }
+                    }
+                }
+
+                val barItems = trendLogs.map { lg ->
+                    val shortDay = lg.dateKey.takeLast(5)
+                    val isToday = lg.dateKey == todayLog.dateKey
+                    when (activityChartMetric) {
+                        0 -> TibbBarItem(
+                            label = if (isToday) "Today" else shortDay,
+                            value = lg.steps.toFloat(),
+                            formattedValue = if (lg.steps >= 1000) "${(lg.steps / 1000f * 10).toInt() / 10f}k" else "${lg.steps}",
+                            isHighlighted = isToday,
+                        )
+                        1 -> TibbBarItem(
+                            label = if (isToday) "Today" else shortDay,
+                            value = lg.waterMl.toFloat(),
+                            formattedValue = "${lg.waterMl}",
+                            color = if (isToday) c.wellnessBlue else c.wellnessBlue.copy(alpha = 0.45f),
+                            isHighlighted = isToday,
+                        )
+                        else -> TibbBarItem(
+                            label = if (isToday) "Today" else shortDay,
+                            value = lg.sleepHours.toFloat(),
+                            formattedValue = "${lg.sleepHours}h",
+                            color = if (isToday) c.safeGreen else c.safeGreen.copy(alpha = 0.45f),
+                            isHighlighted = isToday,
+                        )
+                    }
+                }
+                val goalVal = when (activityChartMetric) {
+                    0 -> todayLog.stepGoal.toFloat()
+                    1 -> todayLog.waterGoalMl.toFloat()
+                    else -> 8f
+                }
+                val goalTxt = when (activityChartMetric) {
+                    0 -> "Goal ${todayLog.stepGoal}"
+                    1 -> "Goal ${todayLog.waterGoalMl} ml"
+                    else -> "Target 8h"
+                }
+                TibbBarComparisonChart(
+                    items = barItems,
+                    chartHeight = 96.dp,
+                    goalValue = goalVal,
+                    goalLabel = goalTxt,
+                    accessibilityLabel = "Daily activity comparison chart",
+                )
+            }
         }
 
         // Section 2: Nearby Hospitals & 1122 (Collapsed by default with clean summary + 1122 badge)
@@ -678,11 +788,11 @@ fun HomeHubDashboardScreen(
             title = s.nearestFacilitiesTitle,
             summary = locationSummary,
             icon = Icons.Rounded.LocalHospital,
-            accentColor = Color(0xFF8FD0A0),
+            accentColor = c.espressoAccent,
             containerColor = c.espressoBottom,
             borderColor = Color.White.copy(alpha = 0.12f),
-            titleColor = Color(0xFFF3F0E6),
-            summaryColor = Color(0xFFB1C4B9),
+            titleColor = c.espressoInk,
+            summaryColor = c.espressoMuted,
             expanded = expandedSection == "hospitals",
             onExpandedChange = { open -> expandedSection = if (open) "hospitals" else null },
             headerTestTag = "home_expand_hospitals",
@@ -716,18 +826,18 @@ fun HomeHubDashboardScreen(
                     modifier = Modifier
                         .heightIn(min = 42.dp)
                         .clip(RoundedCornerShape(999.dp))
-                        .background(Color(0xFF8FD0A0))
+                        .background(c.espressoAccent)
                         .clickable { showMapPicker = true }
                         .padding(horizontal = 12.dp, vertical = 8.dp)
                         .testTag("home_open_map_picker"),
                     contentAlignment = Alignment.Center,
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
-                        Icon(Icons.Rounded.Map, contentDescription = "Open Pakistan Map", tint = Color(0xFF10241E), modifier = Modifier.size(15.dp))
+                        Icon(Icons.Rounded.Map, contentDescription = "Open Pakistan Map", tint = SoftCharcoal, modifier = Modifier.size(15.dp))
                         Text(
                             text = if (isUr) "پاکستان نقشہ (545+)" else "Pakistan Map (545+)",
                             style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
-                            color = Color(0xFF10241E),
+                            color = SoftCharcoal,
                         )
                     }
                 }
@@ -738,7 +848,7 @@ fun HomeHubDashboardScreen(
                         modifier = Modifier
                             .heightIn(min = 42.dp)
                             .clip(RoundedCornerShape(999.dp))
-                            .background(if (sel) Color(0xFF8FD0A0).copy(alpha = 0.85f) else Color.White.copy(alpha = 0.12f))
+                            .background(if (sel) c.espressoAccent.copy(alpha = 0.88f) else Color.White.copy(alpha = 0.12f))
                             .clickable {
                                 selectedDistrict = plc.district
                                 activeCoords = if (plc.lat != null && plc.lng != null) GeoCoords(plc.lat, plc.lng) else null
@@ -749,7 +859,7 @@ fun HomeHubDashboardScreen(
                         Text(
                             "${plc.label} (${plc.areaOrLandmark.ifBlank { plc.district }})",
                             style = MaterialTheme.typography.labelSmall,
-                            color = if (sel) Color(0xFF10241E) else Color(0xFFF3F0E6),
+                            color = if (sel) SoftCharcoal else c.espressoInk,
                         )
                     }
                 }
@@ -770,8 +880,8 @@ fun HomeHubDashboardScreen(
                     contentAlignment = Alignment.Center,
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        Icon(Icons.Rounded.MyLocation, contentDescription = null, tint = Color(0xFF8FD0A0), modifier = Modifier.size(14.dp))
-                        Text(if (gpsLocating) "GPS..." else "Use GPS", style = MaterialTheme.typography.labelSmall, color = Color(0xFFF3F0E6))
+                        Icon(Icons.Rounded.MyLocation, contentDescription = null, tint = c.espressoAccent, modifier = Modifier.size(14.dp))
+                        Text(if (gpsLocating) "GPS..." else "Use GPS", style = MaterialTheme.typography.labelSmall, color = c.espressoInk)
                     }
                 }
 
@@ -789,7 +899,7 @@ fun HomeHubDashboardScreen(
                         Text(
                             selectedDistrict.ifBlank { s.allDistrictsOption },
                             style = MaterialTheme.typography.labelSmall,
-                            color = Color(0xFFF3F0E6),
+                            color = c.espressoInk,
                         )
                     }
                     DropdownMenu(expanded = districtMenuOpen, onDismissRequest = { districtMenuOpen = false }) {
@@ -811,7 +921,7 @@ fun HomeHubDashboardScreen(
                 Text(
                     text = s.locationRequiredBody,
                     style = MaterialTheme.typography.bodySmall,
-                    color = Color(0xFFB1C4B9),
+                    color = c.espressoMuted,
                 )
             } else {
                 facilities.take(3).forEach { fac ->
@@ -825,17 +935,17 @@ fun HomeHubDashboardScreen(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
-                            Text(if (isUr) fac.name_ur else fac.name_en, style = MaterialTheme.typography.labelLarge, color = Color(0xFFF3F0E6))
+                            Text(if (isUr) fac.name_ur else fac.name_en, style = MaterialTheme.typography.labelLarge, color = c.espressoInk)
                             Text(
                                 text = "${fac.tehsil}, ${fac.district}" + (fac.distanceKm?.let { " · $it km" } ?: ""),
                                 style = MaterialTheme.typography.bodySmall,
-                                color = Color(0xFFB1C4B9),
+                                color = c.espressoMuted,
                             )
                         }
                         TibbSecondaryPillButton(
                             onClick = { onOpenDialer(fac.phone) },
-                            borderColor = Color(0xFF8FD0A0),
-                            contentColor = Color(0xFF8FD0A0),
+                            borderColor = c.espressoAccent,
+                            contentColor = c.espressoAccent,
                         ) {
                             Text(s.callBtn)
                         }
@@ -964,14 +1074,30 @@ fun HomeHubDashboardScreen(
     if (showScoreBreakdown) {
         AlertDialog(
             onDismissRequest = { showScoreBreakdown = false },
-            title = { Text("Readiness Score: ${readiness.score}%") },
+            title = {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    TibbDonutGauge(
+                        progress = readiness.score / 100f,
+                        centerValue = "${readiness.score}%",
+                        size = 52.dp,
+                        strokeWidth = 5.5.dp,
+                    )
+                    Column {
+                        Text("Daily Readiness", style = MaterialTheme.typography.titleLarge)
+                        Text("Combined wellness score", style = MaterialTheme.typography.bodySmall, color = c.muted)
+                    }
+                }
+            },
             text = {
-                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Text("• Hydration: ${readiness.hydrationPct}%")
-                    Text("• Steps Progress: ${readiness.stepsPct}%")
-                    Text("• Sleep Balance: ${readiness.sleepPct}%")
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    TibbMetricProgressRow(label = "Hydration", percent = readiness.hydrationPct, color = c.wellnessBlue)
+                    TibbMetricProgressRow(label = "Steps Progress", percent = readiness.stepsPct, color = c.accent)
+                    TibbMetricProgressRow(label = "Sleep Balance", percent = readiness.sleepPct, color = c.safeGreen)
                     if (readiness.hasScheduledAlarms) {
-                        Text("• Medicine Adherence: ${readiness.adherencePct}%")
+                        TibbMetricProgressRow(label = "Medicine Adherence", percent = readiness.adherencePct, color = c.urgentYellow)
                     }
                 }
             },
@@ -1032,29 +1158,13 @@ private fun StepsSummaryCard(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
             ) {
-                Box(modifier = Modifier.size(44.dp), contentAlignment = Alignment.Center) {
-                    Canvas(modifier = Modifier.size(44.dp)) {
-                        drawArc(
-                            color = c.surfaceMuted,
-                            startAngle = 0f,
-                            sweepAngle = 360f,
-                            useCenter = false,
-                            style = Stroke(width = 5.dp.toPx(), cap = StrokeCap.Round),
-                        )
-                        drawArc(
-                            color = c.accent,
-                            startAngle = -90f,
-                            sweepAngle = 360f * pct,
-                            useCenter = false,
-                            style = Stroke(width = 5.dp.toPx(), cap = StrokeCap.Round),
-                        )
-                    }
-                    Text(
-                        text = "${(pct * 100).toInt()}%",
-                        style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.labelSmall.fontSize, fontWeight = FontWeight.Bold),
-                        color = c.ink,
-                    )
-                }
+                TibbDonutGauge(
+                    progress = pct,
+                    centerValue = "${(pct * 100).toInt()}%",
+                    size = 46.dp,
+                    strokeWidth = 5.dp,
+                    centerValueFontSize = MaterialTheme.typography.labelSmall.fontSize,
+                )
                 Column {
                     Text(
                         text = "${todayLog.steps}",
@@ -1106,12 +1216,21 @@ private fun ProgressGoalsSummaryCard(
                 style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.headlineSmall.fontSize, fontWeight = FontWeight.Bold),
                 color = c.ink,
             )
-            LinearProgressIndicator(
-                progress = { met / total.toFloat() },
-                modifier = Modifier.fillMaxWidth().height(5.dp).clip(RoundedCornerShape(999.dp)),
-                color = c.wellnessBlue,
-                trackColor = c.surfaceMuted,
-            )
+            // Segmented 5-step goal bars
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                repeat(total) { idx ->
+                    Box(
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(6.dp)
+                            .clip(RoundedCornerShape(999.dp))
+                            .background(if (idx < met) c.wellnessBlue else c.surfaceMuted),
+                    )
+                }
+            }
             Text(
                 if (isUr) "BLUE تندرستی · غذا و ورزش" else "BLUE Wellness · Diet ->",
                 style = MaterialTheme.typography.labelSmall,

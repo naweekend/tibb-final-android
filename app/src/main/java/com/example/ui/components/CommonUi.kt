@@ -9,6 +9,9 @@ import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -27,12 +30,12 @@ import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -44,7 +47,6 @@ import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Alarm
 import androidx.compose.material.icons.rounded.ArrowDropDown
-import androidx.compose.material.icons.rounded.Call
 import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.Emergency
 import androidx.compose.material.icons.rounded.FolderShared
@@ -66,13 +68,10 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarDefaults
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
 import androidx.compose.material3.NavigationRailItemDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.runtime.Composable
@@ -84,6 +83,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -92,6 +92,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import com.example.data.model.AppLocale
 import com.example.data.model.PatientProfile
@@ -100,6 +101,7 @@ import com.example.data.model.WorkspaceMode
 import com.example.engine.AndroidSensorsManager
 import com.example.engine.HelpTopic
 import com.example.engine.TrilingualStrings
+import com.example.ui.theme.InterFontFamily
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.NotoNastaliqUrduFamily
 import com.example.ui.theme.TibbGlassCard
@@ -116,14 +118,14 @@ fun TibbBrandMark(
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(9.dp),
     ) {
         Box(
             modifier = Modifier
-                .size(if (compact) 30.dp else 36.dp)
-                .clip(RoundedCornerShape(10.dp))
-                .background(c.accent.copy(alpha = 0.16f))
-                .border(1.dp, c.accent.copy(alpha = 0.35f), RoundedCornerShape(10.dp)),
+                .size(if (compact) 34.dp else 40.dp)
+                .clip(CircleShape)
+                .background(c.accentSoft)
+                .border(0.75.dp, c.accentPastel.copy(alpha = 0.6f), CircleShape),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
@@ -135,17 +137,21 @@ fun TibbBrandMark(
         }
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(5.dp),
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
         ) {
             Text(
                 text = "tibb",
-                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+                fontFamily = InterFontFamily,
+                fontWeight = FontWeight.Bold,
+                letterSpacing = (-0.5).sp,
+                fontSize = if (compact) 22.sp else 25.sp,
+                lineHeight = if (compact) 25.sp else 29.sp,
                 color = c.ink,
             )
             Text(
                 text = "طب",
                 fontFamily = NotoNastaliqUrduFamily,
-                fontSize = MaterialTheme.typography.titleSmall.fontSize,
+                fontSize = if (compact) 14.sp else 16.sp,
                 color = c.accent,
             )
         }
@@ -161,8 +167,8 @@ fun OfflineStatusBadge(
     Row(
         modifier = modifier
             .clip(RoundedCornerShape(999.dp))
-            .background(c.safeGreen.copy(alpha = 0.12f))
-            .border(1.dp, c.safeGreen.copy(alpha = 0.30f), RoundedCornerShape(999.dp))
+            .background(c.safeGreenSoft)
+            .border(1.dp, c.safeGreen.copy(alpha = 0.28f), RoundedCornerShape(999.dp))
             .padding(horizontal = 10.dp, vertical = 4.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(6.dp),
@@ -175,8 +181,8 @@ fun OfflineStatusBadge(
         )
         Text(
             text = label,
-            style = MaterialTheme.typography.labelSmall,
-            color = c.ink,
+            style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.SemiBold),
+            color = c.safeGreen,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
         )
@@ -403,7 +409,7 @@ fun TibbTopBar(
         modifier = modifier
             .fillMaxWidth()
             .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal))
-            .padding(horizontal = 14.dp, vertical = 6.dp),
+            .padding(horizontal = 16.dp, vertical = 8.dp),
     ) {
         val compactBar = maxWidth < 380.dp
         val iconBtnSize = 40.dp
@@ -419,9 +425,9 @@ fun TibbTopBar(
             Spacer(Modifier.width(8.dp))
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(if (compactBar) 4.dp else 6.dp),
+                horizontalArrangement = Arrangement.spacedBy(if (compactBar) 5.dp else 7.dp),
             ) {
-                // Calm, clearly separated Emergency 1122 button (distinct from utility icons)
+                // High-clarity, calm Emergency 1122 pill button
                 Row(
                     modifier = Modifier
                         .heightIn(min = 38.dp)
@@ -450,17 +456,13 @@ fun TibbTopBar(
                     )
                 }
 
-                VerticalDivider(
-                    modifier = Modifier.height(20.dp),
-                    thickness = 1.dp,
-                    color = c.border,
-                )
-
                 IconButton(
                     onClick = onOpenHelp,
                     modifier = Modifier
                         .size(iconBtnSize)
+                        .shadow(if (c.isDark) 0.dp else 2.dp, CircleShape)
                         .clip(CircleShape)
+                        .background(c.surfaceElevated)
                         .testTag("topbar_help_btn"),
                 ) {
                     Icon(
@@ -470,8 +472,8 @@ fun TibbTopBar(
                             AppLocale.ROMAN -> "Poori App Help"
                             AppLocale.EN -> "Simple Help Guide"
                         },
-                        tint = c.muted,
-                        modifier = Modifier.size(20.dp),
+                        tint = c.accent,
+                        modifier = Modifier.size(19.dp),
                     )
                 }
 
@@ -479,14 +481,16 @@ fun TibbTopBar(
                     onClick = onLockOrPin,
                     modifier = Modifier
                         .size(iconBtnSize)
+                        .shadow(if (c.isDark) 0.dp else 2.dp, CircleShape)
                         .clip(CircleShape)
+                        .background(c.surfaceElevated)
                         .testTag("topbar_lock_btn"),
                 ) {
                     Icon(
                         imageVector = if (isPinProtected) Icons.Rounded.Lock else Icons.Rounded.Security,
                         contentDescription = if (isPinProtected) s.lockVault else s.setPinBtn,
                         tint = if (isPinProtected) c.accent else c.muted,
-                        modifier = Modifier.size(19.dp),
+                        modifier = Modifier.size(18.dp),
                     )
                 }
 
@@ -494,8 +498,9 @@ fun TibbTopBar(
                     onClick = onOpenSettings,
                     modifier = Modifier
                         .size(iconBtnSize)
+                        .shadow(if (c.isDark) 0.dp else 2.dp, CircleShape)
                         .clip(CircleShape)
-                        .background(c.surfaceMuted)
+                        .background(c.accentSoft)
                         .testTag("topbar_menu_btn"),
                 ) {
                     Icon(
@@ -540,42 +545,74 @@ fun TibbBottomBar(
 ) {
     val c = LocalTibbColors.current
     val items = primaryNavItems(locale, workspaceMode)
-    Column(modifier = Modifier.fillMaxWidth()) {
-        HorizontalDivider(thickness = 1.dp, color = c.border)
-        NavigationBar(
-            containerColor = c.surface.copy(alpha = 0.97f),
-            contentColor = c.ink,
-            windowInsets = NavigationBarDefaults.windowInsets,
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .windowInsetsPadding(WindowInsets.navigationBars)
+            .padding(horizontal = 14.dp, vertical = 10.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Surface(
+            shape = RoundedCornerShape(32.dp),
+            color = c.surfaceElevated.copy(alpha = 0.96f),
+            tonalElevation = 0.dp,
+            shadowElevation = if (c.isDark) 8.dp else 12.dp,
+            border = BorderStroke(
+                0.75.dp,
+                if (c.isDark) c.border else c.accentPastel.copy(alpha = 0.35f),
+            ),
+            modifier = Modifier.fillMaxWidth(),
         ) {
-            items.forEach { item ->
-                val selected = activeTab == item.tab
-                NavigationBarItem(
-                    selected = selected,
-                    onClick = { onSelectTab(item.tab) },
-                    icon = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 6.dp, vertical = 6.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                items.forEach { item ->
+                    val selected = activeTab == item.tab
+                    val pillColor by animateColorAsState(
+                        targetValue = if (selected) c.accentSoft else Color.Transparent,
+                        animationSpec = tween(200),
+                        label = "nav_pill_bg",
+                    )
+                    val tintColor by animateColorAsState(
+                        targetValue = if (selected) (if (c.isDark) c.accent else c.ink) else c.muted,
+                        animationSpec = tween(200),
+                        label = "nav_pill_tint",
+                    )
+                    Column(
+                        modifier = Modifier
+                            .weight(1f)
+                            .heightIn(min = 50.dp)
+                            .clip(RoundedCornerShape(24.dp))
+                            .background(pillColor)
+                            .clickable { onSelectTab(item.tab) }
+                            .padding(horizontal = 4.dp, vertical = 6.dp)
+                            .testTag("nav_tab_${item.tab.name.lowercase()}"),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(3.dp),
+                    ) {
                         Icon(
                             imageVector = item.icon,
                             contentDescription = item.label,
+                            tint = tintColor,
+                            modifier = Modifier.size(20.dp),
                         )
-                    },
-                    label = {
                         Text(
                             text = item.label,
                             maxLines = 1,
                             softWrap = false,
                             overflow = TextOverflow.Ellipsis,
-                            style = MaterialTheme.typography.labelSmall,
+                            style = MaterialTheme.typography.labelSmall.copy(
+                                fontWeight = if (selected) FontWeight.SemiBold else FontWeight.Medium,
+                                fontSize = 10.sp,
+                            ),
+                            color = tintColor,
                         )
-                    },
-                    colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = c.accent,
-                        selectedTextColor = c.ink,
-                        indicatorColor = c.accentSoft,
-                        unselectedIconColor = c.muted,
-                        unselectedTextColor = c.muted,
-                    ),
-                    modifier = Modifier.testTag("nav_tab_${item.tab.name.lowercase()}"),
-                )
+                    }
+                }
             }
         }
     }
@@ -595,7 +632,7 @@ fun TibbNavigationRail(
         NavTabSpec(MainNavTab.ANDROID_KIT, s.navKit, Icons.Rounded.Security),
     )
     NavigationRail(
-        containerColor = c.surface,
+        containerColor = c.surfaceElevated.copy(alpha = 0.85f),
         contentColor = c.ink,
         windowInsets = WindowInsets(0),
     ) {
@@ -620,7 +657,7 @@ fun TibbNavigationRail(
                         )
                     },
                     colors = NavigationRailItemDefaults.colors(
-                        selectedIconColor = c.accent,
+                        selectedIconColor = if (c.isDark) c.accent else c.ink,
                         selectedTextColor = c.ink,
                         indicatorColor = c.accentSoft,
                         unselectedIconColor = c.muted,
@@ -659,13 +696,14 @@ fun PersonSwitcherStrip(
         Box(modifier = Modifier.weight(1f)) {
             Row(
                 modifier = Modifier
-                    .heightIn(min = 42.dp)
+                    .heightIn(min = 44.dp)
                     .fillMaxWidth()
+                    .shadow(if (c.isDark) 0.dp else 3.dp, RoundedCornerShape(999.dp))
                     .clip(RoundedCornerShape(999.dp))
-                    .background(c.surface)
-                    .border(1.dp, c.border, RoundedCornerShape(999.dp))
+                    .background(c.surfaceElevated)
+                    .border(0.75.dp, c.border.copy(alpha = 0.14f), RoundedCornerShape(999.dp))
                     .clickable { expanded = true }
-                    .padding(horizontal = 12.dp, vertical = 8.dp)
+                    .padding(horizontal = 14.dp, vertical = 9.dp)
                     .testTag("person_switcher_dropdown"),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -727,25 +765,25 @@ fun PersonSwitcherStrip(
         IconButton(
             onClick = onAddPerson,
             modifier = Modifier
-                .size(42.dp)
+                .size(44.dp)
+                .shadow(if (c.isDark) 0.dp else 3.dp, CircleShape)
                 .clip(CircleShape)
-                .background(c.surface)
-                .border(1.dp, c.border, CircleShape)
+                .background(c.surfaceElevated)
                 .testTag("add_member_chip_btn"),
         ) {
-            Icon(Icons.Rounded.Add, contentDescription = s.addPersonBtn, tint = c.ink, modifier = Modifier.size(18.dp))
+            Icon(Icons.Rounded.Add, contentDescription = s.addPersonBtn, tint = c.ink, modifier = Modifier.size(19.dp))
         }
 
         IconButton(
             onClick = onOpenRecords,
             modifier = Modifier
-                .size(42.dp)
+                .size(44.dp)
+                .shadow(if (c.isDark) 0.dp else 3.dp, CircleShape)
                 .clip(CircleShape)
-                .background(c.surface)
-                .border(1.dp, c.border, CircleShape)
+                .background(c.accentSoft)
                 .testTag("saved_reports_chip_btn"),
         ) {
-            Icon(Icons.Rounded.FolderShared, contentDescription = s.navRecords, tint = c.accent, modifier = Modifier.size(18.dp))
+            Icon(Icons.Rounded.FolderShared, contentDescription = s.navRecords, tint = c.accent, modifier = Modifier.size(19.dp))
         }
 
         SectionHelpButton(topic = HelpTopic.PERSON_SWITCHER, locale = locale)

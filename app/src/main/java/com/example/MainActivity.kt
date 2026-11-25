@@ -5,6 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -146,6 +151,17 @@ private fun TibbAppRoot(
                     val todayLog = remember(activePerson, state.wellnessLogs) {
                         activePerson?.let { viewModel.getOrCreateTodayWellness(it) }
                     }
+                    val personWellnessLogs = remember(activePerson, state.wellnessLogs, todayLog) {
+                        if (activePerson == null) emptyList()
+                        else {
+                            val list = state.wellnessLogs.filter { it.personId == activePerson.id }
+                            if (todayLog != null && list.none { it.dateKey == todayLog.dateKey }) {
+                                (list + todayLog).sortedBy { it.dateKey }
+                            } else {
+                                list.sortedBy { it.dateKey }
+                            }
+                        }
+                    }
 
                     Scaffold(
                         containerColor = Color.Transparent,
@@ -209,13 +225,21 @@ private fun TibbAppRoot(
                                     )
 
                                     Box(modifier = Modifier.weight(1f).fillMaxSize()) {
-                                        when (state.activeTab) {
+                                        AnimatedContent(
+                                            targetState = state.activeTab,
+                                            transitionSpec = {
+                                                fadeIn(animationSpec = tween(220)) togetherWith fadeOut(animationSpec = tween(160))
+                                            },
+                                            label = "main_tab_transition",
+                                        ) { currentTab ->
+                                        when (currentTab) {
                                             MainNavTab.HOME -> HomeHubDashboardScreen(
                                                 locale = state.locale,
                                                 unitSystem = state.unitSystem,
                                                 profiles = state.profiles,
                                                 activePerson = activePerson,
                                                 todayLog = todayLog,
+                                                wellnessLogs = personWellnessLogs,
                                                 alarms = state.alarms,
                                                 triageEngine = viewModel.triageEngine,
                                                 userGpsCoords = state.userGpsCoords,
@@ -271,6 +295,7 @@ private fun TibbAppRoot(
                                                 locale = state.locale,
                                                 activePerson = activePerson,
                                                 todayLog = todayLog,
+                                                wellnessLogs = personWellnessLogs,
                                                 triageEngine = viewModel.triageEngine,
                                                 audioManager = viewModel.audioManager,
                                                 onLogVitals = viewModel::logVitalsToActivePerson,
@@ -324,6 +349,7 @@ private fun TibbAppRoot(
                                                 onBackHome = { viewModel.setActiveTab(MainNavTab.HOME) },
                                                 onShowToast = viewModel::showToast,
                                             )
+                                        }
                                         }
                                     }
                                 }

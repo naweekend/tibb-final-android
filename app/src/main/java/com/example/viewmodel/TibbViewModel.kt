@@ -75,7 +75,7 @@ enum class MainNavTab {
 
 data class TibbUiState(
     val entryStage: AppEntryStage = AppEntryStage.BOOTING,
-    val darkMode: Boolean = true,
+    val darkMode: Boolean = false,
     val locale: AppLocale = AppLocale.EN,
     val unitSystem: UnitSystem = UnitSystem.METRIC,
     val workspaceMode: WorkspaceMode = WorkspaceMode.GHARANA,

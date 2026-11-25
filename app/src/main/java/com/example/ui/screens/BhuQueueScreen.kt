@@ -133,7 +133,7 @@ fun BhuQueueScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text(s.queueTitle, style = MaterialTheme.typography.titleLarge, color = c.ink, modifier = Modifier.weight(1f))
+                    Text(s.queueTitle, style = MaterialTheme.typography.headlineSmall, color = c.ink, modifier = Modifier.weight(1f))
                     SectionHelpButton(topic = HelpTopic.BHU_QUEUE, locale = locale)
                 }
                 Text(s.queueSubtitle, style = MaterialTheme.typography.bodySmall, color = c.muted)

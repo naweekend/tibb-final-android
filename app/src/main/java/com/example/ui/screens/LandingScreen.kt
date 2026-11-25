@@ -43,6 +43,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
@@ -145,8 +146,8 @@ fun LandingScreen(
 
                 // 2. Focused Value Proposition Hero
                 TibbGlassCard(
-                    padding = 22.dp,
-                    borderColor = c.accent.copy(alpha = 0.28f),
+                    padding = 24.dp,
+                    borderColor = c.accentPastel.copy(alpha = 0.45f),
                     backgroundColor = c.surfaceElevated,
                 ) {
                     Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
@@ -299,9 +300,8 @@ private fun LandingLocalePillBar(
     Row(
         modifier = (if (fillWidth) Modifier.fillMaxWidth() else Modifier)
             .clip(RoundedCornerShape(999.dp))
-            .background(c.surfaceMuted)
-            .border(1.dp, c.border, RoundedCornerShape(999.dp))
-            .padding(3.dp),
+            .background(c.lilacGrey.copy(alpha = 0.65f))
+            .padding(4.dp),
         horizontalArrangement = Arrangement.spacedBy(2.dp),
     ) {
         AppLocale.entries.forEach { loc ->
@@ -310,7 +310,7 @@ private fun LandingLocalePillBar(
                 modifier = (if (fillWidth) Modifier.weight(1f) else Modifier)
                     .heightIn(min = 36.dp)
                     .clip(RoundedCornerShape(999.dp))
-                    .background(if (selected) c.ctaBg else c.surfaceMuted)
+                    .background(if (selected) c.ctaBg else Color.Transparent)
                     .clickable { onSetLocale(loc) }
                     .padding(horizontal = 10.dp, vertical = 6.dp)
                     .testTag("landing_locale_${loc.code}"),
@@ -319,7 +319,7 @@ private fun LandingLocalePillBar(
                 Text(
                     text = loc.label,
                     style = MaterialTheme.typography.labelSmall,
-                    color = if (selected) c.ctaInk else c.muted,
+                    color = if (selected) c.ctaInk else c.ink.copy(alpha = 0.72f),
                     maxLines = 1,
                     softWrap = false,
                 )
@@ -342,10 +342,10 @@ private fun LandingHeaderActions(
         IconButton(
             onClick = onOpenHelp,
             modifier = Modifier
-                .size(40.dp)
+                .size(42.dp)
                 .clip(CircleShape)
-                .background(c.surface)
-                .border(1.dp, c.border, CircleShape)
+                .background(c.surfaceElevated)
+                .border(0.75.dp, c.border, CircleShape)
                 .testTag("landing_help_btn"),
         ) {
             Icon(
@@ -359,10 +359,10 @@ private fun LandingHeaderActions(
         IconButton(
             onClick = onToggleDarkMode,
             modifier = Modifier
-                .size(40.dp)
+                .size(42.dp)
                 .clip(CircleShape)
-                .background(c.surface)
-                .border(1.dp, c.border, CircleShape)
+                .background(c.surfaceElevated)
+                .border(0.75.dp, c.border, CircleShape)
                 .testTag("landing_theme_toggle"),
         ) {
             Icon(

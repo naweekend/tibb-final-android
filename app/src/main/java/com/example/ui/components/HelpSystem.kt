@@ -84,19 +84,19 @@ fun SectionHelpButton(
     var showFullGuide by remember { mutableStateOf(false) }
 
     val badgeBg = when {
-        onDarkSurface -> Color.White.copy(alpha = 0.10f)
-        onMistSurface -> c.mistInk.copy(alpha = 0.10f)
-        else -> c.ink.copy(alpha = 0.06f)
+        onDarkSurface -> c.espressoInk.copy(alpha = 0.12f)
+        onMistSurface -> c.mistInk.copy(alpha = 0.08f)
+        else -> c.accentSoft.copy(alpha = 0.65f)
     }
     val badgeBorder = when {
-        onDarkSurface -> Color.White.copy(alpha = 0.24f)
-        onMistSurface -> c.mistInk.copy(alpha = 0.24f)
-        else -> c.ink.copy(alpha = 0.16f)
+        onDarkSurface -> c.espressoInk.copy(alpha = 0.24f)
+        onMistSurface -> c.mistInk.copy(alpha = 0.22f)
+        else -> c.accentPastel.copy(alpha = 0.45f)
     }
     val badgeInk = when {
-        onDarkSurface -> Color(0xFFE6EFE9).copy(alpha = 0.84f)
-        onMistSurface -> c.mistInk.copy(alpha = 0.80f)
-        else -> c.muted.copy(alpha = 0.90f)
+        onDarkSurface -> c.espressoInk.copy(alpha = 0.88f)
+        onMistSurface -> c.mistInk.copy(alpha = 0.82f)
+        else -> c.accent
     }
 
     val desc = when (locale) {

@@ -742,7 +742,7 @@ fun PakistanLocationPickerDialog(
                             Column {
                                 Text(
                                     text = if (isUr) "پاکستان آف لائن نقشہ اور مقام" else "Pakistan Offline Map & Locations",
-                                    style = MaterialTheme.typography.titleMedium,
+                                    style = MaterialTheme.typography.titleLarge,
                                     color = c.ink,
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,

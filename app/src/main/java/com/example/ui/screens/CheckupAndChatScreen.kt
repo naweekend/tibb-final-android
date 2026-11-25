@@ -412,7 +412,7 @@ fun CheckupAndChatScreen(
 
                 Text(
                     text = if (isUr) "${activePerson.name} کے لیے کون سا مسئلہ ہے؟" else "What brings ${activePerson.name} in today?",
-                    style = if (isUr) urduTextStyle(MaterialTheme.typography.titleMedium) else MaterialTheme.typography.titleMedium,
+                    style = if (isUr) urduTextStyle(MaterialTheme.typography.headlineSmall) else MaterialTheme.typography.headlineSmall,
                     color = c.ink,
                 )
 
@@ -474,7 +474,7 @@ fun CheckupAndChatScreen(
                     guidanceEngine.visibleSymptoms(activeCat, activePerson)
                 }
 
-                TibbGlassCard(padding = 14.dp, backgroundColor = c.surfaceElevated) {
+                TibbGlassCard(padding = 16.dp, backgroundColor = c.surfaceElevated) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -489,7 +489,7 @@ fun CheckupAndChatScreen(
                             Column {
                                 Text(
                                     text = if (isUr) activeCat.titleUr else if (isRoman) activeCat.titleRoman else activeCat.titleEn,
-                                    style = MaterialTheme.typography.titleMedium,
+                                    style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
                                     color = c.ink,
                                 )
                                 Text(
@@ -519,15 +519,15 @@ fun CheckupAndChatScreen(
                     val bgCol = when {
                         checked && sym.isRedFlagSymptom -> c.dangerSoft
                         checked -> c.accentSoft
-                        else -> c.surface
+                        else -> c.surfaceElevated
                     }
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .heightIn(min = 52.dp)
-                            .clip(RoundedCornerShape(16.dp))
+                            .clip(RoundedCornerShape(18.dp))
                             .background(bgCol)
-                            .border(1.2.dp, borderCol, RoundedCornerShape(16.dp))
+                            .border(if (checked || sym.isRedFlagSymptom) 1.2.dp else 0.75.dp, borderCol, RoundedCornerShape(18.dp))
                             .clickable {
                                 selectedSymptomIds = if (checked) selectedSymptomIds - sym.id else selectedSymptomIds + sym.id
                             }

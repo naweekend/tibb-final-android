@@ -238,7 +238,7 @@ fun AlarmsAndLabsScreen(
                         ) {
                             Icon(Icons.Rounded.Alarm, contentDescription = null, tint = c.accent)
                             Column {
-                                Text(s.alarmsTitle, style = if (isUr) urduTextStyle(MaterialTheme.typography.titleMedium) else MaterialTheme.typography.titleMedium, color = c.ink)
+                                Text(s.alarmsTitle, style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge, color = c.ink)
                                 Text(s.alarmsSubtitle, style = MaterialTheme.typography.bodySmall, color = c.muted)
                             }
                         }
@@ -515,7 +515,7 @@ fun AlarmsAndLabsScreen(
                         ) {
                             Icon(Icons.Rounded.Description, contentDescription = null, tint = c.accent)
                             Column {
-                                Text(s.labsTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
+                                Text(s.labsTitle, style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge, color = c.ink)
                                 Text(s.labsSubtitle, style = MaterialTheme.typography.bodySmall, color = c.muted)
                             }
                         }

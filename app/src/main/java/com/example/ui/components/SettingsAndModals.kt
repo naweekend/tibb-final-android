@@ -98,8 +98,9 @@ fun SettingsDrawerSheet(
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
-        containerColor = c.surface,
+        containerColor = c.surfaceElevated,
         contentColor = c.ink,
+        shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp),
     ) {
         Column(
             modifier = Modifier
@@ -188,7 +189,7 @@ fun SettingsDrawerSheet(
                     )
                     Spacer(Modifier.width(6.dp))
                     Text(
-                        text = if (darkMode) "Light Cream" else "Forest Dark",
+                        text = if (darkMode) "Ivory Light" else "Charcoal Dark",
                         textAlign = TextAlign.Center,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,

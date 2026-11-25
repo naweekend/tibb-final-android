@@ -87,6 +87,7 @@ import com.example.ui.components.SectionHelpButton
 import com.example.ui.components.StabilizationTimers
 import com.example.ui.components.UrgencyClassificationsPillStrip
 import com.example.ui.theme.LocalTibbColors
+import com.example.ui.theme.SoftCharcoal
 import com.example.ui.theme.TabularNumberStyle
 import com.example.ui.theme.TibbExpandableSection
 import com.example.ui.theme.TibbGlassCard
@@ -495,11 +496,11 @@ fun MedicalGuidanceResultView(
                 else -> if (isUr) "پاکستان کا نقشہ یا قریبی ہسپتال منتخب کریں" else "Tap to pick Pakistan map location & BHUs"
             },
             icon = Icons.Rounded.LocalHospital,
-            accentColor = Color(0xFF8FD0A0),
+            accentColor = c.espressoAccent,
             containerColor = c.espressoBottom,
             borderColor = Color.White.copy(alpha = 0.12f),
-            titleColor = Color(0xFFF3F0E6),
-            summaryColor = Color(0xFFB1C4B9),
+            titleColor = c.espressoInk,
+            summaryColor = c.espressoMuted,
             expanded = expandedPanel == "hospitals",
             onExpandedChange = { open -> expandedPanel = if (open) "hospitals" else null },
             headerTestTag = "triage_expand_hospitals",
@@ -515,18 +516,18 @@ fun MedicalGuidanceResultView(
                     modifier = Modifier
                         .heightIn(min = 42.dp)
                         .clip(RoundedCornerShape(999.dp))
-                        .background(Color(0xFF8FD0A0))
+                        .background(c.espressoAccent)
                         .clickable { showMapPicker = true }
                         .padding(horizontal = 12.dp, vertical = 8.dp)
                         .testTag("result_open_map_picker"),
                     contentAlignment = Alignment.Center,
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
-                        Icon(Icons.Rounded.Map, contentDescription = "Open Pakistan Map", tint = Color(0xFF10241E), modifier = Modifier.size(15.dp))
+                        Icon(Icons.Rounded.Map, contentDescription = "Open Pakistan Map", tint = SoftCharcoal, modifier = Modifier.size(15.dp))
                         Text(
                             text = if (isUr) "پاکستان نقشہ (545+)" else "Pakistan Map (545+)",
                             style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
-                            color = Color(0xFF10241E),
+                            color = SoftCharcoal,
                         )
                     }
                 }
@@ -546,8 +547,8 @@ fun MedicalGuidanceResultView(
                     contentAlignment = Alignment.Center,
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        Icon(Icons.Rounded.MyLocation, contentDescription = null, tint = Color(0xFF8FD0A0), modifier = Modifier.size(14.dp))
-                        Text(if (gpsLocating) s.locatingGps else s.useGpsBtn, style = MaterialTheme.typography.labelSmall, color = Color(0xFFF3F0E6))
+                        Icon(Icons.Rounded.MyLocation, contentDescription = null, tint = c.espressoAccent, modifier = Modifier.size(14.dp))
+                        Text(if (gpsLocating) s.locatingGps else s.useGpsBtn, style = MaterialTheme.typography.labelSmall, color = c.espressoInk)
                     }
                 }
 
@@ -561,7 +562,7 @@ fun MedicalGuidanceResultView(
                             .padding(horizontal = 12.dp, vertical = 8.dp),
                         contentAlignment = Alignment.Center,
                     ) {
-                        Text(selectedDistrict.ifBlank { s.allDistrictsOption }, style = MaterialTheme.typography.labelSmall, color = Color(0xFFF3F0E6))
+                        Text(selectedDistrict.ifBlank { s.allDistrictsOption }, style = MaterialTheme.typography.labelSmall, color = c.espressoInk)
                     }
                     DropdownMenu(expanded = districtOpen, onDismissRequest = { districtOpen = false }) {
                         districts.forEach { d ->
@@ -579,7 +580,7 @@ fun MedicalGuidanceResultView(
             }
 
             if (needsLoc) {
-                Text(s.locationRequiredBody, style = MaterialTheme.typography.bodySmall, color = Color(0xFFB1C4B9))
+                Text(s.locationRequiredBody, style = MaterialTheme.typography.bodySmall, color = c.espressoMuted)
             } else {
                 facilities.take(4).forEach { fac ->
                     Row(
@@ -592,17 +593,17 @@ fun MedicalGuidanceResultView(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
-                            Text(if (isUr) fac.name_ur else fac.name_en, style = MaterialTheme.typography.labelLarge, color = Color(0xFFF3F0E6))
+                            Text(if (isUr) fac.name_ur else fac.name_en, style = MaterialTheme.typography.labelLarge, color = c.espressoInk)
                             Text(
                                 text = "${fac.tehsil}, ${fac.district}" + (fac.distanceKm?.let { " · $it km" } ?: ""),
                                 style = MaterialTheme.typography.bodySmall,
-                                color = Color(0xFFB1C4B9),
+                                color = c.espressoMuted,
                             )
                         }
                         TibbSecondaryPillButton(
                             onClick = { onOpenDialer(fac.phone) },
-                            borderColor = Color(0xFF8FD0A0),
-                            contentColor = Color(0xFF8FD0A0),
+                            borderColor = c.espressoAccent,
+                            contentColor = c.espressoAccent,
                         ) {
                             Text(s.callBtn)
                         }
@@ -693,7 +694,7 @@ private fun EmergencyOverrideCard(
             }
             Text(
                 text = s.redHeadline,
-                style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
+                style = if (isUr) urduTextStyle(MaterialTheme.typography.headlineSmall) else MaterialTheme.typography.headlineSmall,
                 color = c.ink,
             )
             Text(
@@ -806,7 +807,7 @@ private fun MatchedConditionGuidanceCard(
         ConditionSeverity.MILD -> if (isUr) "GREEN · گھریلو نگہداشت" else "GREEN · Home Care"
     }
 
-    TibbGlassCard(padding = 16.dp, backgroundColor = c.surfaceElevated) {
+    TibbGlassCard(padding = 18.dp, backgroundColor = c.surfaceElevated) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -822,7 +823,7 @@ private fun MatchedConditionGuidanceCard(
                     modifier = Modifier
                         .clip(RoundedCornerShape(999.dp))
                         .background(sevColor.copy(alpha = 0.16f))
-                        .border(1.dp, sevColor.copy(alpha = 0.5f), RoundedCornerShape(999.dp))
+                        .border(0.75.dp, sevColor.copy(alpha = 0.5f), RoundedCornerShape(999.dp))
                         .padding(horizontal = 10.dp, vertical = 4.dp),
                 ) {
                     Text(sevLabel, style = MaterialTheme.typography.labelSmall, color = sevColor)
@@ -831,7 +832,7 @@ private fun MatchedConditionGuidanceCard(
 
             Text(
                 text = if (isUr) matched.probabilisticHeaderUr else matched.probabilisticHeaderEn,
-                style = if (isUr) urduTextStyle(MaterialTheme.typography.titleMedium) else MaterialTheme.typography.titleMedium,
+                style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
                 color = c.ink,
             )
 

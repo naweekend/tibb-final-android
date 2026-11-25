@@ -2,70 +2,73 @@ package com.example.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Deep Forest Pine Dark Palette (Default)
-val ForestBgTop = Color(0xFF0D1B18)
-val ForestBgBottom = Color(0xFF122822)
-val ForestSurface = Color(0xFF152924)
-val ForestSurfaceElevated = Color(0xFF1B352E)
-val ForestSurfaceMuted = Color(0xFF213E36)
-val ForestInk = Color(0xFFF3F0E6)
-val ForestMuted = Color(0xFFB1C4B9)
-val ForestCtaBg = Color(0xFFF1EFE4)
-val ForestCtaInk = Color(0xFF10241E)
-val ForestAccent = Color(0xFF8FD0A0)
-val ForestAccentStrong = Color(0xFF6FB383)
-val ForestBorder = Color(0x18F2EFE4)
+// Warm Ivory & Pastel Lavender Light Palette (Default)
+val IvoryBgTop = Color(0xFFF5EEDB)          // Warm ivory
+val IvoryBgMid = Color(0xFFF7F2E6)          // Soft ivory transition
+val IvoryBgBottom = Color(0xFFF4F3F8)       // Soft off-white
+val SoftSurface = Color(0xFFF7F6FB)         // Floating soft card surface
+val SoftSurfaceElevated = Color(0xFFFCFBFE) // Subtle elevated alabaster-lilac card
+val SoftSurfaceMuted = Color(0xFFE9E7F2)    // Soft muted lilac-ivory container
+val MutedLilacGrey = Color(0xFFD8D7E8)      // Muted lilac grey
+val SoftCharcoal = Color(0xFF242326)        // Soft charcoal primary ink & CTA
+val SoftMutedInk = Color(0xFF66636E)        // Muted secondary ink
+val SoftCharcoalInk = Color(0xFFF4F3F8)     // Soft off-white text on dark buttons
+val PastelLavender = Color(0xFFC5B8F4)      // Signature pastel lavender
+val PastelLavenderDeep = Color(0xFF6452B5)  // High-contrast accessible lavender for icons/text on light
+val LightLavender = Color(0xFFE4DDFB)       // Light lavender for soft pills & secondary buttons
+val SoftHairlineBorder = Color(0x1A242326)  // Ultra-subtle hairline shadow edge
 
-// Botanical Light Cream Palette
-val CreamBgTop = Color(0xFFEDF0E6)
-val CreamBgBottom = Color(0xFFF6F4EC)
-val CreamSurface = Color(0xFFFFFFFF)
-val CreamSurfaceElevated = Color(0xFFFCFCF9)
-val CreamSurfaceMuted = Color(0xFFE5EAE0)
-val CreamInk = Color(0xFF122620)
-val CreamMuted = Color(0xFF4F695E)
-val CreamCtaBg = Color(0xFF15382E)
-val CreamCtaInk = Color(0xFFF6F4EC)
-val CreamAccent = Color(0xFF287352)
-val CreamBorder = Color(0x14122620)
+// Refined Soft Charcoal & Muted Lavender Dark Palette
+val DarkBgTop = Color(0xFF17161B)
+val DarkBgBottom = Color(0xFF1E1C24)
+val DarkSurface = Color(0xFF242329)
+val DarkSurfaceElevated = Color(0xFF2D2B34)
+val DarkSurfaceMuted = Color(0xFF363340)
+val DarkInk = Color(0xFFF5EEDB)             // Warm ivory ink
+val DarkMuted = Color(0xFFB8B4C4)
+val DarkCtaBg = Color(0xFFE4DDFB)           // Light lavender CTA in dark mode
+val DarkCtaInk = Color(0xFF242326)
+val DarkAccent = Color(0xFFC5B8F4)          // Pastel lavender accent
+val DarkAccentSoft = Color(0x38C5B8F4)
+val DarkBorder = Color(0x1FF5EEDB)
 
-// Special Card Tokens
-val MistDarkTop = Color(0xFF88A994)
-val MistDarkBottom = Color(0xFF6F937E)
-val MistLightTop = Color(0xFFDCEAE0)
-val MistLightBottom = Color(0xFFC8DDD0)
+// Special Editorial Card Tokens
+val MistLightTop = Color(0xFFEDE7FC)
+val MistLightBottom = Color(0xFFE0D7FA)
+val MistDarkTop = Color(0xFF36304B)
+val MistDarkBottom = Color(0xFF2B263C)
 
-val EspressoTop = Color(0xFF1E4135)
-val EspressoBottom = Color(0xFF10241E)
+val EspressoTop = Color(0xFF302E36)
+val EspressoBottom = Color(0xFF242326)
 
-val ThoughtGlowCenterDark = Color(0xFFF4E4AD)
-val ThoughtGlowMidDark = Color(0xFF24453A)
-val ThoughtGlowEdgeDark = Color(0xFF172D26)
+val ThoughtGlowCenterLight = Color(0xFFE4DDFB)
+val ThoughtGlowEdgeLight = Color(0xFFF8F4EC)
+val ThoughtGlowCenterDark = Color(0xFF4B426E)
+val ThoughtGlowEdgeDark = Color(0xFF242329)
 
-val ThoughtGlowCenterLight = Color(0xFFFFF4CC)
-val ThoughtGlowEdgeLight = Color(0xFFE7F0E6)
+// Softer Psychological Semantic Clinical Triage Palette (RED, YELLOW, GREEN, BLUE — Accessible contrast)
+val EmergencyRed = Color(0xFFA94F55)        // Calm rose-crimson ink/accent (~4.7:1 AA on blush)
+val EmergencyRedDark = Color(0xFFE5989D)    // Soft rose ink on dark mode
+val EmergencyRedSoftDark = Color(0xFF331D20)
+val EmergencyRedSoftLight = Color(0xFFFCE8E8)
 
-// Clinical Safety Tiers (Offline Clinical Triage: RED, YELLOW, GREEN, BLUE)
-val EmergencyRed = Color(0xFFDC2626)
-val EmergencyRedSoftDark = Color(0xFF3A1417)
-val EmergencyRedSoftLight = Color(0xFFFEE4E4)
+val UrgentYellow = Color(0xFF9F6F14)        // Warm ochre ink
+val UrgentYellowLight = Color(0xFFE8C15A)
+val UrgentYellowSwatch = Color(0xFFD9A638)
+val UrgentYellowSoftDark = Color(0xFF332914)
+val UrgentYellowSoftLight = Color(0xFFFAF1D6)
 
-val UrgentYellow = Color(0xFFCA8A04)
-val UrgentYellowLight = Color(0xFFFACC15)
-val UrgentYellowSwatch = Color(0xFFEAB308)
-val UrgentYellowSoftDark = Color(0xFF332908)
-val UrgentYellowSoftLight = Color(0xFFFEF9C3)
+val WarningAmber = Color(0xFFB06624)
+val WarningAmberLight = Color(0xFFE7A96D)
+val WarningAmberSoftDark = Color(0xFF342415)
+val WarningAmberSoftLight = Color(0xFFFBECD8)
 
-val WarningAmber = Color(0xFFD97706)
-val WarningAmberLight = Color(0xFFF59E0B)
-val WarningAmberSoftDark = Color(0xFF36250C)
-val WarningAmberSoftLight = Color(0xFFFEF3C7)
+val SafeGreen = Color(0xFF447B55)           // Soft calming sage-pine green (~4.6:1 AA on mint bg)
+val SafeGreenLight = Color(0xFF8CC49B)      // Soft sage ink on dark mode
+val SafeGreenSoftDark = Color(0xFF1A2E21)
+val SafeGreenSoftLight = Color(0xFFE5F2E7)
 
-val SafeGreen = Color(0xFF16A34A)
-val SafeGreenSoftDark = Color(0xFF112E1D)
-val SafeGreenSoftLight = Color(0xFFDCFCE7)
-
-val WellnessBlue = Color(0xFF2563EB)
-val WellnessBlueLight = Color(0xFF60A5FA)
-val WellnessBlueSoftDark = Color(0xFF132642)
-val WellnessBlueSoftLight = Color(0xFFDBEAFE)
+val WellnessBlue = Color(0xFF466FB5)        // Calm slate-blue
+val WellnessBlueLight = Color(0xFF8EB1E8)
+val WellnessBlueSoftDark = Color(0xFF1A283D)
+val WellnessBlueSoftLight = Color(0xFFE8EFFB)

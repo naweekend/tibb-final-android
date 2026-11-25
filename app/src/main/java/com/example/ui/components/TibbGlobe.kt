@@ -73,7 +73,7 @@ fun TibbGlobe(
         drawCircle(
             brush = Brush.radialGradient(
                 colors = listOf(
-                    c.accent.copy(alpha = if (c.isDark) 0.16f else 0.14f),
+                    c.accentPastel.copy(alpha = if (c.isDark) 0.20f else 0.34f),
                     Color.Transparent,
                 ),
                 center = Offset(cx, cy),
@@ -85,7 +85,7 @@ fun TibbGlobe(
 
         // Subtle equator & meridian rings
         drawCircle(
-            color = c.accent.copy(alpha = if (c.isDark) 0.18f else 0.22f),
+            color = c.accent.copy(alpha = if (c.isDark) 0.22f else 0.28f),
             radius = r,
             center = Offset(cx, cy),
             style = Stroke(width = 1.2.dp.toPx()),

@@ -8,17 +8,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.R
 
-val OutfitFontFamily = FontFamily(
-    Font(R.font.outfit, FontWeight.Normal),
-    Font(R.font.outfit, FontWeight.Medium),
-    Font(R.font.outfit, FontWeight.SemiBold),
-    Font(R.font.outfit, FontWeight.Bold),
-)
-
-val IbmPlexMonoFamily = FontFamily(
-    Font(R.font.ibm_plex_mono, FontWeight.Normal),
-    Font(R.font.ibm_plex_mono, FontWeight.Medium),
-    Font(R.font.ibm_plex_mono, FontWeight.SemiBold),
+// Single normal weight font file enables Compose FontSynthesis.Weight for crisp Medium, SemiBold, and Bold hierarchy
+val InterFontFamily = FontFamily(
+    Font(R.font.inter, FontWeight.Normal),
 )
 
 val NotoNastaliqUrduFamily = FontFamily(
@@ -28,105 +20,108 @@ val NotoNastaliqUrduFamily = FontFamily(
 
 val TibbTypography = Typography(
     displayLarge = TextStyle(
-        fontFamily = OutfitFontFamily,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 30.sp,
-        lineHeight = 36.sp,
+        fontFamily = InterFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 28.sp,
+        lineHeight = 35.sp,
         letterSpacing = (-0.5).sp,
     ),
     displayMedium = TextStyle(
-        fontFamily = OutfitFontFamily,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 26.sp,
+        fontFamily = InterFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 25.sp,
         lineHeight = 32.sp,
-        letterSpacing = (-0.35).sp,
+        letterSpacing = (-0.4).sp,
     ),
     displaySmall = TextStyle(
-        fontFamily = OutfitFontFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = (-0.2).sp,
-    ),
-    headlineLarge = TextStyle(
-        fontFamily = OutfitFontFamily,
+        fontFamily = InterFontFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 24.sp,
-        lineHeight = 30.sp,
+        fontSize = 22.sp,
+        lineHeight = 29.sp,
         letterSpacing = (-0.3).sp,
     ),
+    headlineLarge = TextStyle(
+        fontFamily = InterFontFamily,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 24.sp,
+        lineHeight = 31.sp,
+        letterSpacing = (-0.35).sp,
+    ),
     headlineMedium = TextStyle(
-        fontFamily = OutfitFontFamily,
+        fontFamily = InterFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 21.sp,
-        lineHeight = 27.sp,
+        lineHeight = 28.sp,
         letterSpacing = (-0.25).sp,
     ),
     headlineSmall = TextStyle(
-        fontFamily = OutfitFontFamily,
+        fontFamily = InterFontFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 18.sp,
-        lineHeight = 24.sp,
+        fontSize = 18.5.sp,
+        lineHeight = 25.sp,
+        letterSpacing = (-0.2).sp,
     ),
     titleLarge = TextStyle(
-        fontFamily = OutfitFontFamily,
+        fontFamily = InterFontFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 18.sp,
+        fontSize = 17.5.sp,
         lineHeight = 24.sp,
+        letterSpacing = (-0.15).sp,
     ),
     titleMedium = TextStyle(
-        fontFamily = OutfitFontFamily,
+        fontFamily = InterFontFamily,
         fontWeight = FontWeight.SemiBold,
         fontSize = 15.sp,
         lineHeight = 21.sp,
     ),
     titleSmall = TextStyle(
-        fontFamily = OutfitFontFamily,
+        fontFamily = InterFontFamily,
         fontWeight = FontWeight.Medium,
         fontSize = 14.sp,
         lineHeight = 19.sp,
     ),
     bodyLarge = TextStyle(
-        fontFamily = OutfitFontFamily,
+        fontFamily = InterFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 15.sp,
-        lineHeight = 22.sp,
+        lineHeight = 22.5.sp,
     ),
     bodyMedium = TextStyle(
-        fontFamily = OutfitFontFamily,
+        fontFamily = InterFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 14.sp,
-        lineHeight = 20.sp,
+        lineHeight = 21.sp,
     ),
     bodySmall = TextStyle(
-        fontFamily = OutfitFontFamily,
+        fontFamily = InterFontFamily,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp,
-        lineHeight = 17.sp,
+        fontSize = 12.5.sp,
+        lineHeight = 18.sp,
     ),
     labelLarge = TextStyle(
-        fontFamily = OutfitFontFamily,
+        fontFamily = InterFontFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 14.sp,
+        fontSize = 13.5.sp,
         lineHeight = 18.sp,
     ),
     labelMedium = TextStyle(
-        fontFamily = OutfitFontFamily,
-        fontWeight = FontWeight.SemiBold,
+        fontFamily = InterFontFamily,
+        fontWeight = FontWeight.Medium,
         fontSize = 12.sp,
         lineHeight = 16.sp,
     ),
     labelSmall = TextStyle(
-        fontFamily = OutfitFontFamily,
+        fontFamily = InterFontFamily,
         fontWeight = FontWeight.Medium,
         fontSize = 11.sp,
         lineHeight = 14.sp,
-        letterSpacing = 0.25.sp,
+        letterSpacing = 0.2.sp,
     ),
 )
 
 val TabularNumberStyle = TextStyle(
-    fontFamily = IbmPlexMonoFamily,
+    fontFamily = InterFontFamily,
+    fontWeight = FontWeight.Medium,
     fontFeatureSettings = "tnum",
 )
 

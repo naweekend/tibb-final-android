@@ -135,7 +135,7 @@ fun AndroidKitScreen(
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.weight(1f)) {
                         Icon(Icons.Rounded.Security, contentDescription = null, tint = c.accent)
-                        Text(s.kitTitle, style = MaterialTheme.typography.titleLarge, color = c.ink)
+                        Text(s.kitTitle, style = MaterialTheme.typography.headlineSmall, color = c.ink)
                     }
                     SectionHelpButton(topic = HelpTopic.ANDROID_KIT, locale = locale)
                 }

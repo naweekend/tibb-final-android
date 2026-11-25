@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.map
 private val Context.tibbPrefsStore by preferencesDataStore(name = "tibb_preferences")
 
 data class TibbUserPreferences(
-    val darkMode: Boolean = true,
+    val darkMode: Boolean = false,
     val locale: AppLocale = AppLocale.EN,
     val unitSystem: UnitSystem = UnitSystem.METRIC,
     val workspaceMode: WorkspaceMode = WorkspaceMode.GHARANA,
@@ -58,7 +58,7 @@ class PreferencesRepository(private val context: Context) {
         } else null
 
         TibbUserPreferences(
-            darkMode = prefs[Keys.DARK_MODE] ?: true,
+            darkMode = prefs[Keys.DARK_MODE] ?: false,
             locale = AppLocale.entries.firstOrNull { it.code == prefs[Keys.LOCALE] } ?: AppLocale.EN,
             unitSystem = if (prefs[Keys.UNIT_SYSTEM] == UnitSystem.IMPERIAL.name) UnitSystem.IMPERIAL else UnitSystem.METRIC,
             workspaceMode = if (prefs[Keys.WORKSPACE] == WorkspaceMode.BHU.name) WorkspaceMode.BHU else WorkspaceMode.GHARANA,
