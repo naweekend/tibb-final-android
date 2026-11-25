@@ -1,0 +1,5452 @@
+[
+  {
+    "id": "pk_pun_lahore",
+    "nameEn": "Lahore",
+    "nameUr": "لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "MAJOR_CITY",
+    "lat": 31.5204,
+    "lng": 74.3587
+  },
+  {
+    "id": "pk_pun_rawalpindi",
+    "nameEn": "Rawalpindi",
+    "nameUr": "راولپنڈی",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "MAJOR_CITY",
+    "lat": 33.5651,
+    "lng": 73.0169
+  },
+  {
+    "id": "pk_pun_faisalabad",
+    "nameEn": "Faisalabad",
+    "nameUr": "فیصل آباد",
+    "district": "Faisalabad",
+    "province": "PUNJAB",
+    "category": "MAJOR_CITY",
+    "lat": 31.4504,
+    "lng": 73.135
+  },
+  {
+    "id": "pk_pun_multan",
+    "nameEn": "Multan",
+    "nameUr": "ملتان",
+    "district": "Multan",
+    "province": "PUNJAB",
+    "category": "MAJOR_CITY",
+    "lat": 30.1575,
+    "lng": 71.5249
+  },
+  {
+    "id": "pk_pun_gujranwala",
+    "nameEn": "Gujranwala",
+    "nameUr": "گوجرانوالہ",
+    "district": "Gujranwala",
+    "province": "PUNJAB",
+    "category": "MAJOR_CITY",
+    "lat": 32.1877,
+    "lng": 74.1945
+  },
+  {
+    "id": "pk_pun_sialkot",
+    "nameEn": "Sialkot",
+    "nameUr": "سیالکوٹ",
+    "district": "Sialkot",
+    "province": "PUNJAB",
+    "category": "MAJOR_CITY",
+    "lat": 32.4945,
+    "lng": 74.5229
+  },
+  {
+    "id": "pk_pun_bahawalpur",
+    "nameEn": "Bahawalpur",
+    "nameUr": "بہاولپور",
+    "district": "Bahawalpur",
+    "province": "PUNJAB",
+    "category": "MAJOR_CITY",
+    "lat": 29.3956,
+    "lng": 71.6836
+  },
+  {
+    "id": "pk_pun_sargodha",
+    "nameEn": "Sargodha",
+    "nameUr": "سرگودھا",
+    "district": "Sargodha",
+    "province": "PUNJAB",
+    "category": "MAJOR_CITY",
+    "lat": 32.0836,
+    "lng": 72.6711
+  },
+  {
+    "id": "pk_pun_gujrat",
+    "nameEn": "Gujrat",
+    "nameUr": "گجرات",
+    "district": "Gujrat",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 32.5731,
+    "lng": 74.075
+  },
+  {
+    "id": "pk_pun_sheikhupura",
+    "nameEn": "Sheikhupura",
+    "nameUr": "شیخوپورہ",
+    "district": "Sheikhupura",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 31.7167,
+    "lng": 73.985
+  },
+  {
+    "id": "pk_pun_sahiwal",
+    "nameEn": "Sahiwal",
+    "nameUr": "ساہیوال",
+    "district": "Sahiwal",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 30.6682,
+    "lng": 73.1114
+  },
+  {
+    "id": "pk_pun_rahim_yar_khan",
+    "nameEn": "Rahim Yar Khan",
+    "nameUr": "رحیم یار خان",
+    "district": "Rahim Yar Khan",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 28.4212,
+    "lng": 70.2989
+  },
+  {
+    "id": "pk_pun_jhang",
+    "nameEn": "Jhang",
+    "nameUr": "جھنگ",
+    "district": "Jhang",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 31.278,
+    "lng": 72.3118
+  },
+  {
+    "id": "pk_pun_dera_ghazi_khan",
+    "nameEn": "Dera Ghazi Khan",
+    "nameUr": "ڈیرہ غازی خان",
+    "district": "Dera Ghazi Khan",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 30.0489,
+    "lng": 70.6455
+  },
+  {
+    "id": "pk_pun_kasur",
+    "nameEn": "Kasur",
+    "nameUr": "قصور",
+    "district": "Kasur",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 31.1179,
+    "lng": 74.4408
+  },
+  {
+    "id": "pk_pun_okara",
+    "nameEn": "Okara",
+    "nameUr": "اوکاڑہ",
+    "district": "Okara",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 30.8081,
+    "lng": 73.4458
+  },
+  {
+    "id": "pk_pun_wah_cantt",
+    "nameEn": "Wah Cantt",
+    "nameUr": "واہ کینٹ",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "MAJOR_CITY",
+    "lat": 33.7715,
+    "lng": 72.7511
+  },
+  {
+    "id": "pk_pun_taxila",
+    "nameEn": "Taxila",
+    "nameUr": "ٹیکسلا",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 33.7463,
+    "lng": 72.8397
+  },
+  {
+    "id": "pk_pun_kamoke",
+    "nameEn": "Kamoke",
+    "nameUr": "کامونکی",
+    "district": "Gujranwala",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.9753,
+    "lng": 74.223
+  },
+  {
+    "id": "pk_pun_hafizabad",
+    "nameEn": "Hafizabad",
+    "nameUr": "حافظ آباد",
+    "district": "Hafizabad",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 32.0709,
+    "lng": 73.688
+  },
+  {
+    "id": "pk_pun_mandi_bahauddin",
+    "nameEn": "Mandi Bahauddin",
+    "nameUr": "منڈی بہاؤالدین",
+    "district": "Mandi Bahauddin",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 32.5861,
+    "lng": 73.4917
+  },
+  {
+    "id": "pk_pun_chakwal",
+    "nameEn": "Chakwal",
+    "nameUr": "چکوال",
+    "district": "Chakwal",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 32.93,
+    "lng": 72.85
+  },
+  {
+    "id": "pk_pun_attock",
+    "nameEn": "Attock",
+    "nameUr": "اٹک",
+    "district": "Attock",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 33.766,
+    "lng": 72.3609
+  },
+  {
+    "id": "pk_pun_jhelum",
+    "nameEn": "Jhelum",
+    "nameUr": "جہلم",
+    "district": "Jhelum",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 32.9425,
+    "lng": 73.7257
+  },
+  {
+    "id": "pk_pun_mianwali",
+    "nameEn": "Mianwali",
+    "nameUr": "میانوالی",
+    "district": "Mianwali",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 32.5839,
+    "lng": 71.537
+  },
+  {
+    "id": "pk_pun_bhakkar",
+    "nameEn": "Bhakkar",
+    "nameUr": "بھکر",
+    "district": "Bhakkar",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 31.6253,
+    "lng": 71.0657
+  },
+  {
+    "id": "pk_pun_khushab",
+    "nameEn": "Khushab",
+    "nameUr": "خوشاب",
+    "district": "Khushab",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 32.2967,
+    "lng": 72.3525
+  },
+  {
+    "id": "pk_pun_jauharabad",
+    "nameEn": "Jauharabad",
+    "nameUr": "جوہرآباد",
+    "district": "Khushab",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 32.2902,
+    "lng": 72.2818
+  },
+  {
+    "id": "pk_pun_chiniot",
+    "nameEn": "Chiniot",
+    "nameUr": "چنیوٹ",
+    "district": "Chiniot",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 31.72,
+    "lng": 72.9789
+  },
+  {
+    "id": "pk_pun_toba_tek_singh",
+    "nameEn": "Toba Tek Singh",
+    "nameUr": "ٹوبہ ٹیک سنگھ",
+    "district": "Toba Tek Singh",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 30.9709,
+    "lng": 72.4827
+  },
+  {
+    "id": "pk_pun_khanewal",
+    "nameEn": "Khanewal",
+    "nameUr": "خانیوال",
+    "district": "Khanewal",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 30.3017,
+    "lng": 71.9321
+  },
+  {
+    "id": "pk_pun_vehari",
+    "nameEn": "Vehari",
+    "nameUr": "وہاڑی",
+    "district": "Vehari",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 30.0445,
+    "lng": 72.3556
+  },
+  {
+    "id": "pk_pun_lodhran",
+    "nameEn": "Lodhran",
+    "nameUr": "لودھراں",
+    "district": "Lodhran",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 29.5339,
+    "lng": 71.6324
+  },
+  {
+    "id": "pk_pun_bahawalnagar",
+    "nameEn": "Bahawalnagar",
+    "nameUr": "بہاولنگر",
+    "district": "Bahawalnagar",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 29.9987,
+    "lng": 73.2536
+  },
+  {
+    "id": "pk_pun_layyah",
+    "nameEn": "Layyah",
+    "nameUr": "لیہ",
+    "district": "Layyah",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 30.9613,
+    "lng": 70.939
+  },
+  {
+    "id": "pk_pun_muzaffargarh",
+    "nameEn": "Muzaffargarh",
+    "nameUr": "مظفرگڑھ",
+    "district": "Muzaffargarh",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 30.0703,
+    "lng": 71.1933
+  },
+  {
+    "id": "pk_pun_rajanpur",
+    "nameEn": "Rajanpur",
+    "nameUr": "راجن پور",
+    "district": "Rajanpur",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 29.1041,
+    "lng": 70.3297
+  },
+  {
+    "id": "pk_pun_pakpattan",
+    "nameEn": "Pakpattan",
+    "nameUr": "پاکپتن",
+    "district": "Pakpattan",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 30.341,
+    "lng": 73.3866
+  },
+  {
+    "id": "pk_pun_narowal",
+    "nameEn": "Narowal",
+    "nameUr": "نارووال",
+    "district": "Narowal",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 32.102,
+    "lng": 74.873
+  },
+  {
+    "id": "pk_pun_nankana_sahib",
+    "nameEn": "Nankana Sahib",
+    "nameUr": "ننکانہ صاحب",
+    "district": "Nankana Sahib",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 31.4475,
+    "lng": 73.7065
+  },
+  {
+    "id": "pk_pun_murree",
+    "nameEn": "Murree",
+    "nameUr": "مری",
+    "district": "Murree",
+    "province": "PUNJAB",
+    "category": "DISTRICT_HQ",
+    "lat": 33.907,
+    "lng": 73.3943
+  },
+  {
+    "id": "pk_pun_taunsa_sharif",
+    "nameEn": "Taunsa Sharif",
+    "nameUr": "تونسہ شریف",
+    "district": "Taunsa",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.7034,
+    "lng": 70.6505
+  },
+  {
+    "id": "pk_pun_kot_addu",
+    "nameEn": "Kot Addu",
+    "nameUr": "کوٹ ادو",
+    "district": "Kot Addu",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.469,
+    "lng": 70.967
+  },
+  {
+    "id": "pk_pun_hasan_abdal",
+    "nameEn": "Hasan Abdal",
+    "nameUr": "حسن ابدال",
+    "district": "Attock",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 33.8195,
+    "lng": 72.689
+  },
+  {
+    "id": "pk_pun_fateh_jang",
+    "nameEn": "Fateh Jang",
+    "nameUr": "فتح جنگ",
+    "district": "Attock",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 33.5671,
+    "lng": 72.6423
+  },
+  {
+    "id": "pk_pun_pindigheb",
+    "nameEn": "Pindigheb",
+    "nameUr": "پنڈی گھیب",
+    "district": "Attock",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 33.2414,
+    "lng": 72.2647
+  },
+  {
+    "id": "pk_pun_talagang",
+    "nameEn": "Talagang",
+    "nameUr": "تلہ گنگ",
+    "district": "Talagang",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.9277,
+    "lng": 72.4159
+  },
+  {
+    "id": "pk_pun_choa_saidan_shah",
+    "nameEn": "Choa Saidan Shah",
+    "nameUr": "چوآ سیدن شاہ",
+    "district": "Chakwal",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.7192,
+    "lng": 72.9869
+  },
+  {
+    "id": "pk_pun_sohawa",
+    "nameEn": "Sohawa",
+    "nameUr": "سوہاوہ",
+    "district": "Jhelum",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 33.1286,
+    "lng": 73.4216
+  },
+  {
+    "id": "pk_pun_dina",
+    "nameEn": "Dina",
+    "nameUr": "دینہ",
+    "district": "Jhelum",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 33.0282,
+    "lng": 73.5964
+  },
+  {
+    "id": "pk_pun_pind_dadan_khan",
+    "nameEn": "Pind Dadan Khan",
+    "nameUr": "پنڈ دادن خان",
+    "district": "Jhelum",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.588,
+    "lng": 73.0439
+  },
+  {
+    "id": "pk_pun_gujar_khan",
+    "nameEn": "Gujar Khan",
+    "nameUr": "گوجر خان",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 33.2541,
+    "lng": 73.3043
+  },
+  {
+    "id": "pk_pun_kallar_syedan",
+    "nameEn": "Kallar Syedan",
+    "nameUr": "کلر سیداں",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 33.4137,
+    "lng": 73.3746
+  },
+  {
+    "id": "pk_pun_kahuta",
+    "nameEn": "Kahuta",
+    "nameUr": "کہوٹہ",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 33.5917,
+    "lng": 73.3879
+  },
+  {
+    "id": "pk_pun_kotli_sattian",
+    "nameEn": "Kotli Sattian",
+    "nameUr": "کوٹلی ستیاں",
+    "district": "Murree",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 33.8115,
+    "lng": 73.5249
+  },
+  {
+    "id": "pk_pun_sambrial",
+    "nameEn": "Sambrial",
+    "nameUr": "سمبڑیال",
+    "district": "Sialkot",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.4783,
+    "lng": 74.3534
+  },
+  {
+    "id": "pk_pun_daska",
+    "nameEn": "Daska",
+    "nameUr": "ڈسکہ",
+    "district": "Sialkot",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.3242,
+    "lng": 74.3497
+  },
+  {
+    "id": "pk_pun_pasrur",
+    "nameEn": "Pasrur",
+    "nameUr": "پسرور",
+    "district": "Sialkot",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.2628,
+    "lng": 74.6634
+  },
+  {
+    "id": "pk_pun_wazirabad",
+    "nameEn": "Wazirabad",
+    "nameUr": "وزیرآباد",
+    "district": "Wazirabad",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.4432,
+    "lng": 74.12
+  },
+  {
+    "id": "pk_pun_lalamusa",
+    "nameEn": "Lalamusa",
+    "nameUr": "لالہ موسیٰ",
+    "district": "Gujrat",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.7005,
+    "lng": 73.9574
+  },
+  {
+    "id": "pk_pun_kharian",
+    "nameEn": "Kharian",
+    "nameUr": "کھاریاں",
+    "district": "Gujrat",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.811,
+    "lng": 73.865
+  },
+  {
+    "id": "pk_pun_sara_i_alamgir",
+    "nameEn": "Sara-i-Alamgir",
+    "nameUr": "سرائے عالمگیر",
+    "district": "Gujrat",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.9022,
+    "lng": 73.7556
+  },
+  {
+    "id": "pk_pun_phalia",
+    "nameEn": "Phalia",
+    "nameUr": "پھالیہ",
+    "district": "Mandi Bahauddin",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.431,
+    "lng": 73.579
+  },
+  {
+    "id": "pk_pun_malakwal",
+    "nameEn": "Malakwal",
+    "nameUr": "ملکوال",
+    "district": "Mandi Bahauddin",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.5545,
+    "lng": 73.2128
+  },
+  {
+    "id": "pk_pun_bhalwal",
+    "nameEn": "Bhalwal",
+    "nameUr": "بھلوال",
+    "district": "Sargodha",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.2651,
+    "lng": 72.9028
+  },
+  {
+    "id": "pk_pun_sillanwali",
+    "nameEn": "Sillanwali",
+    "nameUr": "سلانوالی",
+    "district": "Sargodha",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.8254,
+    "lng": 72.5407
+  },
+  {
+    "id": "pk_pun_shahpur",
+    "nameEn": "Shahpur",
+    "nameUr": "شاہ پور",
+    "district": "Sargodha",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.2856,
+    "lng": 72.4335
+  },
+  {
+    "id": "pk_pun_kot_momin",
+    "nameEn": "Kot Momin",
+    "nameUr": "کوٹ مومن",
+    "district": "Sargodha",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.189,
+    "lng": 73.0255
+  },
+  {
+    "id": "pk_pun_quaidabad",
+    "nameEn": "Quaidabad",
+    "nameUr": "قائدآباد",
+    "district": "Khushab",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.3016,
+    "lng": 71.8832
+  },
+  {
+    "id": "pk_pun_isa_khel",
+    "nameEn": "Isa Khel",
+    "nameUr": "عیسیٰ خیل",
+    "district": "Mianwali",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.6768,
+    "lng": 71.2793
+  },
+  {
+    "id": "pk_pun_kalabagh",
+    "nameEn": "Kalabagh",
+    "nameUr": "کالا باغ",
+    "district": "Mianwali",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.9616,
+    "lng": 71.5467
+  },
+  {
+    "id": "pk_pun_shorkot",
+    "nameEn": "Shorkot",
+    "nameUr": "شورکوٹ",
+    "district": "Jhang",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.8278,
+    "lng": 72.0785
+  },
+  {
+    "id": "pk_pun_kamalia",
+    "nameEn": "Kamalia",
+    "nameUr": "کمالیہ",
+    "district": "Toba Tek Singh",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.7271,
+    "lng": 72.6461
+  },
+  {
+    "id": "pk_pun_gojra",
+    "nameEn": "Gojra",
+    "nameUr": "گوجرہ",
+    "district": "Toba Tek Singh",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.1487,
+    "lng": 72.683
+  },
+  {
+    "id": "pk_pun_pir_mahal",
+    "nameEn": "Pir Mahal",
+    "nameUr": "پیر محل",
+    "district": "Toba Tek Singh",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.7667,
+    "lng": 72.4333
+  },
+  {
+    "id": "pk_pun_samundri",
+    "nameEn": "Samundri",
+    "nameUr": "سمندری",
+    "district": "Faisalabad",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.064,
+    "lng": 72.9542
+  },
+  {
+    "id": "pk_pun_jaranwala",
+    "nameEn": "Jaranwala",
+    "nameUr": "جڑانوالہ",
+    "district": "Faisalabad",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.3342,
+    "lng": 73.4194
+  },
+  {
+    "id": "pk_pun_tandlianwala",
+    "nameEn": "Tandlianwala",
+    "nameUr": "تاندلیانوالہ",
+    "district": "Faisalabad",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.0336,
+    "lng": 73.1327
+  },
+  {
+    "id": "pk_pun_shakargarh",
+    "nameEn": "Shakargarh",
+    "nameUr": "شکرگڑھ",
+    "district": "Narowal",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.2636,
+    "lng": 75.1583
+  },
+  {
+    "id": "pk_pun_zafarwal",
+    "nameEn": "Zafarwal",
+    "nameUr": "ظفروال",
+    "district": "Narowal",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.3446,
+    "lng": 74.8999
+  },
+  {
+    "id": "pk_pun_shahkot",
+    "nameEn": "Shahkot",
+    "nameUr": "شاہ کوٹ",
+    "district": "Nankana Sahib",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.5709,
+    "lng": 73.4853
+  },
+  {
+    "id": "pk_pun_sangla_hill",
+    "nameEn": "Sangla Hill",
+    "nameUr": "سانگلہ ہل",
+    "district": "Nankana Sahib",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.7167,
+    "lng": 73.3833
+  },
+  {
+    "id": "pk_pun_muridke",
+    "nameEn": "Muridke",
+    "nameUr": "مریدکے",
+    "district": "Sheikhupura",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.802,
+    "lng": 74.255
+  },
+  {
+    "id": "pk_pun_ferozewala",
+    "nameEn": "Ferozewala",
+    "nameUr": "فیروزوالہ",
+    "district": "Sheikhupura",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.751,
+    "lng": 74.273
+  },
+  {
+    "id": "pk_pun_chunian",
+    "nameEn": "Chunian",
+    "nameUr": "چونیاں",
+    "district": "Kasur",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.9662,
+    "lng": 73.9803
+  },
+  {
+    "id": "pk_pun_pattoki",
+    "nameEn": "Pattoki",
+    "nameUr": "پتوکی",
+    "district": "Kasur",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.0214,
+    "lng": 73.8528
+  },
+  {
+    "id": "pk_pun_kot_radha_kishan",
+    "nameEn": "Kot Radha Kishan",
+    "nameUr": "کوٹ رادھا کشن",
+    "district": "Kasur",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.1707,
+    "lng": 74.1012
+  },
+  {
+    "id": "pk_pun_depalpur",
+    "nameEn": "Depalpur",
+    "nameUr": "دیپالپور",
+    "district": "Okara",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.67,
+    "lng": 73.6533
+  },
+  {
+    "id": "pk_pun_renala_khurd",
+    "nameEn": "Renala Khurd",
+    "nameUr": "رینالہ خورد",
+    "district": "Okara",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.8787,
+    "lng": 73.5985
+  },
+  {
+    "id": "pk_pun_haveli_lakha",
+    "nameEn": "Haveli Lakha",
+    "nameUr": "حویلی لکھا",
+    "district": "Okara",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.451,
+    "lng": 73.694
+  },
+  {
+    "id": "pk_pun_arifwala",
+    "nameEn": "Arifwala",
+    "nameUr": "عارف والا",
+    "district": "Pakpattan",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.2906,
+    "lng": 73.0653
+  },
+  {
+    "id": "pk_pun_burewala",
+    "nameEn": "Burewala",
+    "nameUr": "بورے والا",
+    "district": "Vehari",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.1667,
+    "lng": 72.65
+  },
+  {
+    "id": "pk_pun_mailsi",
+    "nameEn": "Mailsi",
+    "nameUr": "میلسی",
+    "district": "Vehari",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.8003,
+    "lng": 72.1758
+  },
+  {
+    "id": "pk_pun_shujabad",
+    "nameEn": "Shujabad",
+    "nameUr": "شجاع آباد",
+    "district": "Multan",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.8809,
+    "lng": 71.2934
+  },
+  {
+    "id": "pk_pun_jalalpur_pirwala",
+    "nameEn": "Jalalpur Pirwala",
+    "nameUr": "جلالپور پیروالا",
+    "district": "Multan",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.5065,
+    "lng": 71.2219
+  },
+  {
+    "id": "pk_pun_kabirwala",
+    "nameEn": "Kabirwala",
+    "nameUr": "کبیروالا",
+    "district": "Khanewal",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.4046,
+    "lng": 71.8627
+  },
+  {
+    "id": "pk_pun_mian_channu",
+    "nameEn": "Mian Channu",
+    "nameUr": "میاں چنوں",
+    "district": "Khanewal",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.4407,
+    "lng": 72.3568
+  },
+  {
+    "id": "pk_pun_dunyapur",
+    "nameEn": "Dunyapur",
+    "nameUr": "دنیا پور",
+    "district": "Lodhran",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.8,
+    "lng": 71.7167
+  },
+  {
+    "id": "pk_pun_kahror_pacca",
+    "nameEn": "Kahror Pacca",
+    "nameUr": "کہروڑ پکا",
+    "district": "Lodhran",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.6243,
+    "lng": 71.9144
+  },
+  {
+    "id": "pk_pun_ahmadpur_east",
+    "nameEn": "Ahmadpur East",
+    "nameUr": "احمدپور شرقیہ",
+    "district": "Bahawalpur",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.1427,
+    "lng": 71.2577
+  },
+  {
+    "id": "pk_pun_hasilpur",
+    "nameEn": "Hasilpur",
+    "nameUr": "حاصل پور",
+    "district": "Bahawalpur",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.6922,
+    "lng": 72.5457
+  },
+  {
+    "id": "pk_pun_yazman",
+    "nameEn": "Yazman",
+    "nameUr": "یزمان",
+    "district": "Bahawalpur",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.1212,
+    "lng": 71.7446
+  },
+  {
+    "id": "pk_pun_uch_sharif",
+    "nameEn": "Uch Sharif",
+    "nameUr": "اوچ شریف",
+    "district": "Bahawalpur",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.239,
+    "lng": 71.0616
+  },
+  {
+    "id": "pk_pun_chishtian",
+    "nameEn": "Chishtian",
+    "nameUr": "چشتیاں",
+    "district": "Bahawalnagar",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.7958,
+    "lng": 72.8577
+  },
+  {
+    "id": "pk_pun_haroonabad",
+    "nameEn": "Haroonabad",
+    "nameUr": "ہارون آباد",
+    "district": "Bahawalnagar",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.61,
+    "lng": 73.1369
+  },
+  {
+    "id": "pk_pun_fort_abbas",
+    "nameEn": "Fort Abbas",
+    "nameUr": "فورٹ عباس",
+    "district": "Bahawalnagar",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.1934,
+    "lng": 72.8537
+  },
+  {
+    "id": "pk_pun_sadiqabad",
+    "nameEn": "Sadiqabad",
+    "nameUr": "صادق آباد",
+    "district": "Rahim Yar Khan",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 28.3062,
+    "lng": 70.1307
+  },
+  {
+    "id": "pk_pun_khanpur",
+    "nameEn": "Khanpur",
+    "nameUr": "خانپور",
+    "district": "Rahim Yar Khan",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 28.6453,
+    "lng": 70.6567
+  },
+  {
+    "id": "pk_pun_liaquatpur",
+    "nameEn": "Liaquatpur",
+    "nameUr": "لیاقت پور",
+    "district": "Rahim Yar Khan",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 28.9333,
+    "lng": 70.95
+  },
+  {
+    "id": "pk_pun_alipur",
+    "nameEn": "Alipur",
+    "nameUr": "علی پور",
+    "district": "Muzaffargarh",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.3841,
+    "lng": 70.9117
+  },
+  {
+    "id": "pk_pun_jatoi",
+    "nameEn": "Jatoi",
+    "nameUr": "جتوئی",
+    "district": "Muzaffargarh",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.518,
+    "lng": 70.8442
+  },
+  {
+    "id": "pk_pun_jampur",
+    "nameEn": "Jampur",
+    "nameUr": "جام پور",
+    "district": "Rajanpur",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.6424,
+    "lng": 70.595
+  },
+  {
+    "id": "pk_pun_rojhan",
+    "nameEn": "Rojhan",
+    "nameUr": "روجھان",
+    "district": "Rajanpur",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 28.6868,
+    "lng": 69.9532
+  },
+  {
+    "id": "pk_pun_chichawatni",
+    "nameEn": "Chichawatni",
+    "nameUr": "چیچہ وطنی",
+    "district": "Sahiwal",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.5301,
+    "lng": 72.6916
+  },
+  {
+    "id": "pk_pun_karor_lal_esan",
+    "nameEn": "Karor Lal Esan",
+    "nameUr": "کروڑ لعل عیسن",
+    "district": "Layyah",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.2246,
+    "lng": 70.9515
+  },
+  {
+    "id": "pk_pun_gulberg_lahore",
+    "nameEn": "Gulberg Lahore",
+    "nameUr": "گلبرگ لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 31.5102,
+    "lng": 74.3441
+  },
+  {
+    "id": "pk_pun_dha_lahore",
+    "nameEn": "DHA Lahore",
+    "nameUr": "ڈی ایچ اے لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 31.4697,
+    "lng": 74.3805
+  },
+  {
+    "id": "pk_pun_johar_town_lahore",
+    "nameEn": "Johar Town Lahore",
+    "nameUr": "جوہر ٹاؤن لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 31.4621,
+    "lng": 74.2942
+  },
+  {
+    "id": "pk_pun_model_town_lahore",
+    "nameEn": "Model Town Lahore",
+    "nameUr": "ماڈل ٹاؤن لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 31.4839,
+    "lng": 74.3257
+  },
+  {
+    "id": "pk_pun_bahria_town_lahore",
+    "nameEn": "Bahria Town Lahore",
+    "nameUr": "بحریہ ٹاؤن لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 31.3679,
+    "lng": 74.1818
+  },
+  {
+    "id": "pk_pun_allama_iqbal_town_lahore",
+    "nameEn": "Allama Iqbal Town Lahore",
+    "nameUr": "علامہ اقبال ٹاؤن لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 31.5126,
+    "lng": 74.2831
+  },
+  {
+    "id": "pk_pun_wapda_town_lahore",
+    "nameEn": "Wapda Town Lahore",
+    "nameUr": "واپڈا ٹاؤن لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "LOCALITY",
+    "lat": 31.4326,
+    "lng": 74.2624
+  },
+  {
+    "id": "pk_pun_garden_town_lahore",
+    "nameEn": "Garden Town Lahore",
+    "nameUr": "گارڈن ٹاؤن لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "LOCALITY",
+    "lat": 31.5008,
+    "lng": 74.3237
+  },
+  {
+    "id": "pk_pun_shadman_lahore",
+    "nameEn": "Shadman Lahore",
+    "nameUr": "شادمان لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "LOCALITY",
+    "lat": 31.5393,
+    "lng": 74.3274
+  },
+  {
+    "id": "pk_pun_cantt_lahore",
+    "nameEn": "Cantt Lahore",
+    "nameUr": "کینٹ لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 31.5256,
+    "lng": 74.3761
+  },
+  {
+    "id": "pk_pun_mughalpura_lahore",
+    "nameEn": "Mughalpura Lahore",
+    "nameUr": "مغلپورہ لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "LOCALITY",
+    "lat": 31.5599,
+    "lng": 74.3646
+  },
+  {
+    "id": "pk_pun_shahdara_lahore",
+    "nameEn": "Shahdara Lahore",
+    "nameUr": "شاہدرہ لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "LOCALITY",
+    "lat": 31.6223,
+    "lng": 74.2877
+  },
+  {
+    "id": "pk_pun_anarkali_bazaar_lahore",
+    "nameEn": "Anarkali Bazaar Lahore",
+    "nameUr": "انارکلی بازار لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 31.5698,
+    "lng": 74.3106
+  },
+  {
+    "id": "pk_pun_liberty_market_lahore",
+    "nameEn": "Liberty Market Lahore",
+    "nameUr": "لبرٹی مارکیٹ لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 31.5117,
+    "lng": 74.3422
+  },
+  {
+    "id": "pk_pun_badshahi_mosque_lahore",
+    "nameEn": "Badshahi Mosque Lahore",
+    "nameUr": "بادشاہی مسجد لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 31.588,
+    "lng": 74.3107
+  },
+  {
+    "id": "pk_pun_minar_e_pakistan",
+    "nameEn": "Minar-e-Pakistan",
+    "nameUr": "مینارِ پاکستان",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 31.5925,
+    "lng": 74.3095
+  },
+  {
+    "id": "pk_pun_shalimar_gardens_lahore",
+    "nameEn": "Shalimar Gardens Lahore",
+    "nameUr": "شالامار باغ لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 31.5859,
+    "lng": 74.3818
+  },
+  {
+    "id": "pk_pun_jilani_park_racecourse_lahore",
+    "nameEn": "Jilani Park (Racecourse) Lahore",
+    "nameUr": "جیلانی پارک لاہور",
+    "district": "Lahore",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 31.5407,
+    "lng": 74.3367
+  },
+  {
+    "id": "pk_pun_saddar_rawalpindi",
+    "nameEn": "Saddar Rawalpindi",
+    "nameUr": "صدر راولپنڈی",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.5973,
+    "lng": 73.0531
+  },
+  {
+    "id": "pk_pun_satellite_town_rawalpindi",
+    "nameEn": "Satellite Town Rawalpindi",
+    "nameUr": "سیٹلائٹ ٹاؤن راولپنڈی",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.6366,
+    "lng": 73.0695
+  },
+  {
+    "id": "pk_pun_chaklala_scheme_iii",
+    "nameEn": "Chaklala Scheme III",
+    "nameUr": "چکلالہ اسکیم 3",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.5881,
+    "lng": 73.0897
+  },
+  {
+    "id": "pk_pun_bahria_town_rawalpindi",
+    "nameEn": "Bahria Town Rawalpindi",
+    "nameUr": "بحریہ ٹاؤن راولپنڈی",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.4957,
+    "lng": 73.1118
+  },
+  {
+    "id": "pk_pun_raja_bazaar_rawalpindi",
+    "nameEn": "Raja Bazaar Rawalpindi",
+    "nameUr": "راجہ بازار راولپنڈی",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 33.6155,
+    "lng": 73.0566
+  },
+  {
+    "id": "pk_pun_ayub_national_park_rawalpindi",
+    "nameEn": "Ayub National Park Rawalpindi",
+    "nameUr": "ایوب نیشنل پارک راولپنڈی",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 33.5707,
+    "lng": 73.0804
+  },
+  {
+    "id": "pk_pun_peoples_colony_faisalabad",
+    "nameEn": "Peoples Colony Faisalabad",
+    "nameUr": "پیپلز کالونی فیصل آباد",
+    "district": "Faisalabad",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 31.4063,
+    "lng": 73.1066
+  },
+  {
+    "id": "pk_pun_madina_town_faisalabad",
+    "nameEn": "Madina Town Faisalabad",
+    "nameUr": "مدینہ ٹاؤن فیصل آباد",
+    "district": "Faisalabad",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 31.4227,
+    "lng": 73.12
+  },
+  {
+    "id": "pk_pun_ghanta_ghar_faisalabad",
+    "nameEn": "Ghanta Ghar Faisalabad",
+    "nameUr": "گھنٹہ گھر فیصل آباد",
+    "district": "Faisalabad",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 31.4187,
+    "lng": 73.0791
+  },
+  {
+    "id": "pk_pun_d_ground_faisalabad",
+    "nameEn": "D Ground Faisalabad",
+    "nameUr": "ڈی گراؤنڈ فیصل آباد",
+    "district": "Faisalabad",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 31.405,
+    "lng": 73.1011
+  },
+  {
+    "id": "pk_pun_cantt_multan",
+    "nameEn": "Cantt Multan",
+    "nameUr": "کینٹ ملتان",
+    "district": "Multan",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 30.1892,
+    "lng": 71.4366
+  },
+  {
+    "id": "pk_pun_shah_rukn_e_alam_colony_multan",
+    "nameEn": "Shah Rukn-e-Alam Colony Multan",
+    "nameUr": "شاہ رکن عالم کالونی ملتان",
+    "district": "Multan",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 30.2072,
+    "lng": 71.4947
+  },
+  {
+    "id": "pk_pun_gulgasht_colony_multan",
+    "nameEn": "Gulgasht Colony Multan",
+    "nameUr": "گلگشت کالونی ملتان",
+    "district": "Multan",
+    "province": "PUNJAB",
+    "category": "LOCALITY",
+    "lat": 30.2233,
+    "lng": 71.4719
+  },
+  {
+    "id": "pk_pun_qasim_bagh_fort_multan",
+    "nameEn": "Qasim Bagh Fort Multan",
+    "nameUr": "قلعہ کہنہ قاسم باغ ملتان",
+    "district": "Multan",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 30.1997,
+    "lng": 71.4728
+  },
+  {
+    "id": "pk_pun_model_town_gujranwala",
+    "nameEn": "Model Town Gujranwala",
+    "nameUr": "ماڈل ٹاؤن گوجرانوالہ",
+    "district": "Gujranwala",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 32.1617,
+    "lng": 74.1856
+  },
+  {
+    "id": "pk_pun_cantt_sialkot",
+    "nameEn": "Cantt Sialkot",
+    "nameUr": "کینٹ سیالکوٹ",
+    "district": "Sialkot",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 32.5094,
+    "lng": 74.5446
+  },
+  {
+    "id": "pk_pun_model_town_bahawalpur",
+    "nameEn": "Model Town Bahawalpur",
+    "nameUr": "ماڈل ٹاؤن بہاولپور",
+    "district": "Bahawalpur",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 29.3894,
+    "lng": 71.6708
+  },
+  {
+    "id": "pk_pun_noor_mahal_bahawalpur",
+    "nameEn": "Noor Mahal Bahawalpur",
+    "nameUr": "نور محل بہاولپور",
+    "district": "Bahawalpur",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 29.3783,
+    "lng": 71.6681
+  },
+  {
+    "id": "pk_pun_derawar_fort_cholistan",
+    "nameEn": "Derawar Fort Cholistan",
+    "nameUr": "قلعہ دراوڑ چولستان",
+    "district": "Bahawalpur",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 28.7681,
+    "lng": 71.3347
+  },
+  {
+    "id": "pk_pun_khewra_salt_mines",
+    "nameEn": "Khewra Salt Mines",
+    "nameUr": "کھیوڑہ نمک کی کان",
+    "district": "Jhelum",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 32.6475,
+    "lng": 73.0086
+  },
+  {
+    "id": "pk_pun_rohtas_fort",
+    "nameEn": "Rohtas Fort",
+    "nameUr": "قلعہ روہتاس",
+    "district": "Jhelum",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 32.9639,
+    "lng": 73.5758
+  },
+  {
+    "id": "pk_pun_katas_raj_temples",
+    "nameEn": "Katas Raj Temples",
+    "nameUr": "کٹاس راج مندر",
+    "district": "Chakwal",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 32.7236,
+    "lng": 72.9489
+  },
+  {
+    "id": "pk_pun_kallar_kahar_lake",
+    "nameEn": "Kallar Kahar Lake",
+    "nameUr": "کلر کہار جھیل",
+    "district": "Chakwal",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 32.7756,
+    "lng": 72.7075
+  },
+  {
+    "id": "pk_pun_taxila_museum",
+    "nameEn": "Taxila Museum",
+    "nameUr": "ٹیکسلا میوزیم",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 33.7458,
+    "lng": 72.819
+  },
+  {
+    "id": "pk_pun_patriata_new_murree",
+    "nameEn": "Patriata (New Murree)",
+    "nameUr": "پتریاٹہ (نیو مری)",
+    "district": "Murree",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 33.8542,
+    "lng": 73.4706
+  },
+  {
+    "id": "pk_pun_mall_road_murree",
+    "nameEn": "Mall Road Murree",
+    "nameUr": "مال روڈ مری",
+    "district": "Murree",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 33.9082,
+    "lng": 73.3908
+  },
+  {
+    "id": "pk_pun_harappa_archaeological_site",
+    "nameEn": "Harappa Archaeological Site",
+    "nameUr": "ہڑپہ آثارِ قدیمہ",
+    "district": "Sahiwal",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 30.6289,
+    "lng": 72.8639
+  },
+  {
+    "id": "pk_pun_hiran_minar_sheikhupura",
+    "nameEn": "Hiran Minar Sheikhupura",
+    "nameUr": "ہیرن مینار شیخوپورہ",
+    "district": "Sheikhupura",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 31.7433,
+    "lng": 73.9553
+  },
+  {
+    "id": "pk_pun_gurdwara_janam_asthan_nankana",
+    "nameEn": "Gurdwara Janam Asthan Nankana",
+    "nameUr": "گوردوارہ جنم استھان ننکانہ",
+    "district": "Nankana Sahib",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 31.4485,
+    "lng": 73.7027
+  },
+  {
+    "id": "pk_pun_fort_munro_hill_station",
+    "nameEn": "Fort Munro Hill Station",
+    "nameUr": "فورٹ منرو",
+    "district": "Dera Ghazi Khan",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 29.9255,
+    "lng": 69.983
+  },
+  {
+    "id": "pk_sin_karachi",
+    "nameEn": "Karachi",
+    "nameUr": "کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "MAJOR_CITY",
+    "lat": 24.8607,
+    "lng": 67.0011
+  },
+  {
+    "id": "pk_sin_hyderabad",
+    "nameEn": "Hyderabad",
+    "nameUr": "حیدرآباد",
+    "district": "Hyderabad",
+    "province": "SINDH",
+    "category": "MAJOR_CITY",
+    "lat": 25.396,
+    "lng": 68.3578
+  },
+  {
+    "id": "pk_sin_sukkur",
+    "nameEn": "Sukkur",
+    "nameUr": "سکھر",
+    "district": "Sukkur",
+    "province": "SINDH",
+    "category": "MAJOR_CITY",
+    "lat": 27.7052,
+    "lng": 68.8574
+  },
+  {
+    "id": "pk_sin_larkana",
+    "nameEn": "Larkana",
+    "nameUr": "لاڑکانہ",
+    "district": "Larkana",
+    "province": "SINDH",
+    "category": "MAJOR_CITY",
+    "lat": 27.557,
+    "lng": 68.2028
+  },
+  {
+    "id": "pk_sin_nawabshah_shaheed_benazirabad",
+    "nameEn": "Nawabshah (Shaheed Benazirabad)",
+    "nameUr": "نوابشاہ",
+    "district": "Shaheed Benazirabad",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 26.2442,
+    "lng": 68.41
+  },
+  {
+    "id": "pk_sin_mirpurkhas",
+    "nameEn": "Mirpurkhas",
+    "nameUr": "میرپورخاص",
+    "district": "Mirpurkhas",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 25.5276,
+    "lng": 69.0126
+  },
+  {
+    "id": "pk_sin_jacobabad",
+    "nameEn": "Jacobabad",
+    "nameUr": "جیکب آباد",
+    "district": "Jacobabad",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 28.2819,
+    "lng": 68.4376
+  },
+  {
+    "id": "pk_sin_shikarpur",
+    "nameEn": "Shikarpur",
+    "nameUr": "شکارپور",
+    "district": "Shikarpur",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 27.9571,
+    "lng": 68.6379
+  },
+  {
+    "id": "pk_sin_khairpur",
+    "nameEn": "Khairpur",
+    "nameUr": "خیرپور",
+    "district": "Khairpur",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 27.5295,
+    "lng": 68.7592
+  },
+  {
+    "id": "pk_sin_dadu",
+    "nameEn": "Dadu",
+    "nameUr": "دادو",
+    "district": "Dadu",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 26.7341,
+    "lng": 67.7795
+  },
+  {
+    "id": "pk_sin_badin",
+    "nameEn": "Badin",
+    "nameUr": "بدین",
+    "district": "Badin",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 24.656,
+    "lng": 68.837
+  },
+  {
+    "id": "pk_sin_thatta",
+    "nameEn": "Thatta",
+    "nameUr": "ٹھٹہ",
+    "district": "Thatta",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 24.7475,
+    "lng": 67.9235
+  },
+  {
+    "id": "pk_sin_umerkot",
+    "nameEn": "Umerkot",
+    "nameUr": "عمرکوٹ",
+    "district": "Umerkot",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 25.3616,
+    "lng": 69.7362
+  },
+  {
+    "id": "pk_sin_mithi_tharparkar",
+    "nameEn": "Mithi (Tharparkar)",
+    "nameUr": "مٹھی (تھرپارکر)",
+    "district": "Tharparkar",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 24.737,
+    "lng": 69.7971
+  },
+  {
+    "id": "pk_sin_sanghar",
+    "nameEn": "Sanghar",
+    "nameUr": "سانگھڑ",
+    "district": "Sanghar",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 26.0466,
+    "lng": 68.9481
+  },
+  {
+    "id": "pk_sin_tando_allahyar",
+    "nameEn": "Tando Allahyar",
+    "nameUr": "ٹنڈو الہ یار",
+    "district": "Tando Allahyar",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 25.4605,
+    "lng": 68.7174
+  },
+  {
+    "id": "pk_sin_tando_muhammad_khan",
+    "nameEn": "Tando Muhammad Khan",
+    "nameUr": "ٹنڈو محمد خان",
+    "district": "Tando Muhammad Khan",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 25.1239,
+    "lng": 68.5368
+  },
+  {
+    "id": "pk_sin_matiari",
+    "nameEn": "Matiari",
+    "nameUr": "مٹیاری",
+    "district": "Matiari",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 25.5971,
+    "lng": 68.4467
+  },
+  {
+    "id": "pk_sin_jamshoro",
+    "nameEn": "Jamshoro",
+    "nameUr": "جامشورو",
+    "district": "Jamshoro",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 25.4304,
+    "lng": 68.2809
+  },
+  {
+    "id": "pk_sin_kamber_qambar_shahdadkot",
+    "nameEn": "Kamber (Qambar Shahdadkot)",
+    "nameUr": "قمبر شہدادکوٹ",
+    "district": "Qambar Shahdadkot",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 27.5876,
+    "lng": 68.0007
+  },
+  {
+    "id": "pk_sin_kandhkot_kashmore",
+    "nameEn": "Kandhkot (Kashmore)",
+    "nameUr": "کندھ کوٹ",
+    "district": "Kashmore",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 28.2457,
+    "lng": 69.1797
+  },
+  {
+    "id": "pk_sin_mirpur_mathelo_ghotki",
+    "nameEn": "Mirpur Mathelo (Ghotki)",
+    "nameUr": "میرپور ماتھیلو",
+    "district": "Ghotki",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 28.0214,
+    "lng": 69.2739
+  },
+  {
+    "id": "pk_sin_naushahro_feroze",
+    "nameEn": "Naushahro Feroze",
+    "nameUr": "نوشہرو فیروز",
+    "district": "Naushahro Feroze",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 26.8401,
+    "lng": 68.1227
+  },
+  {
+    "id": "pk_sin_sujawal",
+    "nameEn": "Sujawal",
+    "nameUr": "سجاول",
+    "district": "Sujawal",
+    "province": "SINDH",
+    "category": "DISTRICT_HQ",
+    "lat": 24.6064,
+    "lng": 68.0719
+  },
+  {
+    "id": "pk_sin_kotri",
+    "nameEn": "Kotri",
+    "nameUr": "کوٹری",
+    "district": "Jamshoro",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 25.3657,
+    "lng": 68.3083
+  },
+  {
+    "id": "pk_sin_sehwan_sharif",
+    "nameEn": "Sehwan Sharif",
+    "nameUr": "سیہون شریف",
+    "district": "Jamshoro",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 26.4281,
+    "lng": 67.8614
+  },
+  {
+    "id": "pk_sin_moro",
+    "nameEn": "Moro",
+    "nameUr": "مورو",
+    "district": "Naushahro Feroze",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 26.6632,
+    "lng": 68.0002
+  },
+  {
+    "id": "pk_sin_kandiaro",
+    "nameEn": "Kandiaro",
+    "nameUr": "کنڈیارو",
+    "district": "Naushahro Feroze",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 27.0592,
+    "lng": 68.2102
+  },
+  {
+    "id": "pk_sin_sakrand",
+    "nameEn": "Sakrand",
+    "nameUr": "سکرنڈ",
+    "district": "Shaheed Benazirabad",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 26.1384,
+    "lng": 68.2744
+  },
+  {
+    "id": "pk_sin_qazi_ahmad",
+    "nameEn": "Qazi Ahmad",
+    "nameUr": "قاضی احمد",
+    "district": "Shaheed Benazirabad",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 26.2869,
+    "lng": 68.1066
+  },
+  {
+    "id": "pk_sin_shahdadpur",
+    "nameEn": "Shahdadpur",
+    "nameUr": "شہدادپور",
+    "district": "Sanghar",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 25.9254,
+    "lng": 68.6228
+  },
+  {
+    "id": "pk_sin_tando_adam",
+    "nameEn": "Tando Adam",
+    "nameUr": "ٹنڈو آدم",
+    "district": "Sanghar",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 25.7682,
+    "lng": 68.662
+  },
+  {
+    "id": "pk_sin_digri",
+    "nameEn": "Digri",
+    "nameUr": "ڈگری",
+    "district": "Mirpurkhas",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 25.1566,
+    "lng": 69.1109
+  },
+  {
+    "id": "pk_sin_kunri",
+    "nameEn": "Kunri",
+    "nameUr": "کنری",
+    "district": "Umerkot",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 25.1787,
+    "lng": 69.5692
+  },
+  {
+    "id": "pk_sin_nagarparkar",
+    "nameEn": "Nagarparkar",
+    "nameUr": "نگرپارکر",
+    "district": "Tharparkar",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 24.3572,
+    "lng": 70.7556
+  },
+  {
+    "id": "pk_sin_islamkot",
+    "nameEn": "Islamkot",
+    "nameUr": "اسلام کوٹ",
+    "district": "Tharparkar",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 24.6997,
+    "lng": 70.1798
+  },
+  {
+    "id": "pk_sin_diplo",
+    "nameEn": "Diplo",
+    "nameUr": "ڈیپلو",
+    "district": "Tharparkar",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 24.4669,
+    "lng": 69.5811
+  },
+  {
+    "id": "pk_sin_matli",
+    "nameEn": "Matli",
+    "nameUr": "ماتلی",
+    "district": "Badin",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 25.0429,
+    "lng": 68.6559
+  },
+  {
+    "id": "pk_sin_golarchi",
+    "nameEn": "Golarchi",
+    "nameUr": "گولارچی",
+    "district": "Badin",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 24.6512,
+    "lng": 68.5453
+  },
+  {
+    "id": "pk_sin_makli",
+    "nameEn": "Makli",
+    "nameUr": "مکلی",
+    "district": "Thatta",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 24.7567,
+    "lng": 67.9036
+  },
+  {
+    "id": "pk_sin_mirpur_sakro",
+    "nameEn": "Mirpur Sakro",
+    "nameUr": "میرپور ساکرو",
+    "district": "Thatta",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 24.5469,
+    "lng": 67.6279
+  },
+  {
+    "id": "pk_sin_rohri",
+    "nameEn": "Rohri",
+    "nameUr": "روہڑی",
+    "district": "Sukkur",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 27.692,
+    "lng": 68.895
+  },
+  {
+    "id": "pk_sin_pano_aqil",
+    "nameEn": "Pano Aqil",
+    "nameUr": "پنو عاقل",
+    "district": "Sukkur",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 27.8562,
+    "lng": 69.1111
+  },
+  {
+    "id": "pk_sin_ghotki",
+    "nameEn": "Ghotki",
+    "nameUr": "گھوٹکی",
+    "district": "Ghotki",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 28.006,
+    "lng": 69.315
+  },
+  {
+    "id": "pk_sin_daharki",
+    "nameEn": "Daharki",
+    "nameUr": "ڈہرکی",
+    "district": "Ghotki",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 28.0485,
+    "lng": 69.4539
+  },
+  {
+    "id": "pk_sin_ubauro",
+    "nameEn": "Ubauro",
+    "nameUr": "اوباڑو",
+    "district": "Ghotki",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 28.1656,
+    "lng": 69.7311
+  },
+  {
+    "id": "pk_sin_ratodero",
+    "nameEn": "Ratodero",
+    "nameUr": "رتوڈیرو",
+    "district": "Larkana",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 27.8022,
+    "lng": 68.289
+  },
+  {
+    "id": "pk_sin_dokri",
+    "nameEn": "Dokri",
+    "nameUr": "ڈوکری",
+    "district": "Larkana",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 27.3742,
+    "lng": 68.0972
+  },
+  {
+    "id": "pk_sin_mehar",
+    "nameEn": "Mehar",
+    "nameUr": "میہڑ",
+    "district": "Dadu",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 27.1802,
+    "lng": 67.8205
+  },
+  {
+    "id": "pk_sin_johi",
+    "nameEn": "Johi",
+    "nameUr": "جوہی",
+    "district": "Dadu",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 26.6925,
+    "lng": 67.6143
+  },
+  {
+    "id": "pk_sin_tando_jam",
+    "nameEn": "Tando Jam",
+    "nameUr": "ٹنڈو جام",
+    "district": "Hyderabad",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 25.4281,
+    "lng": 68.5292
+  },
+  {
+    "id": "pk_sin_hala",
+    "nameEn": "Hala",
+    "nameUr": "ہالا",
+    "district": "Matiari",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 25.8146,
+    "lng": 68.422
+  },
+  {
+    "id": "pk_sin_bhit_shah",
+    "nameEn": "Bhit Shah",
+    "nameUr": "بھٹ شاہ",
+    "district": "Matiari",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 25.8057,
+    "lng": 68.4914
+  },
+  {
+    "id": "pk_sin_shahdadkot",
+    "nameEn": "Shahdadkot",
+    "nameUr": "شہدادکوٹ",
+    "district": "Qambar Shahdadkot",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 27.8473,
+    "lng": 67.9068
+  },
+  {
+    "id": "pk_sin_garhi_yasin",
+    "nameEn": "Garhi Yasin",
+    "nameUr": "گڑھی یاسین",
+    "district": "Shikarpur",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 27.9063,
+    "lng": 68.5122
+  },
+  {
+    "id": "pk_sin_thul",
+    "nameEn": "Thul",
+    "nameUr": "ٹھل",
+    "district": "Jacobabad",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 28.2403,
+    "lng": 68.7755
+  },
+  {
+    "id": "pk_sin_ranipur",
+    "nameEn": "Ranipur",
+    "nameUr": "رانی پور",
+    "district": "Khairpur",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 27.2872,
+    "lng": 68.5062
+  },
+  {
+    "id": "pk_sin_gambat",
+    "nameEn": "Gambat",
+    "nameUr": "گمبٹ",
+    "district": "Khairpur",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 27.3517,
+    "lng": 68.5215
+  },
+  {
+    "id": "pk_sin_clifton_karachi",
+    "nameEn": "Clifton Karachi",
+    "nameUr": "کلفٹن کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "NEIGHBORHOOD",
+    "lat": 24.8138,
+    "lng": 67.0299
+  },
+  {
+    "id": "pk_sin_dha_karachi",
+    "nameEn": "DHA Karachi",
+    "nameUr": "ڈی ایچ اے کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "NEIGHBORHOOD",
+    "lat": 24.8049,
+    "lng": 67.0643
+  },
+  {
+    "id": "pk_sin_saddar_karachi",
+    "nameEn": "Saddar Karachi",
+    "nameUr": "صدر کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "NEIGHBORHOOD",
+    "lat": 24.8615,
+    "lng": 67.0258
+  },
+  {
+    "id": "pk_sin_gulshan_e_iqbal_karachi",
+    "nameEn": "Gulshan-e-Iqbal Karachi",
+    "nameUr": "گلشنِ اقبال کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "NEIGHBORHOOD",
+    "lat": 24.9204,
+    "lng": 67.092
+  },
+  {
+    "id": "pk_sin_gulistan_e_johar_karachi",
+    "nameEn": "Gulistan-e-Johar Karachi",
+    "nameUr": "گلستانِ جوہر کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "NEIGHBORHOOD",
+    "lat": 24.918,
+    "lng": 67.1319
+  },
+  {
+    "id": "pk_sin_north_nazimabad_karachi",
+    "nameEn": "North Nazimabad Karachi",
+    "nameUr": "نارتھ ناظم آباد کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "NEIGHBORHOOD",
+    "lat": 24.9372,
+    "lng": 67.0422
+  },
+  {
+    "id": "pk_sin_nazimabad_karachi",
+    "nameEn": "Nazimabad Karachi",
+    "nameUr": "ناظم آباد کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LOCALITY",
+    "lat": 24.9107,
+    "lng": 67.0311
+  },
+  {
+    "id": "pk_sin_korangi_karachi",
+    "nameEn": "Korangi Karachi",
+    "nameUr": "کورنگی کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "NEIGHBORHOOD",
+    "lat": 24.8342,
+    "lng": 67.152
+  },
+  {
+    "id": "pk_sin_landhi_karachi",
+    "nameEn": "Landhi Karachi",
+    "nameUr": "لانڈھی کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LOCALITY",
+    "lat": 24.8442,
+    "lng": 67.2073
+  },
+  {
+    "id": "pk_sin_malir_karachi",
+    "nameEn": "Malir Karachi",
+    "nameUr": "ملیر کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "NEIGHBORHOOD",
+    "lat": 24.8934,
+    "lng": 67.1965
+  },
+  {
+    "id": "pk_sin_lyari_karachi",
+    "nameEn": "Lyari Karachi",
+    "nameUr": "لیاری کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LOCALITY",
+    "lat": 24.8712,
+    "lng": 66.9935
+  },
+  {
+    "id": "pk_sin_orangi_town_karachi",
+    "nameEn": "Orangi Town Karachi",
+    "nameUr": "اورنگی ٹاؤن کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LOCALITY",
+    "lat": 24.9502,
+    "lng": 66.9889
+  },
+  {
+    "id": "pk_sin_baldia_town_karachi",
+    "nameEn": "Baldia Town Karachi",
+    "nameUr": "بلدیہ ٹاؤن کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LOCALITY",
+    "lat": 24.9094,
+    "lng": 66.9532
+  },
+  {
+    "id": "pk_sin_pechs_karachi",
+    "nameEn": "PECHS Karachi",
+    "nameUr": "پی ای سی ایچ ایس کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "NEIGHBORHOOD",
+    "lat": 24.8698,
+    "lng": 67.0585
+  },
+  {
+    "id": "pk_sin_bahadurabad_karachi",
+    "nameEn": "Bahadurabad Karachi",
+    "nameUr": "بہادرآباد کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LOCALITY",
+    "lat": 24.8825,
+    "lng": 67.0688
+  },
+  {
+    "id": "pk_sin_clifton_beach_sea_view_karachi",
+    "nameEn": "Clifton Beach (Sea View) Karachi",
+    "nameUr": "کلفٹن ساحل کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "PUBLIC_AREA",
+    "lat": 24.7937,
+    "lng": 67.0339
+  },
+  {
+    "id": "pk_sin_mazar_e_quaid_karachi",
+    "nameEn": "Mazar-e-Quaid Karachi",
+    "nameUr": "مزارِ قائد کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LANDMARK",
+    "lat": 24.8754,
+    "lng": 67.041
+  },
+  {
+    "id": "pk_sin_frere_hall_karachi",
+    "nameEn": "Frere Hall Karachi",
+    "nameUr": "فریئر ہال کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LANDMARK",
+    "lat": 24.8473,
+    "lng": 67.0329
+  },
+  {
+    "id": "pk_sin_hawke_s_bay_beach_karachi",
+    "nameEn": "Hawke's Bay Beach Karachi",
+    "nameUr": "ہاکس بے کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "PUBLIC_AREA",
+    "lat": 24.8555,
+    "lng": 66.8548
+  },
+  {
+    "id": "pk_sin_latifabad_hyderabad",
+    "nameEn": "Latifabad Hyderabad",
+    "nameUr": "لطیف آباد حیدرآباد",
+    "district": "Hyderabad",
+    "province": "SINDH",
+    "category": "NEIGHBORHOOD",
+    "lat": 25.3679,
+    "lng": 68.3526
+  },
+  {
+    "id": "pk_sin_qasimabad_hyderabad",
+    "nameEn": "Qasimabad Hyderabad",
+    "nameUr": "قاسم آباد حیدرآباد",
+    "district": "Hyderabad",
+    "province": "SINDH",
+    "category": "NEIGHBORHOOD",
+    "lat": 25.4024,
+    "lng": 68.3298
+  },
+  {
+    "id": "pk_sin_rani_bagh_hyderabad",
+    "nameEn": "Rani Bagh Hyderabad",
+    "nameUr": "رانی باغ حیدرآباد",
+    "district": "Hyderabad",
+    "province": "SINDH",
+    "category": "PUBLIC_AREA",
+    "lat": 25.3886,
+    "lng": 68.3422
+  },
+  {
+    "id": "pk_sin_mohenjo_daro_archaeological_site",
+    "nameEn": "Mohenjo-daro Archaeological Site",
+    "nameUr": "موئن جو دڑو",
+    "district": "Larkana",
+    "province": "SINDH",
+    "category": "LANDMARK",
+    "lat": 27.3292,
+    "lng": 68.1389
+  },
+  {
+    "id": "pk_sin_kot_diji_fort",
+    "nameEn": "Kot Diji Fort",
+    "nameUr": "قلعہ کوٹ ڈیجی",
+    "district": "Khairpur",
+    "province": "SINDH",
+    "category": "LANDMARK",
+    "lat": 27.3425,
+    "lng": 68.7086
+  },
+  {
+    "id": "pk_sin_keenjhar_lake",
+    "nameEn": "Keenjhar Lake",
+    "nameUr": "کینجھر جھیل",
+    "district": "Thatta",
+    "province": "SINDH",
+    "category": "PUBLIC_AREA",
+    "lat": 24.9469,
+    "lng": 68.0469
+  },
+  {
+    "id": "pk_sin_gorakh_hill_station",
+    "nameEn": "Gorakh Hill Station",
+    "nameUr": "گورکھ ہل اسٹیشن",
+    "district": "Dadu",
+    "province": "SINDH",
+    "category": "PUBLIC_AREA",
+    "lat": 26.8639,
+    "lng": 67.1525
+  },
+  {
+    "id": "pk_sin_sukkur_barrage",
+    "nameEn": "Sukkur Barrage",
+    "nameUr": "سکھر بیراج",
+    "district": "Sukkur",
+    "province": "SINDH",
+    "category": "LANDMARK",
+    "lat": 27.6808,
+    "lng": 68.8469
+  },
+  {
+    "id": "pk_sin_ranikot_fort",
+    "nameEn": "Ranikot Fort",
+    "nameUr": "قلعہ رنی کوٹ",
+    "district": "Jamshoro",
+    "province": "SINDH",
+    "category": "LANDMARK",
+    "lat": 25.8975,
+    "lng": 67.9039
+  },
+  {
+    "id": "pk_khy_peshawar",
+    "nameEn": "Peshawar",
+    "nameUr": "پشاور",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "MAJOR_CITY",
+    "lat": 34.0151,
+    "lng": 71.5249
+  },
+  {
+    "id": "pk_khy_mardan",
+    "nameEn": "Mardan",
+    "nameUr": "مردان",
+    "district": "Mardan",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "MAJOR_CITY",
+    "lat": 34.1986,
+    "lng": 72.0404
+  },
+  {
+    "id": "pk_khy_abbottabad",
+    "nameEn": "Abbottabad",
+    "nameUr": "ایبٹ آباد",
+    "district": "Abbottabad",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "MAJOR_CITY",
+    "lat": 34.1688,
+    "lng": 73.2215
+  },
+  {
+    "id": "pk_khy_mingora_swat",
+    "nameEn": "Mingora (Swat)",
+    "nameUr": "مینگورہ (سوات)",
+    "district": "Swat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "MAJOR_CITY",
+    "lat": 34.7717,
+    "lng": 72.3602
+  },
+  {
+    "id": "pk_khy_kohat",
+    "nameEn": "Kohat",
+    "nameUr": "کوہاٹ",
+    "district": "Kohat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 33.5889,
+    "lng": 71.4429
+  },
+  {
+    "id": "pk_khy_dera_ismail_khan",
+    "nameEn": "Dera Ismail Khan",
+    "nameUr": "ڈیرہ اسماعیل خان",
+    "district": "Dera Ismail Khan",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 31.832,
+    "lng": 70.9024
+  },
+  {
+    "id": "pk_khy_bannu",
+    "nameEn": "Bannu",
+    "nameUr": "بنوں",
+    "district": "Bannu",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 32.9889,
+    "lng": 70.6056
+  },
+  {
+    "id": "pk_khy_nowshera",
+    "nameEn": "Nowshera",
+    "nameUr": "نوشہرہ",
+    "district": "Nowshera",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 34.0153,
+    "lng": 71.9747
+  },
+  {
+    "id": "pk_khy_swabi",
+    "nameEn": "Swabi",
+    "nameUr": "صوابی",
+    "district": "Swabi",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 34.1202,
+    "lng": 72.4698
+  },
+  {
+    "id": "pk_khy_charsadda",
+    "nameEn": "Charsadda",
+    "nameUr": "چارسدہ",
+    "district": "Charsadda",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 34.1482,
+    "lng": 71.7406
+  },
+  {
+    "id": "pk_khy_mansehra",
+    "nameEn": "Mansehra",
+    "nameUr": "مانسہرہ",
+    "district": "Mansehra",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 34.3333,
+    "lng": 73.2
+  },
+  {
+    "id": "pk_khy_haripur",
+    "nameEn": "Haripur",
+    "nameUr": "ہری پور",
+    "district": "Haripur",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 33.9942,
+    "lng": 72.9333
+  },
+  {
+    "id": "pk_khy_karak",
+    "nameEn": "Karak",
+    "nameUr": "کرک",
+    "district": "Karak",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 33.1163,
+    "lng": 71.0935
+  },
+  {
+    "id": "pk_khy_lakki_marwat",
+    "nameEn": "Lakki Marwat",
+    "nameUr": "لکی مروت",
+    "district": "Lakki Marwat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 32.6072,
+    "lng": 70.9123
+  },
+  {
+    "id": "pk_khy_tank",
+    "nameEn": "Tank",
+    "nameUr": "ٹانک",
+    "district": "Tank",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 32.217,
+    "lng": 70.3831
+  },
+  {
+    "id": "pk_khy_hangu",
+    "nameEn": "Hangu",
+    "nameUr": "ہنگو",
+    "district": "Hangu",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 33.5319,
+    "lng": 71.0595
+  },
+  {
+    "id": "pk_khy_chitral",
+    "nameEn": "Chitral",
+    "nameUr": "چترال",
+    "district": "Chitral",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 35.851,
+    "lng": 71.7864
+  },
+  {
+    "id": "pk_khy_timergara_lower_dir",
+    "nameEn": "Timergara (Lower Dir)",
+    "nameUr": "تیمرگرہ",
+    "district": "Lower Dir",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 34.828,
+    "lng": 71.8423
+  },
+  {
+    "id": "pk_khy_dir_upper_dir",
+    "nameEn": "Dir (Upper Dir)",
+    "nameUr": "اپر دیر",
+    "district": "Upper Dir",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 35.2074,
+    "lng": 71.8768
+  },
+  {
+    "id": "pk_khy_battagram",
+    "nameEn": "Battagram",
+    "nameUr": "بٹگرام",
+    "district": "Battagram",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 34.6772,
+    "lng": 73.0233
+  },
+  {
+    "id": "pk_khy_daggar_buner",
+    "nameEn": "Daggar (Buner)",
+    "nameUr": "ڈگر (بونیر)",
+    "district": "Buner",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 34.5117,
+    "lng": 72.482
+  },
+  {
+    "id": "pk_khy_alpuri_shangla",
+    "nameEn": "Alpuri (Shangla)",
+    "nameUr": "الپوری (شانگلہ)",
+    "district": "Shangla",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 34.9006,
+    "lng": 72.6327
+  },
+  {
+    "id": "pk_khy_dasu_upper_kohistan",
+    "nameEn": "Dasu (Upper Kohistan)",
+    "nameUr": "داسو (کوہستان)",
+    "district": "Kohistan",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 35.2917,
+    "lng": 73.2906
+  },
+  {
+    "id": "pk_khy_parachinar_kurram",
+    "nameEn": "Parachinar (Kurram)",
+    "nameUr": "پاڑاچنار",
+    "district": "Kurram",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 33.8992,
+    "lng": 70.1008
+  },
+  {
+    "id": "pk_khy_miranshah_north_waziristan",
+    "nameEn": "Miranshah (North Waziristan)",
+    "nameUr": "میرانشاہ",
+    "district": "North Waziristan",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 32.9972,
+    "lng": 70.0686
+  },
+  {
+    "id": "pk_khy_wana_south_waziristan",
+    "nameEn": "Wana (South Waziristan)",
+    "nameUr": "وانا",
+    "district": "South Waziristan",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 32.2989,
+    "lng": 69.5725
+  },
+  {
+    "id": "pk_khy_landi_kotal_khyber",
+    "nameEn": "Landi Kotal (Khyber)",
+    "nameUr": "لنڈی کوتل",
+    "district": "Khyber",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 34.1011,
+    "lng": 71.1456
+  },
+  {
+    "id": "pk_khy_ghalanai_mohmand",
+    "nameEn": "Ghalanai (Mohmand)",
+    "nameUr": "غلنئی (مہمند)",
+    "district": "Mohmand",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 34.3314,
+    "lng": 71.3917
+  },
+  {
+    "id": "pk_khy_khar_bajaur",
+    "nameEn": "Khar (Bajaur)",
+    "nameUr": "خار (باجوڑ)",
+    "district": "Bajaur",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 34.7256,
+    "lng": 71.5194
+  },
+  {
+    "id": "pk_khy_jamrud",
+    "nameEn": "Jamrud",
+    "nameUr": "جمرود",
+    "district": "Khyber",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.0005,
+    "lng": 71.3728
+  },
+  {
+    "id": "pk_khy_takht_i_bahi",
+    "nameEn": "Takht-i-Bahi",
+    "nameUr": "تخت بھائی",
+    "district": "Mardan",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.2828,
+    "lng": 71.9367
+  },
+  {
+    "id": "pk_khy_pabbi",
+    "nameEn": "Pabbi",
+    "nameUr": "پبی",
+    "district": "Nowshera",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.0097,
+    "lng": 71.7975
+  },
+  {
+    "id": "pk_khy_akora_khattak",
+    "nameEn": "Akora Khattak",
+    "nameUr": "اکوڑہ خٹک",
+    "district": "Nowshera",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.0033,
+    "lng": 72.1231
+  },
+  {
+    "id": "pk_khy_risalpur",
+    "nameEn": "Risalpur",
+    "nameUr": "رسالپور",
+    "district": "Nowshera",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.0605,
+    "lng": 71.9928
+  },
+  {
+    "id": "pk_khy_shabqadar",
+    "nameEn": "Shabqadar",
+    "nameUr": "شبقدر",
+    "district": "Charsadda",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.216,
+    "lng": 71.5548
+  },
+  {
+    "id": "pk_khy_tangi",
+    "nameEn": "Tangi",
+    "nameUr": "تنگی",
+    "district": "Charsadda",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.3009,
+    "lng": 71.6524
+  },
+  {
+    "id": "pk_khy_topi",
+    "nameEn": "Topi",
+    "nameUr": "ٹوپی",
+    "district": "Swabi",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.0703,
+    "lng": 72.6214
+  },
+  {
+    "id": "pk_khy_havelian",
+    "nameEn": "Havelian",
+    "nameUr": "حویلیاں",
+    "district": "Abbottabad",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.0531,
+    "lng": 73.1597
+  },
+  {
+    "id": "pk_khy_balakot",
+    "nameEn": "Balakot",
+    "nameUr": "بالاکوٹ",
+    "district": "Mansehra",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.5482,
+    "lng": 73.3532
+  },
+  {
+    "id": "pk_khy_naran",
+    "nameEn": "Naran",
+    "nameUr": "ناران",
+    "district": "Mansehra",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.9093,
+    "lng": 73.6507
+  },
+  {
+    "id": "pk_khy_kaghan",
+    "nameEn": "Kaghan",
+    "nameUr": "کاغان",
+    "district": "Mansehra",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.7789,
+    "lng": 73.5269
+  },
+  {
+    "id": "pk_khy_shogran",
+    "nameEn": "Shogran",
+    "nameUr": "شوگران",
+    "district": "Mansehra",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 34.6368,
+    "lng": 73.4622
+  },
+  {
+    "id": "pk_khy_oghi",
+    "nameEn": "Oghi",
+    "nameUr": "اوگی",
+    "district": "Mansehra",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.502,
+    "lng": 73.0124
+  },
+  {
+    "id": "pk_khy_ghazi",
+    "nameEn": "Ghazi",
+    "nameUr": "غازی",
+    "district": "Haripur",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 33.9986,
+    "lng": 72.6486
+  },
+  {
+    "id": "pk_khy_bahrain_swat",
+    "nameEn": "Bahrain (Swat)",
+    "nameUr": "بحرین (سوات)",
+    "district": "Swat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 35.2072,
+    "lng": 72.5458
+  },
+  {
+    "id": "pk_khy_kalam_swat",
+    "nameEn": "Kalam (Swat)",
+    "nameUr": "کلام (سوات)",
+    "district": "Swat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 35.4894,
+    "lng": 72.5872
+  },
+  {
+    "id": "pk_khy_malam_jabba",
+    "nameEn": "Malam Jabba",
+    "nameUr": "مالم جبہ",
+    "district": "Swat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 34.7995,
+    "lng": 72.5719
+  },
+  {
+    "id": "pk_khy_matta_swat",
+    "nameEn": "Matta (Swat)",
+    "nameUr": "مٹہ (سوات)",
+    "district": "Swat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.9333,
+    "lng": 72.4167
+  },
+  {
+    "id": "pk_khy_chakdara",
+    "nameEn": "Chakdara",
+    "nameUr": "چکدرہ",
+    "district": "Lower Dir",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.6561,
+    "lng": 72.0258
+  },
+  {
+    "id": "pk_khy_booni_upper_chitral",
+    "nameEn": "Booni (Upper Chitral)",
+    "nameUr": "بونی (اپر چترال)",
+    "district": "Upper Chitral",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 36.2656,
+    "lng": 72.2564
+  },
+  {
+    "id": "pk_khy_garam_chashma",
+    "nameEn": "Garam Chashma",
+    "nameUr": "گرم چشمہ",
+    "district": "Chitral",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 35.9875,
+    "lng": 71.5644
+  },
+  {
+    "id": "pk_khy_nathia_gali",
+    "nameEn": "Nathia Gali",
+    "nameUr": "نتھیا گلی",
+    "district": "Abbottabad",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 34.0725,
+    "lng": 73.3811
+  },
+  {
+    "id": "pk_khy_ayubia",
+    "nameEn": "Ayubia",
+    "nameUr": "ایوبیہ",
+    "district": "Abbottabad",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 34.0289,
+    "lng": 73.4017
+  },
+  {
+    "id": "pk_khy_thandiani",
+    "nameEn": "Thandiani",
+    "nameUr": "ٹھنڈیانی",
+    "district": "Abbottabad",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 34.2314,
+    "lng": 73.3622
+  },
+  {
+    "id": "pk_khy_kulachi",
+    "nameEn": "Kulachi",
+    "nameUr": "کلاچی",
+    "district": "Dera Ismail Khan",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 31.9308,
+    "lng": 70.4594
+  },
+  {
+    "id": "pk_khy_paharpur",
+    "nameEn": "Paharpur",
+    "nameUr": "پہاڑپور",
+    "district": "Dera Ismail Khan",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 32.105,
+    "lng": 70.9703
+  },
+  {
+    "id": "pk_khy_lachi",
+    "nameEn": "Lachi",
+    "nameUr": "لاچی",
+    "district": "Kohat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 33.3833,
+    "lng": 71.3333
+  },
+  {
+    "id": "pk_khy_thall",
+    "nameEn": "Thall",
+    "nameUr": "ٹل",
+    "district": "Hangu",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 33.3647,
+    "lng": 70.5453
+  },
+  {
+    "id": "pk_khy_hayatabad_peshawar",
+    "nameEn": "Hayatabad Peshawar",
+    "nameUr": "حیات آباد پشاور",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.9781,
+    "lng": 71.4414
+  },
+  {
+    "id": "pk_khy_university_town_peshawar",
+    "nameEn": "University Town Peshawar",
+    "nameUr": "یونیورسٹی ٹاؤن پشاور",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.9985,
+    "lng": 71.491
+  },
+  {
+    "id": "pk_khy_saddar_peshawar",
+    "nameEn": "Saddar Peshawar",
+    "nameUr": "صدر پشاور",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "NEIGHBORHOOD",
+    "lat": 34.0,
+    "lng": 71.54
+  },
+  {
+    "id": "pk_khy_qissa_khwani_bazaar_peshawar",
+    "nameEn": "Qissa Khwani Bazaar Peshawar",
+    "nameUr": "قصہ خوانی بازار پشاور",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 34.0081,
+    "lng": 71.572
+  },
+  {
+    "id": "pk_khy_bala_hisar_fort_peshawar",
+    "nameEn": "Bala Hisar Fort Peshawar",
+    "nameUr": "قلعہ بالا حصار پشاور",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LANDMARK",
+    "lat": 34.0124,
+    "lng": 71.5692
+  },
+  {
+    "id": "pk_khy_mahabat_khan_mosque",
+    "nameEn": "Mahabat Khan Mosque",
+    "nameUr": "مسجد مہابت خان",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LANDMARK",
+    "lat": 34.0067,
+    "lng": 71.5761
+  },
+  {
+    "id": "pk_khy_islamia_college_peshawar",
+    "nameEn": "Islamia College Peshawar",
+    "nameUr": "اسلامیہ کالج پشاور",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LANDMARK",
+    "lat": 33.9999,
+    "lng": 71.4774
+  },
+  {
+    "id": "pk_khy_bab_e_khyber_khyber_pass",
+    "nameEn": "Bab-e-Khyber (Khyber Pass)",
+    "nameUr": "بابِ خیبر",
+    "district": "Khyber",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LANDMARK",
+    "lat": 34.0022,
+    "lng": 71.3794
+  },
+  {
+    "id": "pk_khy_takht_i_bahi_buddhist_ruins",
+    "nameEn": "Takht-i-Bahi Buddhist Ruins",
+    "nameUr": "تخت بھائی کھنڈرات",
+    "district": "Mardan",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LANDMARK",
+    "lat": 34.2917,
+    "lng": 71.9436
+  },
+  {
+    "id": "pk_khy_lake_saif_ul_muluk",
+    "nameEn": "Lake Saif-ul-Muluk",
+    "nameUr": "جھیل سیف الملوک",
+    "district": "Mansehra",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LANDMARK",
+    "lat": 34.8764,
+    "lng": 73.6942
+  },
+  {
+    "id": "pk_khy_babusar_top",
+    "nameEn": "Babusar Top",
+    "nameUr": "بابوسر ٹاپ",
+    "district": "Mansehra",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LANDMARK",
+    "lat": 35.1469,
+    "lng": 74.0481
+  },
+  {
+    "id": "pk_khy_kalash_valley_bumburet",
+    "nameEn": "Kalash Valley (Bumburet)",
+    "nameUr": "وادیِ کیلاش",
+    "district": "Chitral",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LANDMARK",
+    "lat": 35.6967,
+    "lng": 71.6533
+  },
+  {
+    "id": "pk_khy_khanpur_dam",
+    "nameEn": "Khanpur Dam",
+    "nameUr": "خانپور ڈیم",
+    "district": "Haripur",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 33.8031,
+    "lng": 72.9317
+  },
+  {
+    "id": "pk_khy_tarbela_dam",
+    "nameEn": "Tarbela Dam",
+    "nameUr": "تربیلا ڈیم",
+    "district": "Haripur",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LANDMARK",
+    "lat": 34.0875,
+    "lng": 72.6975
+  },
+  {
+    "id": "pk_khy_saidu_sharif",
+    "nameEn": "Saidu Sharif",
+    "nameUr": "سیدو شریف",
+    "district": "Swat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LOCALITY",
+    "lat": 34.7495,
+    "lng": 72.3578
+  },
+  {
+    "id": "pk_bal_quetta",
+    "nameEn": "Quetta",
+    "nameUr": "کوئٹہ",
+    "district": "Quetta",
+    "province": "BALOCHISTAN",
+    "category": "MAJOR_CITY",
+    "lat": 30.1798,
+    "lng": 66.975
+  },
+  {
+    "id": "pk_bal_gwadar",
+    "nameEn": "Gwadar",
+    "nameUr": "گوادر",
+    "district": "Gwadar",
+    "province": "BALOCHISTAN",
+    "category": "MAJOR_CITY",
+    "lat": 25.1264,
+    "lng": 62.3225
+  },
+  {
+    "id": "pk_bal_turbat_kech",
+    "nameEn": "Turbat (Kech)",
+    "nameUr": "تربت",
+    "district": "Kech",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 26.0023,
+    "lng": 63.05
+  },
+  {
+    "id": "pk_bal_khuzdar",
+    "nameEn": "Khuzdar",
+    "nameUr": "خضدار",
+    "district": "Khuzdar",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 27.8,
+    "lng": 66.6167
+  },
+  {
+    "id": "pk_bal_chaman",
+    "nameEn": "Chaman",
+    "nameUr": "چمن",
+    "district": "Chaman",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 30.921,
+    "lng": 66.4597
+  },
+  {
+    "id": "pk_bal_hub",
+    "nameEn": "Hub",
+    "nameUr": "حب",
+    "district": "Hub",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 25.0258,
+    "lng": 66.8906
+  },
+  {
+    "id": "pk_bal_sibi",
+    "nameEn": "Sibi",
+    "nameUr": "سبی",
+    "district": "Sibi",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 29.543,
+    "lng": 67.8773
+  },
+  {
+    "id": "pk_bal_zhob",
+    "nameEn": "Zhob",
+    "nameUr": "ژوب",
+    "district": "Zhob",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 31.3417,
+    "lng": 69.4486
+  },
+  {
+    "id": "pk_bal_loralai",
+    "nameEn": "Loralai",
+    "nameUr": "لورالائی",
+    "district": "Loralai",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 30.3705,
+    "lng": 68.598
+  },
+  {
+    "id": "pk_bal_dera_murad_jamali",
+    "nameEn": "Dera Murad Jamali",
+    "nameUr": "ڈیرہ مراد جمالی",
+    "district": "Nasirabad",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 28.5466,
+    "lng": 68.2231
+  },
+  {
+    "id": "pk_bal_dera_allah_yar",
+    "nameEn": "Dera Allah Yar",
+    "nameUr": "ڈیرہ اللہ یار",
+    "district": "Jaffarabad",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 28.3735,
+    "lng": 68.3508
+  },
+  {
+    "id": "pk_bal_usta_muhammad",
+    "nameEn": "Usta Muhammad",
+    "nameUr": "اوستہ محمد",
+    "district": "Usta Muhammad",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 28.1794,
+    "lng": 68.0445
+  },
+  {
+    "id": "pk_bal_mastung",
+    "nameEn": "Mastung",
+    "nameUr": "مستونگ",
+    "district": "Mastung",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 29.7997,
+    "lng": 66.8455
+  },
+  {
+    "id": "pk_bal_kalat",
+    "nameEn": "Kalat",
+    "nameUr": "قلات",
+    "district": "Kalat",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 29.0266,
+    "lng": 66.59
+  },
+  {
+    "id": "pk_bal_nushki",
+    "nameEn": "Nushki",
+    "nameUr": "نوشکی",
+    "district": "Nushki",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 29.5522,
+    "lng": 66.0229
+  },
+  {
+    "id": "pk_bal_dalbandin",
+    "nameEn": "Dalbandin",
+    "nameUr": "دالبندین",
+    "district": "Chagai",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 28.8885,
+    "lng": 64.4062
+  },
+  {
+    "id": "pk_bal_kharan",
+    "nameEn": "Kharan",
+    "nameUr": "خاران",
+    "district": "Kharan",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 28.5833,
+    "lng": 65.4167
+  },
+  {
+    "id": "pk_bal_panjgur",
+    "nameEn": "Panjgur",
+    "nameUr": "پنجگور",
+    "district": "Panjgur",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 26.9644,
+    "lng": 64.0903
+  },
+  {
+    "id": "pk_bal_pasni",
+    "nameEn": "Pasni",
+    "nameUr": "پسنی",
+    "district": "Gwadar",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 25.2631,
+    "lng": 63.471
+  },
+  {
+    "id": "pk_bal_ormara",
+    "nameEn": "Ormara",
+    "nameUr": "اورماڑہ",
+    "district": "Gwadar",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 25.2088,
+    "lng": 64.6357
+  },
+  {
+    "id": "pk_bal_jiwani",
+    "nameEn": "Jiwani",
+    "nameUr": "جیوانی",
+    "district": "Gwadar",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 25.0485,
+    "lng": 61.7457
+  },
+  {
+    "id": "pk_bal_uthal_lasbela",
+    "nameEn": "Uthal (Lasbela)",
+    "nameUr": "اوتھل",
+    "district": "Lasbela",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 25.8072,
+    "lng": 66.6219
+  },
+  {
+    "id": "pk_bal_bela",
+    "nameEn": "Bela",
+    "nameUr": "بیلہ",
+    "district": "Lasbela",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 26.2271,
+    "lng": 66.3118
+  },
+  {
+    "id": "pk_bal_awaran",
+    "nameEn": "Awaran",
+    "nameUr": "آواران",
+    "district": "Awaran",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 26.4568,
+    "lng": 65.2314
+  },
+  {
+    "id": "pk_bal_barkhan",
+    "nameEn": "Barkhan",
+    "nameUr": "بارکھان",
+    "district": "Barkhan",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 29.8977,
+    "lng": 69.5256
+  },
+  {
+    "id": "pk_bal_kohlu",
+    "nameEn": "Kohlu",
+    "nameUr": "کوہلو",
+    "district": "Kohlu",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 29.8965,
+    "lng": 69.2532
+  },
+  {
+    "id": "pk_bal_dera_bugti",
+    "nameEn": "Dera Bugti",
+    "nameUr": "ڈیرہ بگٹی",
+    "district": "Dera Bugti",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 29.0362,
+    "lng": 69.1585
+  },
+  {
+    "id": "pk_bal_sui",
+    "nameEn": "Sui",
+    "nameUr": "سوئی",
+    "district": "Dera Bugti",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 28.6347,
+    "lng": 69.1856
+  },
+  {
+    "id": "pk_bal_ziarat",
+    "nameEn": "Ziarat",
+    "nameUr": "زیارت",
+    "district": "Ziarat",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 30.3824,
+    "lng": 67.7256
+  },
+  {
+    "id": "pk_bal_pishin",
+    "nameEn": "Pishin",
+    "nameUr": "پشین",
+    "district": "Pishin",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 30.5803,
+    "lng": 66.9961
+  },
+  {
+    "id": "pk_bal_qila_saifullah",
+    "nameEn": "Qila Saifullah",
+    "nameUr": "قلعہ سیف اللہ",
+    "district": "Qila Saifullah",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 30.7008,
+    "lng": 68.3598
+  },
+  {
+    "id": "pk_bal_qila_abdullah",
+    "nameEn": "Qila Abdullah",
+    "nameUr": "قلعہ عبداللہ",
+    "district": "Qila Abdullah",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 30.728,
+    "lng": 66.6612
+  },
+  {
+    "id": "pk_bal_harnai",
+    "nameEn": "Harnai",
+    "nameUr": "ہرنائی",
+    "district": "Harnai",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 30.1005,
+    "lng": 67.9374
+  },
+  {
+    "id": "pk_bal_mach",
+    "nameEn": "Mach",
+    "nameUr": "مچھ",
+    "district": "Kachhi",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 29.8637,
+    "lng": 67.3302
+  },
+  {
+    "id": "pk_bal_dhadar_kachhi",
+    "nameEn": "Dhadar (Kachhi)",
+    "nameUr": "ڈھاڈر",
+    "district": "Kachhi",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 29.4749,
+    "lng": 67.6517
+  },
+  {
+    "id": "pk_bal_gandava_jhal_magsi",
+    "nameEn": "Gandava (Jhal Magsi)",
+    "nameUr": "گنداوہ",
+    "district": "Jhal Magsi",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 28.6132,
+    "lng": 67.4856
+  },
+  {
+    "id": "pk_bal_washuk",
+    "nameEn": "Washuk",
+    "nameUr": "واشک",
+    "district": "Washuk",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 27.721,
+    "lng": 64.7903
+  },
+  {
+    "id": "pk_bal_musakhel",
+    "nameEn": "Musakhel",
+    "nameUr": "موسیٰ خیل",
+    "district": "Musakhel",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 30.8594,
+    "lng": 69.8221
+  },
+  {
+    "id": "pk_bal_dukki",
+    "nameEn": "Dukki",
+    "nameUr": "دکی",
+    "district": "Dukki",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 30.1531,
+    "lng": 68.5732
+  },
+  {
+    "id": "pk_bal_taftan",
+    "nameEn": "Taftan",
+    "nameUr": "تفتان",
+    "district": "Chagai",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 28.9742,
+    "lng": 61.5925
+  },
+  {
+    "id": "pk_bal_nok_kundi",
+    "nameEn": "Nok Kundi",
+    "nameUr": "نوک کنڈی",
+    "district": "Chagai",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 28.826,
+    "lng": 62.752
+  },
+  {
+    "id": "pk_bal_sorab",
+    "nameEn": "Sorab",
+    "nameUr": "سوراب",
+    "district": "Surab",
+    "province": "BALOCHISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 28.4914,
+    "lng": 66.2599
+  },
+  {
+    "id": "pk_bal_wadh",
+    "nameEn": "Wadh",
+    "nameUr": "وڈھ",
+    "district": "Khuzdar",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 27.3458,
+    "lng": 66.3736
+  },
+  {
+    "id": "pk_bal_satellite_town_quetta",
+    "nameEn": "Satellite Town Quetta",
+    "nameUr": "سیٹلائٹ ٹاؤن کوئٹہ",
+    "district": "Quetta",
+    "province": "BALOCHISTAN",
+    "category": "NEIGHBORHOOD",
+    "lat": 30.162,
+    "lng": 67.0226
+  },
+  {
+    "id": "pk_bal_jinnah_town_quetta",
+    "nameEn": "Jinnah Town Quetta",
+    "nameUr": "جناح ٹاؤن کوئٹہ",
+    "district": "Quetta",
+    "province": "BALOCHISTAN",
+    "category": "NEIGHBORHOOD",
+    "lat": 30.2072,
+    "lng": 66.9896
+  },
+  {
+    "id": "pk_bal_cantt_quetta",
+    "nameEn": "Cantt Quetta",
+    "nameUr": "کینٹ کوئٹہ",
+    "district": "Quetta",
+    "province": "BALOCHISTAN",
+    "category": "NEIGHBORHOOD",
+    "lat": 30.214,
+    "lng": 67.0315
+  },
+  {
+    "id": "pk_bal_hanna_lake_quetta",
+    "nameEn": "Hanna Lake Quetta",
+    "nameUr": "ہنہ جھیل کوئٹہ",
+    "district": "Quetta",
+    "province": "BALOCHISTAN",
+    "category": "PUBLIC_AREA",
+    "lat": 30.2581,
+    "lng": 67.0992
+  },
+  {
+    "id": "pk_bal_hazarganji_chiltan_national_park",
+    "nameEn": "Hazarganji Chiltan National Park",
+    "nameUr": "ہزار گنجی چلتن پارک",
+    "district": "Quetta",
+    "province": "BALOCHISTAN",
+    "category": "PUBLIC_AREA",
+    "lat": 30.0367,
+    "lng": 66.8586
+  },
+  {
+    "id": "pk_bal_quaid_e_azam_residency_ziarat",
+    "nameEn": "Quaid-e-Azam Residency Ziarat",
+    "nameUr": "زیارت ریزیڈنسی",
+    "district": "Ziarat",
+    "province": "BALOCHISTAN",
+    "category": "LANDMARK",
+    "lat": 30.3811,
+    "lng": 67.7286
+  },
+  {
+    "id": "pk_bal_hingol_national_park",
+    "nameEn": "Hingol National Park",
+    "nameUr": "ہنگول نیشنل پارک",
+    "district": "Lasbela",
+    "province": "BALOCHISTAN",
+    "category": "LANDMARK",
+    "lat": 25.5122,
+    "lng": 65.5072
+  },
+  {
+    "id": "pk_bal_kund_malir_beach",
+    "nameEn": "Kund Malir Beach",
+    "nameUr": "کنڈ ملیر ساحل",
+    "district": "Lasbela",
+    "province": "BALOCHISTAN",
+    "category": "PUBLIC_AREA",
+    "lat": 25.3944,
+    "lng": 65.475
+  },
+  {
+    "id": "pk_bal_gwadar_port_koh_e_batil",
+    "nameEn": "Gwadar Port / Koh-e-Batil",
+    "nameUr": "گوادر پورٹ / کوہِ باطل",
+    "district": "Gwadar",
+    "province": "BALOCHISTAN",
+    "category": "LANDMARK",
+    "lat": 25.1086,
+    "lng": 62.3333
+  },
+  {
+    "id": "pk_bal_mehrgarh_archaeological_site",
+    "nameEn": "Mehrgarh Archaeological Site",
+    "nameUr": "مہرگڑھ آثارِ قدیمہ",
+    "district": "Kachhi",
+    "province": "BALOCHISTAN",
+    "category": "LANDMARK",
+    "lat": 29.3833,
+    "lng": 67.6167
+  },
+  {
+    "id": "pk_bal_pir_ghaib_waterfall",
+    "nameEn": "Pir Ghaib Waterfall",
+    "nameUr": "پیر غیب آبشار",
+    "district": "Kachhi",
+    "province": "BALOCHISTAN",
+    "category": "LANDMARK",
+    "lat": 29.7364,
+    "lng": 67.3264
+  },
+  {
+    "id": "pk_isl_islamabad",
+    "nameEn": "Islamabad",
+    "nameUr": "اسلام آباد",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "MAJOR_CITY",
+    "lat": 33.6844,
+    "lng": 73.0479
+  },
+  {
+    "id": "pk_isl_f_6_markaz_super_market",
+    "nameEn": "F-6 Markaz (Super Market)",
+    "nameUr": "ایف 6 مرکز (سپرمارکیٹ)",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.7294,
+    "lng": 73.0757
+  },
+  {
+    "id": "pk_isl_f_7_markaz_jinnah_super",
+    "nameEn": "F-7 Markaz (Jinnah Super)",
+    "nameUr": "ایف 7 مرکز (جناح سپر)",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.7215,
+    "lng": 73.0561
+  },
+  {
+    "id": "pk_isl_f_8_markaz",
+    "nameEn": "F-8 Markaz",
+    "nameUr": "ایف 8 مرکز",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.7116,
+    "lng": 73.0394
+  },
+  {
+    "id": "pk_isl_f_10_markaz",
+    "nameEn": "F-10 Markaz",
+    "nameUr": "ایف 10 مرکز",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.6948,
+    "lng": 73.0124
+  },
+  {
+    "id": "pk_isl_f_11_markaz",
+    "nameEn": "F-11 Markaz",
+    "nameUr": "ایف 11 مرکز",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.6841,
+    "lng": 72.9896
+  },
+  {
+    "id": "pk_isl_g_6_markaz_aabpara",
+    "nameEn": "G-6 Markaz (Aabpara)",
+    "nameUr": "جی 6 مرکز (آبپارہ)",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.711,
+    "lng": 73.087
+  },
+  {
+    "id": "pk_isl_g_7_markaz_sitara_market",
+    "nameEn": "G-7 Markaz (Sitara Market)",
+    "nameUr": "جی 7 مرکز (ستارہ مارکیٹ)",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.7026,
+    "lng": 73.0684
+  },
+  {
+    "id": "pk_isl_g_8_pims_hospital_sector",
+    "nameEn": "G-8 (PIMS Hospital Sector)",
+    "nameUr": "جی 8 (پمز ہسپتال)",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.7024,
+    "lng": 73.0518
+  },
+  {
+    "id": "pk_isl_g_9_markaz_karachi_company",
+    "nameEn": "G-9 Markaz (Karachi Company)",
+    "nameUr": "جی 9 مرکز (کراچی کمپنی)",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.6889,
+    "lng": 73.0352
+  },
+  {
+    "id": "pk_isl_g_10_markaz",
+    "nameEn": "G-10 Markaz",
+    "nameUr": "جی 10 مرکز",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.6795,
+    "lng": 73.0155
+  },
+  {
+    "id": "pk_isl_g_11_markaz",
+    "nameEn": "G-11 Markaz",
+    "nameUr": "جی 11 مرکز",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.6696,
+    "lng": 72.9967
+  },
+  {
+    "id": "pk_isl_g_13_markaz",
+    "nameEn": "G-13 Markaz",
+    "nameUr": "جی 13 مرکز",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "LOCALITY",
+    "lat": 33.6538,
+    "lng": 72.9633
+  },
+  {
+    "id": "pk_isl_i_8_markaz",
+    "nameEn": "I-8 Markaz",
+    "nameUr": "آئی 8 مرکز",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "NEIGHBORHOOD",
+    "lat": 33.668,
+    "lng": 73.0748
+  },
+  {
+    "id": "pk_isl_i_10_markaz",
+    "nameEn": "I-10 Markaz",
+    "nameUr": "آئی 10 مرکز",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "LOCALITY",
+    "lat": 33.6494,
+    "lng": 73.0365
+  },
+  {
+    "id": "pk_isl_e_11_islamabad",
+    "nameEn": "E-11 Islamabad",
+    "nameUr": "ای 11 اسلام آباد",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "LOCALITY",
+    "lat": 33.6997,
+    "lng": 72.9718
+  },
+  {
+    "id": "pk_isl_blue_area_islamabad",
+    "nameEn": "Blue Area Islamabad",
+    "nameUr": "بلیو ایریا اسلام آباد",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "PUBLIC_AREA",
+    "lat": 33.7135,
+    "lng": 73.0628
+  },
+  {
+    "id": "pk_isl_diplomatic_enclave_islamabad",
+    "nameEn": "Diplomatic Enclave Islamabad",
+    "nameUr": "ڈپلومیٹک انکلیو",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "LOCALITY",
+    "lat": 33.729,
+    "lng": 73.112
+  },
+  {
+    "id": "pk_isl_bani_gala_islamabad",
+    "nameEn": "Bani Gala Islamabad",
+    "nameUr": "بنی گالہ اسلام آباد",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "LOCALITY",
+    "lat": 33.7105,
+    "lng": 73.1566
+  },
+  {
+    "id": "pk_isl_chak_shahzad_islamabad",
+    "nameEn": "Chak Shahzad Islamabad",
+    "nameUr": "چک شہزاد",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "LOCALITY",
+    "lat": 33.673,
+    "lng": 73.1536
+  },
+  {
+    "id": "pk_isl_tarnol_islamabad",
+    "nameEn": "Tarnol Islamabad",
+    "nameUr": "ترنول اسلام آباد",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "TOWN",
+    "lat": 33.6531,
+    "lng": 72.9125
+  },
+  {
+    "id": "pk_isl_bhara_kahu_islamabad",
+    "nameEn": "Bhara Kahu Islamabad",
+    "nameUr": "بھارہ کہو اسلام آباد",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "TOWN",
+    "lat": 33.7391,
+    "lng": 73.1856
+  },
+  {
+    "id": "pk_isl_rawat_islamabad",
+    "nameEn": "Rawat Islamabad",
+    "nameUr": "روات اسلام آباد",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "TOWN",
+    "lat": 33.4959,
+    "lng": 73.1945
+  },
+  {
+    "id": "pk_isl_faisal_mosque_islamabad",
+    "nameEn": "Faisal Mosque Islamabad",
+    "nameUr": "فیصل مسجد اسلام آباد",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "LANDMARK",
+    "lat": 33.7297,
+    "lng": 73.0372
+  },
+  {
+    "id": "pk_isl_daman_e_koh_viewpoint",
+    "nameEn": "Daman-e-Koh Viewpoint",
+    "nameUr": "دامنِ کوہ",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "LANDMARK",
+    "lat": 33.7393,
+    "lng": 73.0553
+  },
+  {
+    "id": "pk_isl_pakistan_monument_shakarparian",
+    "nameEn": "Pakistan Monument Shakarparian",
+    "nameUr": "پاکستان مونیومنٹ",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "LANDMARK",
+    "lat": 33.6934,
+    "lng": 73.0684
+  },
+  {
+    "id": "pk_isl_lake_view_park_rawal_lake",
+    "nameEn": "Lake View Park (Rawal Lake)",
+    "nameUr": "لیک ویو پارک",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "PUBLIC_AREA",
+    "lat": 33.7087,
+    "lng": 73.1338
+  },
+  {
+    "id": "pk_isl_fatima_jinnah_park_f_9_park",
+    "nameEn": "Fatima Jinnah Park (F-9 Park)",
+    "nameUr": "ایف 9 پارک (فاطمہ جناح پارک)",
+    "district": "Islamabad",
+    "province": "ISLAMABAD",
+    "category": "PUBLIC_AREA",
+    "lat": 33.7016,
+    "lng": 73.0218
+  },
+  {
+    "id": "pk_gil_gilgit",
+    "nameEn": "Gilgit",
+    "nameUr": "گلگت",
+    "district": "Gilgit",
+    "province": "GILGIT_BALTISTAN",
+    "category": "MAJOR_CITY",
+    "lat": 35.9208,
+    "lng": 74.3089
+  },
+  {
+    "id": "pk_gil_skardu",
+    "nameEn": "Skardu",
+    "nameUr": "سکردو",
+    "district": "Skardu",
+    "province": "GILGIT_BALTISTAN",
+    "category": "MAJOR_CITY",
+    "lat": 35.2971,
+    "lng": 75.6333
+  },
+  {
+    "id": "pk_gil_karimabad_hunza",
+    "nameEn": "Karimabad (Hunza)",
+    "nameUr": "کریم آباد (ہنزہ)",
+    "district": "Hunza",
+    "province": "GILGIT_BALTISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 36.3167,
+    "lng": 74.65
+  },
+  {
+    "id": "pk_gil_aliabad_hunza",
+    "nameEn": "Aliabad (Hunza)",
+    "nameUr": "علی آباد (ہنزہ)",
+    "district": "Hunza",
+    "province": "GILGIT_BALTISTAN",
+    "category": "TOWN",
+    "lat": 36.3075,
+    "lng": 74.6164
+  },
+  {
+    "id": "pk_gil_gulmit_gojal",
+    "nameEn": "Gulmit (Gojal)",
+    "nameUr": "گلمت (گوجال)",
+    "district": "Hunza",
+    "province": "GILGIT_BALTISTAN",
+    "category": "TOWN",
+    "lat": 36.3894,
+    "lng": 74.8594
+  },
+  {
+    "id": "pk_gil_sost",
+    "nameEn": "Sost",
+    "nameUr": "سوست",
+    "district": "Hunza",
+    "province": "GILGIT_BALTISTAN",
+    "category": "TOWN",
+    "lat": 36.6853,
+    "lng": 74.8192
+  },
+  {
+    "id": "pk_gil_chilas_diamer",
+    "nameEn": "Chilas (Diamer)",
+    "nameUr": "چلاس",
+    "district": "Diamer",
+    "province": "GILGIT_BALTISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 35.4206,
+    "lng": 74.0967
+  },
+  {
+    "id": "pk_gil_astore",
+    "nameEn": "Astore",
+    "nameUr": "استور",
+    "district": "Astore",
+    "province": "GILGIT_BALTISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 35.3667,
+    "lng": 74.85
+  },
+  {
+    "id": "pk_gil_gahkuch_ghizer",
+    "nameEn": "Gahkuch (Ghizer)",
+    "nameUr": "گاہکوچ (غذر)",
+    "district": "Ghizer",
+    "province": "GILGIT_BALTISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 36.1736,
+    "lng": 73.7667
+  },
+  {
+    "id": "pk_gil_phander_valley",
+    "nameEn": "Phander Valley",
+    "nameUr": "پھنڈر ویلی",
+    "district": "Ghizer",
+    "province": "GILGIT_BALTISTAN",
+    "category": "TOWN",
+    "lat": 36.1714,
+    "lng": 72.9369
+  },
+  {
+    "id": "pk_gil_shigar",
+    "nameEn": "Shigar",
+    "nameUr": "شگر",
+    "district": "Shigar",
+    "province": "GILGIT_BALTISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 35.4253,
+    "lng": 75.7475
+  },
+  {
+    "id": "pk_gil_khaplu_ghanche",
+    "nameEn": "Khaplu (Ghanche)",
+    "nameUr": "خپلو (گانچھے)",
+    "district": "Ghanche",
+    "province": "GILGIT_BALTISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 35.1617,
+    "lng": 76.3372
+  },
+  {
+    "id": "pk_gil_kharmang",
+    "nameEn": "Kharmang",
+    "nameUr": "کھرمنگ",
+    "district": "Kharmang",
+    "province": "GILGIT_BALTISTAN",
+    "category": "DISTRICT_HQ",
+    "lat": 34.9389,
+    "lng": 76.0
+  },
+  {
+    "id": "pk_gil_danyor_gilgit",
+    "nameEn": "Danyor (Gilgit)",
+    "nameUr": "دنیور",
+    "district": "Gilgit",
+    "province": "GILGIT_BALTISTAN",
+    "category": "LOCALITY",
+    "lat": 35.9183,
+    "lng": 74.3742
+  },
+  {
+    "id": "pk_gil_jutial_gilgit",
+    "nameEn": "Jutial (Gilgit)",
+    "nameUr": "جوتیال",
+    "district": "Gilgit",
+    "province": "GILGIT_BALTISTAN",
+    "category": "NEIGHBORHOOD",
+    "lat": 35.9017,
+    "lng": 74.3314
+  },
+  {
+    "id": "pk_gil_attabad_lake",
+    "nameEn": "Attabad Lake",
+    "nameUr": "عطاآباد جھیل",
+    "district": "Hunza",
+    "province": "GILGIT_BALTISTAN",
+    "category": "LANDMARK",
+    "lat": 36.3278,
+    "lng": 74.8669
+  },
+  {
+    "id": "pk_gil_passu_cones",
+    "nameEn": "Passu Cones",
+    "nameUr": "پسو کونز",
+    "district": "Hunza",
+    "province": "GILGIT_BALTISTAN",
+    "category": "LANDMARK",
+    "lat": 36.4733,
+    "lng": 74.8903
+  },
+  {
+    "id": "pk_gil_khunjerab_pass",
+    "nameEn": "Khunjerab Pass",
+    "nameUr": "درہ خنجراب",
+    "district": "Hunza",
+    "province": "GILGIT_BALTISTAN",
+    "category": "LANDMARK",
+    "lat": 36.85,
+    "lng": 75.4269
+  },
+  {
+    "id": "pk_gil_fairy_meadows",
+    "nameEn": "Fairy Meadows",
+    "nameUr": "فیری میڈوز",
+    "district": "Diamer",
+    "province": "GILGIT_BALTISTAN",
+    "category": "PUBLIC_AREA",
+    "lat": 35.3883,
+    "lng": 74.5789
+  },
+  {
+    "id": "pk_gil_deosai_national_park",
+    "nameEn": "Deosai National Park",
+    "nameUr": "دیوسائی میدان",
+    "district": "Skardu",
+    "province": "GILGIT_BALTISTAN",
+    "category": "PUBLIC_AREA",
+    "lat": 35.0236,
+    "lng": 75.4717
+  },
+  {
+    "id": "pk_gil_shangrila_lower_kachura_lake",
+    "nameEn": "Shangrila / Lower Kachura Lake",
+    "nameUr": "شنگریلا / کچورا جھیل",
+    "district": "Skardu",
+    "province": "GILGIT_BALTISTAN",
+    "category": "LANDMARK",
+    "lat": 35.4272,
+    "lng": 75.4558
+  },
+  {
+    "id": "pk_gil_baltit_fort_karimabad",
+    "nameEn": "Baltit Fort Karimabad",
+    "nameUr": "بلتت فورٹ",
+    "district": "Hunza",
+    "province": "GILGIT_BALTISTAN",
+    "category": "LANDMARK",
+    "lat": 36.3256,
+    "lng": 74.6694
+  },
+  {
+    "id": "pk_gil_naltar_valley",
+    "nameEn": "Naltar Valley",
+    "nameUr": "وادیِ نلتر",
+    "district": "Gilgit",
+    "province": "GILGIT_BALTISTAN",
+    "category": "PUBLIC_AREA",
+    "lat": 36.1611,
+    "lng": 74.1819
+  },
+  {
+    "id": "pk_gil_rama_meadows_astore",
+    "nameEn": "Rama Meadows Astore",
+    "nameUr": "راما میڈوز",
+    "district": "Astore",
+    "province": "GILGIT_BALTISTAN",
+    "category": "PUBLIC_AREA",
+    "lat": 35.3492,
+    "lng": 74.7975
+  },
+  {
+    "id": "pk_aza_muzaffarabad",
+    "nameEn": "Muzaffarabad",
+    "nameUr": "مظفرآباد",
+    "district": "Muzaffarabad",
+    "province": "AZAD_KASHMIR",
+    "category": "MAJOR_CITY",
+    "lat": 34.37,
+    "lng": 73.4711
+  },
+  {
+    "id": "pk_aza_mirpur_ajk",
+    "nameEn": "Mirpur AJK",
+    "nameUr": "میرپور آزاد کشمیر",
+    "district": "Mirpur",
+    "province": "AZAD_KASHMIR",
+    "category": "MAJOR_CITY",
+    "lat": 33.1484,
+    "lng": 73.7518
+  },
+  {
+    "id": "pk_aza_rawalakot",
+    "nameEn": "Rawalakot",
+    "nameUr": "راولاکوٹ",
+    "district": "Poonch",
+    "province": "AZAD_KASHMIR",
+    "category": "DISTRICT_HQ",
+    "lat": 33.8578,
+    "lng": 73.7604
+  },
+  {
+    "id": "pk_aza_kotli_ajk",
+    "nameEn": "Kotli AJK",
+    "nameUr": "کوٹلی آزاد کشمیر",
+    "district": "Kotli",
+    "province": "AZAD_KASHMIR",
+    "category": "DISTRICT_HQ",
+    "lat": 33.5184,
+    "lng": 73.9022
+  },
+  {
+    "id": "pk_aza_bagh_ajk",
+    "nameEn": "Bagh AJK",
+    "nameUr": "باغ آزاد کشمیر",
+    "district": "Bagh",
+    "province": "AZAD_KASHMIR",
+    "category": "DISTRICT_HQ",
+    "lat": 33.9803,
+    "lng": 73.7747
+  },
+  {
+    "id": "pk_aza_bhimber",
+    "nameEn": "Bhimber",
+    "nameUr": "بھمبر",
+    "district": "Bhimber",
+    "province": "AZAD_KASHMIR",
+    "category": "DISTRICT_HQ",
+    "lat": 32.9746,
+    "lng": 74.0785
+  },
+  {
+    "id": "pk_aza_pallandri_sudhnoti",
+    "nameEn": "Pallandri (Sudhnoti)",
+    "nameUr": "پلندری",
+    "district": "Sudhnoti",
+    "province": "AZAD_KASHMIR",
+    "category": "DISTRICT_HQ",
+    "lat": 33.7142,
+    "lng": 73.686
+  },
+  {
+    "id": "pk_aza_athmuqam_neelum",
+    "nameEn": "Athmuqam (Neelum)",
+    "nameUr": "آٹھمقام (نیلم)",
+    "district": "Neelum",
+    "province": "AZAD_KASHMIR",
+    "category": "DISTRICT_HQ",
+    "lat": 34.5717,
+    "lng": 73.9089
+  },
+  {
+    "id": "pk_aza_hattian_bala",
+    "nameEn": "Hattian Bala",
+    "nameUr": "ہٹیاں بالا",
+    "district": "Jhelum Valley",
+    "province": "AZAD_KASHMIR",
+    "category": "DISTRICT_HQ",
+    "lat": 34.1692,
+    "lng": 73.7432
+  },
+  {
+    "id": "pk_aza_forward_kahuta_haveli",
+    "nameEn": "Forward Kahuta (Haveli)",
+    "nameUr": "فارورڈ کہوٹہ",
+    "district": "Haveli",
+    "province": "AZAD_KASHMIR",
+    "category": "DISTRICT_HQ",
+    "lat": 33.8806,
+    "lng": 74.1111
+  },
+  {
+    "id": "pk_aza_dadyal_ajk",
+    "nameEn": "Dadyal AJK",
+    "nameUr": "ڈڈیال",
+    "district": "Mirpur",
+    "province": "AZAD_KASHMIR",
+    "category": "TOWN",
+    "lat": 33.3469,
+    "lng": 73.6947
+  },
+  {
+    "id": "pk_aza_chaksawari",
+    "nameEn": "Chaksawari",
+    "nameUr": "چکسواری",
+    "district": "Mirpur",
+    "province": "AZAD_KASHMIR",
+    "category": "TOWN",
+    "lat": 33.2611,
+    "lng": 73.7764
+  },
+  {
+    "id": "pk_aza_chakothi",
+    "nameEn": "Chakothi",
+    "nameUr": "چکوٹھی",
+    "district": "Jhelum Valley",
+    "province": "AZAD_KASHMIR",
+    "category": "TOWN",
+    "lat": 34.1136,
+    "lng": 73.8819
+  },
+  {
+    "id": "pk_aza_sharda_neelum_valley",
+    "nameEn": "Sharda (Neelum Valley)",
+    "nameUr": "شاردہ (وادیِ نیلم)",
+    "district": "Neelum",
+    "province": "AZAD_KASHMIR",
+    "category": "TOWN",
+    "lat": 34.7931,
+    "lng": 74.1917
+  },
+  {
+    "id": "pk_aza_kel_neelum_valley",
+    "nameEn": "Kel (Neelum Valley)",
+    "nameUr": "کیل (وادیِ نیلم)",
+    "district": "Neelum",
+    "province": "AZAD_KASHMIR",
+    "category": "TOWN",
+    "lat": 34.8264,
+    "lng": 74.3547
+  },
+  {
+    "id": "pk_aza_arang_kel",
+    "nameEn": "Arang Kel",
+    "nameUr": "ارنگ کیل",
+    "district": "Neelum",
+    "province": "AZAD_KASHMIR",
+    "category": "PUBLIC_AREA",
+    "lat": 34.8031,
+    "lng": 74.3458
+  },
+  {
+    "id": "pk_aza_ratti_gali_lake",
+    "nameEn": "Ratti Gali Lake",
+    "nameUr": "رتی گلی جھیل",
+    "district": "Neelum",
+    "province": "AZAD_KASHMIR",
+    "category": "LANDMARK",
+    "lat": 34.8314,
+    "lng": 74.0594
+  },
+  {
+    "id": "pk_aza_banjosa_lake",
+    "nameEn": "Banjosa Lake",
+    "nameUr": "بنجوسہ جھیل",
+    "district": "Poonch",
+    "province": "AZAD_KASHMIR",
+    "category": "PUBLIC_AREA",
+    "lat": 33.8103,
+    "lng": 73.8169
+  },
+  {
+    "id": "pk_aza_toli_pir",
+    "nameEn": "Toli Pir",
+    "nameUr": "تولی پیر",
+    "district": "Poonch",
+    "province": "AZAD_KASHMIR",
+    "category": "PUBLIC_AREA",
+    "lat": 33.8906,
+    "lng": 73.9139
+  },
+  {
+    "id": "pk_aza_mangla_dam_viewpoint",
+    "nameEn": "Mangla Dam Viewpoint",
+    "nameUr": "منگلا ڈیم",
+    "district": "Mirpur",
+    "province": "AZAD_KASHMIR",
+    "category": "LANDMARK",
+    "lat": 33.1422,
+    "lng": 73.6431
+  },
+  {
+    "id": "pk_aza_pir_chinasi",
+    "nameEn": "Pir Chinasi",
+    "nameUr": "پیر چناسی",
+    "district": "Muzaffarabad",
+    "province": "AZAD_KASHMIR",
+    "category": "LANDMARK",
+    "lat": 34.3911,
+    "lng": 73.5506
+  },
+  {
+    "id": "pk_aza_red_fort_muzaffarabad",
+    "nameEn": "Red Fort Muzaffarabad",
+    "nameUr": "لال قلعہ مظفرآباد",
+    "district": "Muzaffarabad",
+    "province": "AZAD_KASHMIR",
+    "category": "LANDMARK",
+    "lat": 34.3797,
+    "lng": 73.475
+  },
+  {
+    "id": "pk_pun_pindi_bhattian",
+    "nameEn": "Pindi Bhattian",
+    "nameUr": "پنڈی بھٹیاں",
+    "district": "Hafizabad",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.895,
+    "lng": 73.2706
+  },
+  {
+    "id": "pk_pun_jalalpur_bhattian",
+    "nameEn": "Jalalpur Bhattian",
+    "nameUr": "جلالپور بھٹیاں",
+    "district": "Hafizabad",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.0289,
+    "lng": 73.3681
+  },
+  {
+    "id": "pk_pun_alipur_chatha",
+    "nameEn": "Alipur Chatha",
+    "nameUr": "علی پور چٹھہ",
+    "district": "Wazirabad",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.2625,
+    "lng": 73.8256
+  },
+  {
+    "id": "pk_pun_nowshera_virkan",
+    "nameEn": "Nowshera Virkan",
+    "nameUr": "نوشہرہ ورکاں",
+    "district": "Gujranwala",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.9647,
+    "lng": 73.9711
+  },
+  {
+    "id": "pk_pun_eminabad",
+    "nameEn": "Eminabad",
+    "nameUr": "ایمن آباد",
+    "district": "Gujranwala",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.0439,
+    "lng": 74.2597
+  },
+  {
+    "id": "pk_pun_kot_mitha_mithankot",
+    "nameEn": "Kot Mitha / Mithankot",
+    "nameUr": "کوٹ مٹھن",
+    "district": "Rajanpur",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 28.9539,
+    "lng": 70.3653
+  },
+  {
+    "id": "pk_pun_fazilpur",
+    "nameEn": "Fazilpur",
+    "nameUr": "فاضل پور",
+    "district": "Rajanpur",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 29.2869,
+    "lng": 70.4408
+  },
+  {
+    "id": "pk_pun_khanewal_model_town",
+    "nameEn": "Khanewal Model Town",
+    "nameUr": "ماڈل ٹاؤن خانیوال",
+    "district": "Khanewal",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 30.294,
+    "lng": 71.9395
+  },
+  {
+    "id": "pk_pun_chak_jhumra",
+    "nameEn": "Chak Jhumra",
+    "nameUr": "چک جھمرہ",
+    "district": "Faisalabad",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.5681,
+    "lng": 73.1831
+  },
+  {
+    "id": "pk_pun_khurrianwala",
+    "nameEn": "Khurrianwala",
+    "nameUr": "کھرڑیانوالہ",
+    "district": "Faisalabad",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.4975,
+    "lng": 73.2683
+  },
+  {
+    "id": "pk_pun_lalian",
+    "nameEn": "Lalian",
+    "nameUr": "لالیاں",
+    "district": "Chiniot",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.8253,
+    "lng": 72.7969
+  },
+  {
+    "id": "pk_pun_bhowana",
+    "nameEn": "Bhowana",
+    "nameUr": "بھوانہ",
+    "district": "Chiniot",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.5692,
+    "lng": 72.6461
+  },
+  {
+    "id": "pk_pun_rabwah_chenab_nagar",
+    "nameEn": "Rabwah (Chenab Nagar)",
+    "nameUr": "چناب نگر",
+    "district": "Chiniot",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.7514,
+    "lng": 72.9125
+  },
+  {
+    "id": "pk_pun_18_hazari",
+    "nameEn": "18 Hazari",
+    "nameUr": "اٹھارہ ہزاری",
+    "district": "Jhang",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.17,
+    "lng": 72.1047
+  },
+  {
+    "id": "pk_pun_ahmadpur_sial",
+    "nameEn": "Ahmadpur Sial",
+    "nameUr": "احمدپور سیال",
+    "district": "Jhang",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.6775,
+    "lng": 71.7436
+  },
+  {
+    "id": "pk_pun_noorpur_thal",
+    "nameEn": "Noorpur Thal",
+    "nameUr": "نورپور تھل",
+    "district": "Khushab",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.8833,
+    "lng": 71.9
+  },
+  {
+    "id": "pk_pun_piplan",
+    "nameEn": "Piplan",
+    "nameUr": "پپلاں",
+    "district": "Mianwali",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.2756,
+    "lng": 71.3611
+  },
+  {
+    "id": "pk_pun_kundian",
+    "nameEn": "Kundian",
+    "nameUr": "کندیاں",
+    "district": "Mianwali",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.4567,
+    "lng": 71.4719
+  },
+  {
+    "id": "pk_pun_darya_khan",
+    "nameEn": "Darya Khan",
+    "nameUr": "دریا خان",
+    "district": "Bhakkar",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.7897,
+    "lng": 71.1014
+  },
+  {
+    "id": "pk_pun_mankera",
+    "nameEn": "Mankera",
+    "nameUr": "منکیرہ",
+    "district": "Bhakkar",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.3867,
+    "lng": 71.44
+  },
+  {
+    "id": "pk_pun_kalur_kot",
+    "nameEn": "Kalur Kot",
+    "nameUr": "کلور کوٹ",
+    "district": "Bhakkar",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 32.1558,
+    "lng": 71.2664
+  },
+  {
+    "id": "pk_pun_chowbara",
+    "nameEn": "Chowbara",
+    "nameUr": "چوبارہ",
+    "district": "Layyah",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.8969,
+    "lng": 71.4547
+  },
+  {
+    "id": "pk_pun_fatehpur_layyah",
+    "nameEn": "Fatehpur (Layyah)",
+    "nameUr": "فتح پور (لیہ)",
+    "district": "Layyah",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 31.1786,
+    "lng": 71.2136
+  },
+  {
+    "id": "pk_pun_sanawan",
+    "nameEn": "Sanawan",
+    "nameUr": "سناواں",
+    "district": "Kot Addu",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.2994,
+    "lng": 70.9553
+  },
+  {
+    "id": "pk_pun_chowk_azam",
+    "nameEn": "Chowk Azam",
+    "nameUr": "چوک اعظم",
+    "district": "Layyah",
+    "province": "PUNJAB",
+    "category": "TOWN",
+    "lat": 30.9672,
+    "lng": 71.21
+  },
+  {
+    "id": "pk_pun_bahria_town_multan_approach",
+    "nameEn": "Bahria Town Multan Approach",
+    "nameUr": "ملتان بوسن روڈ",
+    "district": "Multan",
+    "province": "PUNJAB",
+    "category": "LOCALITY",
+    "lat": 30.2586,
+    "lng": 71.4981
+  },
+  {
+    "id": "pk_pun_kabirwala_road_multan",
+    "nameEn": "Kabirwala Road Multan",
+    "nameUr": "شاہ شمس کالونی ملتان",
+    "district": "Multan",
+    "province": "PUNJAB",
+    "category": "LOCALITY",
+    "lat": 30.1819,
+    "lng": 71.5019
+  },
+  {
+    "id": "pk_pun_dha_bahawalpur",
+    "nameEn": "DHA Bahawalpur",
+    "nameUr": "ڈی ایچ اے بہاولپور",
+    "district": "Bahawalpur",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 29.3653,
+    "lng": 71.7497
+  },
+  {
+    "id": "pk_pun_cantt_sargodha",
+    "nameEn": "Cantt Sargodha",
+    "nameUr": "کینٹ سرگودھا",
+    "district": "Sargodha",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 32.0672,
+    "lng": 72.6819
+  },
+  {
+    "id": "pk_pun_satellite_town_sargodha",
+    "nameEn": "Satellite Town Sargodha",
+    "nameUr": "سیٹلائٹ ٹاؤن سرگودھا",
+    "district": "Sargodha",
+    "province": "PUNJAB",
+    "category": "NEIGHBORHOOD",
+    "lat": 32.0619,
+    "lng": 72.6958
+  },
+  {
+    "id": "pk_pun_jinnah_park_rawalpindi",
+    "nameEn": "Jinnah Park Rawalpindi",
+    "nameUr": "جناح پارک راولپنڈی",
+    "district": "Rawalpindi",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 33.5889,
+    "lng": 73.0744
+  },
+  {
+    "id": "pk_pun_changa_manga_forest_park",
+    "nameEn": "Changa Manga Forest Park",
+    "nameUr": "چھانگا مانگا",
+    "district": "Kasur",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 31.0844,
+    "lng": 73.9631
+  },
+  {
+    "id": "pk_pun_head_balloki",
+    "nameEn": "Head Balloki",
+    "nameUr": "ہیڈ بلوکی",
+    "district": "Kasur",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 31.2206,
+    "lng": 73.8594
+  },
+  {
+    "id": "pk_pun_head_trimmu",
+    "nameEn": "Head Trimmu",
+    "nameUr": "ہیڈ تریموں",
+    "district": "Jhang",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 31.1436,
+    "lng": 72.1458
+  },
+  {
+    "id": "pk_pun_head_panjnad",
+    "nameEn": "Head Panjnad",
+    "nameUr": "ہیڈ پنجند",
+    "district": "Muzaffargarh",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 29.3469,
+    "lng": 71.0231
+  },
+  {
+    "id": "pk_pun_taunsa_barrage",
+    "nameEn": "Taunsa Barrage",
+    "nameUr": "تونسہ بیراج",
+    "district": "Kot Addu",
+    "province": "PUNJAB",
+    "category": "LANDMARK",
+    "lat": 30.5131,
+    "lng": 70.8489
+  },
+  {
+    "id": "pk_pun_lal_suhanra_national_park",
+    "nameEn": "Lal Suhanra National Park",
+    "nameUr": "لال سہانرا نیشنل پارک",
+    "district": "Bahawalpur",
+    "province": "PUNJAB",
+    "category": "PUBLIC_AREA",
+    "lat": 29.3358,
+    "lng": 71.9306
+  },
+  {
+    "id": "pk_sin_tariq_road_karachi",
+    "nameEn": "Tariq Road Karachi",
+    "nameUr": "طارق روڈ کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "PUBLIC_AREA",
+    "lat": 24.8719,
+    "lng": 67.0598
+  },
+  {
+    "id": "pk_sin_shahrah_e_faisal_karachi",
+    "nameEn": "Shahrah-e-Faisal Karachi",
+    "nameUr": "شاہراہِ فیصل کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "PUBLIC_AREA",
+    "lat": 24.8632,
+    "lng": 67.0815
+  },
+  {
+    "id": "pk_sin_federal_b_area_karachi",
+    "nameEn": "Federal B Area Karachi",
+    "nameUr": "فیڈرل بی ایریا کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "NEIGHBORHOOD",
+    "lat": 24.9339,
+    "lng": 67.0706
+  },
+  {
+    "id": "pk_sin_shah_faisal_colony_karachi",
+    "nameEn": "Shah Faisal Colony Karachi",
+    "nameUr": "شاہ فیصل کالونی کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LOCALITY",
+    "lat": 24.8781,
+    "lng": 67.1478
+  },
+  {
+    "id": "pk_sin_surjani_town_karachi",
+    "nameEn": "Surjani Town Karachi",
+    "nameUr": "سرجانی ٹاؤن کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LOCALITY",
+    "lat": 25.0253,
+    "lng": 67.0642
+  },
+  {
+    "id": "pk_sin_bin_qasim_town_karachi",
+    "nameEn": "Bin Qasim Town Karachi",
+    "nameUr": "بن قاسم ٹاؤن کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LOCALITY",
+    "lat": 24.835,
+    "lng": 67.3197
+  },
+  {
+    "id": "pk_sin_gadap_town_karachi",
+    "nameEn": "Gadap Town Karachi",
+    "nameUr": "گڈاپ ٹاؤن کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LOCALITY",
+    "lat": 25.0419,
+    "lng": 67.2117
+  },
+  {
+    "id": "pk_sin_liaquatabad_karachi",
+    "nameEn": "Liaquatabad Karachi",
+    "nameUr": "لیاقت آباد کراچی",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LOCALITY",
+    "lat": 24.9022,
+    "lng": 67.0511
+  },
+  {
+    "id": "pk_sin_chaukundi_tombs_karachi",
+    "nameEn": "Chaukundi Tombs Karachi",
+    "nameUr": "چوکنڈی مقبرے",
+    "district": "Karachi",
+    "province": "SINDH",
+    "category": "LANDMARK",
+    "lat": 24.8636,
+    "lng": 67.2719
+  },
+  {
+    "id": "pk_sin_makli_necropolis",
+    "nameEn": "Makli Necropolis",
+    "nameUr": "مکلی قبرستان",
+    "district": "Thatta",
+    "province": "SINDH",
+    "category": "LANDMARK",
+    "lat": 24.7547,
+    "lng": 67.9008
+  },
+  {
+    "id": "pk_sin_shah_jahan_mosque_thatta",
+    "nameEn": "Shah Jahan Mosque Thatta",
+    "nameUr": "شاہ جہاں مسجد ٹھٹہ",
+    "district": "Thatta",
+    "province": "SINDH",
+    "category": "LANDMARK",
+    "lat": 24.7469,
+    "lng": 67.9286
+  },
+  {
+    "id": "pk_sin_manchar_lake",
+    "nameEn": "Manchar Lake",
+    "nameUr": "منچھر جھیل",
+    "district": "Jamshoro",
+    "province": "SINDH",
+    "category": "LANDMARK",
+    "lat": 26.4258,
+    "lng": 67.6517
+  },
+  {
+    "id": "pk_sin_kirthar_national_park",
+    "nameEn": "Kirthar National Park",
+    "nameUr": "کیرتھر نیشنل پارک",
+    "district": "Jamshoro",
+    "province": "SINDH",
+    "category": "PUBLIC_AREA",
+    "lat": 25.675,
+    "lng": 67.55
+  },
+  {
+    "id": "pk_sin_sadh_belo_sukkur",
+    "nameEn": "Sadh Belo Sukkur",
+    "nameUr": "سادھ بیلو سکھر",
+    "district": "Sukkur",
+    "province": "SINDH",
+    "category": "LANDMARK",
+    "lat": 27.685,
+    "lng": 68.8425
+  },
+  {
+    "id": "pk_sin_naukot",
+    "nameEn": "Naukot",
+    "nameUr": "نوکوٹ",
+    "district": "Mirpurkhas",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 24.8582,
+    "lng": 69.4019
+  },
+  {
+    "id": "pk_sin_jhuddo",
+    "nameEn": "Jhuddo",
+    "nameUr": "جھڈو",
+    "district": "Mirpurkhas",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 24.9708,
+    "lng": 69.2994
+  },
+  {
+    "id": "pk_sin_mithi_gaddisagar_karoonjhar_hills",
+    "nameEn": "Mithi Gaddisagar / Karoonjhar Hills",
+    "nameUr": "کارونجھر پہاڑیاں",
+    "district": "Tharparkar",
+    "province": "SINDH",
+    "category": "LANDMARK",
+    "lat": 24.3458,
+    "lng": 70.7289
+  },
+  {
+    "id": "pk_sin_khipro",
+    "nameEn": "Khipro",
+    "nameUr": "کھپرو",
+    "district": "Sanghar",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 25.8286,
+    "lng": 69.3772
+  },
+  {
+    "id": "pk_sin_sinjhoro",
+    "nameEn": "Sinjhoro",
+    "nameUr": "سنجھورو",
+    "district": "Sanghar",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 26.0281,
+    "lng": 68.8072
+  },
+  {
+    "id": "pk_sin_chamber",
+    "nameEn": "Chamber",
+    "nameUr": "چمبڑ",
+    "district": "Tando Allahyar",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 25.2917,
+    "lng": 68.8125
+  },
+  {
+    "id": "pk_sin_nasarpur",
+    "nameEn": "Nasarpur",
+    "nameUr": "نصرپور",
+    "district": "Tando Allahyar",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 25.5175,
+    "lng": 68.6228
+  },
+  {
+    "id": "pk_sin_sakro_gharo",
+    "nameEn": "Sakro / Gharo",
+    "nameUr": "گھارو",
+    "district": "Thatta",
+    "province": "SINDH",
+    "category": "TOWN",
+    "lat": 24.7422,
+    "lng": 67.5819
+  },
+  {
+    "id": "pk_khy_cantt_peshawar",
+    "nameEn": "Cantt Peshawar",
+    "nameUr": "کینٹ پشاور",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "NEIGHBORHOOD",
+    "lat": 34.0044,
+    "lng": 71.5472
+  },
+  {
+    "id": "pk_khy_gulbahar_peshawar",
+    "nameEn": "Gulbahar Peshawar",
+    "nameUr": "گل بہار پشاور",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LOCALITY",
+    "lat": 34.0172,
+    "lng": 71.5944
+  },
+  {
+    "id": "pk_khy_ring_road_peshawar",
+    "nameEn": "Ring Road Peshawar",
+    "nameUr": "رنگ روڈ پشاور",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LOCALITY",
+    "lat": 33.9725,
+    "lng": 71.5489
+  },
+  {
+    "id": "pk_khy_dabgari_gardens_peshawar",
+    "nameEn": "Dabgari Gardens Peshawar",
+    "nameUr": "ڈبگری گارڈنز پشاور",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 34.0061,
+    "lng": 71.5594
+  },
+  {
+    "id": "pk_khy_bagh_e_naran_peshawar",
+    "nameEn": "Bagh-e-Naran Peshawar",
+    "nameUr": "باغِ ناران پشاور",
+    "district": "Peshawar",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 33.9778,
+    "lng": 71.4547
+  },
+  {
+    "id": "pk_khy_sheikh_maltoon_town_mardan",
+    "nameEn": "Sheikh Maltoon Town Mardan",
+    "nameUr": "شیخ ملتون ٹاؤن مردان",
+    "district": "Mardan",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "NEIGHBORHOOD",
+    "lat": 34.1678,
+    "lng": 72.0258
+  },
+  {
+    "id": "pk_khy_jinnahabad_abbottabad",
+    "nameEn": "Jinnahabad Abbottabad",
+    "nameUr": "جناح آباد ایبٹ آباد",
+    "district": "Abbottabad",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "NEIGHBORHOOD",
+    "lat": 34.1972,
+    "lng": 73.2414
+  },
+  {
+    "id": "pk_khy_shimla_hill_abbottabad",
+    "nameEn": "Shimla Hill Abbottabad",
+    "nameUr": "شملہ ہل ایبٹ آباد",
+    "district": "Abbottabad",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 34.1561,
+    "lng": 73.2108
+  },
+  {
+    "id": "pk_khy_ilyasi_mosque_abbottabad",
+    "nameEn": "Ilyasi Mosque Abbottabad",
+    "nameUr": "الیاسی مسجد ایبٹ آباد",
+    "district": "Abbottabad",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LANDMARK",
+    "lat": 34.1706,
+    "lng": 73.2494
+  },
+  {
+    "id": "pk_khy_fiza_ghat_park_swat",
+    "nameEn": "Fiza Ghat Park Swat",
+    "nameUr": "فضاگھٹ پارک سوات",
+    "district": "Swat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 34.7911,
+    "lng": 72.3711
+  },
+  {
+    "id": "pk_khy_kumrat_valley",
+    "nameEn": "Kumrat Valley",
+    "nameUr": "وادیِ کمراٹ",
+    "district": "Upper Dir",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 35.5625,
+    "lng": 72.2122
+  },
+  {
+    "id": "pk_khy_lowari_tunnel_portal",
+    "nameEn": "Lowari Tunnel Portal",
+    "nameUr": "لواری ٹنل",
+    "district": "Upper Dir",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LANDMARK",
+    "lat": 35.3494,
+    "lng": 71.8022
+  },
+  {
+    "id": "pk_khy_shandur_top",
+    "nameEn": "Shandur Top",
+    "nameUr": "شندور ٹاپ",
+    "district": "Upper Chitral",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "LANDMARK",
+    "lat": 36.0778,
+    "lng": 72.5297
+  },
+  {
+    "id": "pk_khy_tanda_dam_kohat",
+    "nameEn": "Tanda Dam Kohat",
+    "nameUr": "ٹانڈہ ڈیم کوہاٹ",
+    "district": "Kohat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "PUBLIC_AREA",
+    "lat": 33.575,
+    "lng": 71.3917
+  },
+  {
+    "id": "pk_khy_darra_adam_khel",
+    "nameEn": "Darra Adam Khel",
+    "nameUr": "درہ آدم خیل",
+    "district": "Kohat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 33.6819,
+    "lng": 71.4911
+  },
+  {
+    "id": "pk_khy_alizai_kurram",
+    "nameEn": "Alizai (Kurram)",
+    "nameUr": "علی زئی",
+    "district": "Kurram",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 33.5397,
+    "lng": 70.3511
+  },
+  {
+    "id": "pk_khy_razmak",
+    "nameEn": "Razmak",
+    "nameUr": "رزمک",
+    "district": "North Waziristan",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 32.6911,
+    "lng": 69.8256
+  },
+  {
+    "id": "pk_khy_makin",
+    "nameEn": "Makin",
+    "nameUr": "مکین",
+    "district": "South Waziristan",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 32.6214,
+    "lng": 69.8392
+  },
+  {
+    "id": "pk_khy_batkhela",
+    "nameEn": "Batkhela",
+    "nameUr": "بٹ خیلہ",
+    "district": "Malakand",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "DISTRICT_HQ",
+    "lat": 34.6178,
+    "lng": 71.9722
+  },
+  {
+    "id": "pk_khy_dargai",
+    "nameEn": "Dargai",
+    "nameUr": "درگئی",
+    "district": "Malakand",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.5094,
+    "lng": 71.8944
+  },
+  {
+    "id": "pk_khy_tordher",
+    "nameEn": "Tordher",
+    "nameUr": "توردھیر",
+    "district": "Swabi",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.0411,
+    "lng": 72.3094
+  },
+  {
+    "id": "pk_khy_kabal_swat",
+    "nameEn": "Kabal (Swat)",
+    "nameUr": "کبل (سوات)",
+    "district": "Swat",
+    "province": "KHYBER_PAKHTUNKHWA",
+    "category": "TOWN",
+    "lat": 34.7897,
+    "lng": 72.2833
+  },
+  {
+    "id": "pk_bal_chiltan_town_quetta",
+    "nameEn": "Chiltan Town Quetta",
+    "nameUr": "چلتن ٹاؤن کوئٹہ",
+    "district": "Quetta",
+    "province": "BALOCHISTAN",
+    "category": "LOCALITY",
+    "lat": 30.145,
+    "lng": 66.968
+  },
+  {
+    "id": "pk_bal_brewery_road_quetta",
+    "nameEn": "Brewery Road Quetta",
+    "nameUr": "بریوری روڈ کوئٹہ",
+    "district": "Quetta",
+    "province": "BALOCHISTAN",
+    "category": "LOCALITY",
+    "lat": 30.1844,
+    "lng": 66.9617
+  },
+  {
+    "id": "pk_bal_liaquat_park_quetta",
+    "nameEn": "Liaquat Park Quetta",
+    "nameUr": "لیاقت پارک کوئٹہ",
+    "district": "Quetta",
+    "province": "BALOCHISTAN",
+    "category": "PUBLIC_AREA",
+    "lat": 30.1939,
+    "lng": 67.0092
+  },
+  {
+    "id": "pk_bal_urak_valley_quetta",
+    "nameEn": "Urak Valley Quetta",
+    "nameUr": "اوڑک ویلی",
+    "district": "Quetta",
+    "province": "BALOCHISTAN",
+    "category": "PUBLIC_AREA",
+    "lat": 30.2647,
+    "lng": 67.1856
+  },
+  {
+    "id": "pk_bal_bolan_pass",
+    "nameEn": "Bolan Pass",
+    "nameUr": "درہ بولان",
+    "district": "Kachhi",
+    "province": "BALOCHISTAN",
+    "category": "LANDMARK",
+    "lat": 29.8833,
+    "lng": 67.3167
+  },
+  {
+    "id": "pk_bal_gaddani_beach",
+    "nameEn": "Gaddani Beach",
+    "nameUr": "گڈانی ساحل",
+    "district": "Hub",
+    "province": "BALOCHISTAN",
+    "category": "PUBLIC_AREA",
+    "lat": 25.1189,
+    "lng": 66.7278
+  },
+  {
+    "id": "pk_bal_miani_hor_sonmiani",
+    "nameEn": "Miani Hor / Sonmiani",
+    "nameUr": "سونمیانی",
+    "district": "Lasbela",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 25.4306,
+    "lng": 66.5972
+  },
+  {
+    "id": "pk_bal_buleda_kech",
+    "nameEn": "Buleda (Kech)",
+    "nameUr": "بلیدہ",
+    "district": "Kech",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 26.2564,
+    "lng": 63.1681
+  },
+  {
+    "id": "pk_bal_tump_kech",
+    "nameEn": "Tump (Kech)",
+    "nameUr": "تمپ",
+    "district": "Kech",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 26.0772,
+    "lng": 62.3853
+  },
+  {
+    "id": "pk_bal_mand_kech",
+    "nameEn": "Mand (Kech)",
+    "nameUr": "مند",
+    "district": "Kech",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 26.1103,
+    "lng": 62.0544
+  },
+  {
+    "id": "pk_bal_muslim_bagh",
+    "nameEn": "Muslim Bagh",
+    "nameUr": "مسلم باغ",
+    "district": "Qila Saifullah",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 30.8286,
+    "lng": 67.7372
+  },
+  {
+    "id": "pk_bal_kuchlak",
+    "nameEn": "Kuchlak",
+    "nameUr": "کچلاک",
+    "district": "Quetta",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 30.3208,
+    "lng": 66.9442
+  },
+  {
+    "id": "pk_bal_moola_chotok",
+    "nameEn": "Moola Chotok",
+    "nameUr": "مولا چٹوک",
+    "district": "Khuzdar",
+    "province": "BALOCHISTAN",
+    "category": "LANDMARK",
+    "lat": 28.0558,
+    "lng": 67.1108
+  },
+  {
+    "id": "pk_bal_zehri",
+    "nameEn": "Zehri",
+    "nameUr": "زہری",
+    "district": "Khuzdar",
+    "province": "BALOCHISTAN",
+    "category": "TOWN",
+    "lat": 28.1883,
+    "lng": 66.7867
+  }
+]

@@ -9,6 +9,9 @@ import com.example.data.model.FacilityRecord
 import com.example.data.model.GeoCoords
 import com.example.data.model.GroundingAuditResult
 import com.example.data.model.HomeCareProtocol
+import com.example.data.model.LocationCategory
+import com.example.data.model.PakistanLocationRecord
+import com.example.data.model.PakistanProvince
 import com.example.data.model.PrimaryComplaint
 import com.example.data.model.RedFlagReason
 import com.example.data.model.ReferralSlip
@@ -388,8 +391,48 @@ class TriageEngine(private val data: BundledDataLoader) {
         )
     }
 
+    fun getPakistanLocations(): List<PakistanLocationRecord> = data.pakistanLocations
+
+    fun searchPakistanLocations(
+        query: String,
+        province: PakistanProvince? = null,
+        category: LocationCategory? = null,
+    ): List<PakistanLocationRecord> {
+        val clean = query.trim()
+        return data.pakistanLocations.filter { loc ->
+            val provOk = province == null || loc.province == province
+            val catOk = category == null || loc.category == category
+            val queryOk = clean.isEmpty() ||
+                loc.nameEn.contains(clean, ignoreCase = true) ||
+                loc.nameUr.contains(clean, ignoreCase = true) ||
+                loc.district.contains(clean, ignoreCase = true) ||
+                loc.province.displayNameEn.contains(clean, ignoreCase = true) ||
+                loc.province.displayNameUr.contains(clean, ignoreCase = true) ||
+                loc.province.shortCode.equals(clean, ignoreCase = true) ||
+                loc.category.labelEn.contains(clean, ignoreCase = true)
+            provOk && catOk && queryOk
+        }.sortedWith(
+            compareBy<PakistanLocationRecord> {
+                when {
+                    clean.isNotEmpty() && it.nameEn.equals(clean, ignoreCase = true) -> 0
+                    clean.isNotEmpty() && it.nameEn.startsWith(clean, ignoreCase = true) -> 1
+                    clean.isNotEmpty() && it.district.equals(clean, ignoreCase = true) -> 2
+                    else -> 3 + it.category.ordinal
+                }
+            }.thenBy { it.nameEn }
+        )
+    }
+
+    fun findNearestPakistanLocation(lat: Double, lng: Double): PakistanLocationRecord? {
+        return data.pakistanLocations.minByOrNull { loc ->
+            haversineKm(lat, lng, loc.lat, loc.lng)
+        }
+    }
+
     fun getAvailableDistricts(): List<String> =
-        data.facilities.map { it.district }.distinct().sorted()
+        (data.facilities.map { it.district } + data.pakistanLocations.map { it.district })
+            .distinct()
+            .sorted()
 
     fun getFacilityAreaAnchors(): List<FacilityAreaAnchor> {
         val seen = HashSet<String>()
@@ -423,18 +466,24 @@ class TriageEngine(private val data: BundledDataLoader) {
             return emptyList<FacilityRecord>() to true
         }
         val all = data.facilities
-        val exact = if (cleanQuery.isNotEmpty()) all.filter { it.district.equals(cleanQuery, ignoreCase = true) } else emptyList()
-        val partial = if (cleanQuery.isNotEmpty() && exact.isEmpty()) {
-            all.filter {
-                it.district.contains(cleanQuery, ignoreCase = true) ||
-                    it.tehsil.contains(cleanQuery, ignoreCase = true) ||
-                    it.name_en.contains(cleanQuery, ignoreCase = true)
+        val pool = if (userCoords != null) {
+            // When coordinates are available (GPS, map pin, or selected Pakistan location),
+            // rank across all verified hospitals so towns/localities/cross-border suburbs get real nearest care.
+            all
+        } else {
+            val exact = all.filter { it.district.equals(cleanQuery, ignoreCase = true) }
+            val partial = if (exact.isEmpty()) {
+                all.filter {
+                    it.district.contains(cleanQuery, ignoreCase = true) ||
+                        it.tehsil.contains(cleanQuery, ignoreCase = true) ||
+                        it.name_en.contains(cleanQuery, ignoreCase = true)
+                }
+            } else emptyList()
+            when {
+                exact.isNotEmpty() -> exact
+                partial.isNotEmpty() -> partial
+                else -> all
             }
-        } else emptyList()
-        val pool = when {
-            exact.isNotEmpty() -> exact
-            partial.isNotEmpty() -> partial
-            else -> all
         }
         val mapped = pool.map { f ->
             f.copy(distanceKm = userCoords?.let { haversineKm(it.lat, it.lng, f.lat, f.lng) })

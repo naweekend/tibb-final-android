@@ -18,6 +18,7 @@ import com.example.data.model.DailyDoctorCheckIn
 import com.example.data.model.DailyWellnessLog
 import com.example.data.model.EpisodeInput
 import com.example.data.model.EpisodeVitals
+import com.example.data.model.FrequentPlace
 import com.example.data.model.GeoCoords
 import com.example.data.model.MedicalGuidanceAssessment
 import com.example.data.model.PatientProfile
@@ -25,6 +26,7 @@ import com.example.data.model.PersonalizedWellnessPlan
 import com.example.data.model.ReminderType
 import com.example.data.model.SavedPersonReport
 import com.example.data.model.SavedReportKind
+import com.example.data.model.SelectedLocationState
 import com.example.data.model.StoredAlarm
 import com.example.data.model.StoredEpisode
 import com.example.data.model.StoredLabRecord
@@ -101,6 +103,7 @@ data class TibbUiState(
     val activeGuidanceAssessment: MedicalGuidanceAssessment? = null,
     val activeThreadId: String? = null,
     val userGpsCoords: GeoCoords? = null,
+    val selectedLocation: SelectedLocationState? = null,
     val gpsLocating: Boolean = false,
     val gpsError: String? = null,
     val sensorStepsActive: Boolean = false,
@@ -138,6 +141,7 @@ class TibbViewModel(application: Application) : AndroidViewModel(application) {
                     unitSystem = prefs.unitSystem,
                     workspaceMode = prefs.workspaceMode,
                     activePersonId = prefs.activePersonId,
+                    selectedLocation = prefs.selectedLocation,
                     customAccounts = customAccounts,
                 )
             }
@@ -181,8 +185,20 @@ class TibbViewModel(application: Application) : AndroidViewModel(application) {
         val audits = vaultRepo.getAuditLogs(session.accountId)
 
         val currentActiveId = _uiState.value.activePersonId
-        val resolvedActiveId = profiles.firstOrNull { it.id == currentActiveId }?.id ?: profiles.firstOrNull()?.id
+        val resolvedActive = profiles.firstOrNull { it.id == currentActiveId } ?: profiles.firstOrNull()
+        val resolvedActiveId = resolvedActive?.id
         val firstThreadForPerson = chats.firstOrNull { it.personId == resolvedActiveId }?.id
+        val fallbackLoc = _uiState.value.selectedLocation ?: resolvedActive?.frequentPlaces?.firstOrNull()?.let { plc ->
+            if (plc.lat != null && plc.lng != null) {
+                SelectedLocationState(
+                    name = plc.areaOrLandmark.ifBlank { plc.district },
+                    district = plc.district,
+                    province = plc.province,
+                    lat = plc.lat,
+                    lng = plc.lng,
+                )
+            } else null
+        }
 
         _uiState.update {
             it.copy(
@@ -190,6 +206,7 @@ class TibbViewModel(application: Application) : AndroidViewModel(application) {
                 workspaceMode = session.workspace,
                 profiles = profiles,
                 activePersonId = resolvedActiveId,
+                selectedLocation = fallbackLoc,
                 episodes = episodes,
                 alarms = alarms,
                 labs = labs,
@@ -386,13 +403,64 @@ class TibbViewModel(application: Application) : AndroidViewModel(application) {
     fun selectActivePerson(personId: String) {
         viewModelScope.launch { prefsRepo.setActivePersonId(personId) }
         _uiState.update { state ->
+            val person = state.profiles.firstOrNull { it.id == personId }
+            val personPlaceLoc = person?.frequentPlaces?.firstOrNull()?.let { plc ->
+                if (plc.lat != null && plc.lng != null) {
+                    SelectedLocationState(
+                        name = plc.areaOrLandmark.ifBlank { plc.district },
+                        district = plc.district,
+                        province = plc.province,
+                        lat = plc.lat,
+                        lng = plc.lng,
+                    )
+                } else null
+            }
             val threadId = state.chatThreads.firstOrNull { it.personId == personId }?.id
             state.copy(
                 activePersonId = personId,
                 activeThreadId = threadId,
+                selectedLocation = personPlaceLoc ?: state.selectedLocation,
                 activeGuidanceAssessment = null,
                 activeEvaluation = null,
             )
+        }
+    }
+
+    fun confirmSelectedLocation(
+        selection: SelectedLocationState,
+        saveToActiveProfile: Boolean = true,
+    ) {
+        _uiState.update {
+            it.copy(
+                selectedLocation = selection,
+                toastMessage = "Location set: ${selection.name}, ${selection.district}",
+            )
+        }
+        viewModelScope.launch {
+            prefsRepo.setSelectedLocation(selection)
+            val session = _uiState.value.session
+            val person = _uiState.value.activePerson
+            if (saveToActiveProfile && session != null && person != null) {
+                val placeLabel = if (selection.isCustomPin) "Pinned Area" else "Primary"
+                val newPlace = FrequentPlace(
+                    id = "plc_map_primary",
+                    label = placeLabel,
+                    district = selection.district,
+                    areaOrLandmark = selection.name,
+                    province = selection.province,
+                    lat = selection.lat,
+                    lng = selection.lng,
+                )
+                val updatedPlaces = (listOf(newPlace) + person.frequentPlaces.filterNot {
+                    it.id == "plc_map_primary" ||
+                        (it.district.equals(selection.district, ignoreCase = true) &&
+                            it.areaOrLandmark.equals(selection.name, ignoreCase = true))
+                }).take(3)
+                val updatedProfile = person.copy(frequentPlaces = updatedPlaces)
+                vaultRepo.saveProfile(session, updatedProfile)
+                val refreshedProfiles = vaultRepo.loadProfiles(session)
+                _uiState.update { it.copy(profiles = refreshedProfiles) }
+            }
         }
     }
 

@@ -60,10 +60,26 @@ class LocalMedicalGuidanceEngine(
             cond.nameEn.contains(clean, ignoreCase = true) ||
                 cond.nameUr.contains(clean, ignoreCase = true) ||
                 cond.categoryLabelEn.contains(clean, ignoreCase = true) ||
+                cond.categoryLabelUr.contains(clean, ignoreCase = true) ||
+                cond.subcategoryEn.contains(clean, ignoreCase = true) ||
+                cond.subcategoryUr.contains(clean, ignoreCase = true) ||
                 cond.shortDescriptionEn.contains(clean, ignoreCase = true) ||
+                cond.shortDescriptionUr.contains(clean, ignoreCase = true) ||
                 cond.commonSymptomsEn.any { it.contains(clean, ignoreCase = true) } ||
-                cond.commonSymptomsUr.any { it.contains(clean, ignoreCase = true) }
+                cond.commonSymptomsUr.any { it.contains(clean, ignoreCase = true) } ||
+                cond.associatedSymptomsEn.any { it.contains(clean, ignoreCase = true) } ||
+                cond.associatedSymptomsUr.any { it.contains(clean, ignoreCase = true) }
         }
+    }
+
+    fun getStarterSymptomsForCondition(cond: MedicalConditionEntry): Set<String> {
+        val required = cond.matchingCriteria.requiredAnySymptomIds.take(1)
+        val topSupported = cond.matchingCriteria.supportingSymptomWeights.entries
+            .sortedByDescending { it.value }
+            .map { it.key }
+            .filterNot { symptomById[it]?.isRedFlagSymptom == true }
+            .take(2)
+        return (required + topSupported).toSet()
     }
 
     fun visibleCategories(patient: PatientProfile): List<SymptomCategoryNode> {

@@ -42,6 +42,7 @@ import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.FolderShared
 import androidx.compose.material.icons.rounded.LocalHospital
+import androidx.compose.material.icons.rounded.Map
 import androidx.compose.material.icons.rounded.MedicalServices
 import androidx.compose.material.icons.rounded.MyLocation
 import androidx.compose.material.icons.rounded.Notifications
@@ -82,6 +83,7 @@ import com.example.data.model.DailyDoctorCheckIn
 import com.example.data.model.DailyWellnessLog
 import com.example.data.model.GeoCoords
 import com.example.data.model.PatientProfile
+import com.example.data.model.SelectedLocationState
 import com.example.data.model.StoredAlarm
 import com.example.data.model.TriageTier
 import com.example.data.model.UnitSystem
@@ -90,6 +92,7 @@ import com.example.engine.HelpTopic
 import com.example.engine.RemediesAndPlans
 import com.example.engine.TriageEngine
 import com.example.engine.TrilingualStrings
+import com.example.ui.components.PakistanLocationPickerDialog
 import com.example.ui.components.SectionHelpButton
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
@@ -116,6 +119,7 @@ fun HomeHubDashboardScreen(
     alarms: List<StoredAlarm>,
     triageEngine: TriageEngine,
     userGpsCoords: GeoCoords?,
+    selectedLocation: SelectedLocationState?,
     gpsLocating: Boolean,
     sensorStepsActive: Boolean,
     stepSensitivityHigh: Boolean,
@@ -127,6 +131,7 @@ fun HomeHubDashboardScreen(
     onToggleStepSensor: (Boolean?) -> Unit,
     onMarkAlarmTaken: (String) -> Unit,
     onRequestGps: () -> Unit,
+    onConfirmLocation: (SelectedLocationState) -> Unit,
     onOpenDialer: (String) -> Unit,
     onNavigateTab: (MainNavTab) -> Unit,
     onStartStructuredCheckup: () -> Unit,
@@ -191,13 +196,16 @@ fun HomeHubDashboardScreen(
     var wakeTimeText by remember { mutableStateOf("06:30") }
 
     // Hospital Lookup state
-    var selectedDistrict by remember(activePerson.id) {
-        mutableStateOf(activePerson.frequentPlaces.firstOrNull()?.district ?: "")
+    var showMapPicker by remember { mutableStateOf(false) }
+    var selectedDistrict by remember(activePerson.id, selectedLocation) {
+        mutableStateOf(selectedLocation?.district ?: activePerson.frequentPlaces.firstOrNull()?.district ?: "")
     }
-    var activeCoords by remember(activePerson.id, userGpsCoords) {
+    var activeCoords by remember(activePerson.id, userGpsCoords, selectedLocation) {
         val plc = activePerson.frequentPlaces.firstOrNull()
         mutableStateOf(
-            userGpsCoords ?: if (plc?.lat != null && plc.lng != null) GeoCoords(plc.lat, plc.lng) else null
+            userGpsCoords
+                ?: selectedLocation?.let { GeoCoords(it.lat, it.lng) }
+                ?: if (plc?.lat != null && plc.lng != null) GeoCoords(plc.lat, plc.lng) else null
         )
     }
     var districtMenuOpen by remember { mutableStateOf(false) }
@@ -658,9 +666,17 @@ fun HomeHubDashboardScreen(
         }
 
         // Section 2: Nearby Hospitals & 1122 (Collapsed by default with clean summary + 1122 badge)
+        val locationSummary = remember(selectedLocation, selectedDistrict, activeCoords) {
+            when {
+                selectedLocation != null -> "${selectedLocation.name} · ${selectedLocation.district}"
+                selectedDistrict.isNotBlank() -> selectedDistrict
+                activeCoords != null -> "GPS Location"
+                else -> if (isUr) "پاکستان کا نقشہ یا قریبی کلینک کھولیں" else "Tap to pick Pakistan map location & clinics"
+            }
+        }
         TibbExpandableSection(
             title = s.nearestFacilitiesTitle,
-            summary = selectedDistrict.ifBlank { if (isUr) "قریبی کلینک دیکھنے کے لیے کھولیں" else "Tap to find nearby clinics & BHUs" },
+            summary = locationSummary,
             icon = Icons.Rounded.LocalHospital,
             accentColor = Color(0xFF8FD0A0),
             containerColor = c.espressoBottom,
@@ -696,20 +712,42 @@ fun HomeHubDashboardScreen(
                 modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
+                Box(
+                    modifier = Modifier
+                        .heightIn(min = 42.dp)
+                        .clip(RoundedCornerShape(999.dp))
+                        .background(Color(0xFF8FD0A0))
+                        .clickable { showMapPicker = true }
+                        .padding(horizontal = 12.dp, vertical = 8.dp)
+                        .testTag("home_open_map_picker"),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+                        Icon(Icons.Rounded.Map, contentDescription = "Open Pakistan Map", tint = Color(0xFF10241E), modifier = Modifier.size(15.dp))
+                        Text(
+                            text = if (isUr) "پاکستان نقشہ (545+)" else "Pakistan Map (545+)",
+                            style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                            color = Color(0xFF10241E),
+                        )
+                    }
+                }
+
                 activePerson.frequentPlaces.forEach { plc ->
                     val sel = selectedDistrict.equals(plc.district, ignoreCase = true)
                     Box(
                         modifier = Modifier
+                            .heightIn(min = 42.dp)
                             .clip(RoundedCornerShape(999.dp))
-                            .background(if (sel) Color(0xFF8FD0A0) else Color.White.copy(alpha = 0.12f))
+                            .background(if (sel) Color(0xFF8FD0A0).copy(alpha = 0.85f) else Color.White.copy(alpha = 0.12f))
                             .clickable {
                                 selectedDistrict = plc.district
                                 activeCoords = if (plc.lat != null && plc.lng != null) GeoCoords(plc.lat, plc.lng) else null
                             }
-                            .padding(horizontal = 12.dp, vertical = 7.dp),
+                            .padding(horizontal = 12.dp, vertical = 8.dp),
+                        contentAlignment = Alignment.Center,
                     ) {
                         Text(
-                            "${plc.label} (${plc.district})",
+                            "${plc.label} (${plc.areaOrLandmark.ifBlank { plc.district }})",
                             style = MaterialTheme.typography.labelSmall,
                             color = if (sel) Color(0xFF10241E) else Color(0xFFF3F0E6),
                         )
@@ -718,6 +756,7 @@ fun HomeHubDashboardScreen(
 
                 Box(
                     modifier = Modifier
+                        .heightIn(min = 42.dp)
                         .clip(RoundedCornerShape(999.dp))
                         .background(Color.White.copy(alpha = 0.14f))
                         .clickable {
@@ -726,8 +765,9 @@ fun HomeHubDashboardScreen(
                             if (fine || coarse) onRequestGps()
                             else locPermLauncher.launch(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION))
                         }
-                        .padding(horizontal = 12.dp, vertical = 7.dp)
+                        .padding(horizontal = 12.dp, vertical = 8.dp)
                         .testTag("home_hospitals_gps_btn"),
+                    contentAlignment = Alignment.Center,
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                         Icon(Icons.Rounded.MyLocation, contentDescription = null, tint = Color(0xFF8FD0A0), modifier = Modifier.size(14.dp))
@@ -738,11 +778,13 @@ fun HomeHubDashboardScreen(
                 Box {
                     Box(
                         modifier = Modifier
+                            .heightIn(min = 42.dp)
                             .clip(RoundedCornerShape(999.dp))
                             .background(Color.White.copy(alpha = 0.14f))
                             .clickable { districtMenuOpen = true }
-                            .padding(horizontal = 12.dp, vertical = 7.dp)
+                            .padding(horizontal = 12.dp, vertical = 8.dp)
                             .testTag("home_district_dropdown"),
+                        contentAlignment = Alignment.Center,
                     ) {
                         Text(
                             selectedDistrict.ifBlank { s.allDistrictsOption },
@@ -934,6 +976,24 @@ fun HomeHubDashboardScreen(
                 }
             },
             confirmButton = { TextButton(onClick = { showScoreBreakdown = false }) { Text("OK") } },
+        )
+    }
+
+    if (showMapPicker) {
+        PakistanLocationPickerDialog(
+            locale = locale,
+            triageEngine = triageEngine,
+            initialSelection = selectedLocation,
+            userGpsCoords = userGpsCoords,
+            gpsLocating = gpsLocating,
+            onRequestGps = onRequestGps,
+            onConfirm = { picked ->
+                selectedDistrict = picked.district
+                activeCoords = GeoCoords(picked.lat, picked.lng)
+                onConfirmLocation(picked)
+                showMapPicker = false
+            },
+            onDismiss = { showMapPicker = false },
         )
     }
 }

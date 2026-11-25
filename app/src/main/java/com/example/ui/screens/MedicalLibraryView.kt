@@ -186,13 +186,34 @@ fun MedicalLibraryView(
                 )
             }
         } else {
-            filtered.forEach { cond ->
-                ConditionLibraryItem(
-                    cond = cond,
-                    isUr = isUr,
-                    expanded = expandedId == cond.id,
-                    onToggle = { open -> expandedId = if (open) cond.id else null },
-                )
+            filtered.groupBy { cond ->
+                if (isUr) cond.subcategoryUr.ifBlank { cond.categoryLabelUr }
+                else cond.subcategoryEn.ifBlank { cond.categoryLabelEn }
+            }.forEach { (subcatLabel, groupList) ->
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(top = 6.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = subcatLabel,
+                        style = MaterialTheme.typography.labelLarge,
+                        color = c.accent,
+                    )
+                    Text(
+                        text = "${groupList.size}",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = c.muted,
+                    )
+                }
+                groupList.forEach { cond ->
+                    ConditionLibraryItem(
+                        cond = cond,
+                        isUr = isUr,
+                        expanded = expandedId == cond.id,
+                        onToggle = { open -> expandedId = if (open) cond.id else null },
+                    )
+                }
             }
         }
     }
@@ -207,7 +228,7 @@ private fun LibraryFilterChip(
     val c = LocalTibbColors.current
     Box(
         modifier = Modifier
-            .heightIn(min = 38.dp)
+            .heightIn(min = 40.dp)
             .clip(RoundedCornerShape(999.dp))
             .background(if (selected) c.ctaBg else c.surfaceMuted)
             .border(1.dp, if (selected) c.ctaBg else c.border, RoundedCornerShape(999.dp))
@@ -237,9 +258,10 @@ private fun ConditionLibraryItem(
         ConditionSeverity.URGENT, ConditionSeverity.MODERATE -> c.urgentYellow
         ConditionSeverity.MILD -> c.safeGreen
     }
+    val subLabel = if (isUr) cond.subcategoryUr.ifBlank { cond.categoryLabelUr } else cond.subcategoryEn.ifBlank { cond.categoryLabelEn }
     TibbExpandableSection(
         title = if (isUr) cond.nameUr else cond.nameEn,
-        summary = "${if (isUr) cond.categoryLabelUr else cond.categoryLabelEn} · ${cond.lastReviewedDate}",
+        summary = "$subLabel · ${cond.lastReviewedDate}",
         icon = Icons.Rounded.MedicalInformation,
         accentColor = sevColor,
         expanded = expanded,

@@ -9,12 +9,62 @@
       "subtitleUr": "کھانسی، گلے کا درد، ناک بند، سانس میں دشواری",
       "iconKey": "AIR",
       "symptoms": [
-        { "id": "sym_cough_dry_wet", "labelEn": "Cough (dry or phlegm)", "labelUr": "کھانسی (خشک یا بلغم والی)", "labelRoman": "Khansi (khushk ya balgham)" },
-        { "id": "sym_sore_throat", "labelEn": "Sore or scratchy throat", "labelUr": "گلے میں درد یا خراش", "labelRoman": "Galay mein dard ya kharash" },
-        { "id": "sym_runny_blocked_nose", "labelEn": "Runny or blocked nose", "labelUr": "ناک بہنا یا بند ہونا", "labelRoman": "Naak behna ya band hona" },
-        { "id": "sym_mild_wheeze", "labelEn": "Mild whistling/wheezing on breathing", "labelUr": "سانس میں ہلکی سیٹی کی آواز", "labelRoman": "Saans mein halki seeti" },
-        { "id": "sym_chest_mucus_heaviness", "labelEn": "Chest congestion or phlegm", "labelUr": "سینے میں بلغم یا بھاری پن", "labelRoman": "Seenay mein balgham" },
-        { "id": "sym_severe_breathing", "labelEn": "Struggling to breathe / gasping / blue lips", "labelUr": "سانس لینے میں شدید دشواری یا نیلے ہونٹ", "labelRoman": "Saans lena mushkil / neelay hont", "isRedFlagSymptom": true, "linkedEmergencyCategory": "BREATHING_DISTRESS" }
+        {
+          "id": "sym_cough_dry_wet",
+          "labelEn": "Cough (dry or phlegm)",
+          "labelUr": "کھانسی (خشک یا بلغم والی)",
+          "labelRoman": "Khansi (khushk ya balgham)"
+        },
+        {
+          "id": "sym_sore_throat",
+          "labelEn": "Sore or scratchy throat",
+          "labelUr": "گلے میں درد یا خراش",
+          "labelRoman": "Galay mein dard ya kharash"
+        },
+        {
+          "id": "sym_runny_blocked_nose",
+          "labelEn": "Runny or blocked nose",
+          "labelUr": "ناک بہنا یا بند ہونا",
+          "labelRoman": "Naak behna ya band hona"
+        },
+        {
+          "id": "sym_mild_wheeze",
+          "labelEn": "Mild whistling/wheezing on breathing",
+          "labelUr": "سانس میں ہلکی سیٹی کی آواز",
+          "labelRoman": "Saans mein halki seeti"
+        },
+        {
+          "id": "sym_chest_mucus_heaviness",
+          "labelEn": "Chest congestion or phlegm",
+          "labelUr": "سینے میں بلغم یا بھاری پن",
+          "labelRoman": "Seenay mein balgham"
+        },
+        {
+          "id": "sym_facial_sinus_pressure",
+          "labelEn": "Facial cheek/forehead pressure with thick nasal mucus",
+          "labelUr": "گالوں یا ماتھے میں دباؤ اور گاڑھا ریشہ",
+          "labelRoman": "Chehray ya maathay mein dabao aur resha"
+        },
+        {
+          "id": "sym_swollen_tonsils_white_spots",
+          "labelEn": "Swollen painful tonsils or white spots when swallowing",
+          "labelUr": "سوجے ہوئے گدود (ٹانسلز) اور نگلنے میں شدید درد",
+          "labelRoman": "Soojay tonsils aur nigalnay mein dard"
+        },
+        {
+          "id": "sym_chronic_smoker_breathless",
+          "labelEn": "Long-term smoker's cough with worsening daily breathlessness",
+          "labelUr": "پرانی سگریٹ والی کھانسی کے ساتھ سانس پھولنا",
+          "labelRoman": "Purani khansi aur saans phoolna"
+        },
+        {
+          "id": "sym_severe_breathing",
+          "labelEn": "Struggling to breathe / gasping / blue lips",
+          "labelUr": "سانس لینے میں شدید دشواری یا نیلے ہونٹ",
+          "labelRoman": "Saans lena mushkil / neelay hont",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "BREATHING_DISTRESS"
+        }
       ]
     },
     {
@@ -26,11 +76,42 @@
       "subtitleUr": "بخار، سردی لگنا، تھکاوٹ، جسم کا ٹوٹنا",
       "iconKey": "THERMOSTAT",
       "symptoms": [
-        { "id": "sym_mild_fever", "labelEn": "Low-grade fever (< 101°F / 38.3°C)", "labelUr": "ہلکا بخار", "labelRoman": "Halka bukhar" },
-        { "id": "sym_high_fever", "labelEn": "High fever (≥ 101°F / 38.3°C)", "labelUr": "تیز بخار", "labelRoman": "Tez bukhar" },
-        { "id": "sym_chills_rigors", "labelEn": "Chills or shivering spells", "labelUr": "سردی لگنا یا کپکپی", "labelRoman": "Sardi ya kapkapi" },
-        { "id": "sym_body_aches", "labelEn": "Generalized body & muscle aches", "labelUr": "پورے جسم اور پٹھوں میں درد", "labelRoman": "Jism aur pathon mein dard" },
-        { "id": "sym_extreme_fatigue", "labelEn": "Unusual weakness or exhaustion", "labelUr": "غیر معمولی کمزوری یا نڈھالی", "labelRoman": "Bohat zyada kamzori" }
+        {
+          "id": "sym_mild_fever",
+          "labelEn": "Low-grade fever (< 101°F / 38.3°C)",
+          "labelUr": "ہلکا بخار",
+          "labelRoman": "Halka bukhar"
+        },
+        {
+          "id": "sym_high_fever",
+          "labelEn": "High fever (≥ 101°F / 38.3°C)",
+          "labelUr": "تیز بخار",
+          "labelRoman": "Tez bukhar"
+        },
+        {
+          "id": "sym_chills_rigors",
+          "labelEn": "Chills or shivering spells",
+          "labelUr": "سردی لگنا یا کپکپی",
+          "labelRoman": "Sardi ya kapkapi"
+        },
+        {
+          "id": "sym_body_aches",
+          "labelEn": "Generalized body & muscle aches",
+          "labelUr": "پورے جسم اور پٹھوں میں درد",
+          "labelRoman": "Jism aur pathon mein dard"
+        },
+        {
+          "id": "sym_extreme_fatigue",
+          "labelEn": "Unusual weakness or exhaustion",
+          "labelUr": "غیر معمولی کمزوری یا نڈھالی",
+          "labelRoman": "Bohat zyada kamzori"
+        },
+        {
+          "id": "sym_pale_eyelids_chronic_tiredness",
+          "labelEn": "Pale inner eyelids/palms with dizziness on stairs & tiredness",
+          "labelUr": "آنکھوں کی اندرونی جلد یا ہتھیلیوں کی زردی اور تھکاوٹ",
+          "labelRoman": "Khoon ki kami jaisi zardi aur thakawat"
+        }
       ]
     },
     {
@@ -42,11 +123,50 @@
       "subtitleUr": "سینے میں دباؤ، دھڑکن تیز، چکر، پیروں کی سوجن",
       "iconKey": "HEART",
       "symptoms": [
-        { "id": "sym_chest_pain_severe", "labelEn": "Crushing chest pain, tightness, or arm/jaw pain", "labelUr": "سینے میں شدید درد، دباؤ یا بازو/جبڑے تک درد", "labelRoman": "Seenay mein tez dard / jakran", "isRedFlagSymptom": true, "linkedEmergencyCategory": "CHEST_PAIN" },
-        { "id": "sym_palpitations", "labelEn": "Fast, fluttering, or pounding heartbeat", "labelUr": "دل کی تیز یا بے ترتیب دھڑکن", "labelRoman": "Dil ki tez dhadkan" },
-        { "id": "sym_standing_dizziness", "labelEn": "Lightheadedness when standing up", "labelUr": "کھڑے ہونے پر چکر آنا", "labelRoman": "Uthnay par chakkar aana" },
-        { "id": "sym_ankle_swelling", "labelEn": "Swelling in both feet or ankles", "labelUr": "دونوں پاؤں یا ٹخنوں میں سوجن", "labelRoman": "Paon ya takhnon mein soojan" },
-        { "id": "sym_chest_wall_tender", "labelEn": "Sharp chest spot sore when pressed or moving", "labelUr": "دبانے یا ہلنے پر پسلی/سینے کی ایک جگہ درد", "labelRoman": "Dabanay par seenay ke ek hissay mein dard" }
+        {
+          "id": "sym_chest_pain_severe",
+          "labelEn": "Crushing chest pain, tightness, or arm/jaw pain",
+          "labelUr": "سینے میں شدید درد، دباؤ یا بازو/جبڑے تک درد",
+          "labelRoman": "Seenay mein tez dard / jakran",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "CHEST_PAIN"
+        },
+        {
+          "id": "sym_palpitations",
+          "labelEn": "Fast, fluttering, or pounding heartbeat",
+          "labelUr": "دل کی تیز یا بے ترتیب دھڑکن",
+          "labelRoman": "Dil ki tez dhadkan"
+        },
+        {
+          "id": "sym_standing_dizziness",
+          "labelEn": "Lightheadedness when standing up",
+          "labelUr": "کھڑے ہونے پر چکر آنا",
+          "labelRoman": "Uthnay par chakkar aana"
+        },
+        {
+          "id": "sym_ankle_swelling",
+          "labelEn": "Swelling in both feet or ankles",
+          "labelUr": "دونوں پاؤں یا ٹخنوں میں سوجن",
+          "labelRoman": "Paon ya takhnon mein soojan"
+        },
+        {
+          "id": "sym_chest_wall_tender",
+          "labelEn": "Sharp chest spot sore when pressed or moving",
+          "labelUr": "دبانے یا ہلنے پر پسلی/سینے کی ایک جگہ درد",
+          "labelRoman": "Dabanay par seenay ke ek hissay mein dard"
+        },
+        {
+          "id": "sym_exertional_chest_tightness",
+          "labelEn": "Chest heaviness on brisk walking/stairs that eases with rest",
+          "labelUr": "تیز چلنے یا سیڑھیاں چڑھنے پر سینے میں بوجھ جو آرام سے کم ہو",
+          "labelRoman": "Chalnay par seenay mein bhoj jo aaram se kam ho"
+        },
+        {
+          "id": "sym_one_leg_swollen_warm_calf",
+          "labelEn": "Sudden painful swelling, warmth, or redness in ONE calf/leg",
+          "labelUr": "ایک ہی ٹانگ یا پنڈلی میں اچانک دردناک سوجن اور گرمی",
+          "labelRoman": "Ek taang mein achanak dardnak soojan"
+        }
       ]
     },
     {
@@ -58,13 +178,70 @@
       "subtitleUr": "اسہال، قے، تیزابیت، قبض، پیٹ میں مروڑ یا شدید درد",
       "iconKey": "STOMACH",
       "symptoms": [
-        { "id": "sym_watery_diarrhea", "labelEn": "Loose or watery stools", "labelUr": "پتلے پاخانے یا اسہال", "labelRoman": "Patlay pakhanay / dast" },
-        { "id": "sym_nausea_vomiting", "labelEn": "Nausea or occasional vomiting", "labelUr": "متلی یا قے آنا", "labelRoman": "Matli ya qai" },
-        { "id": "sym_heartburn_acidity", "labelEn": "Upper stomach burning or acid reflux", "labelUr": "سینے یا معدے میں جلن اور تیزابیت", "labelRoman": "Seena/maida jalan aur tezabiyat" },
-        { "id": "sym_abdominal_cramps", "labelEn": "Mild-to-moderate stomach cramps or bloating", "labelUr": "پیٹ میں ہلکا یا درمیانہ مروڑ یا گیس", "labelRoman": "Pait mein maror ya gas" },
-        { "id": "sym_constipation", "labelEn": "Hard or infrequent stools (constipation)", "labelUr": "قبض یا سخت پاخانہ", "labelRoman": "Qabz ya sakht pakhana" },
-        { "id": "sym_severe_dehydration", "labelEn": "Sunken eyes, extreme weakness, or no urine", "labelUr": "آنکھیں دھنسنا، شدید نڈھالی یا پیشاب نہ آنا", "labelRoman": "Aankhein dhansna / peshab band", "isRedFlagSymptom": true, "linkedEmergencyCategory": "SEVERE_DEHYDRATION" },
-        { "id": "sym_sudden_severe_abdomen", "labelEn": "Sudden unbearable or rigid belly pain", "labelUr": "اچانک شدید یا پتھر جیسا سخت پیٹ درد", "labelRoman": "Achanak tez ya sakht pait dard", "isRedFlagSymptom": true, "linkedEmergencyCategory": "ACUTE_SEVERE_ABDOMEN" }
+        {
+          "id": "sym_watery_diarrhea",
+          "labelEn": "Loose or watery stools",
+          "labelUr": "پتلے پاخانے یا اسہال",
+          "labelRoman": "Patlay pakhanay / dast"
+        },
+        {
+          "id": "sym_nausea_vomiting",
+          "labelEn": "Nausea or occasional vomiting",
+          "labelUr": "متلی یا قے آنا",
+          "labelRoman": "Matli ya qai"
+        },
+        {
+          "id": "sym_heartburn_acidity",
+          "labelEn": "Upper stomach burning or acid reflux",
+          "labelUr": "سینے یا معدے میں جلن اور تیزابیت",
+          "labelRoman": "Seena/maida jalan aur tezabiyat"
+        },
+        {
+          "id": "sym_abdominal_cramps",
+          "labelEn": "Mild-to-moderate stomach cramps or bloating",
+          "labelUr": "پیٹ میں ہلکا یا درمیانہ مروڑ یا گیس",
+          "labelRoman": "Pait mein maror ya gas"
+        },
+        {
+          "id": "sym_constipation",
+          "labelEn": "Hard or infrequent stools (constipation)",
+          "labelUr": "قبض یا سخت پاخانہ",
+          "labelRoman": "Qabz ya sakht pakhana"
+        },
+        {
+          "id": "sym_yellow_eyes_dark_urine",
+          "labelEn": "Yellow eyes/skin (jaundice) or very dark tea-colored urine",
+          "labelUr": "آنکھوں کا پیلا پن (یرقان) یا چائے جیسا گہرا پیشاب",
+          "labelRoman": "Aankhein peeli hona (yarqan) ya gehra peshab"
+        },
+        {
+          "id": "sym_upper_right_pain_after_fatty",
+          "labelEn": "Sharp upper-right belly pain after oily/fatty meals",
+          "labelUr": "چکنائی والا کھانا کھانے کے بعد پیٹ کے اوپری دائیں حصے میں درد",
+          "labelRoman": "Chiknai ke baad oopar dayein pait mein dard"
+        },
+        {
+          "id": "sym_bloody_mucus_stool",
+          "labelEn": "Frequent loose stools with mucus or blood streaks",
+          "labelUr": "آنتوں کے مروڑ کے ساتھ بلغم یا خون ملا پاخانہ",
+          "labelRoman": "Pakhane mein balgham ya khoon"
+        },
+        {
+          "id": "sym_severe_dehydration",
+          "labelEn": "Sunken eyes, extreme weakness, or no urine",
+          "labelUr": "آنکھیں دھنسنا، شدید نڈھالی یا پیشاب نہ آنا",
+          "labelRoman": "Aankhein dhansna / peshab band",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "SEVERE_DEHYDRATION"
+        },
+        {
+          "id": "sym_sudden_severe_abdomen",
+          "labelEn": "Sudden unbearable or rigid belly pain",
+          "labelUr": "اچانک شدید یا پتھر جیسا سخت پیٹ درد",
+          "labelRoman": "Achanak tez ya sakht pait dard",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "ACUTE_SEVERE_ABDOMEN"
+        }
       ]
     },
     {
@@ -76,13 +253,68 @@
       "subtitleUr": "سر درد، آدھے سر کا درد، چکر، فالج، دورے، بے ہوشی",
       "iconKey": "BRAIN",
       "symptoms": [
-        { "id": "sym_band_headache", "labelEn": "Dull aching or tight-band headache", "labelUr": "دونوں طرف ہلکا یا دباؤ والا سر درد", "labelRoman": "Halka ya dabao wala sar dard" },
-        { "id": "sym_throbbing_headache", "labelEn": "Throbbing one-sided headache with light/sound sensitivity", "labelUr": "آدھے سر میں ٹیسیں اور روشنی سے تکلیف", "labelRoman": "Adhay sar mein tez dard aur roshni se takleef" },
-        { "id": "sym_vertigo_spinning", "labelEn": "Room spinning sensation (vertigo)", "labelUr": "سر یا کمرہ گھومنے کا احساس", "labelRoman": "Kamra ghoomnay ka ehsaas" },
-        { "id": "sym_thunderclap_headache", "labelEn": "Sudden worst-ever explosive headache", "labelUr": "اچانک زندگی کا شدید ترین سر درد", "labelRoman": "Achanak intehai tez sar dard", "isRedFlagSymptom": true, "linkedEmergencyCategory": "STROKE_FAST" },
-        { "id": "sym_stroke_signs", "labelEn": "Face droop, one-arm weakness, or slurred speech", "labelUr": "چہرہ ٹیڑھا، بازو کمزور یا زبان لڑکھڑانا", "labelRoman": "Chehra terha / zuban larkharana", "isRedFlagSymptom": true, "linkedEmergencyCategory": "STROKE_FAST" },
-        { "id": "sym_seizure", "labelEn": "Convulsions, fits, or body jerking", "labelUr": "جھٹکے یا مرگی کا دورہ", "labelRoman": "Jhatkay ya daura", "isRedFlagSymptom": true, "linkedEmergencyCategory": "SEIZURE_CONVULSIONS" },
-        { "id": "sym_unconscious", "labelEn": "Unconscious or impossible to wake up", "labelUr": "بے ہوشی یا جگانے پر نہ اٹھنا", "labelRoman": "Behoshi / hosh na aana", "isRedFlagSymptom": true, "linkedEmergencyCategory": "UNCONSCIOUS_FAINTING" }
+        {
+          "id": "sym_band_headache",
+          "labelEn": "Dull aching or tight-band headache",
+          "labelUr": "دونوں طرف ہلکا یا دباؤ والا سر درد",
+          "labelRoman": "Halka ya dabao wala sar dard"
+        },
+        {
+          "id": "sym_throbbing_headache",
+          "labelEn": "Throbbing one-sided headache with light/sound sensitivity",
+          "labelUr": "آدھے سر میں ٹیسیں اور روشنی سے تکلیف",
+          "labelRoman": "Adhay sar mein tez dard aur roshni se takleef"
+        },
+        {
+          "id": "sym_vertigo_spinning",
+          "labelEn": "Room spinning sensation (vertigo)",
+          "labelUr": "سر یا کمرہ گھومنے کا احساس",
+          "labelRoman": "Kamra ghoomnay ka ehsaas"
+        },
+        {
+          "id": "sym_tingling_numb_hands_feet",
+          "labelEn": "Gradual tingling, burning, or numbness in both feet/hands",
+          "labelUr": "دونوں ہاتھوں یا پیروں میں سوئیاں چبھنا یا سن ہونا",
+          "labelRoman": "Haath paon mein suiyan chubhna ya sun hona"
+        },
+        {
+          "id": "sym_one_side_eyelid_smile_weak",
+          "labelEn": "Sudden trouble closing one eye or smiling evenly (no limb weakness)",
+          "labelUr": "چہرے کے ایک طرف مسکراہٹ یا آنکھ بند کرنے میں اچانک کمزوری",
+          "labelRoman": "Ek taraf aankh band na hona ya chehra kamzor"
+        },
+        {
+          "id": "sym_thunderclap_headache",
+          "labelEn": "Sudden worst-ever explosive headache",
+          "labelUr": "اچانک زندگی کا شدید ترین سر درد",
+          "labelRoman": "Achanak intehai tez sar dard",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "STROKE_FAST"
+        },
+        {
+          "id": "sym_stroke_signs",
+          "labelEn": "Face droop, one-arm weakness, or slurred speech",
+          "labelUr": "چہرہ ٹیڑھا، بازو کمزور یا زبان لڑکھڑانا",
+          "labelRoman": "Chehra terha / zuban larkharana",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "STROKE_FAST"
+        },
+        {
+          "id": "sym_seizure",
+          "labelEn": "Convulsions, fits, or body jerking",
+          "labelUr": "جھٹکے یا مرگی کا دورہ",
+          "labelRoman": "Jhatkay ya daura",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "SEIZURE_CONVULSIONS"
+        },
+        {
+          "id": "sym_unconscious",
+          "labelEn": "Unconscious or impossible to wake up",
+          "labelUr": "بے ہوشی یا جگانے پر نہ اٹھنا",
+          "labelRoman": "Behoshi / hosh na aana",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "UNCONSCIOUS_FAINTING"
+        }
       ]
     },
     {
@@ -94,10 +326,48 @@
       "subtitleUr": "خارش، داد، گرم سوجی جلد، جامنی دھبے",
       "iconKey": "SKIN",
       "symptoms": [
-        { "id": "sym_itchy_contact_rash", "labelEn": "Red itchy dry or irritated skin patch", "labelUr": "سرخ کھجلی والا خشک دھبہ", "labelRoman": "Surkh kharish wala dhabba" },
-        { "id": "sym_ring_fungal_patch", "labelEn": "Ring-shaped scaly itchy rash (spreading border)", "labelUr": "گول دائرے نما خارش والا نشان (داد)", "labelRoman": "Gol ring jaisa kharish nishan" },
-        { "id": "sym_warm_spreading_redness", "labelEn": "Warm, tender, expanding red skin swelling", "labelUr": "گرم، دکھتی اور پھیلتی ہوئی سرخ سوجن", "labelRoman": "Garam dukhti phailti surkh soojan" },
-        { "id": "sym_skin_blisters_pus", "labelEn": "Pus-filled boils or crusted blisters", "labelUr": "پیپ والے دانے یا پھوڑے", "labelRoman": "Peep walay danay" }
+        {
+          "id": "sym_itchy_contact_rash",
+          "labelEn": "Red itchy dry or irritated skin patch",
+          "labelUr": "سرخ کھجلی والا خشک دھبہ",
+          "labelRoman": "Surkh kharish wala dhabba"
+        },
+        {
+          "id": "sym_ring_fungal_patch",
+          "labelEn": "Ring-shaped scaly itchy rash (spreading border)",
+          "labelUr": "گول دائرے نما خارش والا نشان (داد)",
+          "labelRoman": "Gol ring jaisa kharish nishan"
+        },
+        {
+          "id": "sym_warm_spreading_redness",
+          "labelEn": "Warm, tender, expanding red skin swelling",
+          "labelUr": "گرم، دکھتی اور پھیلتی ہوئی سرخ سوجن",
+          "labelRoman": "Garam dukhti phailti surkh soojan"
+        },
+        {
+          "id": "sym_skin_blisters_pus",
+          "labelEn": "Pus-filled boils or crusted blisters",
+          "labelUr": "پیپ والے دانے یا پھوڑے",
+          "labelRoman": "Peep walay danay"
+        },
+        {
+          "id": "sym_night_itch_web_spaces",
+          "labelEn": "Intense itching worse at night between fingers, wrists, or waist",
+          "labelUr": "انگلیاں، کلائیوں اور کمر پر رات کو شدید خارش (خارش کا مرض)",
+          "labelRoman": "Raat ko ungliyon ke darmiyan shadeed kharish"
+        },
+        {
+          "id": "sym_painful_band_blisters_one_side",
+          "labelEn": "Burning tingling pain with clustered blisters along ONE side of chest/back",
+          "labelUr": "جسم کے ایک طرف پٹی کی شکل میں جلن اور پانی والے چھالے",
+          "labelRoman": "Ek taraf patti mein jalan aur chhalay"
+        },
+        {
+          "id": "sym_acne_blackheads_pustules",
+          "labelEn": "Clogged facial/back pores, whiteheads, or inflamed pimples",
+          "labelUr": "چہرے یا کمر پر کیل مہاسے اور چھوٹے دانے",
+          "labelRoman": "Chehray par keel mahasay"
+        }
       ]
     },
     {
@@ -109,9 +379,32 @@
       "subtitleUr": "چھینکیں، پتی اچھلنا، ہونٹ یا گلا سوجنا",
       "iconKey": "ALLERGY",
       "symptoms": [
-        { "id": "sym_allergic_sneezing", "labelEn": "Repeated sneezing, itchy watery nose/eyes", "labelUr": "مسلسل چھینکیں اور آنکھ ناک میں خارش", "labelRoman": "Cheenkein aur aankh naak kharish" },
-        { "id": "sym_mild_hives", "labelEn": "Raised itchy skin welts (hives) without breathing trouble", "labelUr": "جسم پر کھجلی والے ابھار (پتی) بغیر سانس کی تکلیف", "labelRoman": "Patti uchalna (bina saans takleef)" },
-        { "id": "sym_anaphylaxis_swelling", "labelEn": "Swelling of lips, tongue, or throat / trouble breathing", "labelUr": "ہونٹ، زبان یا گلا سوجنا / سانس رکنا", "labelRoman": "Hont/zuban/gala soojna", "isRedFlagSymptom": true, "linkedEmergencyCategory": "ANAPHYLAXIS" }
+        {
+          "id": "sym_allergic_sneezing",
+          "labelEn": "Repeated sneezing, itchy watery nose/eyes",
+          "labelUr": "مسلسل چھینکیں اور آنکھ ناک میں خارش",
+          "labelRoman": "Cheenkein aur aankh naak kharish"
+        },
+        {
+          "id": "sym_mild_hives",
+          "labelEn": "Raised itchy skin welts (hives) without breathing trouble",
+          "labelUr": "جسم پر کھجلی والے ابھار (پتی) بغیر سانس کی تکلیف",
+          "labelRoman": "Patti uchalna (bina saans takleef)"
+        },
+        {
+          "id": "sym_food_trigger_stomach_rash",
+          "labelEn": "Mild rash or stomach upset shortly after a specific food (normal breathing)",
+          "labelUr": "کسی مخصوص غذا کے بعد ہلکی خارش یا پیٹ خرابی (سانس نارمل)",
+          "labelRoman": "Khana khanay ke baad halki allergy"
+        },
+        {
+          "id": "sym_anaphylaxis_swelling",
+          "labelEn": "Swelling of lips, tongue, or throat / trouble breathing",
+          "labelUr": "ہونٹ، زبان یا گلا سوجنا / سانس رکنا",
+          "labelRoman": "Hont/zuban/gala soojna",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "ANAPHYLAXIS"
+        }
       ]
     },
     {
@@ -123,10 +416,48 @@
       "subtitleUr": "آنکھ آنا، تیز آنکھ درد، کان درد یا رطوبت",
       "iconKey": "VISIBILITY",
       "symptoms": [
-        { "id": "sym_sticky_pink_eye", "labelEn": "Red gritty eye with sticky morning discharge", "labelUr": "آنکھ سرخ ہونا اور صبح چپکنے والی رطوبت", "labelRoman": "Aankh surkh aur chipakna" },
-        { "id": "sym_painful_blurry_eye", "labelEn": "Deep eye pain, sudden blur, or light halos", "labelUr": "آنکھ میں گہرا درد یا نظر اچانک دھندلانا", "labelRoman": "Aankh mein gehra dard ya dhundli nazar" },
-        { "id": "sym_earache_mild", "labelEn": "Ear pain or muffled hearing", "labelUr": "کان میں درد یا کم سنائی دینا", "labelRoman": "Kaan mein dard ya bhari pan" },
-        { "id": "sym_ear_fluid_swelling", "labelEn": "Pus/fluid from ear or swelling behind ear", "labelUr": "کان سے پیپ بہنا یا کان کے پیچھے سوجن", "labelRoman": "Kaan se peep ya peechay soojan" }
+        {
+          "id": "sym_sticky_pink_eye",
+          "labelEn": "Red gritty eye with sticky morning discharge",
+          "labelUr": "آنکھ سرخ ہونا اور صبح چپکنے والی رطوبت",
+          "labelRoman": "Aankh surkh aur chipakna"
+        },
+        {
+          "id": "sym_painful_blurry_eye",
+          "labelEn": "Deep eye pain, sudden blur, or light halos",
+          "labelUr": "آنکھ میں گہرا درد یا نظر اچانک دھندلانا",
+          "labelRoman": "Aankh mein gehra dard ya dhundli nazar"
+        },
+        {
+          "id": "sym_earache_mild",
+          "labelEn": "Ear pain or muffled hearing",
+          "labelUr": "کان میں درد یا کم سنائی دینا",
+          "labelRoman": "Kaan mein dard ya bhari pan"
+        },
+        {
+          "id": "sym_ear_fluid_swelling",
+          "labelEn": "Pus/fluid from ear or swelling behind ear",
+          "labelUr": "کان سے پیپ بہنا یا کان کے پیچھے سوجن",
+          "labelRoman": "Kaan se peep ya peechay soojan"
+        },
+        {
+          "id": "sym_eyelid_tender_bump_stye",
+          "labelEn": "Painful red tender bump along the eyelid margin (stye)",
+          "labelUr": "آنکھ کی پلک کے کنارے پر سرخ دکھتی پھنسی (گوہانجنی)",
+          "labelRoman": "Palak par phinsi / guhanjni"
+        },
+        {
+          "id": "sym_ear_blocked_wax_swim",
+          "labelEn": "Ear blocked or muffled after swimming/shower or wax buildup",
+          "labelUr": "نہانے کے بعد کان بند محسوس ہونا یا میل جمنا",
+          "labelRoman": "Kaan band ya mail jamna"
+        },
+        {
+          "id": "sym_dust_foreign_body_eye",
+          "labelEn": "Dust, eyelash, or grit sensation in eye (no chemical burn)",
+          "labelUr": "آنکھ میں مٹی یا تنکا چبھنے کا احساس (کیمیکل نہیں)",
+          "labelRoman": "Aankh mein mitti ya tinka parna"
+        }
       ]
     },
     {
@@ -138,10 +469,42 @@
       "subtitleUr": "موچ، کمر درد، جوڑوں کی سوجن، سن ہونا",
       "iconKey": "BONE",
       "symptoms": [
-        { "id": "sym_muscle_sprain", "labelEn": "Sore muscle or twisted ankle/wrist sprain", "labelUr": "پٹھے کا کھنچاؤ یا موچ آنا", "labelRoman": "Moch ya pathay ka khinchao" },
-        { "id": "sym_low_back_ache", "labelEn": "Lower back ache or stiffness", "labelUr": "کمر کے نچلے حصے میں درد یا اکڑاؤ", "labelRoman": "Kamar ke nichlay hissay mein dard" },
-        { "id": "sym_joint_pain_swelling", "labelEn": "Painful, stiff, or swollen joint", "labelUr": "جوڑ میں درد، اکڑاؤ یا سوجن", "labelRoman": "Jor mein dard ya soojan" },
-        { "id": "sym_limb_numbness_weakness", "labelEn": "Back/neck pain with leg numbness or bladder loss", "labelUr": "کمر درد کے ساتھ ٹانگ سن ہونا یا پیشاب کنٹرول کھونا", "labelRoman": "Kamar dard aur taang sun hona" }
+        {
+          "id": "sym_muscle_sprain",
+          "labelEn": "Sore muscle or twisted ankle/wrist sprain",
+          "labelUr": "پٹھے کا کھنچاؤ یا موچ آنا",
+          "labelRoman": "Moch ya pathay ka khinchao"
+        },
+        {
+          "id": "sym_low_back_ache",
+          "labelEn": "Lower back ache or stiffness",
+          "labelUr": "کمر کے نچلے حصے میں درد یا اکڑاؤ",
+          "labelRoman": "Kamar ke nichlay hissay mein dard"
+        },
+        {
+          "id": "sym_joint_pain_swelling",
+          "labelEn": "Painful, stiff, or swollen joint",
+          "labelUr": "جوڑ میں درد، اکڑاؤ یا سوجن",
+          "labelRoman": "Jor mein dard ya soojan"
+        },
+        {
+          "id": "sym_big_toe_sudden_hot_swollen",
+          "labelEn": "Sudden intensely painful, hot red swelling in big toe or single joint",
+          "labelUr": "پاؤں کے انگوٹھے یا ایک جوڑ میں اچانک شدید گرم سرخ سوجن",
+          "labelRoman": "Angoothay ke jor mein achanak tez dard"
+        },
+        {
+          "id": "sym_chronic_knee_stiffness_stairs",
+          "labelEn": "Chronic knee stiffness or grinding ache on stairs/squatting",
+          "labelUr": "سیڑھیاں چڑھتے یا بیٹھتے وقت گھٹنوں میں پرانا درد اور اکڑاؤ",
+          "labelRoman": "Ghutnon mein purana dard aur akrao"
+        },
+        {
+          "id": "sym_limb_numbness_weakness",
+          "labelEn": "Back/neck pain with leg numbness or bladder loss",
+          "labelUr": "کمر درد کے ساتھ ٹانگ سن ہونا یا پیشاب کنٹرول کھونا",
+          "labelRoman": "Kamar dard aur taang sun hona"
+        }
       ]
     },
     {
@@ -153,14 +516,82 @@
       "subtitleUr": "کٹ، خون، جلنا، دم گھٹنا، سر کی چوٹ، زہر، کاٹنا",
       "iconKey": "HEALING",
       "symptoms": [
-        { "id": "sym_minor_cut", "labelEn": "Small shallow cut or graze (bleeding stopped)", "labelUr": "ہلکا زخم یا خراش (خون رک چکا ہے)", "labelRoman": "Halka zakham ya kharash" },
-        { "id": "sym_heavy_bleeding", "labelEn": "Deep cut or heavy unstoppable bleeding", "labelUr": "گہرا زخم یا تیز نہ رکنے والا خون", "labelRoman": "Gehra zakham ya tez khoon", "isRedFlagSymptom": true, "linkedEmergencyCategory": "UNCONTROLLED_BLEEDING" },
-        { "id": "sym_minor_burn", "labelEn": "Small superficial burn/scald (< palm size)", "labelUr": "ہتھیلی سے چھوٹا سطحی جلنا", "labelRoman": "Chota satah par jalna" },
-        { "id": "sym_severe_burn", "labelEn": "Large, deep, face, chemical, or electrical burn", "labelUr": "بڑا، گہرا، چہرے، تیزاب یا بجلی سے جلنا", "labelRoman": "Bara/tezab/bijli se jalna", "isRedFlagSymptom": true, "linkedEmergencyCategory": "SEVERE_BURN" },
-        { "id": "sym_animal_bite", "labelEn": "Dog, cat, monkey, or snake bite/scratch", "labelUr": "کتے، بلی یا سانپ کا کاٹنا/خراش", "labelRoman": "Kuttay, billi ya saanp ka katna" },
-        { "id": "sym_head_injury_severe", "labelEn": "Head injury with vomiting, drowsiness, or confusion", "labelUr": "سر کی چوٹ کے بعد قے، غنودگی یا الجھن", "labelRoman": "Sar chot ke baad qai/behoshi", "isRedFlagSymptom": true, "linkedEmergencyCategory": "SERIOUS_HEAD_INJURY" },
-        { "id": "sym_choking", "labelEn": "Something stuck in throat (unable to breathe/speak)", "labelUr": "گلے میں کوئی چیز پھنس کر سانس رکنا", "labelRoman": "Galay mein cheez phansna", "isRedFlagSymptom": true, "linkedEmergencyCategory": "CHOKING" },
-        { "id": "sym_poisoning", "labelEn": "Swallowed poison, chemical, or excess medicine", "labelUr": "زہر، کیمیکل یا زیادہ دوائیں نگل لینا", "labelRoman": "Zehr ya zyada goli khana", "isRedFlagSymptom": true, "linkedEmergencyCategory": "POISONING_OVERDOSE" }
+        {
+          "id": "sym_minor_cut",
+          "labelEn": "Small shallow cut or graze (bleeding stopped)",
+          "labelUr": "ہلکا زخم یا خراش (خون رک چکا ہے)",
+          "labelRoman": "Halka zakham ya kharash"
+        },
+        {
+          "id": "sym_heavy_bleeding",
+          "labelEn": "Deep cut or heavy unstoppable bleeding",
+          "labelUr": "گہرا زخم یا تیز نہ رکنے والا خون",
+          "labelRoman": "Gehra zakham ya tez khoon",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "UNCONTROLLED_BLEEDING"
+        },
+        {
+          "id": "sym_minor_nosebleed",
+          "labelEn": "Active nosebleed from front of nostril (alert, mild/moderate)",
+          "labelUr": "نکسیر پھوٹنا / ناک سے خون بہنا (ہوش میں)",
+          "labelRoman": "Nakseer phootna / naak se khoon"
+        },
+        {
+          "id": "sym_minor_burn",
+          "labelEn": "Small superficial burn/scald (< palm size)",
+          "labelUr": "ہتھیلی سے چھوٹا سطحی جلنا",
+          "labelRoman": "Chota satah par jalna"
+        },
+        {
+          "id": "sym_severe_burn",
+          "labelEn": "Large, deep, face, chemical, or electrical burn",
+          "labelUr": "بڑا، گہرا، چہرے، تیزاب یا بجلی سے جلنا",
+          "labelRoman": "Bara/tezab/bijli se jalna",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "SEVERE_BURN"
+        },
+        {
+          "id": "sym_animal_bite",
+          "labelEn": "Dog, cat, monkey, or snake bite/scratch",
+          "labelUr": "کتے، بلی یا سانپ کا کاٹنا/خراش",
+          "labelRoman": "Kuttay, billi ya saanp ka katna"
+        },
+        {
+          "id": "sym_suspected_fracture_swollen_limb",
+          "labelEn": "Severe limb pain/swelling after fall with inability to bear weight",
+          "labelUr": "گرنے کے بعد ہڈی پر شدید درد/سوجن اور وزن نہ ڈال سکنا",
+          "labelRoman": "Girnay ke baad haddi dard aur soojan"
+        },
+        {
+          "id": "sym_dental_toothache_gum_swell",
+          "labelEn": "Throbbing toothache or swollen tender gum",
+          "labelUr": "دانت میں شدید ٹیسیں یا مسوڑھے کی سوجن",
+          "labelRoman": "Daant mein dard ya masoorhay ki soojan"
+        },
+        {
+          "id": "sym_head_injury_severe",
+          "labelEn": "Head injury with vomiting, drowsiness, or confusion",
+          "labelUr": "سر کی چوٹ کے بعد قے، غنودگی یا الجھن",
+          "labelRoman": "Sar chot ke baad qai/behoshi",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "SERIOUS_HEAD_INJURY"
+        },
+        {
+          "id": "sym_choking",
+          "labelEn": "Something stuck in throat (unable to breathe/speak)",
+          "labelUr": "گلے میں کوئی چیز پھنس کر سانس رکنا",
+          "labelRoman": "Galay mein cheez phansna",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "CHOKING"
+        },
+        {
+          "id": "sym_poisoning",
+          "labelEn": "Swallowed poison, chemical, or excess medicine",
+          "labelUr": "زہر، کیمیکل یا زیادہ دوائیں نگل لینا",
+          "labelRoman": "Zehr ya zyada goli khana",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "POISONING_OVERDOSE"
+        }
       ]
     },
     {
@@ -172,10 +603,30 @@
       "subtitleUr": "پیشاب میں جلن، بار بار آنا، خون یا پہلو/کمر درد",
       "iconKey": "WATER",
       "symptoms": [
-        { "id": "sym_burning_urine", "labelEn": "Burning or stinging when passing urine", "labelUr": "پیشاب کرتے وقت جلن یا تکلیف", "labelRoman": "Peshab mein jalan" },
-        { "id": "sym_frequent_urine", "labelEn": "Frequent urgent need to urinate small amounts", "labelUr": "بار بار تھوڑا پیشاب آنا", "labelRoman": "Baar baar peshab ki hajat" },
-        { "id": "sym_flank_pain_fever", "labelEn": "Side/upper back (flank) pain with fever or chills", "labelUr": "پہلو یا گردے کی جگہ درد کے ساتھ بخار", "labelRoman": "Pehlu/gurday mein dard aur bukhar" },
-        { "id": "sym_blood_in_urine", "labelEn": "Pink, red, or dark tea-colored urine", "labelUr": "پیشاب میں خون یا گہرا رنگ", "labelRoman": "Peshab mein khoon" }
+        {
+          "id": "sym_burning_urine",
+          "labelEn": "Burning or stinging when passing urine",
+          "labelUr": "پیشاب کرتے وقت جلن یا تکلیف",
+          "labelRoman": "Peshab mein jalan"
+        },
+        {
+          "id": "sym_frequent_urine",
+          "labelEn": "Frequent urgent need to urinate small amounts",
+          "labelUr": "بار بار تھوڑا پیشاب آنا",
+          "labelRoman": "Baar baar peshab ki hajat"
+        },
+        {
+          "id": "sym_flank_pain_fever",
+          "labelEn": "Side/upper back (flank) pain with fever or chills",
+          "labelUr": "پہلو یا گردے کی جگہ درد کے ساتھ بخار",
+          "labelRoman": "Pehlu/gurday mein dard aur bukhar"
+        },
+        {
+          "id": "sym_blood_in_urine",
+          "labelEn": "Pink, red, or dark tea-colored urine",
+          "labelUr": "پیشاب میں خون یا گہرا رنگ",
+          "labelRoman": "Peshab mein khoon"
+        }
       ]
     },
     {
@@ -187,10 +638,48 @@
       "subtitleUr": "ہڈی توڑ بخار، باری کا بخار، 2 ہفتے سے زائد کھانسی",
       "iconKey": "BIOTECH",
       "symptoms": [
-        { "id": "sym_retro_orbital_joint_pain", "labelEn": "High fever with pain behind eyes & severe joint aches", "labelUr": "تیز بخار، آنکھوں کے پیچھے اور ہڈیوں/جوڑوں میں درد", "labelRoman": "Tez bukhar aur aankhon/joron mein dard" },
-        { "id": "sym_cyclic_fever_chills", "labelEn": "Fever returning in cycles with heavy sweating & chills", "labelUr": "وقفے وقفے سے کپکپی اور پسینے کے ساتھ بخار", "labelRoman": "Kapkapi aur paseenay ke sath baari ka bukhar" },
-        { "id": "sym_prolonged_cough_14d", "labelEn": "Cough lasting more than 14 days (2 weeks)", "labelUr": "14 دن سے زیادہ پرانی کھانسی", "labelRoman": "14 din se zyada khansi" },
-        { "id": "sym_petechial_rash_bleeding", "labelEn": "Tiny purple spots or gum/nose bleeding with fever", "labelUr": "بخار کے ساتھ جلد پر دھبے یا مسوڑھوں/ناک سے خون", "labelRoman": "Bukhar ke sath jild dhabbay ya naak se khoon" }
+        {
+          "id": "sym_retro_orbital_joint_pain",
+          "labelEn": "High fever with pain behind eyes & severe joint aches",
+          "labelUr": "تیز بخار، آنکھوں کے پیچھے اور ہڈیوں/جوڑوں میں درد",
+          "labelRoman": "Tez bukhar aur aankhon/joron mein dard"
+        },
+        {
+          "id": "sym_cyclic_fever_chills",
+          "labelEn": "Fever returning in cycles with heavy sweating & chills",
+          "labelUr": "وقفے وقفے سے کپکپی اور پسینے کے ساتھ بخار",
+          "labelRoman": "Kapkapi aur paseenay ke sath baari ka bukhar"
+        },
+        {
+          "id": "sym_prolonged_cough_14d",
+          "labelEn": "Cough lasting more than 14 days (2 weeks)",
+          "labelUr": "14 دن سے زیادہ پرانی کھانسی",
+          "labelRoman": "14 din se zyada khansi"
+        },
+        {
+          "id": "sym_petechial_rash_bleeding",
+          "labelEn": "Tiny purple spots or gum/nose bleeding with fever",
+          "labelUr": "بخار کے ساتھ جلد پر دھبے یا مسوڑھوں/ناک سے خون",
+          "labelRoman": "Bukhar ke sath jild dhabbay ya naak se khoon"
+        },
+        {
+          "id": "sym_fever_blister_rash_chickenpox",
+          "labelEn": "Fever with itchy fluid-filled spots/blisters across face & chest",
+          "labelUr": "بخار کے ساتھ چہرے اور جسم پر خارش والے پانی کے دانے (کاکڑا لاکڑا)",
+          "labelRoman": "Bukhar aur pani walay danay (chickenpox)"
+        },
+        {
+          "id": "sym_cheek_jaw_swelling_mumps",
+          "labelEn": "Painful cheek/jawline swelling near ear with fever when chewing",
+          "labelUr": "کان کے نیچے گال اور جبڑے میں دردناک سوجن (کن پیڑے)",
+          "labelRoman": "Kan ke neechay galon ki soojan (kan peray)"
+        },
+        {
+          "id": "sym_measles_rash_red_eyes",
+          "labelEn": "High fever + cough/red watery eyes + blotchy rash starting on face",
+          "labelUr": "تیز بخار، سرخ آنکھیں/کھانسی اور چہرے سے شروع ہونے والے سرخ دھبے (خسرہ)",
+          "labelRoman": "Tez bukhar, surkh aankhein aur chehray par danay (khasra)"
+        }
       ]
     },
     {
@@ -202,12 +691,44 @@
       "subtitleUr": "شوگر کی کمی زیادتی، بی پی کا اتار چڑھاؤ، دمہ، لو لگنا",
       "iconKey": "MONITOR",
       "symptoms": [
-        { "id": "sym_hypoglycemia_shaky", "labelEn": "Shakiness, cold sweat, hunger (known or suspected low sugar)", "labelUr": "کپکپی، ٹھنڈا پسینہ اور کمزوری (کم شوگر کی علامت)", "labelRoman": "Kapkapi aur thanda paseena (low sugar)" },
-        { "id": "sym_hyperglycemia_thirst", "labelEn": "Excessive thirst, frequent urination, high glucometer reading", "labelUr": "شدید پیاس، بار بار پیشاب اور زیادہ شوگر", "labelRoman": "Zyada pyas aur high sugar" },
-        { "id": "sym_elevated_bp_headache", "labelEn": "High BP reading on cuff with mild headache or flushing", "labelUr": "مشین پر زیادہ بلڈ پریشر کے ساتھ ہلکا سر درد", "labelRoman": "Machine par high BP" },
-        { "id": "sym_asthma_wheeze_flare", "labelEn": "Asthma chest tightness / wheeze responding poorly to usual trigger", "labelUr": "دمہ کے مریض میں سینے کی جکڑن یا سانس میں سیٹی", "labelRoman": "Dama ki jakran ya seeti" },
-        { "id": "sym_heat_exhaustion", "labelEn": "Heavy sweating, cramps, dizziness after hot sun work", "labelUr": "گرمی یا دھوپ کے بعد شدید پسینہ اور کمزوری", "labelRoman": "Dhoop ke baad paseena aur kamzori" },
-        { "id": "sym_heatstroke", "labelEn": "Hot dry skin + confusion/fainting after heat exposure", "labelUr": "شدید گرمی میں گرم خشک جلد، بہکی باتیں یا بے ہوشی", "labelRoman": "Garmi mein behoshi / garam khushk jild", "isRedFlagSymptom": true, "linkedEmergencyCategory": "HEATSTROKE" }
+        {
+          "id": "sym_hypoglycemia_shaky",
+          "labelEn": "Shakiness, cold sweat, hunger (known or suspected low sugar)",
+          "labelUr": "کپکپی، ٹھنڈا پسینہ اور کمزوری (کم شوگر کی علامت)",
+          "labelRoman": "Kapkapi aur thanda paseena (low sugar)"
+        },
+        {
+          "id": "sym_hyperglycemia_thirst",
+          "labelEn": "Excessive thirst, frequent urination, high glucometer reading",
+          "labelUr": "شدید پیاس، بار بار پیشاب اور زیادہ شوگر",
+          "labelRoman": "Zyada pyas aur high sugar"
+        },
+        {
+          "id": "sym_elevated_bp_headache",
+          "labelEn": "High BP reading on cuff with mild headache or flushing",
+          "labelUr": "مشین پر زیادہ بلڈ پریشر کے ساتھ ہلکا سر درد",
+          "labelRoman": "Machine par high BP"
+        },
+        {
+          "id": "sym_asthma_wheeze_flare",
+          "labelEn": "Asthma chest tightness / wheeze responding poorly to usual trigger",
+          "labelUr": "دمہ کے مریض میں سینے کی جکڑن یا سانس میں سیٹی",
+          "labelRoman": "Dama ki jakran ya seeti"
+        },
+        {
+          "id": "sym_heat_exhaustion",
+          "labelEn": "Heavy sweating, cramps, dizziness after hot sun work",
+          "labelUr": "گرمی یا دھوپ کے بعد شدید پسینہ اور کمزوری",
+          "labelRoman": "Dhoop ke baad paseena aur kamzori"
+        },
+        {
+          "id": "sym_heatstroke",
+          "labelEn": "Hot dry skin + confusion/fainting after heat exposure",
+          "labelUr": "شدید گرمی میں گرم خشک جلد، بہکی باتیں یا بے ہوشی",
+          "labelRoman": "Garmi mein behoshi / garam khushk jild",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "HEATSTROKE"
+        }
       ]
     },
     {
@@ -220,11 +741,43 @@
       "subtitleUr": "بچوں میں بخار، کالی/بھونکنے والی کھانسی، اسہال",
       "iconKey": "CHILD",
       "symptoms": [
-        { "id": "sym_infant_under2m_fever", "labelEn": "Fever or poor feeding in baby under 2 months old", "labelUr": "2 ماہ سے کم عمر بچے میں بخار یا دودھ نہ پینا", "labelRoman": "2 maah se chotay bachay mein bukhar", "isRedFlagSymptom": true, "linkedEmergencyCategory": "PEDIATRIC_DANGER", "maxAgeMonths": 2 },
-        { "id": "sym_croup_stridor", "labelEn": "Barking seal-like cough or harsh breathing sound at rest", "labelUr": "بھونکنے جیسی کھانسی یا آرام میں گلے سے کھڑکھڑاہٹ", "labelRoman": "Bhanknay jaisi khansi ya saans awaz", "isRedFlagSymptom": true, "linkedEmergencyCategory": "BREATHING_DISTRESS" },
-        { "id": "sym_child_danger_signs", "labelEn": "Child unable to drink, vomits everything, or very sleepy", "labelUr": "بچہ پانی/دودھ نہ پی سکے، سب قے کرے یا شدید سست ہو", "labelRoman": "Bacha kuch na pi sakay / bohat sust ho", "isRedFlagSymptom": true, "linkedEmergencyCategory": "PEDIATRIC_DANGER" },
-        { "id": "sym_child_mild_diarrhea", "labelEn": "Child with loose stools (still alert & drinking)", "labelUr": "بچے کو دست مگر ہوشیار اور پانی پی رہا ہے", "labelRoman": "Bachay ko dast (pani pee raha hai)" },
-        { "id": "sym_child_ear_tug", "labelEn": "Child pulling ear with irritability / mild fever", "labelUr": "بچہ کان پکڑ کر روئے یا ہلکا بخار ہو", "labelRoman": "Bacha kaan pakar kar roye" }
+        {
+          "id": "sym_infant_under2m_fever",
+          "labelEn": "Fever or poor feeding in baby under 2 months old",
+          "labelUr": "2 ماہ سے کم عمر بچے میں بخار یا دودھ نہ پینا",
+          "labelRoman": "2 maah se chotay bachay mein bukhar",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "PEDIATRIC_DANGER",
+          "maxAgeMonths": 2
+        },
+        {
+          "id": "sym_croup_stridor",
+          "labelEn": "Barking seal-like cough or harsh breathing sound at rest",
+          "labelUr": "بھونکنے جیسی کھانسی یا آرام میں گلے سے کھڑکھڑاہٹ",
+          "labelRoman": "Bhanknay jaisi khansi ya saans awaz",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "BREATHING_DISTRESS"
+        },
+        {
+          "id": "sym_child_danger_signs",
+          "labelEn": "Child unable to drink, vomits everything, or very sleepy",
+          "labelUr": "بچہ پانی/دودھ نہ پی سکے، سب قے کرے یا شدید سست ہو",
+          "labelRoman": "Bacha kuch na pi sakay / bohat sust ho",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "PEDIATRIC_DANGER"
+        },
+        {
+          "id": "sym_child_mild_diarrhea",
+          "labelEn": "Child with loose stools (still alert & drinking)",
+          "labelUr": "بچے کو دست مگر ہوشیار اور پانی پی رہا ہے",
+          "labelRoman": "Bachay ko dast (pani pee raha hai)"
+        },
+        {
+          "id": "sym_child_ear_tug",
+          "labelEn": "Child pulling ear with irritability / mild fever",
+          "labelUr": "بچہ کان پکڑ کر روئے یا ہلکا بخار ہو",
+          "labelRoman": "Bacha kaan pakar kar roye"
+        }
       ]
     },
     {
@@ -237,9 +790,24 @@
       "subtitleUr": "اچانک ذہنی الجھن، گرنا، کولہے کا درد، کمزوری",
       "iconKey": "ELDERLY",
       "symptoms": [
-        { "id": "sym_elderly_new_confusion", "labelEn": "Sudden new confusion, disorientation, or agitation", "labelUr": "اچانک نئی الجھن، بھولنا یا بہکی باتیں", "labelRoman": "Achanak nayi uljhan ya behki baatein" },
-        { "id": "sym_elderly_fall_hip_pain", "labelEn": "Fall with inability to stand/walk or hip pain", "labelUr": "گرنے کے بعد کھڑا نہ ہو سکنا یا کولہے کا درد", "labelRoman": "Girnay ke baad kharay na ho sakna" },
-        { "id": "sym_elderly_gradual_fatigue", "labelEn": "Gradual tiredness, poor appetite, or mild dehydration", "labelUr": "آہستہ آہستہ تھکاوٹ، بھوک کی کمی یا ہلکی خشکی", "labelRoman": "Kamzori aur bhook ki kami" }
+        {
+          "id": "sym_elderly_new_confusion",
+          "labelEn": "Sudden new confusion, disorientation, or agitation",
+          "labelUr": "اچانک نئی الجھن، بھولنا یا بہکی باتیں",
+          "labelRoman": "Achanak nayi uljhan ya behki baatein"
+        },
+        {
+          "id": "sym_elderly_fall_hip_pain",
+          "labelEn": "Fall with inability to stand/walk or hip pain",
+          "labelUr": "گرنے کے بعد کھڑا نہ ہو سکنا یا کولہے کا درد",
+          "labelRoman": "Girnay ke baad kharay na ho sakna"
+        },
+        {
+          "id": "sym_elderly_gradual_fatigue",
+          "labelEn": "Gradual tiredness, poor appetite, or mild dehydration",
+          "labelUr": "آہستہ آہستہ تھکاوٹ، بھوک کی کمی یا ہلکی خشکی",
+          "labelRoman": "Kamzori aur bhook ki kami"
+        }
       ]
     },
     {
@@ -252,10 +820,36 @@
       "subtitleUr": "حمل کی متلی/تیزابیت بمقابلہ خون آنا یا خطرے کی علامات",
       "iconKey": "PREGNANT",
       "symptoms": [
-        { "id": "sym_pregnancy_mild_nausea", "labelEn": "Mild morning nausea or heartburn (still keeping fluids down)", "labelUr": "ہلکی صبح کی متلی یا سینے کی جلن (پانی پی رہی ہیں)", "labelRoman": "Halki matli ya jalan (pani pee rahi hain)" },
-        { "id": "sym_pregnancy_bleeding", "labelEn": "Vaginal bleeding or fluid gush during pregnancy/postpartum", "labelUr": "حمل یا زچگی کے بعد خون آنا یا پانی کی تھیلی پھٹنا", "labelRoman": "Hamal mein khoon ya pani behna", "isRedFlagSymptom": true, "linkedEmergencyCategory": "MATERNAL_EMERGENCY" },
-        { "id": "sym_pregnancy_preeclampsia_signs", "labelEn": "Severe headache, blurred vision, or sudden face/hand swelling", "labelUr": "شدید سر درد، نظر دھندلانا یا چہرے/ہاتھوں پر اچانک سوجن", "labelRoman": "Tez sar dard, dhundli nazar, soojan", "isRedFlagSymptom": true, "linkedEmergencyCategory": "MATERNAL_EMERGENCY" },
-        { "id": "sym_pregnancy_reduced_fetal", "labelEn": "Markedly reduced baby movements or severe belly pain", "labelUr": "بچے کی حرکت میں واضح کمی یا شدید پیٹ درد", "labelRoman": "Bachay ki harkat kam hona", "isRedFlagSymptom": true, "linkedEmergencyCategory": "MATERNAL_EMERGENCY" }
+        {
+          "id": "sym_pregnancy_mild_nausea",
+          "labelEn": "Mild morning nausea or heartburn (still keeping fluids down)",
+          "labelUr": "ہلکی صبح کی متلی یا سینے کی جلن (پانی پی رہی ہیں)",
+          "labelRoman": "Halki matli ya jalan (pani pee rahi hain)"
+        },
+        {
+          "id": "sym_pregnancy_bleeding",
+          "labelEn": "Vaginal bleeding or fluid gush during pregnancy/postpartum",
+          "labelUr": "حمل یا زچگی کے بعد خون آنا یا پانی کی تھیلی پھٹنا",
+          "labelRoman": "Hamal mein khoon ya pani behna",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "MATERNAL_EMERGENCY"
+        },
+        {
+          "id": "sym_pregnancy_preeclampsia_signs",
+          "labelEn": "Severe headache, blurred vision, or sudden face/hand swelling",
+          "labelUr": "شدید سر درد، نظر دھندلانا یا چہرے/ہاتھوں پر اچانک سوجن",
+          "labelRoman": "Tez sar dard, dhundli nazar, soojan",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "MATERNAL_EMERGENCY"
+        },
+        {
+          "id": "sym_pregnancy_reduced_fetal",
+          "labelEn": "Markedly reduced baby movements or severe belly pain",
+          "labelUr": "بچے کی حرکت میں واضح کمی یا شدید پیٹ درد",
+          "labelRoman": "Bachay ki harkat kam hona",
+          "isRedFlagSymptom": true,
+          "linkedEmergencyCategory": "MATERNAL_EMERGENCY"
+        }
       ]
     }
   ],
@@ -269,9 +863,27 @@
       "multiSelect": false,
       "required": true,
       "options": [
-        { "id": "opt_sev_mild", "labelEn": "Mild — manageable, able to rest and talk normally", "labelUr": "ہلکی — قابلِ برداشت، بات چیت اور آرام ممکن ہے", "labelRoman": "Halki — aaram se bardasht ho rahi hai", "urgencyBoost": 0 },
-        { "id": "opt_sev_moderate", "labelEn": "Moderate — interfering with daily tasks or sleep", "labelUr": "درمیانی — روزمرہ کام یا نیند متاثر ہو رہی ہے", "labelRoman": "Darmiyani — rozmarra kaam ya neend mutasir hai", "urgencyBoost": 1 },
-        { "id": "opt_sev_severe", "labelEn": "Severe — intense discomfort or rapidly worsening", "labelUr": "شدید — ناقابلِ برداشت تکلیف یا تیزی سے بگڑتی حالت", "labelRoman": "Shadeed — bohat tez ya barhti hui takleef", "urgencyBoost": 2 }
+        {
+          "id": "opt_sev_mild",
+          "labelEn": "Mild — manageable, able to rest and talk normally",
+          "labelUr": "ہلکی — قابلِ برداشت، بات چیت اور آرام ممکن ہے",
+          "labelRoman": "Halki — aaram se bardasht ho rahi hai",
+          "urgencyBoost": 0
+        },
+        {
+          "id": "opt_sev_moderate",
+          "labelEn": "Moderate — interfering with daily tasks or sleep",
+          "labelUr": "درمیانی — روزمرہ کام یا نیند متاثر ہو رہی ہے",
+          "labelRoman": "Darmiyani — rozmarra kaam ya neend mutasir hai",
+          "urgencyBoost": 1
+        },
+        {
+          "id": "opt_sev_severe",
+          "labelEn": "Severe — intense discomfort or rapidly worsening",
+          "labelUr": "شدید — ناقابلِ برداشت تکلیف یا تیزی سے بگڑتی حالت",
+          "labelRoman": "Shadeed — bohat tez ya barhti hui takleef",
+          "urgencyBoost": 2
+        }
       ]
     },
     {
@@ -283,10 +895,34 @@
       "multiSelect": false,
       "required": true,
       "options": [
-        { "id": "opt_dur_under24h", "labelEn": "Less than 24 hours (started today)", "labelUr": "24 گھنٹے سے کم (آج شروع ہوئی)", "labelRoman": "24 ghantay se kam", "urgencyBoost": 0 },
-        { "id": "opt_dur_1_2d", "labelEn": "1 to 2 days", "labelUr": "1 سے 2 دن", "labelRoman": "1 se 2 din", "urgencyBoost": 0 },
-        { "id": "opt_dur_3_7d", "labelEn": "3 to 7 days", "labelUr": "3 سے 7 دن", "labelRoman": "3 se 7 din", "urgencyBoost": 1 },
-        { "id": "opt_dur_over7d", "labelEn": "More than 7–14 days", "labelUr": "7 سے 14 دن سے زیادہ", "labelRoman": "7–14 din se zyada", "urgencyBoost": 1 }
+        {
+          "id": "opt_dur_under24h",
+          "labelEn": "Less than 24 hours (started today)",
+          "labelUr": "24 گھنٹے سے کم (آج شروع ہوئی)",
+          "labelRoman": "24 ghantay se kam",
+          "urgencyBoost": 0
+        },
+        {
+          "id": "opt_dur_1_2d",
+          "labelEn": "1 to 2 days",
+          "labelUr": "1 سے 2 دن",
+          "labelRoman": "1 se 2 din",
+          "urgencyBoost": 0
+        },
+        {
+          "id": "opt_dur_3_7d",
+          "labelEn": "3 to 7 days",
+          "labelUr": "3 سے 7 دن",
+          "labelRoman": "3 se 7 din",
+          "urgencyBoost": 1
+        },
+        {
+          "id": "opt_dur_over7d",
+          "labelEn": "More than 7–14 days",
+          "labelUr": "7 سے 14 دن سے زیادہ",
+          "labelRoman": "7–14 din se zyada",
+          "urgencyBoost": 1
+        }
       ]
     },
     {
@@ -298,10 +934,34 @@
       "multiSelect": false,
       "required": false,
       "options": [
-        { "id": "opt_freq_gradual", "labelEn": "Started gradually over hours or days", "labelUr": "آہستہ آہستہ شروع ہوئیں", "labelRoman": "Aahista aahista shuru huin", "urgencyBoost": 0 },
-        { "id": "opt_freq_intermittent", "labelEn": "Comes and goes in waves", "labelUr": "وقفے وقفے سے آتی جاتی ہیں", "labelRoman": "Waqfay waqfay se aati jaati hain", "urgencyBoost": 0 },
-        { "id": "opt_freq_constant", "labelEn": "Constant and persistent", "labelUr": "مسلسل برقرار ہیں", "labelRoman": "Musalsal barqarar hain", "urgencyBoost": 1 },
-        { "id": "opt_freq_sudden", "labelEn": "Sudden onset within minutes", "labelUr": "چند منٹوں میں اچانک شروع ہوئیں", "labelRoman": "Chand minutes mein achanak shuru huin", "urgencyBoost": 2 }
+        {
+          "id": "opt_freq_gradual",
+          "labelEn": "Started gradually over hours or days",
+          "labelUr": "آہستہ آہستہ شروع ہوئیں",
+          "labelRoman": "Aahista aahista shuru huin",
+          "urgencyBoost": 0
+        },
+        {
+          "id": "opt_freq_intermittent",
+          "labelEn": "Comes and goes in waves",
+          "labelUr": "وقفے وقفے سے آتی جاتی ہیں",
+          "labelRoman": "Waqfay waqfay se aati jaati hain",
+          "urgencyBoost": 0
+        },
+        {
+          "id": "opt_freq_constant",
+          "labelEn": "Constant and persistent",
+          "labelUr": "مسلسل برقرار ہیں",
+          "labelRoman": "Musalsal barqarar hain",
+          "urgencyBoost": 1
+        },
+        {
+          "id": "opt_freq_sudden",
+          "labelEn": "Sudden onset within minutes",
+          "labelUr": "چند منٹوں میں اچانک شروع ہوئیں",
+          "labelRoman": "Chand minutes mein achanak shuru huin",
+          "urgencyBoost": 2
+        }
       ]
     },
     {
@@ -312,12 +972,39 @@
       "promptRoman": "Dard ya takleef kis jagah mehsoos ho rahi hai?",
       "multiSelect": true,
       "required": false,
-      "showForCategories": ["cat_cardio", "cat_digestive", "cat_msk"],
+      "showForCategories": [
+        "cat_cardio",
+        "cat_digestive",
+        "cat_msk"
+      ],
       "options": [
-        { "id": "opt_loc_chest_radiating", "labelEn": "Center chest spreading to left arm, jaw, neck, or back", "labelUr": "درمیانِ سینہ سے بائیں بازو، جبڑے یا کمر کی طرف", "labelRoman": "Seenay se baazu ya jabray ki taraf", "isEmergencyTrigger": true, "linkedEmergencyCategory": "CHEST_PAIN" },
-        { "id": "opt_loc_upper_epigastric", "labelEn": "Upper stomach / behind lower breastbone (acid-like)", "labelUr": "معدے کے اوپری حصے یا پسلیوں کے بیچ جلن", "labelRoman": "Maiday ke oopar jalan" },
-        { "id": "opt_loc_lower_right", "labelEn": "Lower right abdomen", "labelUr": "پیٹ کے نچلے دائیں حصے میں", "labelRoman": "Pait ke nichlay dayein hissay mein", "urgencyBoost": 2 },
-        { "id": "opt_loc_one_sided_muscle", "labelEn": "Localized spot on muscle, back, or single joint", "labelUr": "کسی ایک پٹھے، کمر یا جوڑ تک محدود", "labelRoman": "Kisi ek pathay, kamar ya jor mein" }
+        {
+          "id": "opt_loc_chest_radiating",
+          "labelEn": "Center chest spreading to left arm, jaw, neck, or back",
+          "labelUr": "درمیانِ سینہ سے بائیں بازو، جبڑے یا کمر کی طرف",
+          "labelRoman": "Seenay se baazu ya jabray ki taraf",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "CHEST_PAIN"
+        },
+        {
+          "id": "opt_loc_upper_epigastric",
+          "labelEn": "Upper stomach / behind lower breastbone (acid-like)",
+          "labelUr": "معدے کے اوپری حصے یا پسلیوں کے بیچ جلن",
+          "labelRoman": "Maiday ke oopar jalan"
+        },
+        {
+          "id": "opt_loc_lower_right",
+          "labelEn": "Lower right abdomen",
+          "labelUr": "پیٹ کے نچلے دائیں حصے میں",
+          "labelRoman": "Pait ke nichlay dayein hissay mein",
+          "urgencyBoost": 2
+        },
+        {
+          "id": "opt_loc_one_sided_muscle",
+          "labelEn": "Localized spot on muscle, back, or single joint",
+          "labelUr": "کسی ایک پٹھے، کمر یا جوڑ تک محدود",
+          "labelRoman": "Kisi ek pathay, kamar ya jor mein"
+        }
       ]
     },
     {
@@ -328,11 +1015,30 @@
       "promptRoman": "Sar dard kis hissay mein hai?",
       "multiSelect": false,
       "required": false,
-      "showForCategories": ["cat_neuro", "cat_eye_ear"],
+      "showForCategories": [
+        "cat_neuro",
+        "cat_eye_ear"
+      ],
       "options": [
-        { "id": "opt_loc_both_sides_band", "labelEn": "Both sides / forehead / tight band around head", "labelUr": "دونوں طرف یا پیشانی پر پٹی جیسا دباؤ", "labelRoman": "Dono taraf ya maathay par dabao" },
-        { "id": "opt_loc_one_side_temple", "labelEn": "Mostly one side / temple or behind one eye", "labelUr": "زیادہ تر ایک طرف یا ایک آنکھ کے پیچھے", "labelRoman": "Ek taraf ya aankh ke peechay" },
-        { "id": "opt_loc_back_neck_stiff", "labelEn": "Back of head with stiff painful neck", "labelUr": "سر کے پچھلے حصے اور اکڑی ہوئی گردن میں", "labelRoman": "Sar ke peechay aur akri gardan", "urgencyBoost": 2 }
+        {
+          "id": "opt_loc_both_sides_band",
+          "labelEn": "Both sides / forehead / tight band around head",
+          "labelUr": "دونوں طرف یا پیشانی پر پٹی جیسا دباؤ",
+          "labelRoman": "Dono taraf ya maathay par dabao"
+        },
+        {
+          "id": "opt_loc_one_side_temple",
+          "labelEn": "Mostly one side / temple or behind one eye",
+          "labelUr": "زیادہ تر ایک طرف یا ایک آنکھ کے پیچھے",
+          "labelRoman": "Ek taraf ya aankh ke peechay"
+        },
+        {
+          "id": "opt_loc_back_neck_stiff",
+          "labelEn": "Back of head with stiff painful neck",
+          "labelUr": "سر کے پچھلے حصے اور اکڑی ہوئی گردن میں",
+          "labelRoman": "Sar ke peechay aur akri gardan",
+          "urgencyBoost": 2
+        }
       ]
     },
     {
@@ -344,10 +1050,31 @@
       "multiSelect": true,
       "required": false,
       "options": [
-        { "id": "opt_assoc_fever", "labelEn": "Fever or chills", "labelUr": "بخار یا سردی لگنا", "labelRoman": "Bukhar ya sardi", "urgencyBoost": 1 },
-        { "id": "opt_assoc_nausea_light", "labelEn": "Nausea, or sensitivity to bright light/sound", "labelUr": "متلی، یا تیز روشنی اور آواز سے الجھن", "labelRoman": "Matli ya tez roshni/awaz se takleef" },
-        { "id": "opt_assoc_thirst_dry_mouth", "labelEn": "Dry mouth / increased thirst (still urinating)", "labelUr": "منہ خشک ہونا یا پیاس (مگر پیشاب آ رہا ہے)", "labelRoman": "Munh khushk aur pyas" },
-        { "id": "opt_assoc_fatigue_appetite", "labelEn": "Fatigue or loss of appetite", "labelUr": "تھکاوٹ یا بھوک میں کمی", "labelRoman": "Thakawat ya bhook kam hona" }
+        {
+          "id": "opt_assoc_fever",
+          "labelEn": "Fever or chills",
+          "labelUr": "بخار یا سردی لگنا",
+          "labelRoman": "Bukhar ya sardi",
+          "urgencyBoost": 1
+        },
+        {
+          "id": "opt_assoc_nausea_light",
+          "labelEn": "Nausea, or sensitivity to bright light/sound",
+          "labelUr": "متلی، یا تیز روشنی اور آواز سے الجھن",
+          "labelRoman": "Matli ya tez roshni/awaz se takleef"
+        },
+        {
+          "id": "opt_assoc_thirst_dry_mouth",
+          "labelEn": "Dry mouth / increased thirst (still urinating)",
+          "labelUr": "منہ خشک ہونا یا پیاس (مگر پیشاب آ رہا ہے)",
+          "labelRoman": "Munh khushk aur pyas"
+        },
+        {
+          "id": "opt_assoc_fatigue_appetite",
+          "labelEn": "Fatigue or loss of appetite",
+          "labelUr": "تھکاوٹ یا بھوک میں کمی",
+          "labelRoman": "Thakawat ya bhook kam hona"
+        }
       ]
     },
     {
@@ -359,12 +1086,48 @@
       "multiSelect": true,
       "required": false,
       "options": [
-        { "id": "opt_circ_new_food_soap_drug", "labelEn": "Started after a new food, soap, insect sting, or medication", "labelUr": "نئی غذا، صابن، کیڑے کے کاٹنے یا دوا کے بعد شروع ہوا", "labelRoman": "Nayi ghaza, saban ya dawa ke baad" },
-        { "id": "opt_circ_sun_heat", "labelEn": "Recent heavy physical work or hot sun exposure", "labelUr": "شدید دھوپ یا گرمی میں مشقت کے بعد", "labelRoman": "Tez dhoop ya garmi ke baad" },
-        { "id": "opt_circ_outside_food", "labelEn": "Ate questionable street/unclean food or untreated water", "labelUr": "باہر کا غیر معیاری کھانا یا صاف نہ کیا گیا پانی پیا", "labelRoman": "Bahar ka khana ya gair-ubla pani" },
-        { "id": "opt_circ_electric_chemical", "labelEn": "Burn caused by electricity, acid, or harsh chemical", "labelUr": "بجلی، تیزاب یا کیمیکل سے جلنا", "labelRoman": "Bijli ya tezab se jalna", "isEmergencyTrigger": true, "linkedEmergencyCategory": "SEVERE_BURN" },
-        { "id": "opt_circ_high_impact_head", "labelEn": "Hit head in a fall, road crash, or heavy impact", "labelUr": "اونچائی سے گرنے یا حادثے میں سر پر چوٹ", "labelRoman": "Girnay ya hadsay mein sar par chot", "isEmergencyTrigger": true, "linkedEmergencyCategory": "SERIOUS_HEAD_INJURY" },
-        { "id": "opt_circ_toxin_ingestion", "labelEn": "Possible accidental swallowing of chemical, pesticide, or excess pills", "labelUr": "زہریلا مادہ، کیڑے مار دوا یا زیادہ گولیاں کھانے کا شبہ", "labelRoman": "Zehr ya zyada goli nigalnay ka shuba", "isEmergencyTrigger": true, "linkedEmergencyCategory": "POISONING_OVERDOSE" }
+        {
+          "id": "opt_circ_new_food_soap_drug",
+          "labelEn": "Started after a new food, soap, insect sting, or medication",
+          "labelUr": "نئی غذا، صابن، کیڑے کے کاٹنے یا دوا کے بعد شروع ہوا",
+          "labelRoman": "Nayi ghaza, saban ya dawa ke baad"
+        },
+        {
+          "id": "opt_circ_sun_heat",
+          "labelEn": "Recent heavy physical work or hot sun exposure",
+          "labelUr": "شدید دھوپ یا گرمی میں مشقت کے بعد",
+          "labelRoman": "Tez dhoop ya garmi ke baad"
+        },
+        {
+          "id": "opt_circ_outside_food",
+          "labelEn": "Ate questionable street/unclean food or untreated water",
+          "labelUr": "باہر کا غیر معیاری کھانا یا صاف نہ کیا گیا پانی پیا",
+          "labelRoman": "Bahar ka khana ya gair-ubla pani"
+        },
+        {
+          "id": "opt_circ_electric_chemical",
+          "labelEn": "Burn caused by electricity, acid, or harsh chemical",
+          "labelUr": "بجلی، تیزاب یا کیمیکل سے جلنا",
+          "labelRoman": "Bijli ya tezab se jalna",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "SEVERE_BURN"
+        },
+        {
+          "id": "opt_circ_high_impact_head",
+          "labelEn": "Hit head in a fall, road crash, or heavy impact",
+          "labelUr": "اونچائی سے گرنے یا حادثے میں سر پر چوٹ",
+          "labelRoman": "Girnay ya hadsay mein sar par chot",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "SERIOUS_HEAD_INJURY"
+        },
+        {
+          "id": "opt_circ_toxin_ingestion",
+          "labelEn": "Possible accidental swallowing of chemical, pesticide, or excess pills",
+          "labelUr": "زہریلا مادہ، کیڑے مار دوا یا زیادہ گولیاں کھانے کا شبہ",
+          "labelRoman": "Zehr ya zyada goli nigalnay ka shuba",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "POISONING_OVERDOSE"
+        }
       ]
     },
     {
@@ -376,17 +1139,94 @@
       "multiSelect": true,
       "required": false,
       "options": [
-        { "id": "opt_rf_breathing_distress", "labelEn": "Severe shortness of breath, chest indrawing, or blue lips", "labelUr": "سانس کی شدید دشواری، پسلی چلنا یا نیلے ہونٹ", "labelRoman": "Saans ki shadeed takleef ya neelay hont", "isEmergencyTrigger": true, "linkedEmergencyCategory": "BREATHING_DISTRESS" },
-        { "id": "opt_rf_chest_crushing", "labelEn": "Crushing chest pain, tightness, or cold sweat", "labelUr": "سینے میں شدید دباؤ، جکڑن یا ٹھنڈا پسینہ", "labelRoman": "Seenay mein tez dabao ya thanda paseena", "isEmergencyTrigger": true, "linkedEmergencyCategory": "CHEST_PAIN" },
-        { "id": "opt_rf_stroke_fast", "labelEn": "Face drooping, one-sided weakness, or slurred speech", "labelUr": "چہرہ ٹیڑھا، ایک طرف کمزوری یا زبان لڑکھڑانا", "labelRoman": "Chehra terha ya zuban larkharana", "isEmergencyTrigger": true, "linkedEmergencyCategory": "STROKE_FAST" },
-        { "id": "opt_rf_throat_swelling", "labelEn": "Swelling of lips, tongue, or throat / difficulty swallowing", "labelUr": "ہونٹ، زبان یا گلے میں سوجن", "labelRoman": "Hont, zuban ya galay mein soojan", "isEmergencyTrigger": true, "linkedEmergencyCategory": "ANAPHYLAXIS" },
-        { "id": "opt_rf_unconscious", "labelEn": "Unconscious, fainting repeatedly, or very hard to wake", "labelUr": "بے ہوشی یا جگانے پر نہ اٹھنا", "labelRoman": "Behoshi ya na uth sakna", "isEmergencyTrigger": true, "linkedEmergencyCategory": "UNCONSCIOUS_FAINTING" },
-        { "id": "opt_rf_seizure", "labelEn": "Seizures, convulsions, or uncontrollable shaking", "labelUr": "دورے یا جھٹکے پڑنا", "labelRoman": "Jhatkay ya daura parna", "isEmergencyTrigger": true, "linkedEmergencyCategory": "SEIZURE_CONVULSIONS" },
-        { "id": "opt_rf_heavy_bleeding", "labelEn": "Uncontrolled heavy bleeding or coughing/vomiting blood", "labelUr": "نہ رکنے والا خون یا خون کی الٹی/کھانسی", "labelRoman": "Tez khoon ya khoon ki qai", "isEmergencyTrigger": true, "linkedEmergencyCategory": "UNCONTROLLED_BLEEDING" },
-        { "id": "opt_rf_unable_drink", "labelEn": "Unable to drink fluids / vomits everything / no urine 6h+", "labelUr": "پانی نہ پی سکنا، ہر چیز قے کرنا یا 6 گھنٹے سے پیشاب نہ آنا", "labelRoman": "Pani na pi sakna ya peshab band", "isEmergencyTrigger": true, "linkedEmergencyCategory": "SEVERE_DEHYDRATION" },
-        { "id": "opt_rf_rigid_abdomen", "labelEn": "Sudden severe rigid abdomen or blood in stool/vomit", "labelUr": "اچانک سخت شدید پیٹ درد یا پاخانے/قے میں خون", "labelRoman": "Sakht pait dard ya khoon aana", "isEmergencyTrigger": true, "linkedEmergencyCategory": "ACUTE_SEVERE_ABDOMEN" },
-        { "id": "opt_rf_stiff_neck_rash", "labelEn": "Stiff neck with high fever or non-fading purple rash", "labelUr": "تیز بخار کے ساتھ گردن اکڑنا یا جامنی دھبے", "labelRoman": "Gardan akarna ya neelay dhabbay", "isEmergencyTrigger": true, "linkedEmergencyCategory": "PEDIATRIC_DANGER" },
-        { "id": "opt_rf_pregnancy_danger", "labelEn": "Pregnancy bleeding, severe headache, or blurred vision", "labelUr": "حمل میں خون آنا، شدید سر درد یا نظر دھندلانا", "labelRoman": "Hamal mein khoon ya dhundli nazar", "isEmergencyTrigger": true, "linkedEmergencyCategory": "MATERNAL_EMERGENCY" }
+        {
+          "id": "opt_rf_breathing_distress",
+          "labelEn": "Severe shortness of breath, chest indrawing, or blue lips",
+          "labelUr": "سانس کی شدید دشواری، پسلی چلنا یا نیلے ہونٹ",
+          "labelRoman": "Saans ki shadeed takleef ya neelay hont",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "BREATHING_DISTRESS"
+        },
+        {
+          "id": "opt_rf_chest_crushing",
+          "labelEn": "Crushing chest pain, tightness, or cold sweat",
+          "labelUr": "سینے میں شدید دباؤ، جکڑن یا ٹھنڈا پسینہ",
+          "labelRoman": "Seenay mein tez dabao ya thanda paseena",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "CHEST_PAIN"
+        },
+        {
+          "id": "opt_rf_stroke_fast",
+          "labelEn": "Face drooping, one-sided weakness, or slurred speech",
+          "labelUr": "چہرہ ٹیڑھا، ایک طرف کمزوری یا زبان لڑکھڑانا",
+          "labelRoman": "Chehra terha ya zuban larkharana",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "STROKE_FAST"
+        },
+        {
+          "id": "opt_rf_throat_swelling",
+          "labelEn": "Swelling of lips, tongue, or throat / difficulty swallowing",
+          "labelUr": "ہونٹ، زبان یا گلے میں سوجن",
+          "labelRoman": "Hont, zuban ya galay mein soojan",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "ANAPHYLAXIS"
+        },
+        {
+          "id": "opt_rf_unconscious",
+          "labelEn": "Unconscious, fainting repeatedly, or very hard to wake",
+          "labelUr": "بے ہوشی یا جگانے پر نہ اٹھنا",
+          "labelRoman": "Behoshi ya na uth sakna",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "UNCONSCIOUS_FAINTING"
+        },
+        {
+          "id": "opt_rf_seizure",
+          "labelEn": "Seizures, convulsions, or uncontrollable shaking",
+          "labelUr": "دورے یا جھٹکے پڑنا",
+          "labelRoman": "Jhatkay ya daura parna",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "SEIZURE_CONVULSIONS"
+        },
+        {
+          "id": "opt_rf_heavy_bleeding",
+          "labelEn": "Uncontrolled heavy bleeding or coughing/vomiting blood",
+          "labelUr": "نہ رکنے والا خون یا خون کی الٹی/کھانسی",
+          "labelRoman": "Tez khoon ya khoon ki qai",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "UNCONTROLLED_BLEEDING"
+        },
+        {
+          "id": "opt_rf_unable_drink",
+          "labelEn": "Unable to drink fluids / vomits everything / no urine 6h+",
+          "labelUr": "پانی نہ پی سکنا، ہر چیز قے کرنا یا 6 گھنٹے سے پیشاب نہ آنا",
+          "labelRoman": "Pani na pi sakna ya peshab band",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "SEVERE_DEHYDRATION"
+        },
+        {
+          "id": "opt_rf_rigid_abdomen",
+          "labelEn": "Sudden severe rigid abdomen or blood in stool/vomit",
+          "labelUr": "اچانک سخت شدید پیٹ درد یا پاخانے/قے میں خون",
+          "labelRoman": "Sakht pait dard ya khoon aana",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "ACUTE_SEVERE_ABDOMEN"
+        },
+        {
+          "id": "opt_rf_stiff_neck_rash",
+          "labelEn": "Stiff neck with high fever or non-fading purple rash",
+          "labelUr": "تیز بخار کے ساتھ گردن اکڑنا یا جامنی دھبے",
+          "labelRoman": "Gardan akarna ya neelay dhabbay",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "PEDIATRIC_DANGER"
+        },
+        {
+          "id": "opt_rf_pregnancy_danger",
+          "labelEn": "Pregnancy bleeding, severe headache, or blurred vision",
+          "labelUr": "حمل میں خون آنا، شدید سر درد یا نظر دھندلانا",
+          "labelRoman": "Hamal mein khoon ya dhundli nazar",
+          "isEmergencyTrigger": true,
+          "linkedEmergencyCategory": "MATERNAL_EMERGENCY"
+        }
       ]
     }
   ]

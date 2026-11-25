@@ -6,6 +6,9 @@ import com.example.data.model.AssessmentOutcome
 import com.example.data.model.EmergencyCategory
 import com.example.data.model.EpisodeVitals
 import com.example.data.model.FollowUpDimension
+import com.example.data.model.GeoCoords
+import com.example.data.model.LocationCategory
+import com.example.data.model.PakistanProvince
 import com.example.data.model.PatientProfile
 import com.example.data.model.StructuredAssessmentInput
 import com.example.data.model.TriageTier
@@ -89,7 +92,8 @@ class OfflineMedicalGuidanceTest {
         assertEquals(16, dataLoader.symptomTaxonomy.categories.size)
         assertEquals(16, dataLoader.emergencyRules.size)
         assertEquals(16, dataLoader.emergencyFirstAid.size)
-        assertEquals(37, engine.getAllConditions().size)
+        assertTrue("Expected at least 50 conditions", engine.getAllConditions().size >= 50)
+        assertEquals(63, engine.getAllConditions().size)
 
         val coveredDimensions = dataLoader.symptomTaxonomy.followUpQuestions.map { it.dimension }.toSet()
         assertEquals(FollowUpDimension.entries.toSet(), coveredDimensions)
@@ -411,6 +415,144 @@ class OfflineMedicalGuidanceTest {
                 assertTrue(tier.shortLabel(locale).isNotBlank())
                 assertTrue(tier.subtitle(locale).isNotBlank())
             }
+        }
+    }
+
+    @Test
+    fun `every one of the 63 conditions matches cleanly through engine evaluation`() {
+        val validCatIds = dataLoader.symptomTaxonomy.categories.map { it.id }.toSet()
+        val allSymsById = dataLoader.symptomTaxonomy.categories.flatMap { it.symptoms }.associateBy { it.id }
+
+        engine.getAllConditions().forEach { cond ->
+            assertTrue("Missing subcategoryEn on ${cond.id}", cond.subcategoryEn.isNotBlank())
+            assertTrue("Missing subcategoryUr on ${cond.id}", cond.subcategoryUr.isNotBlank())
+            assertTrue("Unknown categoryId on ${cond.id}", cond.categoryId in validCatIds)
+
+            val crit = cond.matchingCriteria
+            val patient = when {
+                crit.pregnantOnly -> adultPregnantFemale
+                crit.maxAgeMonths != null && crit.maxAgeMonths < 180 -> infant6Months
+                crit.minAgeMonths != null && crit.minAgeMonths >= 600 -> olderAdult70
+                else -> adultMale
+            }
+
+            // Pick non-red-flag required + supporting symptoms up to minScore
+            val pickedSymptoms = mutableSetOf<String>()
+            crit.requiredAnySymptomIds.firstOrNull { allSymsById[it]?.isRedFlagSymptom != true }?.let {
+                pickedSymptoms.add(it)
+            }
+            var accumScore = pickedSymptoms.sumOf { crit.supportingSymptomWeights[it] ?: 0 }
+            crit.supportingSymptomWeights.entries
+                .sortedByDescending { it.value }
+                .forEach { (symId, w) ->
+                    if (accumScore < crit.minScore &&
+                        symId !in pickedSymptoms &&
+                        symId !in crit.excludedSymptomIds &&
+                        allSymsById[symId]?.isRedFlagSymptom != true &&
+                        !(symId == "sym_high_fever" && "sym_mild_fever" in pickedSymptoms) &&
+                        !(symId == "sym_mild_fever" && "sym_high_fever" in pickedSymptoms)
+                    ) {
+                        pickedSymptoms.add(symId)
+                        accumScore += w
+                    }
+                }
+
+            val durOpt = if ("sym_prolonged_cough_14d" in pickedSymptoms) "opt_dur_over7d" else "opt_dur_3_7d"
+            val sevOpt = if ("opt_sev_moderate" !in crit.excludedOptionIds) "opt_sev_moderate" else "opt_sev_mild"
+            val extraOptions = mutableMapOf(
+                "q_severity" to setOf(sevOpt),
+                "q_duration" to setOf(durOpt),
+            )
+            // Add top non-emergency supportingOptionWeights if condition score relies on follow-up detail (e.g. RLQ abdominal pain)
+            val allOptionsById = dataLoader.symptomTaxonomy.followUpQuestions
+                .flatMap { q -> q.options.map { opt -> opt.id to (q.id to opt) } }
+                .toMap()
+            crit.supportingOptionWeights.entries
+                .sortedByDescending { it.value }
+                .forEach { (optId, _) ->
+                    val pair = allOptionsById[optId]
+                    if (pair != null &&
+                        !pair.second.isEmergencyTrigger &&
+                        optId !in crit.excludedOptionIds &&
+                        pair.first != "q_severity" &&
+                        pair.first != "q_duration"
+                    ) {
+                        val existing = extraOptions[pair.first]?.toMutableSet() ?: mutableSetOf()
+                        existing.add(optId)
+                        extraOptions[pair.first] = existing
+                    }
+                }
+
+            val res = engine.evaluateGuidance(
+                StructuredAssessmentInput(
+                    patient = patient,
+                    categoryId = cond.categoryId,
+                    selectedSymptomIds = pickedSymptoms,
+                    selectedOptionIdsByQuestion = extraOptions,
+                )
+            )
+            assertEquals("Condition ${cond.id} should evaluate to CONDITION_MATCHED (was ${res.outcome})", AssessmentOutcome.CONDITION_MATCHED, res.outcome)
+            assertTrue("Starter helper non-empty for ${cond.id}", engine.getStarterSymptomsForCondition(cond).isNotEmpty())
+        }
+    }
+
+    @Test
+    fun `pakistan locations dataset has at least 400 unique places across all provinces categories and routes nearest hospitals`() {
+        val locations = triageEngine.getPakistanLocations()
+        assertTrue("Expected at least 400 Pakistan locations, found ${locations.size}", locations.size >= 400)
+        assertEquals(locations.size, locations.map { it.id }.distinct().size)
+
+        // All 7 provinces/territories & 7 categories represented
+        assertEquals(PakistanProvince.entries.toSet(), locations.map { it.province }.toSet())
+        assertEquals(LocationCategory.entries.toSet(), locations.map { it.category }.toSet())
+
+        // Geographic bounds inside Pakistan
+        locations.forEach { loc ->
+            assertTrue("Lat out of bounds for ${loc.id}: ${loc.lat}", loc.lat in 23.4..37.2)
+            assertTrue("Lng out of bounds for ${loc.id}: ${loc.lng}", loc.lng in 60.8..77.9)
+            assertTrue("Empty nameEn for ${loc.id}", loc.nameEn.isNotBlank())
+            assertTrue("Empty nameUr for ${loc.id}", loc.nameUr.isNotBlank())
+            assertTrue("Empty district for ${loc.id}", loc.district.isNotBlank())
+        }
+
+        // Province & category filtering + text search across Pakistan
+        val skardu = triageEngine.searchPakistanLocations("Skardu", province = PakistanProvince.GILGIT_BALTISTAN)
+        assertTrue(skardu.any { it.nameEn.contains("Skardu", ignoreCase = true) })
+
+        val gwadar = triageEngine.searchPakistanLocations("Gwadar", province = PakistanProvince.BALOCHISTAN)
+        assertTrue(gwadar.isNotEmpty())
+
+        val muzaffarabad = triageEngine.searchPakistanLocations("Muzaffarabad", province = PakistanProvince.AZAD_KASHMIR)
+        assertTrue(muzaffarabad.isNotEmpty())
+
+        val landmarks = triageEngine.searchPakistanLocations("", category = LocationCategory.LANDMARK)
+        assertTrue(landmarks.size >= 15)
+
+        // Reverse nearest-location lookup from Lahore coords
+        val nearestToLahore = triageEngine.findNearestPakistanLocation(31.5204, 74.3587)
+        assertNotNull(nearestToLahore)
+        assertEquals("Lahore", nearestToLahore!!.district)
+
+        // Facility routing works cleanly for remote towns / custom pins across all 7 provinces
+        listOf(
+            "Skardu",
+            "Gwadar",
+            "Muzaffarabad",
+            "Mingora",
+            "Islamabad",
+            "Sukkur",
+            "Bahawalpur",
+        ).forEach { city ->
+            val loc = triageEngine.searchPakistanLocations(city).first()
+            val (facs, locRequired) = triageEngine.sortFacilities(
+                tier = TriageTier.AMBER,
+                isPediatric = false,
+                userCoords = GeoCoords(loc.lat, loc.lng),
+                districtFilter = loc.district,
+            )
+            assertFalse("Location should not be flagged missing for $city", locRequired)
+            assertTrue("Facilities should resolve for $city", facs.isNotEmpty())
+            assertNotNull("Distance should compute for $city", facs.first().distanceKm)
         }
     }
 }

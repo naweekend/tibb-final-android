@@ -9,6 +9,7 @@ import com.example.data.model.FacilityRecord
 import com.example.data.model.HomeCareProtocol
 import com.example.data.model.KnowledgeMetadata
 import com.example.data.model.MedicalConditionEntry
+import com.example.data.model.PakistanLocationRecord
 import com.example.data.model.SymptomTaxonomy
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -30,6 +31,10 @@ class BundledDataLoader(
 
     val facilities: List<FacilityRecord> by lazy {
         loadList("data/facilities.pk.json")
+    }
+
+    val pakistanLocations: List<PakistanLocationRecord> by lazy {
+        loadList("data/pakistan_locations.json")
     }
 
     val whoHomeCare: List<HomeCareProtocol> by lazy {

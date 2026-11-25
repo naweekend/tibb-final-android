@@ -27,6 +27,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Delete
+import androidx.compose.material.icons.rounded.Map
 import androidx.compose.material.icons.rounded.MyLocation
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
@@ -52,7 +53,9 @@ import androidx.core.content.ContextCompat
 import com.example.data.model.AppLocale
 import com.example.data.model.FrequentPlace
 import com.example.data.model.GeoCoords
+import com.example.data.model.SelectedLocationState
 import com.example.engine.TriageEngine
+import com.example.ui.components.PakistanLocationPickerDialog
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TibbGlassCard
 import com.example.ui.theme.TibbSecondaryPillButton
@@ -210,13 +213,13 @@ fun OnboardingStep4Places(
     val context = LocalContext.current
     val c = LocalTibbColors.current
     val isUr = locale == AppLocale.UR
-    val anchors = remember { triageEngine.getFacilityAreaAnchors() }
 
     var searchQuery by remember { mutableStateOf("") }
     var placeLabel by remember { mutableStateOf("Home") }
     var customCityMode by remember { mutableStateOf(false) }
     var customDistrict by remember { mutableStateOf("") }
     var customLandmark by remember { mutableStateOf("") }
+    var showMapPicker by remember { mutableStateOf(false) }
 
     val locPermLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -225,11 +228,26 @@ fun OnboardingStep4Places(
     }
 
     Text(
-        text = if (isUr) "روزمرہ مقامات (1 سے 3 مقامات محفوظ کریں تاکہ قریبی ہسپتال فوراً ملیں)"
-        else "Frequent Everyday Locations (Save 1–3 areas for instant hospital routing)",
+        text = if (isUr) "روزمرہ مقامات (پاکستان بھر سے 1 تا 3 مقامات محفوظ کریں)"
+        else "Pakistan Everyday Locations (Save 1–3 areas for instant clinic routing)",
         style = MaterialTheme.typography.titleMedium,
         color = c.ink,
     )
+
+    TibbSecondaryPillButton(
+        onClick = { showMapPicker = true },
+        enabled = places.size < 3,
+        contentPadding = PaddingValues(horizontal = 14.dp, vertical = 10.dp),
+        modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).testTag("onboard_open_map_btn"),
+    ) {
+        Icon(Icons.Rounded.Map, contentDescription = null, modifier = Modifier.size(18.dp))
+        Spacer(Modifier.width(8.dp))
+        Text(
+            text = if (isUr) "پاکستان آف لائن نقشے سے مقام منتخب کریں" else "Pick on Pakistan Offline Map (545+ Places)",
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
+    }
 
     Row(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -258,10 +276,10 @@ fun OnboardingStep4Places(
         TibbSecondaryPillButton(
             onClick = { customCityMode = !customCityMode },
             contentPadding = PaddingValues(horizontal = 10.dp, vertical = 8.dp),
-            modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp),
+            modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp).testTag("onboard_custom_city_toggle"),
         ) {
             Text(
-                text = if (customCityMode) "District List" else "+ Custom City",
+                text = if (customCityMode) "Search Places" else "+ Custom Town",
                 textAlign = TextAlign.Center,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
@@ -272,9 +290,9 @@ fun OnboardingStep4Places(
     OutlinedTextField(
         value = placeLabel,
         onValueChange = { placeLabel = it },
-        label = { Text("Label (e.g. Home, School, Office)") },
+        label = { Text(if (isUr) "لیبل (مثلاً گھر، اسکول، دفتر)" else "Label (e.g. Home, School, Office)") },
         singleLine = true,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().testTag("onboard_place_label_input"),
     )
 
     if (customCityMode) {
@@ -308,6 +326,7 @@ fun OnboardingStep4Places(
                 customDistrict = ""
                 customLandmark = ""
             },
+            modifier = Modifier.heightIn(min = 48.dp).testTag("onboard_save_custom_place_btn"),
         ) {
             Icon(Icons.Rounded.Add, contentDescription = null, modifier = Modifier.size(16.dp))
             Spacer(Modifier.width(4.dp))
@@ -317,19 +336,19 @@ fun OnboardingStep4Places(
         OutlinedTextField(
             value = searchQuery,
             onValueChange = { searchQuery = it },
-            label = { Text("Search Pakistan district or tehsil...") },
+            label = { Text(if (isUr) "پاکستان کا شہر، ضلع، قصبہ یا محلہ تلاش کریں..." else "Search city, district, town, sector or landmark...") },
             singleLine = true,
             modifier = Modifier.fillMaxWidth().testTag("onboard_district_search"),
         )
-        val filtered = remember(searchQuery, anchors) {
-            if (searchQuery.isBlank()) anchors.take(8)
-            else anchors.filter { it.label.contains(searchQuery, ignoreCase = true) }.take(8)
+        val filtered = remember(searchQuery) {
+            triageEngine.searchPakistanLocations(searchQuery).take(10)
         }
         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            filtered.forEach { anchor ->
+            filtered.forEach { loc ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .heightIn(min = 48.dp)
                         .clip(RoundedCornerShape(12.dp))
                         .background(c.surfaceMuted)
                         .clickable(enabled = places.size < 3) {
@@ -337,19 +356,32 @@ fun OnboardingStep4Places(
                                 FrequentPlace(
                                     id = "plc_${UUID.randomUUID().toString().take(8)}",
                                     label = placeLabel.ifBlank { "Home" },
-                                    district = anchor.district,
-                                    areaOrLandmark = anchor.tehsil,
-                                    lat = userGpsCoords?.lat ?: anchor.lat,
-                                    lng = userGpsCoords?.lng ?: anchor.lng,
+                                    district = loc.district,
+                                    areaOrLandmark = if (isUr) loc.nameUr else loc.nameEn,
+                                    province = loc.province.displayNameEn,
+                                    lat = loc.lat,
+                                    lng = loc.lng,
                                 )
                             )
                         }
-                        .padding(horizontal = 12.dp, vertical = 10.dp),
+                        .padding(horizontal = 12.dp, vertical = 10.dp)
+                        .testTag("onboard_pk_loc_${loc.id}"),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text(anchor.label, style = MaterialTheme.typography.bodyMedium, color = c.ink, modifier = Modifier.weight(1f))
-                    Icon(Icons.Rounded.Add, contentDescription = "Add ${anchor.label}", tint = c.accent, modifier = Modifier.size(18.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = if (isUr) loc.nameUr else loc.nameEn,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = c.ink,
+                        )
+                        Text(
+                            text = "${loc.district} · ${loc.province.shortCode} · ${if (isUr) loc.category.labelUr else loc.category.labelEn}",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = c.muted,
+                        )
+                    }
+                    Icon(Icons.Rounded.Add, contentDescription = "Add ${loc.nameEn}", tint = c.accent, modifier = Modifier.size(18.dp))
                 }
             }
         }
@@ -366,8 +398,15 @@ fun OnboardingStep4Places(
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text("${plc.label} · ${plc.district}", style = MaterialTheme.typography.titleMedium, color = c.ink)
-                        if (plc.areaOrLandmark.isNotBlank()) {
-                            Text(plc.areaOrLandmark, style = MaterialTheme.typography.bodySmall, color = c.muted)
+                        val sub = buildString {
+                            if (plc.areaOrLandmark.isNotBlank()) append(plc.areaOrLandmark)
+                            if (plc.province.isNotBlank()) {
+                                if (isNotEmpty()) append(" · ")
+                                append(plc.province)
+                            }
+                        }
+                        if (sub.isNotBlank()) {
+                            Text(sub, style = MaterialTheme.typography.bodySmall, color = c.muted)
                         }
                     }
                     IconButton(onClick = { places.remove(plc) }) {
@@ -376,5 +415,44 @@ fun OnboardingStep4Places(
                 }
             }
         }
+    }
+
+    if (showMapPicker) {
+        val initialSel = places.firstOrNull()?.let { p ->
+            if (p.lat != null && p.lng != null) {
+                SelectedLocationState(
+                    name = p.areaOrLandmark.ifBlank { p.district },
+                    district = p.district,
+                    province = p.province,
+                    lat = p.lat,
+                    lng = p.lng,
+                )
+            } else null
+        }
+        PakistanLocationPickerDialog(
+            locale = locale,
+            triageEngine = triageEngine,
+            initialSelection = initialSel,
+            userGpsCoords = userGpsCoords,
+            gpsLocating = gpsLocating,
+            onRequestGps = onRequestGps,
+            onConfirm = { picked ->
+                if (places.size < 3) {
+                    places.add(
+                        FrequentPlace(
+                            id = "plc_${UUID.randomUUID().toString().take(8)}",
+                            label = placeLabel.ifBlank { "Home" },
+                            district = picked.district,
+                            areaOrLandmark = picked.name,
+                            province = picked.province,
+                            lat = picked.lat,
+                            lng = picked.lng,
+                        )
+                    )
+                }
+                showMapPicker = false
+            },
+            onDismiss = { showMapPicker = false },
+        )
     }
 }

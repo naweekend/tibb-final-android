@@ -144,12 +144,55 @@ enum class WellnessGoal(val titleEn: String, val titleUr: String) {
     SENIOR_MOBILITY("Senior Gentle Mobility", "بزرگوں کی ہلکی ورزش"),
 }
 
+enum class PakistanProvince(val displayNameEn: String, val displayNameUr: String, val shortCode: String) {
+    PUNJAB("Punjab", "پنجاب", "PB"),
+    SINDH("Sindh", "سندھ", "SD"),
+    KHYBER_PAKHTUNKHWA("Khyber Pakhtunkhwa", "خیبر پختونخوا", "KP"),
+    BALOCHISTAN("Balochistan", "بلوچستان", "BL"),
+    ISLAMABAD("Islamabad Capital Territory", "وفاقی دارالحکومت اسلام آباد", "ICT"),
+    GILGIT_BALTISTAN("Gilgit-Baltistan", "گلگت بلتستان", "GB"),
+    AZAD_KASHMIR("Azad Jammu & Kashmir", "آزاد جموں و کشمیر", "AJK"),
+}
+
+enum class LocationCategory(val labelEn: String, val labelUr: String) {
+    MAJOR_CITY("Major City", "بڑا شہر"),
+    DISTRICT_HQ("District HQ", "ضلع ہیڈکوارٹر"),
+    TOWN("Town / Tehsil", "قصبہ / تحصیل"),
+    NEIGHBORHOOD("Neighborhood", "علاقہ / سیکٹر"),
+    LOCALITY("Locality", "محلہ / ٹاؤن"),
+    PUBLIC_AREA("Public Area", "عوامی مقام"),
+    LANDMARK("Landmark", "نمایاں مقام"),
+}
+
+@JsonClass(generateAdapter = true)
+data class PakistanLocationRecord(
+    val id: String,
+    val nameEn: String,
+    val nameUr: String,
+    val district: String,
+    val province: PakistanProvince,
+    val category: LocationCategory,
+    val lat: Double,
+    val lng: Double,
+)
+
+@JsonClass(generateAdapter = true)
+data class SelectedLocationState(
+    val name: String,
+    val district: String,
+    val province: String = "",
+    val lat: Double,
+    val lng: Double,
+    val isCustomPin: Boolean = false,
+)
+
 @JsonClass(generateAdapter = true)
 data class FrequentPlace(
     val id: String,
     val label: String,
     val district: String,
     val areaOrLandmark: String = "",
+    val province: String = "",
     val lat: Double? = null,
     val lng: Double? = null,
 )

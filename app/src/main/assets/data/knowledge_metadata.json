@@ -13,17 +13,17 @@
     "DRAP Pakistan Antimicrobial Stewardship Principles"
   ],
   "coveredDomainsEn": [
-    "Common everyday illnesses (viral cold, fever, mild dehydration, seasonal allergies)",
-    "Respiratory (bronchitis, pneumonia danger signs, asthma flare, sore throat)",
-    "Digestive (acute watery diarrhea, acid reflux/gastritis, gastroenteritis, acute abdomen red flags)",
-    "Skin & Allergies (contact dermatitis, mild hives, fungal skin infection, cellulitis, anaphylaxis)",
-    "Eye & Ear (viral/bacterial conjunctivitis, acute earache, vision-threatening red eye)",
-    "Musculoskeletal (muscle strain/sprain, mechanical low back pain, inflammatory joint pain)",
-    "Neurological (tension headache, migraine, stroke FAST warnings, seizures, severe head injury)",
-    "Cardiovascular (orthostatic dizziness, hypertensive warning, acute cardiac chest pain)",
-    "Infectious (suspected dengue warning evaluation, enteric fever warning, suspected TB cough >14d)",
-    "Injuries & Trauma (minor cuts/abrasions, minor thermal burns, severe burns, uncontrolled bleeding, animal bites)",
-    "Urinary & Chronic Conditions (uncomplicated UTI warning, kidney/flank infection alert, hypoglycemia, hyperglycemia)",
+    "Common everyday illnesses (viral cold, fever, mild dehydration, anemia, seasonal allergies)",
+    "Respiratory (sinusitis, tonsillitis, bronchitis, COPD flare, asthma flare, prolonged cough)",
+    "Digestive & Hepatic (watery diarrhea, dysentery, acid reflux, biliary colic, viral hepatitis/jaundice, acute abdomen)",
+    "Skin & Allergies (contact dermatitis, scabies, shingles, acne, fungal ringworm, cellulitis, food allergy, anaphylaxis)",
+    "Eye & Ear (conjunctivitis, eyelid stye, eye foreign body, earwax/swimmer's ear, acute earache, red eye emergency)",
+    "Musculoskeletal (sprain, low back pain, sciatica/nerve compression, gout flare, knee osteoarthritis)",
+    "Neurological (tension headache, migraine, vertigo, peripheral neuropathy, Bell's palsy vs stroke FAST, seizures)",
+    "Cardiovascular (orthostatic dizziness, exertional angina, palpitations, one-sided calf DVT alert, hypertensive warnings)",
+    "Infectious (dengue, malaria/enteric fever, measles, mumps, chickenpox, TB cough screening)",
+    "Injuries & Oral Care (cuts, burns, nosebleed, suspected fracture, dental abscess, animal/snake bites)",
+    "Urinary & Chronic Conditions (UTI, kidney infection/stone, hypoglycemia 15-15, hyperglycemia, heat exhaustion)",
     "Pediatrics, Older Adults & Pregnancy (infant <2m fever, croup/stridor, senior delirium/falls, preeclampsia/maternal bleeding)"
   ],
   "coveredDomainsUr": [
@@ -41,14 +41,14 @@
     "بچے، بزرگ اور حمل کی احتیاطی علامات"
   ],
   "limitationsEn": [
-    "NOT EXHAUSTIVE: This database covers 37 curated common and high-priority conditions across 16 categories. Many rare, complex, autoimmune, oncological, or specialist conditions are NOT included.",
+    "NOT EXHAUSTIVE: This database covers 63 curated common and high-priority conditions across 16 categories. Many rare, complex, autoimmune, oncological, or specialist conditions are NOT included.",
     "NOT A MEDICAL DIAGNOSIS: Rule-based symptom matching identifies possible explanations only. Multiple diseases can share identical symptoms.",
     "NO LAB OR IMAGING ANALYSIS: Offline symptom rules cannot replace blood tests, X-rays, ECGs, ultrasound, or physical examination by a doctor.",
     "CONSERVATIVE EMERGENCY PRIORITY: When danger signs are present, routine home guidance is intentionally suppressed so urgent hospital care is never delayed.",
     "NO PRESCRIPTIONS OR DOSAGES: Following DRAP safety principles, this system never recommends antibiotics, prescription medications, or milligram dosages."
   ],
   "limitationsUr": [
-    "مکمل فہرست نہیں: اس آف لائن نظام میں 16 شعبوں کی 37 اہم اور عام بیماریاں شامل ہیں۔ نایاب یا پیچیدہ بیماریاں اس میں شامل نہیں ہو سکتیں۔",
+    "مکمل فہرست نہیں: اس آف لائن نظام میں 16 شعبوں کی 63 اہم اور عام بیماریاں شامل ہیں۔ نایاب یا پیچیدہ بیماریاں اس میں شامل نہیں ہو سکتیں۔",
     "حتمی تشخیص نہیں: علامات کی جانچ صرف ممکنہ وجوہات بتاتی ہے۔ مختلف بیماریوں کی علامات ایک جیسی ہو سکتی ہیں۔",
     "ٹیسٹ کا متبادل نہیں: یہ نظام خون کے ٹیسٹ، ایکسرے یا ڈاکٹر کے جسمانی معائنے کی جگہ نہیں لے سکتا۔",
     "ایمرجنسی کو اولین ترجیح: خطرناک علامت ظاہر ہونے پر گھریلو مشورے روک دیے جاتے ہیں تاکہ فوری ہسپتال جانے میں تاخیر نہ ہو۔",

@@ -36,6 +36,7 @@ import androidx.compose.material.icons.rounded.Emergency
 import androidx.compose.material.icons.rounded.Healing
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.LocalHospital
+import androidx.compose.material.icons.rounded.Map
 import androidx.compose.material.icons.rounded.MedicalServices
 import androidx.compose.material.icons.rounded.MyLocation
 import androidx.compose.material.icons.rounded.QrCode2
@@ -73,12 +74,14 @@ import com.example.data.model.GeoCoords
 import com.example.data.model.MatchedConditionResult
 import com.example.data.model.MedicalGuidanceAssessment
 import com.example.data.model.PatientProfile
+import com.example.data.model.SelectedLocationState
 import com.example.data.model.TriageTier
 import com.example.engine.AudioFeedbackManager
 import com.example.engine.HelpTopic
 import com.example.engine.TriageEngine
 import com.example.engine.TrilingualStrings
 import com.example.ui.components.OfflineUrgencyClassificationsCard
+import com.example.ui.components.PakistanLocationPickerDialog
 import com.example.ui.components.QrBitmapImage
 import com.example.ui.components.SectionHelpButton
 import com.example.ui.components.StabilizationTimers
@@ -100,8 +103,10 @@ fun MedicalGuidanceResultView(
     triageEngine: TriageEngine,
     audioManager: AudioFeedbackManager,
     userGpsCoords: GeoCoords?,
+    selectedLocation: SelectedLocationState?,
     gpsLocating: Boolean,
     onRequestGps: () -> Unit,
+    onConfirmLocation: (SelectedLocationState) -> Unit,
     onOpenDialer: (String) -> Unit,
     onShowToast: (String) -> Unit,
     onChangeSelections: () -> Unit,
@@ -117,14 +122,17 @@ fun MedicalGuidanceResultView(
     BackHandler { onChangeSelections() }
 
     var expandedPanel by remember { mutableStateOf<String?>(null) }
+    var showMapPicker by remember { mutableStateOf(false) }
 
-    var selectedDistrict by remember(patient.id) {
-        mutableStateOf(patient.frequentPlaces.firstOrNull()?.district.orEmpty())
+    var selectedDistrict by remember(patient.id, selectedLocation) {
+        mutableStateOf(selectedLocation?.district ?: patient.frequentPlaces.firstOrNull()?.district.orEmpty())
     }
-    var activeCoords by remember(patient.id, userGpsCoords) {
+    var activeCoords by remember(patient.id, userGpsCoords, selectedLocation) {
         val plc = patient.frequentPlaces.firstOrNull()
         mutableStateOf(
-            userGpsCoords ?: if (plc?.lat != null && plc.lng != null) GeoCoords(plc.lat, plc.lng) else null
+            userGpsCoords
+                ?: selectedLocation?.let { GeoCoords(it.lat, it.lng) }
+                ?: if (plc?.lat != null && plc.lng != null) GeoCoords(plc.lat, plc.lng) else null
         )
     }
     var districtOpen by remember { mutableStateOf(false) }
@@ -481,7 +489,11 @@ fun MedicalGuidanceResultView(
         // Nearest Public Hospitals & BHUs
         TibbExpandableSection(
             title = s.nearestFacilitiesTitle,
-            summary = selectedDistrict.ifBlank { if (isUr) "قریبی ہسپتال تلاش کریں" else "Tap to locate nearest hospitals & BHUs" },
+            summary = when {
+                selectedLocation != null -> "${selectedLocation.name} · ${selectedLocation.district}"
+                selectedDistrict.isNotBlank() -> selectedDistrict
+                else -> if (isUr) "پاکستان کا نقشہ یا قریبی ہسپتال منتخب کریں" else "Tap to pick Pakistan map location & BHUs"
+            },
             icon = Icons.Rounded.LocalHospital,
             accentColor = Color(0xFF8FD0A0),
             containerColor = c.espressoBottom,
@@ -501,6 +513,27 @@ fun MedicalGuidanceResultView(
             ) {
                 Box(
                     modifier = Modifier
+                        .heightIn(min = 42.dp)
+                        .clip(RoundedCornerShape(999.dp))
+                        .background(Color(0xFF8FD0A0))
+                        .clickable { showMapPicker = true }
+                        .padding(horizontal = 12.dp, vertical = 8.dp)
+                        .testTag("result_open_map_picker"),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+                        Icon(Icons.Rounded.Map, contentDescription = "Open Pakistan Map", tint = Color(0xFF10241E), modifier = Modifier.size(15.dp))
+                        Text(
+                            text = if (isUr) "پاکستان نقشہ (545+)" else "Pakistan Map (545+)",
+                            style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                            color = Color(0xFF10241E),
+                        )
+                    }
+                }
+
+                Box(
+                    modifier = Modifier
+                        .heightIn(min = 42.dp)
                         .clip(RoundedCornerShape(999.dp))
                         .background(Color.White.copy(alpha = 0.14f))
                         .clickable {
@@ -509,7 +542,8 @@ fun MedicalGuidanceResultView(
                             if (fine || coarse) onRequestGps()
                             else locPermLauncher.launch(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION))
                         }
-                        .padding(horizontal = 12.dp, vertical = 7.dp),
+                        .padding(horizontal = 12.dp, vertical = 8.dp),
+                    contentAlignment = Alignment.Center,
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                         Icon(Icons.Rounded.MyLocation, contentDescription = null, tint = Color(0xFF8FD0A0), modifier = Modifier.size(14.dp))
@@ -520,10 +554,12 @@ fun MedicalGuidanceResultView(
                 Box {
                     Box(
                         modifier = Modifier
+                            .heightIn(min = 42.dp)
                             .clip(RoundedCornerShape(999.dp))
                             .background(Color.White.copy(alpha = 0.14f))
                             .clickable { districtOpen = true }
-                            .padding(horizontal = 12.dp, vertical = 7.dp),
+                            .padding(horizontal = 12.dp, vertical = 8.dp),
+                        contentAlignment = Alignment.Center,
                     ) {
                         Text(selectedDistrict.ifBlank { s.allDistrictsOption }, style = MaterialTheme.typography.labelSmall, color = Color(0xFFF3F0E6))
                     }
@@ -598,6 +634,24 @@ fun MedicalGuidanceResultView(
             }
         }
         Spacer(Modifier.height(12.dp))
+    }
+
+    if (showMapPicker) {
+        PakistanLocationPickerDialog(
+            locale = locale,
+            triageEngine = triageEngine,
+            initialSelection = selectedLocation,
+            userGpsCoords = userGpsCoords,
+            gpsLocating = gpsLocating,
+            onRequestGps = onRequestGps,
+            onConfirm = { picked ->
+                selectedDistrict = picked.district
+                activeCoords = GeoCoords(picked.lat, picked.lng)
+                onConfirmLocation(picked)
+                showMapPicker = false
+            },
+            onDismiss = { showMapPicker = false },
+        )
     }
 }
 

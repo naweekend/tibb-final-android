@@ -35,6 +35,7 @@ import androidx.compose.material.icons.rounded.CheckBox
 import androidx.compose.material.icons.rounded.CheckBoxOutlineBlank
 import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.ChildCare
+import androidx.compose.material.icons.rounded.Clear
 import androidx.compose.material.icons.rounded.Elderly
 import androidx.compose.material.icons.rounded.Emergency
 import androidx.compose.material.icons.rounded.Favorite
@@ -46,11 +47,13 @@ import androidx.compose.material.icons.rounded.PregnantWoman
 import androidx.compose.material.icons.rounded.Psychology
 import androidx.compose.material.icons.rounded.RadioButtonChecked
 import androidx.compose.material.icons.rounded.RadioButtonUnchecked
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material.icons.rounded.Thermostat
 import androidx.compose.material.icons.rounded.Visibility
 import androidx.compose.material.icons.rounded.Warning
 import androidx.compose.material.icons.rounded.WaterDrop
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -77,6 +80,7 @@ import com.example.data.model.EpisodeVitals
 import com.example.data.model.GeoCoords
 import com.example.data.model.MedicalGuidanceAssessment
 import com.example.data.model.PatientProfile
+import com.example.data.model.SelectedLocationState
 import com.example.data.model.StructuredAssessmentInput
 import com.example.data.model.SymptomCategoryNode
 import com.example.engine.AudioFeedbackManager
@@ -106,11 +110,13 @@ fun CheckupAndChatScreen(
     triageEngine: TriageEngine,
     audioManager: AudioFeedbackManager,
     userGpsCoords: GeoCoords?,
+    selectedLocation: SelectedLocationState?,
     gpsLocating: Boolean,
     onSetSubMode: (Int) -> Unit,
     onCompleteStructuredAssessment: (StructuredAssessmentInput, MedicalGuidanceAssessment) -> Unit,
     onClearGuidanceAssessment: () -> Unit,
     onRequestGps: () -> Unit,
+    onConfirmLocation: (SelectedLocationState) -> Unit,
     onOpenDialer: (String) -> Unit,
     onShowToast: (String) -> Unit,
     onOpenWellnessCoach: () -> Unit = {},
@@ -132,6 +138,7 @@ fun CheckupAndChatScreen(
     }
 
     var step by remember(activePerson.id) { mutableIntStateOf(1) }
+    var conditionQuery by remember(activePerson.id) { mutableStateOf("") }
     var selectedCategoryId by remember(activePerson.id) { mutableStateOf<String?>(null) }
     var selectedSymptomIds by remember(activePerson.id) { mutableStateOf<Set<String>>(emptySet()) }
     var selectedOptionsByQ by remember(activePerson.id) { mutableStateOf<Map<String, Set<String>>>(emptyMap()) }
@@ -143,6 +150,7 @@ fun CheckupAndChatScreen(
 
     fun resetWizard() {
         step = 1
+        conditionQuery = ""
         selectedCategoryId = null
         selectedSymptomIds = emptySet()
         selectedOptionsByQ = emptyMap()
@@ -168,8 +176,8 @@ fun CheckupAndChatScreen(
             selectedSymptomIds = selectedSymptomIds,
             selectedOptionIdsByQuestion = selectedOptionsByQ,
             vitals = vitals,
-            district = activePerson.frequentPlaces.firstOrNull()?.district,
-            userCoords = userGpsCoords,
+            district = selectedLocation?.district ?: activePerson.frequentPlaces.firstOrNull()?.district,
+            userCoords = userGpsCoords ?: selectedLocation?.let { GeoCoords(it.lat, it.lng) },
             directEmergencyCategory = directEmergency,
         )
     }
@@ -214,8 +222,10 @@ fun CheckupAndChatScreen(
                 triageEngine = triageEngine,
                 audioManager = audioManager,
                 userGpsCoords = userGpsCoords,
+                selectedLocation = selectedLocation,
                 gpsLocating = gpsLocating,
                 onRequestGps = onRequestGps,
+                onConfirmLocation = onConfirmLocation,
                 onOpenDialer = onOpenDialer,
                 onShowToast = onShowToast,
                 onChangeSelections = { onClearGuidanceAssessment() },
@@ -317,6 +327,87 @@ fun CheckupAndChatScreen(
                     headerTestTag = "checker_urgency_legend_expand",
                 ) {
                     OfflineUrgencyClassificationsCard(locale = locale)
+                }
+
+                val totalCondCount = remember { guidanceEngine.getAllConditions().size }
+                OutlinedTextField(
+                    value = conditionQuery,
+                    onValueChange = { conditionQuery = it },
+                    leadingIcon = { Icon(Icons.Rounded.Search, contentDescription = null) },
+                    trailingIcon = {
+                        if (conditionQuery.isNotEmpty()) {
+                            IconButton(onClick = { conditionQuery = "" }) {
+                                Icon(Icons.Rounded.Clear, contentDescription = "Clear search")
+                            }
+                        }
+                    },
+                    placeholder = {
+                        Text(
+                            text = if (isUr) "$totalCondCount امراض یا علامات تلاش کریں (مثلاً ڈینگی، خارش، کھانسی)" else "Quick search $totalCondCount+ conditions or symptoms (e.g. gout, scabies, sinus)...",
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
+                    },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth().testTag("checker_quick_search"),
+                )
+
+                if (conditionQuery.trim().length >= 2) {
+                    val allowedCatIds = remember(categories) { categories.map { it.id }.toSet() }
+                    val quickMatches = remember(conditionQuery, allowedCatIds) {
+                        guidanceEngine.searchConditions(conditionQuery)
+                            .filter { it.categoryId in allowedCatIds }
+                            .take(8)
+                    }
+                    if (quickMatches.isNotEmpty()) {
+                        Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                            Text(
+                                text = if (isUr) "براہِ راست متعلقہ کیفیات (${quickMatches.size})" else "Matching Conditions — tap to start checkup",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = c.accent,
+                            )
+                            quickMatches.forEach { cond ->
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .heightIn(min = 48.dp)
+                                        .clip(RoundedCornerShape(14.dp))
+                                        .background(c.surfaceElevated)
+                                        .border(1.dp, c.accent.copy(alpha = 0.35f), RoundedCornerShape(14.dp))
+                                        .clickable {
+                                            selectedCategoryId = cond.categoryId
+                                            selectedSymptomIds = guidanceEngine.getStarterSymptomsForCondition(cond)
+                                            selectedOptionsByQ = emptyMap()
+                                            step = 2
+                                        }
+                                        .padding(horizontal = 12.dp, vertical = 10.dp)
+                                        .testTag("checker_quick_cond_${cond.id}"),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically,
+                                ) {
+                                    Column(modifier = Modifier.weight(1f)) {
+                                        Text(
+                                            text = if (isUr) cond.nameUr else cond.nameEn,
+                                            style = MaterialTheme.typography.labelLarge,
+                                            color = c.ink,
+                                        )
+                                        Text(
+                                            text = if (isUr) cond.subcategoryUr.ifBlank { cond.categoryLabelUr } else cond.subcategoryEn.ifBlank { cond.categoryLabelEn },
+                                            style = MaterialTheme.typography.bodySmall,
+                                            color = c.muted,
+                                        )
+                                    }
+                                    Icon(Icons.AutoMirrored.Rounded.ArrowForward, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
+                                }
+                            }
+                        }
+                    } else {
+                        Text(
+                            text = if (isUr) "کوئی براہِ راست نتیجہ نہیں ملا — نیچے سے شعبہ منتخب کریں۔" else "No direct condition match — select a body category below.",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = c.muted,
+                        )
+                    }
                 }
 
                 Text(

@@ -157,6 +157,8 @@ data class MedicalConditionEntry(
     val categoryId: String,
     val categoryLabelEn: String,
     val categoryLabelUr: String,
+    val subcategoryEn: String = "",
+    val subcategoryUr: String = "",
     val shortDescriptionEn: String,
     val shortDescriptionUr: String,
     val commonSymptomsEn: List<String>,
