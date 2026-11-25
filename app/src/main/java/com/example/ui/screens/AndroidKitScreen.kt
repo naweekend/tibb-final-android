@@ -11,11 +11,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -23,8 +27,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Backup
 import androidx.compose.material.icons.rounded.DeleteForever
 import androidx.compose.material.icons.rounded.Download
+import androidx.compose.material.icons.rounded.History
 import androidx.compose.material.icons.rounded.Memory
 import androidx.compose.material.icons.rounded.Security
 import androidx.compose.material.icons.rounded.UploadFile
@@ -48,6 +54,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.data.model.AppLocale
 import com.example.data.model.AuditLogEntry
@@ -56,6 +64,7 @@ import com.example.engine.TrilingualStrings
 import com.example.ui.components.SectionHelpButton
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
+import com.example.ui.theme.TibbExpandableSection
 import com.example.ui.theme.TibbGlassCard
 import com.example.ui.theme.TibbPrimaryPillButton
 import com.example.ui.theme.TibbSecondaryPillButton
@@ -81,9 +90,11 @@ fun AndroidKitScreen(
     val context = LocalContext.current
     val c = LocalTibbColors.current
     val s = TrilingualStrings.get(locale)
+    val isUr = locale == AppLocale.UR
 
     BackHandler { onBackHome() }
 
+    var openSection by remember { mutableStateOf<String?>(null) }
     var runtimeMode by remember { mutableStateOf(RuntimeProfileMode.IDLE) }
     var passphrase by remember { mutableStateOf("") }
     var loadedBackupJson by remember { mutableStateOf<String?>(null) }
@@ -111,14 +122,15 @@ fun AndroidKitScreen(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+            .padding(horizontal = 16.dp, vertical = 10.dp),
+        verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
-        TibbGlassCard(padding = 16.dp) {
+        // Security Hero Card
+        TibbGlassCard(padding = 16.dp, backgroundColor = c.surfaceElevated) {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.weight(1f)) {
@@ -131,129 +143,140 @@ fun AndroidKitScreen(
             }
         }
 
-        // On-Device Memory Guard (<1024 MB)
-        TibbGlassCard(padding = 16.dp) {
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.weight(1f)) {
-                        Icon(Icons.Rounded.Memory, contentDescription = null, tint = c.accent)
-                        Text(s.kitMemoryTitle, style = MaterialTheme.typography.titleMedium, color = c.ink)
-                    }
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        Text("${runtimeMode.ramMb} / 1024 MB", style = TabularNumberStyle.copy(fontWeight = FontWeight.Bold), color = c.safeGreen)
-                        SectionHelpButton(topic = HelpTopic.ANDROID_KIT, locale = locale)
+        // Accordion 1: On-Device Memory Guard (collapsed by default)
+        TibbExpandableSection(
+            title = s.kitMemoryTitle,
+            summary = "${runtimeMode.ramMb} / 1024 MB · ${runtimeMode.label}",
+            icon = Icons.Rounded.Memory,
+            expanded = openSection == "memory",
+            onExpandedChange = { openSection = if (it) "memory" else null },
+            headerTestTag = "kit_memory_expand",
+        ) {
+            Text(
+                text = "${runtimeMode.ramMb} / 1024 MB",
+                style = TabularNumberStyle.copy(fontWeight = FontWeight.Bold),
+                color = if (runtimeMode.ramMb > 850) c.amber else c.safeGreen,
+            )
+            LinearProgressIndicator(
+                progress = { (runtimeMode.ramMb / 1024f).coerceIn(0f, 1f) },
+                modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(999.dp)),
+                color = if (runtimeMode.ramMb > 850) c.amber else c.safeGreen,
+                trackColor = c.surfaceMuted,
+            )
+            Text(runtimeMode.detail, style = MaterialTheme.typography.bodySmall, color = c.muted)
+
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                RuntimeProfileMode.entries.forEach { m ->
+                    val sel = runtimeMode == m
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(999.dp))
+                            .background(if (sel) c.accentSoft else c.surfaceMuted)
+                            .border(1.dp, if (sel) c.accent else c.border, RoundedCornerShape(999.dp))
+                            .clickable { runtimeMode = m }
+                            .padding(horizontal = 10.dp, vertical = 7.dp),
+                    ) {
+                        Text(m.label, style = MaterialTheme.typography.labelSmall, color = if (sel) c.accent else c.ink)
                     }
                 }
+            }
+        }
 
-                LinearProgressIndicator(
-                    progress = { (runtimeMode.ramMb / 1024f).coerceIn(0f, 1f) },
-                    modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(999.dp)),
-                    color = if (runtimeMode.ramMb > 850) c.amber else c.safeGreen,
-                    trackColor = c.surfaceMuted,
-                )
-                Text(runtimeMode.detail, style = MaterialTheme.typography.bodySmall, color = c.muted)
+        // Accordion 2: Encrypted Backup, Restore & Wipe (collapsed by default)
+        TibbExpandableSection(
+            title = s.kitBackupTitle,
+            summary = if (isUr) "AES-GCM خفیہ بیک اپ، بحالی اور والٹ ڈیلیٹ" else "Export, restore, or permanently wipe local vault",
+            icon = Icons.Rounded.Backup,
+            expanded = openSection == "backup",
+            onExpandedChange = { openSection = if (it) "backup" else null },
+            headerTestTag = "kit_backup_expand",
+        ) {
+            OutlinedTextField(
+                value = passphrase,
+                onValueChange = { passphrase = it },
+                label = { Text("Backup Encryption Passphrase (min 6 chars)") },
+                visualTransformation = PasswordVisualTransformation(),
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth().testTag("kit_backup_passphrase"),
+            )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+            ) {
+                TibbPrimaryPillButton(
+                    enabled = passphrase.length >= 6,
+                    onClick = { onExportBackup(passphrase) },
+                    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 10.dp),
+                    modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp).testTag("kit_export_backup_btn"),
+                ) {
+                    Icon(Icons.Rounded.Download, contentDescription = null, modifier = Modifier.size(16.dp))
+                    Spacer(Modifier.width(4.dp))
+                    Text(s.kitExportBtn, style = MaterialTheme.typography.labelSmall, textAlign = TextAlign.Center, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                }
+                TibbSecondaryPillButton(
+                    onClick = { backupPicker.launch(arrayOf("*/*")) },
+                    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 10.dp),
+                    modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp).testTag("kit_load_backup_btn"),
+                ) {
+                    Icon(Icons.Rounded.UploadFile, contentDescription = null, modifier = Modifier.size(16.dp))
+                    Spacer(Modifier.width(4.dp))
+                    Text(s.kitLoadBtn, style = MaterialTheme.typography.labelSmall, textAlign = TextAlign.Center, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                }
+            }
+            if (loadedBackupJson != null) {
+                TibbPrimaryPillButton(
+                    enabled = passphrase.length >= 6,
+                    onClick = {
+                        loadedBackupJson?.let { onRestoreBackup(it, passphrase) }
+                    },
+                    modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).testTag("kit_restore_backup_btn"),
+                ) {
+                    Text(s.kitRestoreBtn, textAlign = TextAlign.Center, maxLines = 2)
+                }
+            }
 
-                FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                    RuntimeProfileMode.entries.forEach { m ->
-                        val sel = runtimeMode == m
-                        Box(
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(999.dp))
-                                .background(if (sel) c.ctaBg else c.surfaceMuted)
-                                .clickable { runtimeMode = m }
-                                .padding(horizontal = 10.dp, vertical = 7.dp),
+            TibbPrimaryPillButton(
+                onClick = { showWipeConfirm = true },
+                containerColor = c.dangerRed,
+                contentColor = Color.White,
+                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).testTag("kit_wipe_data_btn"),
+            ) {
+                Icon(Icons.Rounded.DeleteForever, contentDescription = null, modifier = Modifier.size(18.dp))
+                Spacer(Modifier.width(6.dp))
+                Text(s.kitWipeBtn, textAlign = TextAlign.Center, maxLines = 2)
+            }
+        }
+
+        // Accordion 3: Local Vault Audit Trail (collapsed by default)
+        TibbExpandableSection(
+            title = "Local Vault Audit Trail (${auditLogs.size})",
+            summary = auditLogs.firstOrNull()?.let { "${it.action} · ${it.timestampIso.take(10)}" } ?: "On-device security events",
+            icon = Icons.Rounded.History,
+            expanded = openSection == "audit",
+            onExpandedChange = { openSection = if (it) "audit" else null },
+            headerTestTag = "kit_audit_expand",
+        ) {
+            if (auditLogs.isEmpty()) {
+                Text("No audit entries yet.", style = MaterialTheme.typography.bodySmall, color = c.muted)
+            } else {
+                auditLogs.take(15).forEach { entry ->
+                    TibbGlassCard(padding = 12.dp, backgroundColor = c.surfaceMuted) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            Text(m.label, style = MaterialTheme.typography.labelSmall, color = if (sel) c.ctaInk else c.ink)
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(entry.action, style = MaterialTheme.typography.labelLarge, color = c.accent)
+                                Text(entry.detail, style = MaterialTheme.typography.bodySmall, color = c.ink)
+                            }
+                            Text(entry.timestampIso.take(10), style = TabularNumberStyle, color = c.muted)
                         }
                     }
                 }
             }
         }
 
-        // Encrypted .tibb-backup Export & Restore
-        TibbGlassCard(padding = 16.dp) {
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(s.kitBackupTitle, style = MaterialTheme.typography.titleMedium, color = c.ink, modifier = Modifier.weight(1f))
-                    SectionHelpButton(topic = HelpTopic.ANDROID_KIT, locale = locale)
-                }
-                OutlinedTextField(
-                    value = passphrase,
-                    onValueChange = { passphrase = it },
-                    label = { Text("Backup Encryption Passphrase (min 6 chars)") },
-                    visualTransformation = PasswordVisualTransformation(),
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth().testTag("kit_backup_passphrase"),
-                )
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
-                    TibbPrimaryPillButton(
-                        enabled = passphrase.length >= 6,
-                        onClick = { onExportBackup(passphrase) },
-                        modifier = Modifier.weight(1f).testTag("kit_export_backup_btn"),
-                    ) {
-                        Icon(Icons.Rounded.Download, contentDescription = null, modifier = Modifier.size(16.dp))
-                        Spacer(Modifier.width(4.dp))
-                        Text(s.kitExportBtn, style = MaterialTheme.typography.labelSmall)
-                    }
-                    TibbSecondaryPillButton(
-                        onClick = { backupPicker.launch(arrayOf("*/*")) },
-                        modifier = Modifier.weight(1f).testTag("kit_load_backup_btn"),
-                    ) {
-                        Icon(Icons.Rounded.UploadFile, contentDescription = null, modifier = Modifier.size(16.dp))
-                        Spacer(Modifier.width(4.dp))
-                        Text(s.kitLoadBtn, style = MaterialTheme.typography.labelSmall)
-                    }
-                }
-                if (loadedBackupJson != null) {
-                    TibbPrimaryPillButton(
-                        enabled = passphrase.length >= 6,
-                        onClick = {
-                            loadedBackupJson?.let { onRestoreBackup(it, passphrase) }
-                        },
-                        modifier = Modifier.fillMaxWidth().testTag("kit_restore_backup_btn"),
-                    ) {
-                        Text(s.kitRestoreBtn)
-                    }
-                }
-
-                TibbPrimaryPillButton(
-                    onClick = { showWipeConfirm = true },
-                    containerColor = c.dangerRed,
-                    contentColor = Color.White,
-                    modifier = Modifier.fillMaxWidth().testTag("kit_wipe_data_btn"),
-                ) {
-                    Icon(Icons.Rounded.DeleteForever, contentDescription = null, modifier = Modifier.size(18.dp))
-                    Spacer(Modifier.width(6.dp))
-                    Text(s.kitWipeBtn)
-                }
-            }
-        }
-
-        // Security Audit Log
-        Text("Local Vault Audit Trail (${auditLogs.size})", style = MaterialTheme.typography.titleMedium, color = c.ink)
-        auditLogs.take(15).forEach { entry ->
-            TibbGlassCard(padding = 12.dp) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Column(modifier = Modifier.weight(1f)) {
-                        Text(entry.action, style = MaterialTheme.typography.labelLarge, color = c.accent)
-                        Text(entry.detail, style = MaterialTheme.typography.bodySmall, color = c.ink)
-                    }
-                    Text(entry.timestampIso.take(10), style = TabularNumberStyle, color = c.muted)
-                }
-            }
-        }
         Spacer(Modifier.height(14.dp))
     }
 

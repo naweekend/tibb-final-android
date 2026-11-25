@@ -13,11 +13,17 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -39,6 +45,7 @@ import androidx.compose.material.icons.rounded.LocalHospital
 import androidx.compose.material.icons.rounded.MedicalServices
 import androidx.compose.material.icons.rounded.MyLocation
 import androidx.compose.material.icons.rounded.Notifications
+import androidx.compose.material.icons.rounded.People
 import androidx.compose.material.icons.rounded.Sensors
 import androidx.compose.material.icons.rounded.WaterDrop
 import androidx.compose.material3.AlertDialog
@@ -66,6 +73,8 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.example.data.model.AppLocale
@@ -84,7 +93,7 @@ import com.example.engine.TrilingualStrings
 import com.example.ui.components.SectionHelpButton
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
-import com.example.ui.theme.TibbEspressoCard
+import com.example.ui.theme.TibbExpandableSection
 import com.example.ui.theme.TibbGlassCard
 import com.example.ui.theme.TibbMistCard
 import com.example.ui.theme.TibbPrimaryPillButton
@@ -96,6 +105,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun HomeHubDashboardScreen(
     locale: AppLocale,
@@ -172,6 +182,7 @@ fun HomeHubDashboardScreen(
     }
 
     var insightTab by remember { mutableIntStateOf(0) } // 0 = Reminders, 1 = Recommended
+    var expandedSection by remember { mutableStateOf<String?>(null) } // Accordion: all collapsed by default
     var showCheckInDialog by remember { mutableStateOf(false) }
     var showBellDialog by remember { mutableStateOf(false) }
     var showScoreBreakdown by remember { mutableStateOf(false) }
@@ -227,7 +238,7 @@ fun HomeHubDashboardScreen(
             .padding(horizontal = 16.dp, vertical = 8.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
-        // Greeting Header + Avatar + BMI Badge + Bell
+        // 1. Calm Greeting & Readiness Pill
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -235,85 +246,73 @@ fun HomeHubDashboardScreen(
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
                 modifier = Modifier.weight(1f),
             ) {
                 Box(
                     modifier = Modifier
-                        .size(46.dp)
+                        .size(42.dp)
                         .clip(CircleShape)
-                        .background(c.accent.copy(alpha = 0.25f))
-                        .border(1.dp, c.accent, CircleShape),
+                        .background(c.accentSoft)
+                        .border(1.dp, c.accent.copy(alpha = 0.5f), CircleShape),
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
                         text = activePerson.name.trim().take(2).uppercase(),
-                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                        color = c.ink,
+                        style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
+                        color = c.accent,
                     )
                 }
-                Column {
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                     Text(
                         text = if (isUr) "السلام علیکم، ${activePerson.name}" else "Assalam-o-Alaikum, ${activePerson.name}",
                         style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
                         color = c.ink,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
                     )
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(6.dp),
-                    ) {
-                        if (bmiCheck.bmi != null) {
-                            Box(
-                                modifier = Modifier
-                                    .clip(RoundedCornerShape(999.dp))
-                                    .background(c.accentSoft)
-                                    .padding(horizontal = 8.dp, vertical = 2.dp),
-                            ) {
-                                Text(
-                                    text = "BMI ${bmiCheck.bmi} · ${bmiCheck.category}",
-                                    style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.labelSmall.fontSize),
-                                    color = c.accent,
-                                )
-                            }
-                        }
-                        Text(
-                            text = HealthMath.formatWeightDisplay(activePerson.weightKg, unitSystem),
-                            style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.labelSmall.fontSize),
-                            color = c.muted,
-                        )
-                    }
+                    Text(
+                        text = buildString {
+                            bmiCheck.bmi?.let { append("BMI $it (${bmiCheck.category}) · ") }
+                            append(HealthMath.formatWeightDisplay(activePerson.weightKg, unitSystem))
+                        },
+                        style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.bodySmall.fontSize),
+                        color = c.muted,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
                 }
             }
 
-            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
                 IconButton(
                     onClick = onEditPerson,
                     modifier = Modifier
-                        .size(44.dp)
+                        .size(40.dp)
                         .clip(CircleShape)
                         .background(c.surface)
                         .border(1.dp, c.border, CircleShape)
                         .testTag("home_edit_person_btn"),
                 ) {
-                    Icon(Icons.Rounded.Edit, contentDescription = s.editProfileBtn, tint = c.ink, modifier = Modifier.size(18.dp))
+                    Icon(Icons.Rounded.Edit, contentDescription = s.editProfileBtn, tint = c.muted, modifier = Modifier.size(18.dp))
                 }
                 Box {
                     IconButton(
                         onClick = { showBellDialog = true },
                         modifier = Modifier
-                            .size(44.dp)
+                            .size(40.dp)
                             .clip(CircleShape)
                             .background(c.surface)
                             .border(1.dp, c.border, CircleShape)
                             .testTag("home_bell_btn"),
                     ) {
-                        Icon(Icons.Rounded.Notifications, contentDescription = "Due Reminders", tint = c.ink, modifier = Modifier.size(20.dp))
+                        Icon(Icons.Rounded.Notifications, contentDescription = "Due Reminders", tint = c.ink, modifier = Modifier.size(19.dp))
                     }
                     if (dueTodayAlarms.isNotEmpty()) {
                         Box(
                             modifier = Modifier
                                 .align(Alignment.TopEnd)
-                                .size(18.dp)
+                                .size(17.dp)
                                 .clip(CircleShape)
                                 .background(c.dangerRed),
                             contentAlignment = Alignment.Center,
@@ -325,469 +324,553 @@ fun HomeHubDashboardScreen(
             }
         }
 
-        // Daily Insights Hero & Readiness Pill
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp),
-            ) {
-                Text(
-                    text = if (isUr) "آج کے صحت اشارے" else "Daily Insights",
-                    style = if (isUr) urduTextStyle(MaterialTheme.typography.headlineMedium) else MaterialTheme.typography.headlineMedium,
-                    color = c.ink,
-                )
-                SectionHelpButton(topic = HelpTopic.DAILY_INSIGHTS_SCORE, locale = locale)
-            }
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(999.dp))
-                    .background(c.surface)
-                    .border(1.dp, c.accent.copy(alpha = 0.45f), RoundedCornerShape(999.dp))
-                    .clickable { showScoreBreakdown = true }
-                    .padding(horizontal = 12.dp, vertical = 7.dp)
-                    .testTag("home_readiness_pill"),
-            ) {
-                Text(
-                    text = "Score ${readiness.score}%",
-                    style = TabularNumberStyle.copy(fontWeight = FontWeight.Bold),
-                    color = c.accent,
-                )
-            }
-        }
-
-        // [Reminders | Recommended] Switcher
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(999.dp))
-                .background(c.surface)
-                .border(1.dp, c.border, RoundedCornerShape(999.dp))
-                .padding(4.dp),
-            horizontalArrangement = Arrangement.spacedBy(4.dp),
-        ) {
-            listOf(
-                0 to (if (isUr) "یاد دہانیاں (${dueTodayAlarms.size})" else "Reminders (${dueTodayAlarms.size})"),
-                1 to (if (isUr) "تجویز کردہ" else "Recommended"),
-            ).forEach { (idx, label) ->
-                val sel = insightTab == idx
-                Box(
-                    modifier = Modifier
-                        .weight(1f)
-                        .clip(RoundedCornerShape(999.dp))
-                        .background(if (sel) c.ctaBg else Color.Transparent)
-                        .clickable { insightTab = idx }
-                        .padding(vertical = 9.dp)
-                        .testTag(if (idx == 0) "home_tab_reminders" else "home_tab_recommended"),
-                    contentAlignment = Alignment.Center,
+        // 2. Primary Hero Card (Combines Daily Score + Priority Next Action)
+        TibbMistCard(padding = 18.dp) {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text(label, style = MaterialTheme.typography.labelLarge, color = if (sel) c.ctaInk else c.ink)
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp),
+                        modifier = Modifier.weight(1f),
+                    ) {
+                        Text(
+                            text = if (isUr) "آج کے صحت اشارے" else "Today's Focus",
+                            style = if (isUr) urduTextStyle(MaterialTheme.typography.titleMedium) else MaterialTheme.typography.titleMedium,
+                            color = c.mistInk,
+                            modifier = Modifier.weight(1f, fill = false),
+                        )
+                        SectionHelpButton(topic = HelpTopic.DAILY_INSIGHTS_SCORE, locale = locale, onMistSurface = true)
+                    }
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(999.dp))
+                            .background(c.mistInk.copy(alpha = 0.12f))
+                            .clickable { showScoreBreakdown = true }
+                            .padding(horizontal = 10.dp, vertical = 5.dp)
+                            .testTag("home_readiness_pill"),
+                    ) {
+                        Text(
+                            text = "Score ${readiness.score}%",
+                            style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.labelMedium.fontSize, fontWeight = FontWeight.Bold),
+                            color = c.mistInk,
+                            maxLines = 1,
+                        )
+                    }
                 }
-            }
-        }
 
-        // Featured Misty Sage Card
-        TibbMistCard(padding = 20.dp) {
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                // Compact segmented toggle inside Hero
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(IntrinsicSize.Max)
+                        .clip(RoundedCornerShape(999.dp))
+                        .background(c.mistInk.copy(alpha = 0.10f))
+                        .padding(3.dp),
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    listOf(
+                        0 to (if (isUr) "یاد دہانیاں (${dueTodayAlarms.size})" else "Reminders (${dueTodayAlarms.size})"),
+                        1 to (if (isUr) "تجویز کردہ" else "Recommended"),
+                    ).forEach { (idx, label) ->
+                        val sel = insightTab == idx
+                        Box(
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxHeight()
+                                .clip(RoundedCornerShape(999.dp))
+                                .background(if (sel) c.mistInk else Color.Transparent)
+                                .clickable { insightTab = idx }
+                                .padding(horizontal = 8.dp, vertical = 7.dp)
+                                .testTag(if (idx == 0) "home_tab_reminders" else "home_tab_recommended"),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text(
+                                text = label,
+                                style = MaterialTheme.typography.labelMedium,
+                                color = if (sel) Color(0xFFF6F4EC) else c.mistInk.copy(alpha = 0.85f),
+                                textAlign = TextAlign.Center,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis,
+                            )
+                        }
+                    }
+                }
+
                 Text(
                     text = if (insightTab == 0) {
                         dueTodayAlarms.firstOrNull()?.let {
                             if (isUr) "اگلی دوا: ${it.medicineLabel}" else "Due Today: ${it.medicineLabel} · ${HealthMath.formatTime12h(it.time24h)}"
-                        } ?: if (isUr) "آج کی تمام یاد دہانیاں مکمل ہیں" else "All active reminders completed — Ready for a calm health checkup"
+                        } ?: if (isUr) "آج کی تمام یاد دہانیاں مکمل ہیں" else "All active reminders completed — Ready for a checkup"
                     } else {
-                        if (isUr) "ڈاکٹر معائنہ یا غذا و ورزش پلان" else "Personalized Desi Meal Plan & WHO Checkup"
+                        if (isUr) "ذاتی غذا اور ورزش کا پلان" else "Your Personalized Diet & WHO Checkup"
                     },
                     style = if (isUr) urduTextStyle(MaterialTheme.typography.titleLarge) else MaterialTheme.typography.titleLarge,
                     color = c.mistInk,
                 )
+
                 Text(
                     text = if (insightTab == 0) {
-                        if (isUr) "فوری علامات چیک کریں یا مقررہ دوا پر نشان لگائیں۔"
-                        else "Answer one symptom question at a time or tap Mark Taken on due medicines."
+                        if (isUr) "ایک وقت میں ایک آسان سوال سے معائنہ کریں یا دوا پر نشان لگائیں۔"
+                        else "Calm, step-by-step symptom checkup or mark due medicine taken."
                     } else {
                         if (isUr) bmiCheck.adviceUr else bmiCheck.adviceEn
                     },
                     style = if (isUr) urduTextStyle(MaterialTheme.typography.bodySmall) else MaterialTheme.typography.bodySmall,
-                    color = c.mistInk.copy(alpha = 0.85f),
+                    color = c.mistInk.copy(alpha = 0.82f),
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis,
                 )
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    TibbPrimaryPillButton(
-                        onClick = {
-                            if (insightTab == 0 && dueTodayAlarms.isNotEmpty()) {
-                                onMarkAlarmTaken(dueTodayAlarms.first().id)
-                            } else {
-                                onStartStructuredCheckup()
-                            }
-                        },
-                        containerColor = c.mistInk,
-                        contentColor = Color(0xFFF6F4EC),
-                        modifier = Modifier.testTag("home_featured_cta"),
-                    ) {
-                        Text(
-                            if (insightTab == 0 && dueTodayAlarms.isNotEmpty()) s.alarmsMarkTaken
-                            else if (insightTab == 0) s.structuredCheckupBtn
-                            else s.navCoach
-                        )
-                        Spacer(Modifier.width(6.dp))
-                        Icon(Icons.AutoMirrored.Rounded.ArrowForward, contentDescription = null, modifier = Modifier.size(16.dp))
-                    }
-                    if (insightTab == 1) {
-                        TibbSecondaryPillButton(
-                            onClick = { onNavigateTab(MainNavTab.COACH) },
-                            borderColor = c.mistInk.copy(alpha = 0.4f),
-                            contentColor = c.mistInk,
-                        ) {
-                            Text(s.navCoach)
+
+                TibbPrimaryPillButton(
+                    onClick = {
+                        if (insightTab == 0 && dueTodayAlarms.isNotEmpty()) {
+                            onMarkAlarmTaken(dueTodayAlarms.first().id)
+                        } else if (insightTab == 1) {
+                            onNavigateTab(MainNavTab.COACH)
+                        } else {
+                            onStartStructuredCheckup()
                         }
-                    }
+                    },
+                    containerColor = c.mistInk,
+                    contentColor = Color(0xFFF6F4EC),
+                    modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).testTag("home_featured_cta"),
+                ) {
+                    Text(
+                        text = if (insightTab == 0 && dueTodayAlarms.isNotEmpty()) s.alarmsMarkTaken
+                        else if (insightTab == 0) s.agentModeBtn
+                        else s.navCoach,
+                        style = MaterialTheme.typography.labelLarge,
+                    )
+                    Spacer(Modifier.width(6.dp))
+                    Icon(Icons.AutoMirrored.Rounded.ArrowForward, contentDescription = null, modifier = Modifier.size(16.dp))
                 }
             }
         }
 
-        // 2x2 Bento Grid (Adaptive)
+        // 3. Clean 2x2 Key Metrics Summary (Proportional, uncluttered cards)
         BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
             val twoCols = maxWidth >= 340.dp
             if (twoCols) {
-                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
-                        StepsBentoCard(
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+                    ) {
+                        StepsSummaryCard(
                             todayLog = todayLog,
                             sensorStepsActive = sensorStepsActive,
-                            stepSensitivityHigh = stepSensitivityHigh,
                             locale = locale,
-                            onToggleSensor = {
-                                if (!sensorStepsActive && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
-                                    val granted = ContextCompat.checkSelfPermission(
-                                        context,
-                                        Manifest.permission.ACTIVITY_RECOGNITION,
-                                    ) == PackageManager.PERMISSION_GRANTED
-                                    if (granted) onToggleStepSensor(null)
-                                    else motionPermLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION)
-                                } else {
-                                    onToggleStepSensor(null)
-                                }
+                            onClick = {
+                                expandedSection = if (expandedSection == "activity") null else "activity"
                             },
-                            onToggleSensitivity = { onToggleStepSensor(!stepSensitivityHigh) },
-                            onAddManualSteps = { onUpdateWellness(todayLog.copy(steps = todayLog.steps + 500)) },
-                            modifier = Modifier.weight(1f),
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
                         )
-                        ProgressGoalsBentoCard(
+                        ProgressGoalsSummaryCard(
                             met = activeGoalsCount,
                             total = 5,
                             locale = locale,
                             onOpenCoach = { onNavigateTab(MainNavTab.COACH) },
-                            modifier = Modifier.weight(1f),
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
                         )
                     }
-                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
-                        CheckInBentoCard(
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+                    ) {
+                        CheckInSummaryCard(
                             todayLog = todayLog,
                             locale = locale,
                             onClick = { showCheckInDialog = true },
-                            modifier = Modifier.weight(1f),
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
                         )
-                        WellnessBentoCard(
+                        WellnessSummaryCard(
                             todayLog = todayLog,
                             locale = locale,
-                            onEditSleep = { showSleepEditor = !showSleepEditor },
                             onOpenVitals = { onNavigateTab(MainNavTab.VITALS) },
-                            modifier = Modifier.weight(1f),
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
                         )
                     }
                 }
             } else {
-                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    StepsBentoCard(
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    StepsSummaryCard(
                         todayLog = todayLog,
                         sensorStepsActive = sensorStepsActive,
-                        stepSensitivityHigh = stepSensitivityHigh,
                         locale = locale,
-                        onToggleSensor = { onToggleStepSensor(null) },
-                        onToggleSensitivity = { onToggleStepSensor(!stepSensitivityHigh) },
-                        onAddManualSteps = { onUpdateWellness(todayLog.copy(steps = todayLog.steps + 500)) },
+                        onClick = { expandedSection = if (expandedSection == "activity") null else "activity" },
                         modifier = Modifier.fillMaxWidth(),
                     )
-                    ProgressGoalsBentoCard(activeGoalsCount, 5, locale, { onNavigateTab(MainNavTab.COACH) }, Modifier.fillMaxWidth())
-                    CheckInBentoCard(todayLog, locale, { showCheckInDialog = true }, Modifier.fillMaxWidth())
-                    WellnessBentoCard(todayLog, locale, { showSleepEditor = !showSleepEditor }, { onNavigateTab(MainNavTab.VITALS) }, Modifier.fillMaxWidth())
+                    ProgressGoalsSummaryCard(activeGoalsCount, 5, locale, { onNavigateTab(MainNavTab.COACH) }, Modifier.fillMaxWidth())
+                    CheckInSummaryCard(todayLog, locale, { showCheckInDialog = true }, Modifier.fillMaxWidth())
+                    WellnessSummaryCard(todayLog, locale, { onNavigateTab(MainNavTab.VITALS) }, Modifier.fillMaxWidth())
                 }
             }
         }
 
-        // Inline Midnight-Safe Sleep Editor
-        if (showSleepEditor) {
-            TibbGlassCard(padding = 16.dp, borderColor = c.accent.copy(alpha = 0.4f)) {
-                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Icon(Icons.Rounded.Bedtime, contentDescription = null, tint = c.accent)
-                        Text("Bedtime & Wake-Up Calculator (Midnight-Safe)", style = MaterialTheme.typography.titleMedium, color = c.ink)
-                    }
-                    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        OutlinedTextField(
-                            value = bedTimeText,
-                            onValueChange = { bedTimeText = it },
-                            label = { Text("Bed (HH:MM 24h)") },
-                            singleLine = true,
-                            modifier = Modifier.weight(1f),
-                        )
-                        OutlinedTextField(
-                            value = wakeTimeText,
-                            onValueChange = { wakeTimeText = it },
-                            label = { Text("Wake (HH:MM 24h)") },
-                            singleLine = true,
-                            modifier = Modifier.weight(1f),
-                        )
-                    }
-                    val hrs = HealthMath.computeSleepDurationHours(bedTimeText, wakeTimeText)
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text("Computed: $hrs hrs", style = TabularNumberStyle, color = c.accent)
-                        TibbPrimaryPillButton(
-                            onClick = {
-                                onUpdateWellness(todayLog.copy(sleepHours = hrs))
-                                showSleepEditor = false
-                            },
-                            modifier = Modifier.testTag("save_sleep_duration_btn"),
-                        ) {
-                            Text("Save Sleep")
+        // 4. Progressive Disclosure Accordion Sections (All collapsed by default!)
+        TibbExpandableSection(
+            title = if (isUr) "پانی، قدم اور نیند" else "Hydration, Steps & Sleep",
+            summary = "${TriageTier.BLUE.shortLabel(locale)} · ${todayLog.waterMl}/${todayLog.waterGoalMl} ml · ${todayLog.steps} steps · ${todayLog.sleepHours}h",
+            icon = Icons.Rounded.WaterDrop,
+            accentColor = c.wellnessBlue,
+            expanded = expandedSection == "activity",
+            onExpandedChange = { open -> expandedSection = if (open) "activity" else null },
+            headerTestTag = "home_expand_activity",
+            trailingHeaderContent = {
+                SectionHelpButton(topic = HelpTopic.HYDRATION, locale = locale)
+            },
+        ) {
+            // Hydration controls
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(if (isUr) "پانی و نمکیات" else "Daily Hydration", style = MaterialTheme.typography.titleSmall, color = c.ink)
+                Text("${todayLog.waterMl} / ${todayLog.waterGoalMl} ml", style = TabularNumberStyle.copy(fontWeight = FontWeight.Bold), color = c.accent)
+            }
+            LinearProgressIndicator(
+                progress = { (todayLog.waterMl.toFloat() / todayLog.waterGoalMl.coerceAtLeast(500)).coerceIn(0f, 1f) },
+                modifier = Modifier.fillMaxWidth().height(6.dp).clip(RoundedCornerShape(999.dp)),
+                color = c.wellnessBlue,
+                trackColor = c.surfaceMuted,
+            )
+            Row(horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.fillMaxWidth()) {
+                TibbSecondaryPillButton(
+                    onClick = { onUpdateWellness(todayLog.copy(waterMl = (todayLog.waterMl - 250).coerceAtLeast(0))) },
+                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+                    modifier = Modifier.weight(1f).testTag("water_minus_250"),
+                ) { Text("-250 ml", style = MaterialTheme.typography.labelSmall, maxLines = 1) }
+                TibbPrimaryPillButton(
+                    onClick = { onUpdateWellness(todayLog.copy(waterMl = todayLog.waterMl + 250)) },
+                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+                    modifier = Modifier.weight(1f).testTag("water_plus_250"),
+                ) { Text("+250 ml", style = MaterialTheme.typography.labelSmall, maxLines = 1) }
+                TibbSecondaryPillButton(
+                    onClick = { onUpdateWellness(todayLog.copy(waterMl = todayLog.waterMl + 500)) },
+                    contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
+                    modifier = Modifier.weight(1f).testTag("water_plus_500"),
+                ) { Text("+500 ml", style = MaterialTheme.typography.labelSmall, maxLines = 1) }
+            }
+
+            // Steps & Sensor controls
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(if (isUr) "قدم اور سینسر" else "Steps & Motion Sensor", style = MaterialTheme.typography.titleSmall, color = c.ink)
+                Text("${todayLog.steps} / ${todayLog.stepGoal}", style = TabularNumberStyle, color = c.muted)
+            }
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                TibbSecondaryPillButton(
+                    onClick = {
+                        if (!sensorStepsActive && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                            val granted = ContextCompat.checkSelfPermission(
+                                context,
+                                Manifest.permission.ACTIVITY_RECOGNITION,
+                            ) == PackageManager.PERMISSION_GRANTED
+                            if (granted) onToggleStepSensor(null)
+                            else motionPermLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION)
+                        } else {
+                            onToggleStepSensor(null)
                         }
-                    }
+                    },
+                    borderColor = if (sensorStepsActive) c.safeGreen else c.border,
+                    contentColor = if (sensorStepsActive) c.safeGreen else c.ink,
+                    modifier = Modifier.weight(1f).testTag("bento_step_sensor_btn"),
+                ) {
+                    Icon(Icons.Rounded.Sensors, contentDescription = null, modifier = Modifier.size(15.dp))
+                    Spacer(Modifier.width(4.dp))
+                    Text(if (sensorStepsActive) "Sensor On" else "Start Sensor", style = MaterialTheme.typography.labelSmall)
+                }
+                TibbSecondaryPillButton(
+                    onClick = { onUpdateWellness(todayLog.copy(steps = todayLog.steps + 500)) },
+                    modifier = Modifier.weight(1f).testTag("bento_add_500_steps"),
+                ) {
+                    Text("+500 Steps", style = MaterialTheme.typography.labelSmall)
                 }
             }
-        }
-
-        // Hydration Tracker Card
-        TibbGlassCard(padding = 16.dp) {
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Icon(Icons.Rounded.WaterDrop, contentDescription = null, tint = c.accent)
-                        Text(if (isUr) "پانی و نمکیات (Hydration)" else "Daily Hydration", style = MaterialTheme.typography.titleMedium, color = c.ink)
-                        SectionHelpButton(topic = HelpTopic.HYDRATION, locale = locale)
-                    }
-                    Text(
-                        text = "${todayLog.waterMl} / ${todayLog.waterGoalMl} ml",
-                        style = TabularNumberStyle.copy(fontWeight = FontWeight.Bold),
-                        color = c.accent,
-                    )
-                }
-                LinearProgressIndicator(
-                    progress = { (todayLog.waterMl.toFloat() / todayLog.waterGoalMl.coerceAtLeast(500)).coerceIn(0f, 1f) },
-                    modifier = Modifier.fillMaxWidth().height(7.dp).clip(RoundedCornerShape(999.dp)),
+            if (sensorStepsActive) {
+                Text(
+                    text = if (stepSensitivityHigh) "Sensitivity: High (Tap to toggle)" else "Sensitivity: Normal (Tap to toggle)",
+                    style = MaterialTheme.typography.labelSmall,
                     color = c.accent,
-                    trackColor = c.surfaceMuted,
+                    modifier = Modifier.clickable { onToggleStepSensor(!stepSensitivityHigh) },
                 )
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    TibbSecondaryPillButton(
-                        onClick = { onUpdateWellness(todayLog.copy(waterMl = (todayLog.waterMl - 250).coerceAtLeast(0))) },
-                        modifier = Modifier.testTag("water_minus_250"),
-                    ) { Text("-250 ml") }
-                    TibbPrimaryPillButton(
-                        onClick = { onUpdateWellness(todayLog.copy(waterMl = todayLog.waterMl + 250)) },
-                        modifier = Modifier.weight(1f).testTag("water_plus_250"),
-                    ) { Text("+250 ml") }
-                    TibbSecondaryPillButton(
-                        onClick = { onUpdateWellness(todayLog.copy(waterMl = todayLog.waterMl + 500)) },
-                        modifier = Modifier.testTag("water_plus_500"),
-                    ) { Text("+500 ml") }
+            }
+
+            // Sleep Editor toggle
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(top = 4.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(if (isUr) "نیند کا وقت" else "Sleep Duration (${todayLog.sleepHours} hrs)", style = MaterialTheme.typography.titleSmall, color = c.ink)
+                TextButton(
+                    onClick = { showSleepEditor = !showSleepEditor },
+                    modifier = Modifier.testTag("bento_edit_sleep_btn"),
+                ) {
+                    Icon(Icons.Rounded.Bedtime, contentDescription = null, modifier = Modifier.size(16.dp))
+                    Spacer(Modifier.width(4.dp))
+                    Text(if (showSleepEditor) "Hide" else "Edit Sleep")
                 }
             }
-        }
-
-        // Verified Hospitals Espresso Card
-        TibbEspressoCard(padding = 18.dp) {
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            if (showSleepEditor) {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedTextField(
+                        value = bedTimeText,
+                        onValueChange = { bedTimeText = it },
+                        label = { Text("Bed (HH:MM)") },
+                        singleLine = true,
+                        modifier = Modifier.weight(1f),
+                    )
+                    OutlinedTextField(
+                        value = wakeTimeText,
+                        onValueChange = { wakeTimeText = it },
+                        label = { Text("Wake (HH:MM)") },
+                        singleLine = true,
+                        modifier = Modifier.weight(1f),
+                    )
+                }
+                val hrs = HealthMath.computeSleepDurationHours(bedTimeText, wakeTimeText)
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(6.dp),
-                        modifier = Modifier.weight(1f),
-                    ) {
-                        Icon(Icons.Rounded.LocalHospital, contentDescription = null, tint = Color(0xFF95CEA4))
-                        Text(s.nearestFacilitiesTitle, style = MaterialTheme.typography.titleMedium, color = Color(0xFFF2EFE4), modifier = Modifier.weight(1f, fill = false))
-                        SectionHelpButton(topic = HelpTopic.NEAREST_HOSPITALS, locale = locale, onDarkSurface = true)
-                    }
+                    Text("Computed: $hrs hrs", style = TabularNumberStyle, color = c.accent)
                     TibbPrimaryPillButton(
-                        onClick = { onOpenDialer("1122") },
-                        containerColor = c.dangerRed,
-                        contentColor = Color.White,
-                        modifier = Modifier.testTag("home_call_1122"),
+                        onClick = {
+                            onUpdateWellness(todayLog.copy(sleepHours = hrs))
+                            showSleepEditor = false
+                        },
+                        modifier = Modifier.testTag("save_sleep_duration_btn"),
                     ) {
-                        Icon(Icons.Rounded.Call, contentDescription = null, modifier = Modifier.size(15.dp))
-                        Spacer(Modifier.width(4.dp))
-                        Text("1122")
+                        Text("Save Sleep")
+                    }
+                }
+            }
+        }
+
+        // Section 2: Nearby Hospitals & 1122 (Collapsed by default with clean summary + 1122 badge)
+        TibbExpandableSection(
+            title = s.nearestFacilitiesTitle,
+            summary = selectedDistrict.ifBlank { if (isUr) "قریبی کلینک دیکھنے کے لیے کھولیں" else "Tap to find nearby clinics & BHUs" },
+            icon = Icons.Rounded.LocalHospital,
+            accentColor = Color(0xFF8FD0A0),
+            containerColor = c.espressoBottom,
+            borderColor = Color.White.copy(alpha = 0.12f),
+            titleColor = Color(0xFFF3F0E6),
+            summaryColor = Color(0xFFB1C4B9),
+            expanded = expandedSection == "hospitals",
+            onExpandedChange = { open -> expandedSection = if (open) "hospitals" else null },
+            headerTestTag = "home_expand_hospitals",
+            trailingHeaderContent = {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(999.dp))
+                            .background(c.dangerRed)
+                            .clickable { onOpenDialer("1122") }
+                            .padding(horizontal = 10.dp, vertical = 6.dp)
+                            .testTag("home_call_1122"),
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                            Icon(Icons.Rounded.Call, contentDescription = null, tint = Color.White, modifier = Modifier.size(13.dp))
+                            Text("1122", style = MaterialTheme.typography.labelSmall, color = Color.White)
+                        }
+                    }
+                    SectionHelpButton(topic = HelpTopic.NEAREST_HOSPITALS, locale = locale, onDarkSurface = true)
+                }
+            },
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                activePerson.frequentPlaces.forEach { plc ->
+                    val sel = selectedDistrict.equals(plc.district, ignoreCase = true)
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(999.dp))
+                            .background(if (sel) Color(0xFF8FD0A0) else Color.White.copy(alpha = 0.12f))
+                            .clickable {
+                                selectedDistrict = plc.district
+                                activeCoords = if (plc.lat != null && plc.lng != null) GeoCoords(plc.lat, plc.lng) else null
+                            }
+                            .padding(horizontal = 12.dp, vertical = 7.dp),
+                    ) {
+                        Text(
+                            "${plc.label} (${plc.district})",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = if (sel) Color(0xFF10241E) else Color(0xFFF3F0E6),
+                        )
                     }
                 }
 
-                // Saved Places + GPS + District Selector
-                Row(
-                    modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    activePerson.frequentPlaces.forEach { plc ->
-                        val sel = selectedDistrict.equals(plc.district, ignoreCase = true)
-                        Box(
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(999.dp))
-                                .background(if (sel) Color(0xFF95CEA4) else Color.White.copy(alpha = 0.12f))
-                                .clickable {
-                                    selectedDistrict = plc.district
-                                    activeCoords = if (plc.lat != null && plc.lng != null) GeoCoords(plc.lat, plc.lng) else null
-                                }
-                                .padding(horizontal = 12.dp, vertical = 7.dp),
-                        ) {
-                            Text(
-                                "${plc.label} (${plc.district})",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = if (sel) Color(0xFF102620) else Color(0xFFF2EFE4),
-                            )
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(999.dp))
+                        .background(Color.White.copy(alpha = 0.14f))
+                        .clickable {
+                            val fine = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                            val coarse = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                            if (fine || coarse) onRequestGps()
+                            else locPermLauncher.launch(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION))
                         }
+                        .padding(horizontal = 12.dp, vertical = 7.dp)
+                        .testTag("home_hospitals_gps_btn"),
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Icon(Icons.Rounded.MyLocation, contentDescription = null, tint = Color(0xFF8FD0A0), modifier = Modifier.size(14.dp))
+                        Text(if (gpsLocating) "GPS..." else "Use GPS", style = MaterialTheme.typography.labelSmall, color = Color(0xFFF3F0E6))
                     }
+                }
 
+                Box {
                     Box(
                         modifier = Modifier
                             .clip(RoundedCornerShape(999.dp))
                             .background(Color.White.copy(alpha = 0.14f))
-                            .clickable {
-                                val fine = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                                val coarse = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                                if (fine || coarse) onRequestGps()
-                                else locPermLauncher.launch(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION))
-                            }
+                            .clickable { districtMenuOpen = true }
                             .padding(horizontal = 12.dp, vertical = 7.dp)
-                            .testTag("home_hospitals_gps_btn"),
+                            .testTag("home_district_dropdown"),
                     ) {
-                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                            Icon(Icons.Rounded.MyLocation, contentDescription = null, tint = Color(0xFF95CEA4), modifier = Modifier.size(14.dp))
-                            Text(if (gpsLocating) "GPS..." else "Use GPS", style = MaterialTheme.typography.labelSmall, color = Color(0xFFF2EFE4))
-                        }
+                        Text(
+                            selectedDistrict.ifBlank { s.allDistrictsOption },
+                            style = MaterialTheme.typography.labelSmall,
+                            color = Color(0xFFF3F0E6),
+                        )
                     }
-
-                    Box {
-                        Box(
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(999.dp))
-                                .background(Color.White.copy(alpha = 0.14f))
-                                .clickable { districtMenuOpen = true }
-                                .padding(horizontal = 12.dp, vertical = 7.dp)
-                                .testTag("home_district_dropdown"),
-                        ) {
-                            Text(
-                                selectedDistrict.ifBlank { s.allDistrictsOption },
-                                style = MaterialTheme.typography.labelSmall,
-                                color = Color(0xFFF2EFE4),
+                    DropdownMenu(expanded = districtMenuOpen, onDismissRequest = { districtMenuOpen = false }) {
+                        districts.forEach { d ->
+                            DropdownMenuItem(
+                                text = { Text(d) },
+                                onClick = {
+                                    selectedDistrict = d
+                                    activeCoords = null
+                                    districtMenuOpen = false
+                                },
                             )
                         }
-                        DropdownMenu(expanded = districtMenuOpen, onDismissRequest = { districtMenuOpen = false }) {
-                            districts.forEach { d ->
-                                DropdownMenuItem(
-                                    text = { Text(d) },
-                                    onClick = {
-                                        selectedDistrict = d
-                                        activeCoords = null
-                                        districtMenuOpen = false
-                                    },
-                                )
-                            }
-                        }
                     }
                 }
+            }
 
-                if (needsLocation) {
-                    Text(
-                        text = s.locationRequiredBody,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Color(0xFFB6C9BE),
-                    )
-                } else {
-                    facilities.take(3).forEach { fac ->
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clip(RoundedCornerShape(14.dp))
-                                .background(Color.White.copy(alpha = 0.08f))
-                                .padding(12.dp),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically,
+            if (needsLocation) {
+                Text(
+                    text = s.locationRequiredBody,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Color(0xFFB1C4B9),
+                )
+            } else {
+                facilities.take(3).forEach { fac ->
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(14.dp))
+                            .background(Color.White.copy(alpha = 0.08f))
+                            .padding(12.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Column(modifier = Modifier.weight(1f)) {
+                            Text(if (isUr) fac.name_ur else fac.name_en, style = MaterialTheme.typography.labelLarge, color = Color(0xFFF3F0E6))
+                            Text(
+                                text = "${fac.tehsil}, ${fac.district}" + (fac.distanceKm?.let { " · $it km" } ?: ""),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = Color(0xFFB1C4B9),
+                            )
+                        }
+                        TibbSecondaryPillButton(
+                            onClick = { onOpenDialer(fac.phone) },
+                            borderColor = Color(0xFF8FD0A0),
+                            contentColor = Color(0xFF8FD0A0),
                         ) {
-                            Column(modifier = Modifier.weight(1f)) {
-                                Text(if (isUr) fac.name_ur else fac.name_en, style = MaterialTheme.typography.labelLarge, color = Color(0xFFF2EFE4))
-                                Text(
-                                    text = "${fac.tehsil}, ${fac.district}" + (fac.distanceKm?.let { " · $it km" } ?: ""),
-                                    style = MaterialTheme.typography.bodySmall,
-                                    color = Color(0xFFB6C9BE),
-                                )
-                            }
-                            TibbSecondaryPillButton(
-                                onClick = { onOpenDialer(fac.phone) },
-                                borderColor = Color(0xFF95CEA4),
-                                contentColor = Color(0xFF95CEA4),
-                            ) {
-                                Text(s.callBtn)
-                            }
+                            Text(s.callBtn)
                         }
                     }
                 }
             }
         }
 
-        // Family Pulse Strip & Shortcuts
-        Row(
-            modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        // Section 3: Family & Quick Shortcuts (Collapsed by default)
+        TibbExpandableSection(
+            title = if (isUr) "خاندان اور رپورٹس شارٹ کٹس" else "Family & Vault Shortcuts",
+            summary = if (isUr) "${profiles.size} ممبرز · رپورٹس اور الارم" else "${profiles.size} profile(s) · Saved Reports & Alarms",
+            icon = Icons.Rounded.People,
+            expanded = expandedSection == "family",
+            onExpandedChange = { open -> expandedSection = if (open) "family" else null },
+            headerTestTag = "home_expand_family",
         ) {
-            profiles.forEach { p ->
-                val sel = p.id == activePerson.id
-                Box(
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(16.dp))
-                        .background(if (sel) c.accent.copy(alpha = 0.22f) else c.surface)
-                        .border(1.dp, if (sel) c.accent else c.border, RoundedCornerShape(16.dp))
-                        .clickable { onSelectPerson(p.id) }
-                        .padding(horizontal = 14.dp, vertical = 10.dp),
-                ) {
-                    Column {
-                        Text(p.name, style = MaterialTheme.typography.labelLarge, color = c.ink)
-                        Text(if (isUr) p.relationship.labelUr else p.relationship.labelEn, style = MaterialTheme.typography.labelSmall, color = c.muted)
+            Row(
+                modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                profiles.forEach { p ->
+                    val sel = p.id == activePerson.id
+                    Box(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(14.dp))
+                            .background(if (sel) c.accentSoft else c.surfaceMuted)
+                            .border(1.dp, if (sel) c.accent else c.border, RoundedCornerShape(14.dp))
+                            .clickable { onSelectPerson(p.id) }
+                            .padding(horizontal = 12.dp, vertical = 9.dp),
+                    ) {
+                        Column {
+                            Text(p.name, style = MaterialTheme.typography.labelLarge, color = c.ink)
+                            Text(if (isUr) p.relationship.labelUr else p.relationship.labelEn, style = MaterialTheme.typography.labelSmall, color = c.muted)
+                        }
                     }
+                }
+            }
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+            ) {
+                TibbSecondaryPillButton(
+                    onClick = { onNavigateTab(MainNavTab.RECORDS) },
+                    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 10.dp),
+                    modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp),
+                ) {
+                    Icon(Icons.Rounded.FolderShared, contentDescription = null, modifier = Modifier.size(16.dp))
+                    Spacer(Modifier.width(5.dp))
+                    Text(
+                        text = s.navRecords,
+                        style = MaterialTheme.typography.labelMedium,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        textAlign = TextAlign.Center,
+                    )
+                }
+                TibbSecondaryPillButton(
+                    onClick = { onNavigateTab(MainNavTab.ALARMS_LABS) },
+                    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 10.dp),
+                    modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp),
+                ) {
+                    Icon(Icons.Rounded.Alarm, contentDescription = null, modifier = Modifier.size(16.dp))
+                    Spacer(Modifier.width(5.dp))
+                    Text(
+                        text = s.navAlarmsReports,
+                        style = MaterialTheme.typography.labelMedium,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                        textAlign = TextAlign.Center,
+                    )
                 }
             }
         }
 
-        Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth()) {
-            TibbSecondaryPillButton(
-                onClick = { onNavigateTab(MainNavTab.RECORDS) },
-                modifier = Modifier.weight(1f),
-            ) {
-                Icon(Icons.Rounded.FolderShared, contentDescription = null, modifier = Modifier.size(16.dp))
-                Spacer(Modifier.width(6.dp))
-                Text(s.navRecords)
-            }
-            TibbSecondaryPillButton(
-                onClick = { onNavigateTab(MainNavTab.ALARMS_LABS) },
-                modifier = Modifier.weight(1f),
-            ) {
-                Icon(Icons.Rounded.Alarm, contentDescription = null, modifier = Modifier.size(16.dp))
-                Spacer(Modifier.width(6.dp))
-                Text(s.navAlarmsReports)
-            }
-        }
-
-        Spacer(Modifier.height(14.dp))
+        Spacer(Modifier.height(12.dp))
     }
 
     if (showCheckInDialog) {
@@ -856,88 +939,81 @@ fun HomeHubDashboardScreen(
 }
 
 @Composable
-private fun StepsBentoCard(
+private fun StepsSummaryCard(
     todayLog: DailyWellnessLog,
     sensorStepsActive: Boolean,
-    stepSensitivityHigh: Boolean,
     locale: AppLocale,
-    onToggleSensor: () -> Unit,
-    onToggleSensitivity: () -> Unit,
-    onAddManualSteps: () -> Unit,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val c = LocalTibbColors.current
     val isUr = locale == AppLocale.UR
     val pct = (todayLog.steps.toFloat() / todayLog.stepGoal.coerceAtLeast(1000)).coerceIn(0f, 1f)
-    TibbGlassCard(modifier = modifier, padding = 14.dp) {
+    TibbGlassCard(modifier = modifier.clickable(onClick = onClick), padding = 14.dp) {
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.weight(1f)) {
-                    Icon(Icons.Rounded.DirectionsWalk, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
-                    Text(if (isUr) "روزانہ قدم" else "Daily Steps", style = MaterialTheme.typography.titleMedium, color = c.ink, maxLines = 1)
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp), modifier = Modifier.weight(1f)) {
+                    Icon(Icons.Rounded.DirectionsWalk, contentDescription = null, tint = c.accent, modifier = Modifier.size(16.dp))
+                    Text(
+                        text = if (isUr) "قدم" else "Steps",
+                        style = MaterialTheme.typography.titleSmall,
+                        color = c.ink,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
                 }
                 SectionHelpButton(topic = HelpTopic.BENTO_STEPS, locale = locale)
             }
-            Box(modifier = Modifier.fillMaxWidth().height(76.dp), contentAlignment = Alignment.Center) {
-                Canvas(modifier = Modifier.size(72.dp)) {
-                    drawArc(
-                        color = c.surfaceMuted,
-                        startAngle = 0f,
-                        sweepAngle = 360f,
-                        useCenter = false,
-                        style = Stroke(width = 7.dp.toPx(), cap = StrokeCap.Round),
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                Box(modifier = Modifier.size(44.dp), contentAlignment = Alignment.Center) {
+                    Canvas(modifier = Modifier.size(44.dp)) {
+                        drawArc(
+                            color = c.surfaceMuted,
+                            startAngle = 0f,
+                            sweepAngle = 360f,
+                            useCenter = false,
+                            style = Stroke(width = 5.dp.toPx(), cap = StrokeCap.Round),
+                        )
+                        drawArc(
+                            color = c.accent,
+                            startAngle = -90f,
+                            sweepAngle = 360f * pct,
+                            useCenter = false,
+                            style = Stroke(width = 5.dp.toPx(), cap = StrokeCap.Round),
+                        )
+                    }
+                    Text(
+                        text = "${(pct * 100).toInt()}%",
+                        style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.labelSmall.fontSize, fontWeight = FontWeight.Bold),
+                        color = c.ink,
                     )
-                    drawArc(
-                        color = c.accent,
-                        startAngle = -90f,
-                        sweepAngle = 360f * pct,
-                        useCenter = false,
-                        style = Stroke(width = 7.dp.toPx(), cap = StrokeCap.Round),
+                }
+                Column {
+                    Text(
+                        text = "${todayLog.steps}",
+                        style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.titleLarge.fontSize, fontWeight = FontWeight.Bold),
+                        color = c.ink,
+                    )
+                    Text(
+                        text = if (sensorStepsActive) "Sensor live" else "of ${todayLog.stepGoal}",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = if (sensorStepsActive) c.safeGreen else c.muted,
                     )
                 }
-                Text(
-                    "${todayLog.steps}",
-                    style = TabularNumberStyle.copy(fontWeight = FontWeight.Bold),
-                    color = c.ink,
-                )
-            }
-            Text("Goal ${todayLog.stepGoal}", style = MaterialTheme.typography.labelSmall, color = c.muted)
-            Row(horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.fillMaxWidth()) {
-                TibbSecondaryPillButton(
-                    onClick = onToggleSensor,
-                    borderColor = if (sensorStepsActive) c.safeGreen else c.border,
-                    contentColor = if (sensorStepsActive) c.safeGreen else c.ink,
-                    modifier = Modifier.weight(1f).testTag("bento_step_sensor_btn"),
-                ) {
-                    Icon(Icons.Rounded.Sensors, contentDescription = null, modifier = Modifier.size(14.dp))
-                    Spacer(Modifier.width(4.dp))
-                    Text(if (sensorStepsActive) "Live" else "Sensor", style = MaterialTheme.typography.labelSmall, maxLines = 1)
-                }
-                TibbSecondaryPillButton(
-                    onClick = onAddManualSteps,
-                    modifier = Modifier.testTag("bento_add_500_steps"),
-                ) {
-                    Text("+500", style = MaterialTheme.typography.labelSmall)
-                }
-            }
-            if (sensorStepsActive) {
-                Text(
-                    text = if (stepSensitivityHigh) "Sensitivity: High (Tap to toggle)" else "Sensitivity: Normal (Tap to toggle)",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = c.accent,
-                    modifier = Modifier.clickable(onClick = onToggleSensitivity),
-                )
             }
         }
     }
 }
 
 @Composable
-private fun ProgressGoalsBentoCard(
+private fun ProgressGoalsSummaryCard(
     met: Int,
     total: Int,
     locale: AppLocale,
@@ -953,34 +1029,40 @@ private fun ProgressGoalsBentoCard(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.weight(1f)) {
-                    Icon(Icons.Rounded.CheckCircle, contentDescription = null, tint = c.safeGreen, modifier = Modifier.size(18.dp))
-                    Text(if (isUr) "آج کے اہداف" else "Progress Goals", style = MaterialTheme.typography.titleMedium, color = c.ink, maxLines = 1)
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp), modifier = Modifier.weight(1f)) {
+                    Icon(Icons.Rounded.CheckCircle, contentDescription = null, tint = c.wellnessBlue, modifier = Modifier.size(16.dp))
+                    Text(
+                        text = if (isUr) "آج کے اہداف" else "Goals",
+                        style = MaterialTheme.typography.titleSmall,
+                        color = c.ink,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
                 }
                 SectionHelpButton(topic = HelpTopic.BENTO_GOALS, locale = locale)
             }
             Text(
                 "$met / $total",
-                style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.headlineMedium.fontSize, fontWeight = FontWeight.Bold),
+                style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.headlineSmall.fontSize, fontWeight = FontWeight.Bold),
                 color = c.ink,
             )
             LinearProgressIndicator(
                 progress = { met / total.toFloat() },
-                modifier = Modifier.fillMaxWidth().height(6.dp).clip(RoundedCornerShape(999.dp)),
-                color = c.safeGreen,
+                modifier = Modifier.fillMaxWidth().height(5.dp).clip(RoundedCornerShape(999.dp)),
+                color = c.wellnessBlue,
                 trackColor = c.surfaceMuted,
             )
             Text(
-                if (isUr) "غذا و ورزش کھولیں" else "Open Diet & Workout ->",
+                if (isUr) "BLUE تندرستی · غذا و ورزش" else "BLUE Wellness · Diet ->",
                 style = MaterialTheme.typography.labelSmall,
-                color = c.accent,
+                color = c.wellnessBlue,
             )
         }
     }
 }
 
 @Composable
-private fun CheckInBentoCard(
+private fun CheckInSummaryCard(
     todayLog: DailyWellnessLog,
     locale: AppLocale,
     onClick: () -> Unit,
@@ -994,30 +1076,38 @@ private fun CheckInBentoCard(
             .testTag("bento_checkin_card"),
         padding = 14.dp,
     ) {
-        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.weight(1f)) {
-                    Icon(Icons.Rounded.MedicalServices, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
-                    Text(if (isUr) "روزانہ چیک ان" else "Your Check-In", style = MaterialTheme.typography.titleMedium, color = c.ink, maxLines = 1)
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp), modifier = Modifier.weight(1f)) {
+                    Icon(Icons.Rounded.MedicalServices, contentDescription = null, tint = c.accent, modifier = Modifier.size(16.dp))
+                    Text(
+                        text = if (isUr) "چیک ان" else "Check-In",
+                        style = MaterialTheme.typography.titleSmall,
+                        color = c.ink,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
                 }
                 SectionHelpButton(topic = HelpTopic.BENTO_CHECKIN, locale = locale)
             }
             val check = todayLog.dailyCheckIn
             Text(
                 text = if (check != null) {
-                    "Energy: ${check.energyLevel ?: "Steady"} · Sleep ${check.sleepHours ?: todayLog.sleepHours}h"
+                    "${check.energyLevel ?: "Steady"} · ${check.sleepHours ?: todayLog.sleepHours}h"
                 } else {
-                    if (isUr) "وزن، نیند اور توانائی درج کریں" else "Log weight, sleep & energy today"
+                    if (isUr) "آج کا حال درج کریں" else "Log energy & sleep"
                 },
                 style = MaterialTheme.typography.bodySmall,
                 color = c.ink,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = if (check != null) "Tap to update" else "Tap to answer",
+                text = if (check != null) "Update ->" else "Tap to answer ->",
                 style = MaterialTheme.typography.labelSmall,
                 color = c.accent,
             )
@@ -1026,50 +1116,55 @@ private fun CheckInBentoCard(
 }
 
 @Composable
-private fun WellnessBentoCard(
+private fun WellnessSummaryCard(
     todayLog: DailyWellnessLog,
     locale: AppLocale,
-    onEditSleep: () -> Unit,
     onOpenVitals: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val c = LocalTibbColors.current
     val isUr = locale == AppLocale.UR
-    TibbGlassCard(modifier = modifier, padding = 14.dp) {
+    TibbGlassCard(
+        modifier = modifier
+            .clickable(onClick = onOpenVitals)
+            .testTag("bento_open_vitals_btn"),
+        padding = 14.dp,
+    ) {
         Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp), modifier = Modifier.weight(1f)) {
-                    Icon(Icons.Rounded.Favorite, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
-                    Text(if (isUr) "صحت اور نیند" else "Daily Wellness", style = MaterialTheme.typography.titleMedium, color = c.ink, maxLines = 1)
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp), modifier = Modifier.weight(1f)) {
+                    Icon(Icons.Rounded.Favorite, contentDescription = null, tint = c.accent, modifier = Modifier.size(16.dp))
+                    Text(
+                        text = if (isUr) "نبض و بی پی" else "Vitals",
+                        style = MaterialTheme.typography.titleSmall,
+                        color = c.ink,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
                 }
                 SectionHelpButton(topic = HelpTopic.BENTO_WELLNESS, locale = locale)
             }
-            Text("HR: ${todayLog.restingHr?.let { "$it bpm" } ?: "--"}", style = TabularNumberStyle, color = c.ink)
             Text(
-                "BP: ${todayLog.lastBpSystolic ?: "--"}/${todayLog.lastBpDiastolic ?: "--"} · Sugar ${todayLog.lastSugarMgDl ?: "--"}",
-                style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.bodySmall.fontSize),
-                color = c.muted,
+                text = "HR ${todayLog.restingHr?.let { "$it" } ?: "--"} bpm",
+                style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.titleMedium.fontSize, fontWeight = FontWeight.Bold),
+                color = c.ink,
             )
-            Text("Sleep: ${todayLog.sleepHours} hrs", style = TabularNumberStyle, color = c.accent)
-            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                Text(
-                    "Edit Sleep",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = c.accent,
-                    modifier = Modifier.clickable(onClick = onEditSleep).padding(vertical = 4.dp).testTag("bento_edit_sleep_btn"),
-                )
-                Text("·", color = c.muted, modifier = Modifier.padding(vertical = 4.dp))
-                Text(
-                    "Vitals ->",
-                    style = MaterialTheme.typography.labelSmall,
-                    color = c.ink,
-                    modifier = Modifier.clickable(onClick = onOpenVitals).padding(vertical = 4.dp).testTag("bento_open_vitals_btn"),
-                )
-            }
+            Text(
+                text = "BP ${todayLog.lastBpSystolic ?: "--"}/${todayLog.lastBpDiastolic ?: "--"} · Sugar ${todayLog.lastSugarMgDl ?: "--"}",
+                style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.labelSmall.fontSize),
+                color = c.muted,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+            Text(
+                text = "Log Vitals ->",
+                style = MaterialTheme.typography.labelSmall,
+                color = c.accent,
+            )
         }
     }
 }

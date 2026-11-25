@@ -6,10 +6,16 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -20,6 +26,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.FactCheck
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
+import androidx.compose.material.icons.rounded.Apps
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.DarkMode
 import androidx.compose.material.icons.rounded.FolderShared
@@ -29,12 +36,12 @@ import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.Policy
 import androidx.compose.material.icons.rounded.Security
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -49,6 +56,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.data.model.AppLocale
 import com.example.data.model.UnitSystem
@@ -56,6 +65,7 @@ import com.example.data.model.WorkspaceMode
 import com.example.engine.HelpTopic
 import com.example.engine.TrilingualStrings
 import com.example.ui.theme.LocalTibbColors
+import com.example.ui.theme.TibbExpandableSection
 import com.example.ui.theme.TibbPrimaryPillButton
 import com.example.ui.theme.TibbSecondaryPillButton
 import com.example.ui.theme.urduTextStyle
@@ -94,16 +104,18 @@ fun SettingsDrawerSheet(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .navigationBarsPadding()
+                .imePadding()
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 20.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Column {
+                Column(modifier = Modifier.weight(1f)) {
                     TibbBrandMark()
                     Text(
                         text = accountName,
@@ -124,17 +136,22 @@ fun SettingsDrawerSheet(
                 style = MaterialTheme.typography.labelLarge,
                 color = c.muted,
             )
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+            ) {
                 AppLocale.entries.forEach { loc ->
                     val selected = loc == locale
                     Box(
                         modifier = Modifier
                             .weight(1f)
+                            .fillMaxHeight()
+                            .heightIn(min = 42.dp)
                             .clip(RoundedCornerShape(999.dp))
                             .background(if (selected) c.ctaBg else c.surfaceMuted)
                             .border(1.dp, if (selected) c.ctaBg else c.border, RoundedCornerShape(999.dp))
                             .clickable { onSetLocale(loc) }
-                            .padding(vertical = 10.dp)
+                            .padding(horizontal = 6.dp, vertical = 10.dp)
                             .testTag("drawer_locale_${loc.code}"),
                         contentAlignment = Alignment.Center,
                     ) {
@@ -142,17 +159,26 @@ fun SettingsDrawerSheet(
                             text = loc.label,
                             style = MaterialTheme.typography.labelLarge,
                             color = if (selected) c.ctaInk else c.ink,
+                            textAlign = TextAlign.Center,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
                         )
                     }
                 }
             }
 
             // Theme & Unit System
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth()) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+                modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+            ) {
                 TibbSecondaryPillButton(
                     onClick = onToggleDarkMode,
+                    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 10.dp),
                     modifier = Modifier
                         .weight(1f)
+                        .fillMaxHeight()
+                        .heightIn(min = 48.dp)
                         .testTag("drawer_theme_toggle"),
                 ) {
                     Icon(
@@ -161,45 +187,64 @@ fun SettingsDrawerSheet(
                         modifier = Modifier.size(16.dp),
                     )
                     Spacer(Modifier.width(6.dp))
-                    Text(if (darkMode) "Light Cream" else "Forest Dark")
+                    Text(
+                        text = if (darkMode) "Light Cream" else "Forest Dark",
+                        textAlign = TextAlign.Center,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                    )
                 }
 
                 TibbSecondaryPillButton(
                     onClick = {
                         onSetUnitSystem(if (unitSystem == UnitSystem.METRIC) UnitSystem.IMPERIAL else UnitSystem.METRIC)
                     },
+                    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 10.dp),
                     modifier = Modifier
                         .weight(1f)
+                        .fillMaxHeight()
+                        .heightIn(min = 48.dp)
                         .testTag("drawer_unit_toggle"),
                 ) {
-                    Text(if (unitSystem == UnitSystem.METRIC) "cm / kg" else "ft / lbs")
+                    Text(
+                        text = if (unitSystem == UnitSystem.METRIC) "cm / kg" else "ft / lbs",
+                        textAlign = TextAlign.Center,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                    )
                 }
             }
 
             // Workspace Mode
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = s.workspaceRoleLabel,
                     style = MaterialTheme.typography.labelLarge,
                     color = c.muted,
+                    modifier = Modifier.weight(1f),
                 )
                 SectionHelpButton(topic = HelpTopic.PIN_SECURITY, locale = locale)
             }
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+            ) {
                 WorkspaceMode.entries.forEach { mode ->
                     val selected = workspaceMode == mode
                     Box(
                         modifier = Modifier
                             .weight(1f)
+                            .fillMaxHeight()
+                            .heightIn(min = 48.dp)
                             .clip(RoundedCornerShape(14.dp))
-                            .background(if (selected) c.accent.copy(alpha = 0.22f) else c.surfaceMuted)
+                            .background(if (selected) c.accentSoft else c.surfaceMuted)
                             .border(1.dp, if (selected) c.accent else c.border, RoundedCornerShape(14.dp))
                             .clickable { onSetWorkspaceMode(mode) }
-                            .padding(vertical = 12.dp)
+                            .padding(horizontal = 8.dp, vertical = 12.dp)
                             .testTag("drawer_workspace_${mode.name.lowercase()}"),
                         contentAlignment = Alignment.Center,
                     ) {
@@ -207,84 +252,93 @@ fun SettingsDrawerSheet(
                             text = if (mode == WorkspaceMode.GHARANA) s.gharanaMode else s.bhuMode,
                             style = MaterialTheme.typography.labelLarge,
                             color = c.ink,
+                            textAlign = TextAlign.Center,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis,
                         )
                     }
                 }
             }
 
-            HorizontalDivider(color = c.border)
-
-            // Shortcuts: Saved Reports, BHU Queue, Android Kit
-            DrawerNavRow(
-                icon = Icons.Rounded.FolderShared,
-                title = s.navRecords,
-                subtitle = s.recordsSubtitle,
-                testTag = "drawer_open_records",
-                onClick = {
-                    onDismiss()
-                    onNavigateTab(MainNavTab.RECORDS)
-                },
-            )
-            if (workspaceMode == WorkspaceMode.BHU) {
+            // Collapsed by default Vault Tools, Guide & Legal
+            TibbExpandableSection(
+                title = if (isUr) "والٹ ریکارڈ، رہنمائی اور معلومات" else "Vault Tools, Guide & Legal",
+                summary = if (isUr) "ریکارڈز، رہنمائی (?)، بیک اپ اور رازداری" else "Saved Records, Simple Help, Backup & Legal",
+                icon = Icons.Rounded.Apps,
+                initiallyExpanded = false,
+                headerTestTag = "drawer_tools_expand",
+            ) {
                 DrawerNavRow(
-                    icon = Icons.AutoMirrored.Rounded.FactCheck,
-                    title = s.navQueue,
-                    subtitle = s.queueSubtitle,
-                    testTag = "drawer_open_queue",
+                    icon = Icons.Rounded.FolderShared,
+                    title = s.navRecords,
+                    subtitle = s.recordsSubtitle,
+                    testTag = "drawer_open_records",
                     onClick = {
                         onDismiss()
-                        onNavigateTab(MainNavTab.QUEUE)
+                        onNavigateTab(MainNavTab.RECORDS)
+                    },
+                )
+                if (workspaceMode == WorkspaceMode.BHU) {
+                    DrawerNavRow(
+                        icon = Icons.AutoMirrored.Rounded.FactCheck,
+                        title = s.navQueue,
+                        subtitle = s.queueSubtitle,
+                        testTag = "drawer_open_queue",
+                        onClick = {
+                            onDismiss()
+                            onNavigateTab(MainNavTab.QUEUE)
+                        },
+                    )
+                }
+                DrawerNavRow(
+                    icon = Icons.Rounded.Security,
+                    title = s.navKit,
+                    subtitle = s.kitSubtitle,
+                    testTag = "drawer_open_kit",
+                    onClick = {
+                        onDismiss()
+                        onNavigateTab(MainNavTab.ANDROID_KIT)
+                    },
+                )
+                DrawerNavRow(
+                    icon = Icons.AutoMirrored.Rounded.HelpOutline,
+                    title = when (locale) {
+                        AppLocale.UR -> "آسان مکمل رہنمائی (?)"
+                        AppLocale.ROMAN -> "Asaan Poori App Guide (?)"
+                        AppLocale.EN -> "Simple Help Guide (?)"
+                    },
+                    subtitle = when (locale) {
+                        AppLocale.UR -> "BHU، OCR، بی پی، شوگر اور ہر بٹن کی سادہ وضاحت"
+                        AppLocale.ROMAN -> "BHU, OCR, BP, Sugar aur har feature ka aasan matlab"
+                        AppLocale.EN -> "Plain-language explanation of BHU, OCR, BP & every feature"
+                    },
+                    testTag = "drawer_open_help",
+                    onClick = {
+                        onDismiss()
+                        onOpenHelp()
+                    },
+                )
+                DrawerNavRow(
+                    icon = Icons.Rounded.Info,
+                    title = if (isUr) "تعارف / ہوم پیج" else "App Overview & Pillars",
+                    subtitle = s.tagline,
+                    testTag = "drawer_open_landing",
+                    onClick = {
+                        onDismiss()
+                        onOpenLanding()
+                    },
+                )
+                DrawerNavRow(
+                    icon = Icons.Rounded.Policy,
+                    title = if (isUr) "طبی احتیاط اور رازداری (Legal & Privacy)" else "Clinical Disclaimer & Privacy",
+                    subtitle = s.offlineEncryptedLabel,
+                    testTag = "drawer_open_legal",
+                    onClick = {
+                        onDismiss()
+                        onOpenLegal()
                     },
                 )
             }
-            DrawerNavRow(
-                icon = Icons.Rounded.Security,
-                title = s.navKit,
-                subtitle = s.kitSubtitle,
-                testTag = "drawer_open_kit",
-                onClick = {
-                    onDismiss()
-                    onNavigateTab(MainNavTab.ANDROID_KIT)
-                },
-            )
-            DrawerNavRow(
-                icon = Icons.AutoMirrored.Rounded.HelpOutline,
-                title = when (locale) {
-                    AppLocale.UR -> "آسان مکمل رہنمائی (?)"
-                    AppLocale.ROMAN -> "Asaan Poori App Guide (?)"
-                    AppLocale.EN -> "Simple Help Guide (?)"
-                },
-                subtitle = when (locale) {
-                    AppLocale.UR -> "BHU، OCR، بی پی، شوگر اور ہر بٹن کی سادہ وضاحت"
-                    AppLocale.ROMAN -> "BHU, OCR, BP, Sugar aur har feature ka aasan matlab"
-                    AppLocale.EN -> "Plain-language explanation of BHU, OCR, BP & every feature"
-                },
-                testTag = "drawer_open_help",
-                onClick = {
-                    onDismiss()
-                    onOpenHelp()
-                },
-            )
-            DrawerNavRow(
-                icon = Icons.Rounded.Info,
-                title = if (isUr) "تعارف / ہوم پیج" else "App Overview & Pillars",
-                subtitle = s.tagline,
-                testTag = "drawer_open_landing",
-                onClick = {
-                    onDismiss()
-                    onOpenLanding()
-                },
-            )
-            DrawerNavRow(
-                icon = Icons.Rounded.Policy,
-                title = if (isUr) "طبی احتیاط اور رازداری (Legal & Privacy)" else "Clinical Disclaimer & Privacy",
-                subtitle = s.offlineEncryptedLabel,
-                testTag = "drawer_open_legal",
-                onClick = {
-                    onDismiss()
-                    onOpenLegal()
-                },
-            )
 
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth()) {
                 if (!isPinProtected) {
@@ -295,11 +349,12 @@ fun SettingsDrawerSheet(
                         },
                         modifier = Modifier
                             .weight(1f)
+                            .heightIn(min = 48.dp)
                             .testTag("drawer_set_pin_btn"),
                     ) {
                         Icon(Icons.Rounded.Lock, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(Modifier.width(6.dp))
-                        Text(s.setPinBtn)
+                        Text(s.setPinBtn, textAlign = TextAlign.Center, maxLines = 2)
                     }
                 } else {
                     TibbPrimaryPillButton(
@@ -309,15 +364,16 @@ fun SettingsDrawerSheet(
                         },
                         modifier = Modifier
                             .weight(1f)
+                            .heightIn(min = 48.dp)
                             .testTag("drawer_lock_vault_btn"),
                     ) {
                         Icon(Icons.Rounded.Lock, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(Modifier.width(6.dp))
-                        Text(s.lockVault)
+                        Text(s.lockVault, textAlign = TextAlign.Center, maxLines = 2)
                     }
                 }
             }
-            Spacer(Modifier.height(18.dp))
+            Spacer(Modifier.height(12.dp))
         }
     }
 }
@@ -334,17 +390,17 @@ private fun DrawerNavRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
+            .clip(RoundedCornerShape(14.dp))
             .background(c.surfaceMuted)
             .clickable(onClick = onClick)
-            .padding(14.dp)
+            .padding(12.dp)
             .testTag(testTag),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        Icon(icon, contentDescription = null, tint = c.accent, modifier = Modifier.size(22.dp))
+        Icon(icon, contentDescription = null, tint = c.accent, modifier = Modifier.size(20.dp))
         Column(modifier = Modifier.weight(1f)) {
-            Text(title, style = MaterialTheme.typography.titleMedium, color = c.ink)
+            Text(title, style = MaterialTheme.typography.titleSmall, color = c.ink)
             Text(subtitle, style = MaterialTheme.typography.bodySmall, color = c.muted, maxLines = 2)
         }
     }

@@ -238,5 +238,149 @@
       "بچوں کو بڑوں کی ادویات یا اینٹی بائیوٹکس ہرگز نہ دیں۔"
     ],
     "sourceCitation": "WHO IMCI Pre-Referral Urgent Management"
+  },
+  {
+    "id": "POISONING_OVERDOSE",
+    "title_en": "Immediate First Aid: Suspected Poisoning or Overdose",
+    "title_ur": "فوری ابتدائی طبی امداد: زہر خورانی یا دوا کی زیادتی",
+    "do_now_en": [
+      "Call Rescue 1122 or emergency hospital immediately and move the person away from fumes or chemicals.",
+      "Keep the container, bottle, medicine strip, or plant sample safely to show the emergency doctor.",
+      "If the person is unconscious but breathing, lay them on their left side (Recovery Position). Rinse skin/eyes with clean running water for 15–20 minutes if chemical splash occurred."
+    ],
+    "do_now_ur": [
+      "فوری 1122 پر کال کریں یا ایمرجنسی ہسپتال لے جائیں اور مریض کو کیمیکل یا دھوئیں سے دور کریں۔",
+      "دوا کا پتا، بوتل یا کیمیکل کا ڈبہ ڈاکٹر کو دکھانے کے لیے ساتھ لے جائیں۔",
+      "اگر مریض بے ہوش ہو مگر سانس چل رہی ہو تو بائیں کروٹ لٹائیں۔ جلد یا آنکھ پر کیمیکل لگا ہو تو 15 سے 20 منٹ صاف بہتے پانی سے دھوئیں۔"
+    ],
+    "do_not_en": [
+      "NEVER induce vomiting unless specifically instructed by an emergency poison doctor — acids, kerosene, and bleach burn twice coming back up.",
+      "Do NOT give milk, raw eggs, salt water, or oil to neutralize poison."
+    ],
+    "do_not_ur": [
+      "خود سے ہرگز الٹی نہ کروائیں — تیزاب، مٹی کا تیل یا بلیچ واپس آتے ہوئے گلے کو دوبارہ جلا دیتے ہیں۔",
+      "زہر ختم کرنے کے لیے دودھ، کچا انڈا، نمک کا پانی یا تیل ہرگز نہ پلائیں۔"
+    ],
+    "sourceCitation": "WHO Basic Emergency Care — Acute Poisoning & Toxidrome First Aid"
+  },
+  {
+    "id": "HEATSTROKE",
+    "title_en": "Immediate First Aid: Suspected Heatstroke Emergency",
+    "title_ur": "فوری ابتدائی طبی امداد: ہیٹ اسٹروک (شدید لو لگنا)",
+    "do_now_en": [
+      "Call 1122 immediately — heatstroke (high heat with confusion, slurred speech, or fainting) is life-threatening.",
+      "Move the person into shade or an air-conditioned room and remove heavy outer clothing.",
+      "Cool rapidly from outside: spray or sponge with cool water, place wet cold cloths on neck, armpits, and groin, and fan continuously."
+    ],
+    "do_now_ur": [
+      "فوری 1122 پر کال کریں — شدید گرمی کے ساتھ بہکی باتیں، بے ہوشی یا خشک گرم جلد جان لیوا ایمرجنسی ہے۔",
+      "مریض کو فوری سائے یا ٹھنڈی جگہ منتقل کریں اور اوپر کے کپڑے ڈھیلے کریں یا ہٹائیں۔",
+      "تیزی سے ٹھنڈا کریں: جسم پر ٹھنڈا پانی چھڑکیں، گردن، بغلوں اور رانوں پر گیلے ٹھنڈے کپڑے رکھیں اور مسلسل ہوا دیں۔"
+    ],
+    "do_not_en": [
+      "NEVER force fluids into the mouth if the person is confused, drowsy, vomiting, or unconscious.",
+      "Do NOT give fever-reducing tablets for heatstroke—active external cooling and hospital care are required."
+    ],
+    "do_not_ur": [
+      "اگر مریض بے ہوش، غنودگی یا الٹی کی حالت میں ہو تو منہ سے پانی ہرگز نہ پلائیں۔",
+      "ہیٹ اسٹروک میں خود سے بخار کی گولیاں نہ دیں بلکہ باہر سے ٹھنڈا کر کے فوری ہسپتال لے جائیں۔"
+    ],
+    "sourceCitation": "WHO Heat-Health Action Guidance & CDC Heatstroke Protocol"
+  },
+  {
+    "id": "ANAPHYLAXIS",
+    "title_en": "Immediate First Aid: Severe Allergic Reaction (Anaphylaxis)",
+    "title_ur": "فوری ابتدائی طبی امداد: شدید جان لیوا الرجی (اینافائلیکسس)",
+    "do_now_en": [
+      "Call Rescue 1122 immediately if there is swelling of lips/tongue/throat, wheezing, trouble breathing, or dizziness.",
+      "If the person carries their own doctor-prescribed epinephrine auto-injector (EpiPen), assist them in using it right away into the outer mid-thigh.",
+      "Remove the allergen trigger if visible (e.g., gently scrape out a bee stinger), keep the person lying flat with legs slightly raised (or sitting upright if breathing is hard)."
+    ],
+    "do_now_ur": [
+      "اگر ہونٹ، زبان یا گلا سوج جائے، سانس پھولے یا چکر آئیں تو فوری 1122 پر کال کریں۔",
+      "اگر مریض کے پاس ڈاکٹر کا تجویز کردہ اپنا ایپینیفرین (EpiPen) انجیکشن موجود ہو تو ران کے بیرونی حصے میں فوری لگانے میں مدد کریں۔",
+      "اگر شہد کی مکھی کا ڈنک نظر آئے تو آہستہ سے کھرچ کر نکالیں اور مریض کو لٹا کر ٹانگیں ہلکی اونچی رکھیں (سانس مشکل ہو تو بٹھا دیں)۔"
+    ],
+    "do_not_en": [
+      "Do NOT wait to see if throat swelling goes down on its own or rely solely on mild home antihistamines.",
+      "Do NOT force the person to stand or walk suddenly."
+    ],
+    "do_not_ur": [
+      "گلے کی سوجن کے خود کم ہونے کا انتظار ہرگز نہ کریں۔",
+      "مریض کو اچانک کھڑا ہونے یا پیدل چلنے پر مجبور نہ کریں۔"
+    ],
+    "sourceCitation": "WHO Emergency Care & NHS Anaphylaxis First Aid Guidelines"
+  },
+  {
+    "id": "SERIOUS_HEAD_INJURY",
+    "title_en": "Immediate First Aid: Serious Head Injury",
+    "title_ur": "فوری ابتدائی طبی امداد: سر کی شدید چوٹ",
+    "do_now_en": [
+      "Call 1122 immediately for any loss of consciousness, repeated vomiting, confusion, unequal pupils, or clear fluid/blood from ear or nose.",
+      "Keep the head, neck, and spine still and aligned—do not twist or jerk the neck.",
+      "If there is scalp bleeding without suspected skull fracture, apply gentle clean gauze pressure around the area without pressing hard into a dent."
+    ],
+    "do_now_ur": [
+      "اگر سر کی چوٹ کے بعد بے ہوشی، بار بار قے، الجھن، یا کان/ناک سے خون یا صاف پانی آئے تو فوری 1122 پر کال کریں۔",
+      "سر، گردن اور ریڑھ کی ہڈی کو بالکل ساکت اور سیدھا رکھیں—گردن کو ہرگز جھٹکا نہ دیں۔",
+      "اگر کھوپڑی سے خون بہہ رہا ہو تو صاف پٹی سے ہلکا دباؤ رکھیں لیکن دھنسی ہوئی جگہ پر زور نہ دیں۔"
+    ],
+    "do_not_en": [
+      "Do NOT move the person unnecessarily or bend their neck if they fell from a height or had a road crash.",
+      "NEVER give sedatives, painkillers, or food before emergency medical evaluation."
+    ],
+    "do_not_ur": [
+      "اونچائی سے گرنے یا ٹریفک حادثے کے بعد مریض کو بلا ضرورت حرکت نہ دیں اور گردن نہ موڑیں۔",
+      "ڈاکٹری معائنے سے پہلے نیند یا درد کی گولیاں اور خوراک ہرگز نہ دیں۔"
+    ],
+    "sourceCitation": "WHO Basic Emergency Care — Head & Cervical Trauma"
+  },
+  {
+    "id": "SEVERE_DEHYDRATION",
+    "title_en": "Immediate First Aid: Severe Dehydration",
+    "title_ur": "فوری ابتدائی طبی امداد: جسم میں پانی کی شدید کمی",
+    "do_now_en": [
+      "Go immediately to the nearest emergency hospital or 24/7 BHU/THQ for IV fluid resuscitation (WHO Plan C) or call 1122.",
+      "If the person is still alert and able to swallow without choking, give tiny frequent sips of prepared WHO ORS during transport.",
+      "Keep infants warm and continue breastfeeding if the baby is alert enough to suckle."
+    ],
+    "do_now_ur": [
+      "فوری طور پر قریبی ایمرجنسی ہسپتال جائیں یا 1122 بلائیں کیونکہ شدید پانی کی کمی میں ڈرپ (IV fluids) کی ضرورت ہو سکتی ہے۔",
+      "اگر مریض ہوش میں ہو اور نگل سکتا ہو تو ہسپتال جاتے ہوئے چمچ سے تھوڑا تھوڑا او آر ایس پلاتے رہیں۔",
+      "بچے کو گرم رکھیں اور اگر ہوش میں ہو تو ماں کا دودھ جاری رکھیں۔"
+    ],
+    "do_not_en": [
+      "Do NOT delay hospital care expecting oral water alone to reverse sunken eyes, lethargy, or absent urine.",
+      "NEVER force fluids into an unconscious or severely drowsy person."
+    ],
+    "do_not_ur": [
+      "دھنسی ہوئی آنکھیں، شدید سستی یا پیشاب بند ہونے کی صورت میں صرف گھر کے پانی پر بھروسہ کر کے تاخیر نہ کریں۔",
+      "بے ہوش یا شدید غنودگی والے مریض کے منہ میں زبردستی پانی نہ ڈالیں۔"
+    ],
+    "sourceCitation": "WHO Diarrhoea Treatment Plan C — Severe Dehydration"
+  },
+  {
+    "id": "ACUTE_SEVERE_ABDOMEN",
+    "title_en": "Immediate First Aid: Sudden Severe Abdominal Pain",
+    "title_ur": "فوری ابتدائی طبی امداد: اچانک شدید پیٹ درد",
+    "do_now_en": [
+      "Seek urgent hospital emergency evaluation immediately or call 1122 if pain is sudden, severe, rigid/board-like, or accompanied by vomiting, fever, or blood in vomit/stool.",
+      "Help the person rest comfortably with knees slightly bent to ease abdominal tension while arranging transport.",
+      "Keep the patient fasting (nothing by mouth) until a doctor evaluates whether urgent surgery is needed."
+    ],
+    "do_now_ur": [
+      "اگر پیٹ میں اچانک شدید درد، پیٹ کا سخت ہو جانا، مسلسل قے، بخار یا قے/پاخانے میں خون ہو تو فوری ایمرجنسی ہسپتال جائیں یا 1122 بلائیں۔",
+      "ہسپتال پہنچنے تک مریض کو آرام سے گھٹنے ہلکے موڑ کر لٹائیں۔",
+      "ڈاکٹر کے معائنے تک مریض کو منہ سے کچھ کھانے یا پینے نہ دیں کیونکہ فوری آپریشن کی ضرورت پڑ سکتی ہے۔"
+    ],
+    "do_not_en": [
+      "Do NOT give strong painkillers (which can mask surgical signs), laxatives, or heating pads over a rigid acute abdomen.",
+      "Do NOT force food or herbal purgatives."
+    ],
+    "do_not_ur": [
+      "شدید اچانک پیٹ درد میں خود سے تیز درد کش گولیاں، جلاب یا گرم ٹکور ہرگز استعمال نہ کریں۔",
+      "زبردستی کھانا یا گھریلو چورن نہ کھلائیں۔"
+    ],
+    "sourceCitation": "WHO Basic Emergency Care — Acute Abdomen"
   }
 ]

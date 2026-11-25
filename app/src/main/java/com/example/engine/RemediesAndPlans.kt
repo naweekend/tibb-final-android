@@ -1,19 +1,13 @@
 package com.example.engine
 
 import com.example.data.model.AppLocale
-import com.example.data.model.ChatMessage
 import com.example.data.model.DietMealSlot
 import com.example.data.model.EmergencyCategory
 import com.example.data.model.EmergencyFirstAidProtocol
-import com.example.data.model.HomeCareProtocol
 import com.example.data.model.HomeRemedyItem
 import com.example.data.model.MealOptionItem
 import com.example.data.model.PatientProfile
 import com.example.data.model.PersonalizedWellnessPlan
-import com.example.data.model.QuickReplyOption
-import com.example.data.model.StayHomeGuidance
-import com.example.data.model.StayHomeVerdict
-import com.example.data.model.TriageTier
 import com.example.data.model.WellnessGoal
 import com.example.data.model.WorkoutExerciseSlot
 import java.text.SimpleDateFormat
@@ -737,168 +731,6 @@ object RemediesAndPlans {
             avoidNotes_en = avoidEn,
             avoidNotes_ur = avoidUr,
             engineUsed = "OFFLINE_NUTRITION_SAFETY_CORE",
-        )
-    }
-
-    private val anxietyRegex = Regex("(anxious|panic|scared|stressed|overwhelmed|ghabrahat|dar|pareshaan|گھبراہٹ|پریشان|خوف)", RegexOption.IGNORE_CASE)
-    private val farHospitalRegex = Regex("(far away|no transport|delayed|hours away|ambulance late|hospital far|door hai|ہسپتال دور)", RegexOption.IGNORE_CASE)
-
-    fun buildOfflineChatReply(
-        triageEngine: TriageEngine,
-        person: PatientProfile,
-        threadId: String,
-        message: String,
-        homeCareList: List<HomeCareProtocol>,
-        hasImageAttached: Boolean = false,
-        mediaPath: String? = null,
-        mediaKind: String? = null,
-    ): ChatMessage {
-        val cleanMsg = triageEngine.sanitizePlainText(message)
-        val emergencyHit = triageEngine.detectEmergencyFromText(cleanMsg)
-        val suggestCalm = anxietyRegex.containsMatchIn(cleanMsg)
-        val suggestFar = farHospitalRegex.containsMatchIn(cleanMsg)
-        val nowIso = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
-            .apply { timeZone = TimeZone.getTimeZone("UTC") }
-            .format(Date())
-
-        if (emergencyHit.isEmergency && emergencyHit.category != null) {
-            val firstAid = triageEngine.getEmergencyFirstAid(emergencyHit.category)
-            return ChatMessage(
-                id = "msg_${UUID.randomUUID().toString().take(10)}",
-                threadId = threadId,
-                personId = person.id,
-                role = "agent",
-                text = "${emergencyHit.reasonEn}. Call 1122 / 115 immediately and follow the stabilization first-aid steps below.",
-                text_ur = "${emergencyHit.reasonUr}۔ فوری 1122 پر کال کریں اور نیچے دیے گئے ابتدائی طبی امداد کے مراحل پر عمل کریں۔",
-                timestampIso = nowIso,
-                triageTier = TriageTier.RED,
-                emergencyCategory = emergencyHit.category,
-                firstAid = firstAid,
-                stayHomeGuidance = StayHomeGuidance(
-                    verdict = StayHomeVerdict.EMERGENCY_1122,
-                    title_en = "Immediate Emergency Hospital Transfer Required",
-                    title_ur = "فوری ایمرجنسی ہسپتال منتقل کرنا ضروری ہے",
-                    explanation_en = "Danger signs detected. Do not wait at home.",
-                    explanation_ur = "خطرے کی علامات موجود ہیں۔ گھر پر انتظار نہ کریں۔",
-                    actionSteps_en = firstAid.do_now_en,
-                    actionSteps_ur = firstAid.do_now_ur,
-                    disclaimer_en = "Tibb emergency guidance supports immediate stabilization while calling emergency services.",
-                    disclaimer_ur = "طبی امداد آنے تک فوری تحفظ کے لیے رہنمائی۔",
-                ),
-                suggestCalmPacer = false,
-                suggestFarHospitalMode = true,
-                engineUsed = "DETERMINISTIC_WHO_RED_FLAG",
-            )
-        }
-
-        // Check DRAP / antibiotic query attempt
-        val auditCheck = triageEngine.verifyAgainstClinicalGroundTruth(
-            rawText = cleanMsg,
-            ageMonths = person.ageMonths,
-            homeCare = homeCareList.firstOrNull(),
-            diseaseRef = com.example.data.model.DiseaseReferenceCard("ref", "GENERAL", "WHO Care", "WHO", emptyList(), emptyList(), listOf("1122", "48"), "mild_fever"),
-            triageTier = TriageTier.GREEN,
-        )
-        if (auditCheck.amrBlocked || Regex("(antibiotic|amoxicillin|augmentin|flagyl|panadol|dose|mg|prescription|tablet)", RegexOption.IGNORE_CASE).containsMatchIn(cleanMsg)) {
-            return ChatMessage(
-                id = "msg_${UUID.randomUUID().toString().take(10)}",
-                threadId = threadId,
-                personId = person.id,
-                role = "agent",
-                text = "For safety under WHO & DRAP antimicrobial stewardship rules, Tibb cannot prescribe antibiotics, brand-name drugs, or milligram dosages. Please share physical symptoms or vitals for safe WHO supportive guidance, or consult a licensed clinician.",
-                text_ur = "عالمی ادارہ صحت اور ڈریپ کے حفاظتی اصولوں کے مطابق طب اینٹی بائیوٹک یا کسی دوا کی خوراک تجویز نہیں کرتا۔ محفوظ گھریلو رہنمائی کے لیے اپنی علامات یا بلڈ پریشر/شوگر بتائیں، یا مستند ڈاکٹر سے رجوع کریں۔",
-                timestampIso = nowIso,
-                triageTier = TriageTier.GREEN,
-                amrBlocked = true,
-                engineUsed = "DRAP_AMR_SAFETY_GUARD",
-                quickReplies = listOf(
-                    QuickReplyOption("Fever care steps", "بخار کی حفاظتی تدابیر"),
-                    QuickReplyOption("Check vitals now", "بلڈ پریشر اور شوگر چیک کریں"),
-                ),
-            )
-        }
-
-        if (suggestCalm) {
-            return ChatMessage(
-                id = "msg_${UUID.randomUUID().toString().take(10)}",
-                threadId = threadId,
-                personId = person.id,
-                role = "agent",
-                text = "You are safe to pause right here. Take a slow double-inhale and long exhale with the Cyclic Sighing pacer below, then tell me what physical symptoms you notice.",
-                text_ur = "آپ پُرسکون رہیں۔ نیچے دیے گئے سانس لینے کے نظام کے ساتھ دو بار سانس اندر کھینچ کر آہستہ باہر نکالیں، پھر بتائیں کہ جسم میں کیا تکلیف محسوس ہو رہی ہے۔",
-                timestampIso = nowIso,
-                triageTier = TriageTier.GREEN,
-                suggestCalmPacer = true,
-                suggestFarHospitalMode = suggestFar,
-                engineUsed = "OFFLINE_WHO_CALM_CORE",
-                quickReplies = listOf(
-                    QuickReplyOption("No danger signs, just stressed", "کوئی خطرہ نہیں، صرف ذہنی دباؤ ہے"),
-                    QuickReplyOption("Chest pain or dizzy", "سینے میں درد یا چکر آ رہے ہیں"),
-                ),
-            )
-        }
-
-        // Pick closest WHO protocol from user query
-        val matchedCare = when {
-            Regex("(cough|cold|throat|sore|khansi|zukaam|gala|کھانسی|زکام|گلا)", RegexOption.IGNORE_CASE).containsMatchIn(cleanMsg) ->
-                homeCareList.firstOrNull { it.id == "mild_cough_cold" } ?: homeCareList.first()
-            Regex("(diarrhea|loose|stool|vomit|stomach|dast|ulti|pait|اسہال|قے|پیٹ)", RegexOption.IGNORE_CASE).containsMatchIn(cleanMsg) ->
-                homeCareList.firstOrNull { it.id == "mild_diarrhea_ors" } ?: homeCareList.first()
-            Regex("(burn|scald|jala|جل)", RegexOption.IGNORE_CASE).containsMatchIn(cleanMsg) ->
-                homeCareList.firstOrNull { it.id == "minor_burn_first_aid" } ?: homeCareList.first()
-            Regex("(cut|wound|scrape|zakham|زخم)", RegexOption.IGNORE_CASE).containsMatchIn(cleanMsg) ->
-                homeCareList.firstOrNull { it.id == "minor_abrasion" } ?: homeCareList.first()
-            Regex("(heat|sun|garmi|گرمی|دھوپ)", RegexOption.IGNORE_CASE).containsMatchIn(cleanMsg) ->
-                homeCareList.firstOrNull { it.id == "heat_exhaustion_first_aid" } ?: homeCareList.first()
-            else -> homeCareList.firstOrNull { it.id == "mild_fever" } ?: homeCareList.first()
-        }
-
-        val ageSafeCare = if (person.ageMonths < 12) {
-            matchedCare.copy(
-                steps_en = matchedCare.steps_en.filterNot { it.contains("honey", ignoreCase = true) },
-                steps_ur = matchedCare.steps_ur.filterNot { it.contains("شہد") },
-            )
-        } else matchedCare
-
-        val isAmberWarning = Regex("(> 48|48 hours|3 days|4 days|blood|high fever|bukhar tez|blood in|خون)", RegexOption.IGNORE_CASE).containsMatchIn(cleanMsg)
-        val tier = if (isAmberWarning) TriageTier.AMBER else TriageTier.GREEN
-
-        return ChatMessage(
-            id = "msg_${UUID.randomUUID().toString().take(10)}",
-            threadId = threadId,
-            personId = person.id,
-            role = "agent",
-            text = if (hasImageAttached) {
-                "Photo saved locally to ${person.name}'s vault (EXIF stripped). Review lab numbers in Alarms & Labs or describe symptoms below: ${ageSafeCare.steps_en.firstOrNull().orEmpty()}"
-            } else {
-                "Offline WHO Guidance for ${person.name} (${ageSafeCare.title_en}): ${ageSafeCare.steps_en.take(2).joinToString(" ")} ${ageSafeCare.escalation_warning_en}"
-            },
-            text_ur = if (hasImageAttached) {
-                "تصویر ${person.name} کے محفوظ ریکارڈ میں شامل کر دی گئی ہے۔ براہِ کرم مزید علامات لکھیں: ${ageSafeCare.steps_ur.firstOrNull().orEmpty()}"
-            } else {
-                "${person.name} کے لیے مستند رہنمائی (${ageSafeCare.title_ur}): ${ageSafeCare.steps_ur.take(2).joinToString(" ")} ${ageSafeCare.escalation_warning_ur}"
-            },
-            timestampIso = nowIso,
-            triageTier = tier,
-            matchedHomeCare = ageSafeCare,
-            stayHomeGuidance = StayHomeGuidance(
-                verdict = if (isAmberWarning) StayHomeVerdict.RECHECK_AND_CLINIC else StayHomeVerdict.STAY_HOME,
-                title_en = if (isAmberWarning) "Visit Clinic Today & Monitor Closely" else "Monitor Calmly at Home (Seek Clinic if Worsening)",
-                title_ur = if (isAmberWarning) "آج ہی کلینک یا ڈاکٹر سے معائنہ کروائیں" else "گھر پر پُرسکون نگرانی کریں (تکلیف بڑھنے پر کلینک جائیں)",
-                explanation_en = if (isAmberWarning) "Duration or warning cues suggest same-day clinician review." else "No emergency danger signs detected offline. Keep hydrated and monitor temperature/vitals.",
-                explanation_ur = if (isAmberWarning) "علامات کی مدت یا شدت کے باعث آج ڈاکٹر کو دکھانا بہتر ہے۔" else "فی الحال کوئی فوری خطرناک علامت نہیں ملی۔ پانی پیتے رہیں اور علامات پر نظر رکھیں۔",
-                actionSteps_en = ageSafeCare.steps_en,
-                actionSteps_ur = ageSafeCare.steps_ur,
-                disclaimer_en = "Informational supportive triage only — not a medical diagnosis.",
-                disclaimer_ur = "یہ صرف معلوماتی طبی رہنمائی ہے، باقاعدہ تشخیص کا متبادل نہیں۔",
-            ),
-            suggestCalmPacer = suggestCalm,
-            suggestFarHospitalMode = suggestFar,
-            quickReplies = listOf(
-                QuickReplyOption("High fever > 48 hrs", "48 گھنٹے سے زیادہ بخار"),
-                QuickReplyOption("Trouble breathing", "سانس لینے میں دشواری"),
-            ),
-            engineUsed = "OFFLINE_WHO_CORE",
         )
     }
 }

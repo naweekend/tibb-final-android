@@ -13,13 +13,13 @@ import com.example.data.model.AccountRecord
 import com.example.data.model.AlarmFrequency
 import com.example.data.model.AppLocale
 import com.example.data.model.AuditLogEntry
-import com.example.data.model.ChatMessage
 import com.example.data.model.ChatThread
 import com.example.data.model.DailyDoctorCheckIn
 import com.example.data.model.DailyWellnessLog
 import com.example.data.model.EpisodeInput
 import com.example.data.model.EpisodeVitals
 import com.example.data.model.GeoCoords
+import com.example.data.model.MedicalGuidanceAssessment
 import com.example.data.model.PatientProfile
 import com.example.data.model.PersonalizedWellnessPlan
 import com.example.data.model.ReminderType
@@ -28,6 +28,7 @@ import com.example.data.model.SavedReportKind
 import com.example.data.model.StoredAlarm
 import com.example.data.model.StoredEpisode
 import com.example.data.model.StoredLabRecord
+import com.example.data.model.StructuredAssessmentInput
 import com.example.data.model.TriageEvaluationResult
 import com.example.data.model.TriageTier
 import com.example.data.model.UnitSystem
@@ -36,6 +37,7 @@ import com.example.data.model.WorkspaceMode
 import com.example.engine.AndroidSensorsManager
 import com.example.engine.AudioFeedbackManager
 import com.example.engine.HealthMath
+import com.example.engine.LocalMedicalGuidanceEngine
 import com.example.engine.RemediesAndPlans
 import com.example.engine.TriageEngine
 import com.example.worker.NotificationHelper
@@ -80,7 +82,7 @@ data class TibbUiState(
     val authError: String? = null,
     val authBusy: Boolean = false,
     val activeTab: MainNavTab = MainNavTab.HOME,
-    val checkupSubMode: Int = 0, // 0 = Live AI Chat, 1 = Guided Form
+    val checkupSubMode: Int = 0, // 0 = Offline Structured Symptom Checker, 1 = Offline Medical Library & Scope
     val alarmsSubMode: Int = 0, // 0 = Medicine Alarms, 1 = Lab OCR
     val showOnboardingModal: Boolean = false,
     val editingProfile: PatientProfile? = null,
@@ -96,6 +98,7 @@ data class TibbUiState(
     val savedReports: List<SavedPersonReport> = emptyList(),
     val auditLogs: List<AuditLogEntry> = emptyList(),
     val activeEvaluation: TriageEvaluationResult? = null,
+    val activeGuidanceAssessment: MedicalGuidanceAssessment? = null,
     val activeThreadId: String? = null,
     val userGpsCoords: GeoCoords? = null,
     val gpsLocating: Boolean = false,
@@ -112,6 +115,7 @@ class TibbViewModel(application: Application) : AndroidViewModel(application) {
 
     val dataLoader = BundledDataLoader(application)
     val triageEngine = TriageEngine(dataLoader)
+    val guidanceEngine = LocalMedicalGuidanceEngine(dataLoader, triageEngine)
     val audioManager = AudioFeedbackManager(application)
     private val prefsRepo = PreferencesRepository(application)
     private val db = TibbDatabase.getInstance(application)
@@ -383,7 +387,12 @@ class TibbViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch { prefsRepo.setActivePersonId(personId) }
         _uiState.update { state ->
             val threadId = state.chatThreads.firstOrNull { it.personId == personId }?.id
-            state.copy(activePersonId = personId, activeThreadId = threadId)
+            state.copy(
+                activePersonId = personId,
+                activeThreadId = threadId,
+                activeGuidanceAssessment = null,
+                activeEvaluation = null,
+            )
         }
     }
 
@@ -555,8 +564,25 @@ class TibbViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun completeStructuredAssessment(
+        input: StructuredAssessmentInput,
+        assessment: MedicalGuidanceAssessment,
+    ) {
+        val (compatInput, compatResult) = guidanceEngine.toCompatibilityEvaluation(input, assessment)
+        if (assessment.outcome == com.example.data.model.AssessmentOutcome.INVALID_OR_CONFLICTING) {
+            _uiState.update { it.copy(activeGuidanceAssessment = assessment) }
+            return
+        }
+        _uiState.update { it.copy(activeGuidanceAssessment = assessment) }
+        completeTriageEpisode(compatInput, compatResult)
+    }
+
+    fun clearGuidanceAssessment() {
+        _uiState.update { it.copy(activeGuidanceAssessment = null, activeEvaluation = null) }
+    }
+
     fun clearActiveEvaluation() {
-        _uiState.update { it.copy(activeEvaluation = null) }
+        _uiState.update { it.copy(activeEvaluation = null, activeGuidanceAssessment = null) }
     }
 
     fun verifyReferralEpisode(episodeId: String) {
@@ -568,131 +594,6 @@ class TibbViewModel(application: Application) : AndroidViewModel(application) {
             _uiState.update { it.copy(episodes = episodes) }
             audioManager.playClinicalChime("success")
         }
-    }
-
-    fun createNewChatThread(personId: String? = null) {
-        val person = personId?.let { id -> _uiState.value.profiles.firstOrNull { it.id == id } }
-            ?: _uiState.value.activePerson ?: return
-        val session = _uiState.value.session ?: return
-        val thread = ChatThread(
-            id = "thr_${UUID.randomUUID().toString().take(10)}",
-            personId = person.id,
-            title = "${person.name} Checkup",
-            createdAtIso = nowIso(),
-            updatedAtIso = nowIso(),
-            latestTier = TriageTier.GREEN,
-            messages = emptyList(),
-        )
-        viewModelScope.launch {
-            vaultRepo.saveChatThread(session, thread)
-            val threads = vaultRepo.loadChatThreads(session)
-            _uiState.update { it.copy(chatThreads = threads, activeThreadId = thread.id) }
-        }
-    }
-
-    fun selectChatThread(threadId: String) {
-        _uiState.update { it.copy(activeThreadId = threadId) }
-    }
-
-    fun sendChatMessage(
-        text: String,
-        attachedImageUri: Uri? = null,
-        attachedImagePath: String? = null,
-        mediaKind: String? = null,
-    ) {
-        val session = _uiState.value.session ?: return
-        val person = _uiState.value.activePerson ?: return
-        viewModelScope.launch {
-            val existingThread = _uiState.value.chatThreads.firstOrNull {
-                it.id == _uiState.value.activeThreadId && it.personId == person.id
-            } ?: _uiState.value.chatThreads.firstOrNull { it.personId == person.id }
-
-            val threadId = existingThread?.id ?: "thr_${UUID.randomUUID().toString().take(10)}"
-            val savedMediaPath = attachedImagePath ?: attachedImageUri?.let { uri ->
-                AndroidSensorsManager.stripExifAndSaveToVault(getApplication(), session.accountId, uri).getOrNull()
-            }
-
-            if (savedMediaPath != null) {
-                vaultRepo.savePersonReport(
-                    session,
-                    SavedPersonReport(
-                        id = "rep_${UUID.randomUUID().toString().take(10)}",
-                        personId = person.id,
-                        kind = SavedReportKind.REPORT_PHOTO,
-                        title = text.take(48).ifBlank { "Visual Report Snapshot" },
-                        notes = text,
-                        imagePath = savedMediaPath,
-                        createdAtIso = nowIso(),
-                    ),
-                )
-            }
-
-            val userMsg = ChatMessage(
-                id = "msg_${UUID.randomUUID().toString().take(10)}",
-                threadId = threadId,
-                personId = person.id,
-                role = "user",
-                text = text,
-                timestampIso = nowIso(),
-                mediaPath = savedMediaPath,
-                mediaKind = mediaKind,
-            )
-
-            val agentMsg = RemediesAndPlans.buildOfflineChatReply(
-                triageEngine = triageEngine,
-                person = person,
-                threadId = threadId,
-                message = text,
-                homeCareList = dataLoader.whoHomeCare,
-                hasImageAttached = savedMediaPath != null,
-                mediaPath = savedMediaPath,
-                mediaKind = mediaKind,
-            )
-
-            val priorMessages = existingThread?.messages ?: emptyList()
-            val updatedThread = ChatThread(
-                id = threadId,
-                personId = person.id,
-                title = existingThread?.title ?: text.take(36).ifBlank { "${person.name} Checkup" },
-                createdAtIso = existingThread?.createdAtIso ?: nowIso(),
-                updatedAtIso = nowIso(),
-                latestTier = agentMsg.triageTier ?: existingThread?.latestTier ?: TriageTier.GREEN,
-                messages = priorMessages + userMsg + agentMsg,
-            )
-            vaultRepo.saveChatThread(session, updatedThread)
-            val threads = vaultRepo.loadChatThreads(session)
-            val reports = vaultRepo.loadSavedReports(session)
-            _uiState.update {
-                it.copy(
-                    chatThreads = threads,
-                    savedReports = reports,
-                    activeThreadId = threadId,
-                )
-            }
-            if (agentMsg.triageTier == TriageTier.RED) {
-                audioManager.playClinicalChime("red_sos")
-            }
-        }
-    }
-
-    fun detectCrossPersonMention(text: String): PatientProfile? {
-        val active = _uiState.value.activePerson ?: return null
-        val lower = text.lowercase()
-        for (other in _uiState.value.profiles) {
-            if (other.id == active.id) continue
-            val nameMatch = other.name.lowercase().split(" ").any { part ->
-                part.length >= 3 && Regex("\\b${Regex.escape(part)}\\b").containsMatchIn(lower)
-            }
-            val relKeyword = when (other.relationship.name) {
-                "Mother" -> listOf("mother", "mom", "ammi", "ami", "walida", "امی", "والدہ")
-                "Father" -> listOf("father", "dad", "abbu", "abu", "walid", "ابو", "والد")
-                "Child" -> listOf("baby", "child", "son", "daughter", "bacha", "beti", "beta", "بچہ")
-                "Spouse" -> listOf("wife", "husband", "biwi", "shohar", "بیوی", "شوہر")
-                else -> emptyList()
-            }.any { lower.contains(it) }
-            if (nameMatch || relKeyword) return other
-        }
-        return null
     }
 
     fun logVitalsToActivePerson(vitals: EpisodeVitals, label: String) {

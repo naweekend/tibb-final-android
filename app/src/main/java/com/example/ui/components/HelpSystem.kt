@@ -6,11 +6,15 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -48,6 +52,8 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.model.AppLocale
@@ -256,30 +262,36 @@ fun SimpleHelpPopupDialog(
         dismissButton = {
             TextButton(
                 onClick = onOpenAllFeatures,
-                modifier = Modifier.testTag("help_popup_full_guide_btn"),
+                modifier = Modifier.heightIn(min = 48.dp).testTag("help_popup_full_guide_btn"),
             ) {
                 Icon(Icons.AutoMirrored.Rounded.MenuBook, contentDescription = null, modifier = Modifier.size(16.dp))
                 Spacer(Modifier.width(4.dp))
                 Text(
-                    when (locale) {
+                    text = when (locale) {
                         AppLocale.UR -> "تمام فیچرز کی رہنمائی"
                         AppLocale.ROMAN -> "Poori App Guide"
                         AppLocale.EN -> "All App Features"
-                    }
+                    },
+                    textAlign = TextAlign.Center,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
                 )
             }
         },
         confirmButton = {
             TibbPrimaryPillButton(
                 onClick = onDismiss,
-                modifier = Modifier.testTag("help_popup_ok_btn"),
+                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp),
+                modifier = Modifier.heightIn(min = 48.dp).testTag("help_popup_ok_btn"),
             ) {
                 Text(
-                    when (locale) {
+                    text = when (locale) {
                         AppLocale.UR -> "سمجھ آ گیا"
                         AppLocale.ROMAN -> "Samajh Aa Gaya"
                         AppLocale.EN -> "Got It"
-                    }
+                    },
+                    textAlign = TextAlign.Center,
+                    maxLines = 2,
                 )
             }
         },
@@ -315,12 +327,14 @@ fun TibbFullHelpSheet(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .navigationBarsPadding()
+                .imePadding()
                 .padding(horizontal = 18.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
@@ -392,7 +406,7 @@ fun TibbFullHelpSheet(
                             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                                 Row(
                                     modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                                     verticalAlignment = Alignment.CenterVertically,
                                 ) {
                                     Text(

@@ -8,10 +8,13 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -35,6 +38,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.data.model.AppLocale
 import com.example.data.model.DailyDoctorCheckIn
@@ -113,19 +118,31 @@ fun DailyCheckInDialog(
                 }
 
                 Text("How does your weight feel?", style = MaterialTheme.typography.labelLarge)
-                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+                ) {
                     listOf("LOSING" to "Losing", "SAME" to "Same", "GAINING" to "Gaining").forEach { (code, lbl) ->
                         val sel = feeling == code
                         Box(
                             modifier = Modifier
                                 .weight(1f)
+                                .fillMaxHeight()
+                                .heightIn(min = 44.dp)
                                 .clip(RoundedCornerShape(12.dp))
                                 .background(if (sel) c.ctaBg else c.surfaceMuted)
                                 .clickable { feeling = code }
-                                .padding(vertical = 10.dp),
+                                .padding(horizontal = 4.dp, vertical = 10.dp),
                             contentAlignment = Alignment.Center,
                         ) {
-                            Text(lbl, color = if (sel) c.ctaInk else c.ink, style = MaterialTheme.typography.labelMedium)
+                            Text(
+                                text = lbl,
+                                color = if (sel) c.ctaInk else c.ink,
+                                style = MaterialTheme.typography.labelMedium,
+                                textAlign = TextAlign.Center,
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis,
+                            )
                         }
                     }
                 }
@@ -157,37 +174,54 @@ fun DailyCheckInDialog(
                 }
 
                 Text("Sleep Quality (1–5)", style = MaterialTheme.typography.labelLarge)
-                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+                ) {
                     (1..5).forEach { q ->
                         val sel = sleepQuality == q
                         Box(
                             modifier = Modifier
                                 .weight(1f)
+                                .fillMaxHeight()
+                                .heightIn(min = 44.dp)
                                 .clip(RoundedCornerShape(10.dp))
                                 .background(if (sel) c.accent else c.surfaceMuted)
                                 .clickable { sleepQuality = q }
-                                .padding(vertical = 8.dp),
+                                .padding(horizontal = 4.dp, vertical = 8.dp),
                             contentAlignment = Alignment.Center,
                         ) {
-                            Text("$q", color = if (sel) c.ctaInk else c.ink, style = TabularNumberStyle)
+                            Text("$q", color = if (sel) c.ctaInk else c.ink, style = TabularNumberStyle, textAlign = TextAlign.Center)
                         }
                     }
                 }
 
                 Text("Today's Energy Level", style = MaterialTheme.typography.labelLarge)
-                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+                ) {
                     listOf("LOW" to "Low", "STEADY" to "Steady", "STRONG" to "Strong").forEach { (code, lbl) ->
                         val sel = energy == code
                         Box(
                             modifier = Modifier
                                 .weight(1f)
+                                .fillMaxHeight()
+                                .heightIn(min = 44.dp)
                                 .clip(RoundedCornerShape(12.dp))
                                 .background(if (sel) c.ctaBg else c.surfaceMuted)
                                 .clickable { energy = code }
-                                .padding(vertical = 10.dp),
+                                .padding(horizontal = 4.dp, vertical = 10.dp),
                             contentAlignment = Alignment.Center,
                         ) {
-                            Text(lbl, color = if (sel) c.ctaInk else c.ink, style = MaterialTheme.typography.labelMedium)
+                            Text(
+                                text = lbl,
+                                color = if (sel) c.ctaInk else c.ink,
+                                style = MaterialTheme.typography.labelMedium,
+                                textAlign = TextAlign.Center,
+                                maxLines = 2,
+                                overflow = TextOverflow.Ellipsis,
+                            )
                         }
                     }
                 }

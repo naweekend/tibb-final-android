@@ -4,8 +4,12 @@ import android.content.Context
 import com.example.data.model.DiseaseReferenceCard
 import com.example.data.model.DrapBlocklist
 import com.example.data.model.EmergencyFirstAidProtocol
+import com.example.data.model.EmergencyRule
 import com.example.data.model.FacilityRecord
 import com.example.data.model.HomeCareProtocol
+import com.example.data.model.KnowledgeMetadata
+import com.example.data.model.MedicalConditionEntry
+import com.example.data.model.SymptomTaxonomy
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -44,6 +48,28 @@ class BundledDataLoader(
         val json = readAsset("data/drap_blocklist.json")
         moshi.adapter(DrapBlocklist::class.java).fromJson(json)
             ?: DrapBlocklist(emptyList(), emptyList(), emptyList(), emptyList())
+    }
+
+    val knowledgeMetadata: KnowledgeMetadata by lazy {
+        val json = readAsset("data/knowledge_metadata.json")
+        requireNotNull(moshi.adapter(KnowledgeMetadata::class.java).fromJson(json)) {
+            "Failed to parse data/knowledge_metadata.json"
+        }
+    }
+
+    val symptomTaxonomy: SymptomTaxonomy by lazy {
+        val json = readAsset("data/symptom_taxonomy.json")
+        requireNotNull(moshi.adapter(SymptomTaxonomy::class.java).fromJson(json)) {
+            "Failed to parse data/symptom_taxonomy.json"
+        }
+    }
+
+    val emergencyRules: List<EmergencyRule> by lazy {
+        loadList<EmergencyRule>("data/emergency_rules.json").sortedBy { it.priority }
+    }
+
+    val medicalConditions: List<MedicalConditionEntry> by lazy {
+        loadList("data/medical_conditions.json")
     }
 
     private inline fun <reified T> loadList(assetPath: String): List<T> {

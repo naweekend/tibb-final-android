@@ -267,6 +267,7 @@ class VaultRepository(
                 TriageTier.RED -> 0
                 TriageTier.AMBER -> 1
                 TriageTier.GREEN -> 2
+                TriageTier.BLUE -> 3
             }
         }
         return loadEncryptedItems<StoredEpisode>(session, KIND_EPISODE)

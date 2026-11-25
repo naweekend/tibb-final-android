@@ -9,8 +9,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,12 +21,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.FitnessCenter
-import androidx.compose.material.icons.rounded.LocalHospital
+import androidx.compose.material.icons.rounded.Flag
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.material.icons.rounded.Restaurant
@@ -47,11 +51,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.data.model.AppLocale
 import com.example.data.model.DailyWellnessLog
 import com.example.data.model.PatientProfile
 import com.example.data.model.PersonalizedWellnessPlan
+import com.example.data.model.TriageTier
 import com.example.data.model.WellnessGoal
 import com.example.engine.HelpTopic
 import com.example.engine.RemediesAndPlans
@@ -59,6 +66,7 @@ import com.example.engine.TrilingualStrings
 import com.example.ui.components.SectionHelpButton
 import com.example.ui.theme.LocalTibbColors
 import com.example.ui.theme.TabularNumberStyle
+import com.example.ui.theme.TibbExpandableSection
 import com.example.ui.theme.TibbGlassCard
 import com.example.ui.theme.TibbPrimaryPillButton
 import com.example.ui.theme.TibbSecondaryPillButton
@@ -86,12 +94,12 @@ fun WellnessCoachScreen(
         return
     }
 
-    var subTab by remember { mutableIntStateOf(0) } // 0 = Diet Plan, 1 = Workout & Steps, 2 = Home Remedies
+    var subTab by remember { mutableIntStateOf(0) } // 0 = Diet Plan, 1 = Workout, 2 = Remedies
     var selectedGoal by remember(activePerson.id) { mutableStateOf(activePerson.preferredGoal) }
     var variationSeed by remember { mutableIntStateOf(0) }
     var remedyFilter by remember { mutableStateOf("ALL") }
+    var expandedRemedyId by remember { mutableStateOf<String?>(null) }
 
-    // Interactive Workout Stopwatch
     var workoutSec by remember { mutableIntStateOf(0) }
     var workoutRunning by remember { mutableStateOf(false) }
     LaunchedEffect(workoutRunning) {
@@ -115,16 +123,38 @@ fun WellnessCoachScreen(
             .padding(horizontal = 16.dp, vertical = 8.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        // BMI Hero Summary Card
-        TibbGlassCard(padding = 16.dp, borderColor = c.accent.copy(alpha = 0.45f)) {
+        // Compact BMI & BLUE (Wellness) Classification Header
+        TibbGlassCard(padding = 14.dp, borderColor = c.wellnessBlue.copy(alpha = 0.45f)) {
             Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                Row(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(999.dp))
+                        .background(c.wellnessBlueSoft)
+                        .border(1.dp, c.wellnessBlue.copy(alpha = 0.55f), RoundedCornerShape(999.dp))
+                        .padding(horizontal = 10.dp, vertical = 4.dp)
+                        .testTag("coach_blue_wellness_badge"),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(8.dp)
+                            .clip(CircleShape)
+                            .background(c.wellnessBlue),
+                    )
+                    Text(
+                        text = s.blueWellnessLabel,
+                        style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                        color = c.wellnessBlue,
+                    )
+                }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = if (isUr) "جنوبی ایشیائی بی ایم آئی اور ہدف" else "South Asian BMI & Goal",
+                        text = if (isUr) "جنوبی ایشیائی بی ایم آئی" else "South Asian BMI",
                         style = MaterialTheme.typography.titleMedium,
                         color = c.ink,
                         modifier = Modifier.weight(1f),
@@ -136,19 +166,20 @@ fun WellnessCoachScreen(
                         SectionHelpButton(topic = HelpTopic.COACH_BMI, locale = locale)
                     }
                 }
-                Text(if (isUr) bmi.labelUr else bmi.labelEn, style = MaterialTheme.typography.labelLarge, color = c.accent)
+                Text(if (isUr) bmi.labelUr else bmi.labelEn, style = MaterialTheme.typography.labelMedium, color = c.accent)
                 Text(if (isUr) bmi.adviceUr else bmi.adviceEn, style = MaterialTheme.typography.bodySmall, color = c.muted)
             }
         }
 
-        // Subtabs
+        // Unified Subtabs
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .height(IntrinsicSize.Max)
                 .clip(RoundedCornerShape(999.dp))
-                .background(c.surface)
+                .background(c.surfaceMuted)
                 .border(1.dp, c.border, RoundedCornerShape(999.dp))
-                .padding(4.dp),
+                .padding(3.dp),
             horizontalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             listOf(
@@ -160,51 +191,60 @@ fun WellnessCoachScreen(
                 Box(
                     modifier = Modifier
                         .weight(1f)
+                        .fillMaxHeight()
                         .clip(RoundedCornerShape(999.dp))
                         .background(if (sel) c.ctaBg else Color.Transparent)
                         .clickable { subTab = idx }
-                        .padding(vertical = 9.dp)
+                        .padding(horizontal = 6.dp, vertical = 9.dp)
                         .testTag("coach_subtab_$idx"),
                     contentAlignment = Alignment.Center,
                 ) {
-                    Text(lbl, style = MaterialTheme.typography.labelMedium, color = if (sel) c.ctaInk else c.ink)
+                    Text(
+                        text = lbl,
+                        style = MaterialTheme.typography.labelMedium,
+                        color = if (sel) c.ctaInk else c.muted,
+                        textAlign = TextAlign.Center,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
                 }
             }
         }
 
         when (subTab) {
             0 -> {
-                // Goal Selector + Rotate Button
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
+                // Collapsed-by-default Goal Picker
+                TibbExpandableSection(
+                    title = if (isUr) "صحت کا ہدف تبدیل کریں" else "Wellness Goal",
+                    summary = if (isUr) selectedGoal.titleUr else selectedGoal.titleEn,
+                    icon = Icons.Rounded.Flag,
+                    initiallyExpanded = false,
+                    headerTestTag = "coach_goal_expand_btn",
+                    trailingHeaderContent = {
+                        SectionHelpButton(topic = HelpTopic.COACH_DIET, locale = locale)
+                    },
                 ) {
-                    Text(if (isUr) "صحت کا ہدف منتخب کریں" else "Select Wellness Goal", style = MaterialTheme.typography.labelLarge, color = c.ink)
-                    SectionHelpButton(topic = HelpTopic.COACH_DIET, locale = locale)
-                }
-                Row(
-                    modifier = Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    WellnessGoal.entries.forEach { g ->
-                        val sel = selectedGoal == g
-                        Box(
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(999.dp))
-                                .background(if (sel) c.ctaBg else c.surface)
-                                .border(1.dp, if (sel) c.ctaBg else c.border, RoundedCornerShape(999.dp))
-                                .clickable {
-                                    selectedGoal = g
-                                    onGeneratePlan(g, variationSeed)
-                                }
-                                .padding(horizontal = 12.dp, vertical = 8.dp),
-                        ) {
-                            Text(if (isUr) g.titleUr else g.titleEn, style = MaterialTheme.typography.labelSmall, color = if (sel) c.ctaInk else c.ink)
+                    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        WellnessGoal.entries.forEach { g ->
+                            val sel = selectedGoal == g
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(999.dp))
+                                    .background(if (sel) c.ctaBg else c.surfaceMuted)
+                                    .border(1.dp, if (sel) c.ctaBg else c.border, RoundedCornerShape(999.dp))
+                                    .clickable {
+                                        selectedGoal = g
+                                        onGeneratePlan(g, variationSeed)
+                                    }
+                                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                            ) {
+                                Text(if (isUr) g.titleUr else g.titleEn, style = MaterialTheme.typography.labelSmall, color = if (sel) c.ctaInk else c.ink)
+                            }
                         }
                     }
                 }
 
+                // Single Primary Action CTA
                 TibbPrimaryPillButton(
                     onClick = {
                         variationSeed++
@@ -217,19 +257,29 @@ fun WellnessCoachScreen(
                     Text(if (isUr) "نیا دیسی مینو بنائیں" else "Generate / Rotate Desi Menu")
                 }
 
-                // Meal Cards with Swap + Mark Eaten
+                // Clean Meal Cards
                 plan.dietMeals.forEachIndexed { slotIdx, meal ->
                     val eaten = todayLog.mealsChecked.contains(meal.slot)
-                    TibbGlassCard(padding = 16.dp, borderColor = if (eaten) c.safeGreen else c.border) {
+                    TibbGlassCard(padding = 14.dp, borderColor = if (eaten) c.safeGreen else c.border) {
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween,
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
                                 verticalAlignment = Alignment.CenterVertically,
                             ) {
-                                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                                    modifier = Modifier.weight(1f),
+                                ) {
                                     Icon(Icons.Rounded.Restaurant, contentDescription = null, tint = c.accent, modifier = Modifier.size(16.dp))
-                                    Text("${meal.slot} · ~${meal.caloriesApprox} kcal", style = TabularNumberStyle.copy(fontWeight = FontWeight.SemiBold), color = c.accent)
+                                    Text(
+                                        text = "${meal.slot} · ~${meal.caloriesApprox} kcal",
+                                        style = TabularNumberStyle.copy(fontWeight = FontWeight.SemiBold),
+                                        color = c.accent,
+                                        maxLines = 1,
+                                        overflow = TextOverflow.Ellipsis,
+                                    )
                                 }
                                 if (meal.alternatives.size > 1) {
                                     TibbSecondaryPillButton(
@@ -247,11 +297,12 @@ fun WellnessCoachScreen(
                                             )
                                             onUpdatePlan(plan.copy(dietMeals = updatedMeals))
                                         },
+                                        contentPadding = PaddingValues(horizontal = 10.dp, vertical = 6.dp),
                                         modifier = Modifier.testTag("meal_swap_${meal.slot.lowercase().replace(' ', '_')}"),
                                     ) {
                                         Icon(Icons.Rounded.SwapHoriz, contentDescription = null, modifier = Modifier.size(14.dp))
                                         Spacer(Modifier.width(4.dp))
-                                        Text("Swap (${meal.selectedOptionIndex + 1}/${meal.alternatives.size})", style = MaterialTheme.typography.labelSmall)
+                                        Text("Swap", style = MaterialTheme.typography.labelSmall, maxLines = 1)
                                     }
                                 }
                             }
@@ -284,14 +335,17 @@ fun WellnessCoachScreen(
                     }
                 }
 
-                // Medical / Allergy Safeguard Notes
-                TibbGlassCard(padding = 14.dp, borderColor = c.amber.copy(alpha = 0.45f)) {
-                    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                            Icon(Icons.Rounded.Warning, contentDescription = null, tint = c.amber, modifier = Modifier.size(16.dp))
-                            Text(if (isUr) "احتیاطی غذائی اصول" else "Condition & Allergy Safeguards", style = MaterialTheme.typography.titleMedium, color = c.amber)
-                        }
-                        val notes = if (isUr) plan.avoidNotes_ur else plan.avoidNotes_en
+                // Collapsed-by-default Condition & Allergy Safeguards
+                val notes = if (isUr) plan.avoidNotes_ur else plan.avoidNotes_en
+                if (notes.isNotEmpty()) {
+                    TibbExpandableSection(
+                        title = if (isUr) "احتیاطی غذائی اصول" else "Condition & Allergy Safeguards",
+                        summary = "${notes.size} safety notes",
+                        icon = Icons.Rounded.Warning,
+                        accentColor = c.amber,
+                        initiallyExpanded = false,
+                        headerTestTag = "coach_safeguards_expand_btn",
+                    ) {
                         notes.forEach { note ->
                             Text("• $note", style = MaterialTheme.typography.bodySmall, color = c.ink)
                         }
@@ -300,17 +354,20 @@ fun WellnessCoachScreen(
             }
 
             1 -> {
-                // Live Workout Stopwatch
-                TibbGlassCard(padding = 18.dp, borderColor = c.accent.copy(alpha = 0.45f)) {
+                TibbGlassCard(padding = 18.dp, borderColor = c.accent.copy(alpha = 0.4f)) {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                modifier = Modifier.weight(1f),
+                            ) {
                                 Icon(Icons.Rounded.FitnessCenter, contentDescription = null, tint = c.accent)
-                                Text("Workout Session Timer", style = MaterialTheme.typography.titleMedium, color = c.ink)
+                                Text("Workout Timer", style = MaterialTheme.typography.titleMedium, color = c.ink)
                             }
                             SectionHelpButton(topic = HelpTopic.COACH_WORKOUT, locale = locale)
                         }
@@ -321,7 +378,10 @@ fun WellnessCoachScreen(
                             style = TabularNumberStyle.copy(fontSize = MaterialTheme.typography.displayLarge.fontSize, fontWeight = FontWeight.Bold),
                             color = c.ink,
                         )
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        FlowRow(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp),
+                        ) {
                             TibbPrimaryPillButton(
                                 onClick = { workoutRunning = !workoutRunning },
                                 modifier = Modifier.testTag("workout_timer_toggle"),
@@ -348,14 +408,29 @@ fun WellnessCoachScreen(
                     }
                 }
 
-                plan.workoutRoutine.forEach { ex ->
-                    TibbGlassCard(padding = 16.dp) {
-                        Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                // Collapsed-by-default Exercise Routine List
+                TibbExpandableSection(
+                    title = if (isUr) "آج کی ورزش کے مراحل" else "Daily Exercise Routine",
+                    summary = "${plan.workoutRoutine.size} exercises",
+                    icon = Icons.Rounded.FitnessCenter,
+                    initiallyExpanded = false,
+                    headerTestTag = "coach_workout_routine_expand",
+                ) {
+                    plan.workoutRoutine.forEach { ex ->
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(14.dp))
+                                .background(c.surfaceMuted.copy(alpha = 0.65f))
+                                .padding(12.dp),
+                            verticalArrangement = Arrangement.spacedBy(4.dp),
+                        ) {
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.SpaceBetween,
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                verticalAlignment = Alignment.CenterVertically,
                             ) {
-                                Text(if (isUr) ex.name_ur else ex.name_en, style = MaterialTheme.typography.titleMedium, color = c.ink, modifier = Modifier.weight(1f))
+                                Text(if (isUr) ex.name_ur else ex.name_en, style = MaterialTheme.typography.titleSmall, color = c.ink, modifier = Modifier.weight(1f))
                                 Text(ex.intensity, style = MaterialTheme.typography.labelSmall, color = c.accent)
                             }
                             Text(ex.durationOrReps, style = TabularNumberStyle, color = c.accent)
@@ -370,7 +445,7 @@ fun WellnessCoachScreen(
                     "ALL" to "All",
                     "FEVER_THROAT" to "Fever & Throat",
                     "STOMACH_HYDRATION" to "Stomach & ORS",
-                    "HEAT_SKIN" to "Heat, Burns & Cuts",
+                    "HEAT_SKIN" to "Heat & Skin",
                     "PAIN_RECOVERY" to "Pain & Sprains",
                     "STRESS_SLEEP" to "Sleep & Stress",
                 )
@@ -380,9 +455,10 @@ fun WellnessCoachScreen(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
-                        text = if (isUr) "مستند گھریلو علاج اور احتیاط" else "Verified Home Remedies & Cautions",
-                        style = MaterialTheme.typography.titleSmall,
+                        text = if (isUr) "مستند گھریلو علاج" else "Verified Home Remedies",
+                        style = MaterialTheme.typography.titleMedium,
                         color = c.ink,
+                        modifier = Modifier.weight(1f),
                     )
                     SectionHelpButton(topic = HelpTopic.COACH_REMEDIES, locale = locale)
                 }
@@ -410,44 +486,38 @@ fun WellnessCoachScreen(
                     else RemediesAndPlans.HOME_REMEDIES_PAKISTAN.filter { it.category == remedyFilter }
                 }
 
+                // Progressive disclosure: each remedy collapsed by default into an expandable card
                 list.forEach { rem ->
-                    TibbGlassCard(padding = 16.dp) {
-                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                                Icon(Icons.Rounded.Spa, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
-                                Text(
-                                    text = if (isUr) rem.title_ur else rem.title_en,
-                                    style = if (isUr) urduTextStyle(MaterialTheme.typography.titleMedium) else MaterialTheme.typography.titleMedium,
-                                    color = c.ink,
-                                )
-                            }
+                    val title = if (isUr) rem.title_ur else rem.title_en
+                    val ingredients = if (isUr) rem.ingredients_ur else rem.ingredients_en
+                    TibbExpandableSection(
+                        title = title,
+                        summary = ingredients,
+                        icon = Icons.Rounded.Spa,
+                        expanded = expandedRemedyId == rem.title_en,
+                        onExpandedChange = { open -> expandedRemedyId = if (open) rem.title_en else null },
+                    ) {
+                        val steps = if (isUr) rem.steps_ur else rem.steps_en
+                        steps.forEachIndexed { idx, step ->
+                            Text("${idx + 1}. $step", style = MaterialTheme.typography.bodySmall, color = c.ink)
+                        }
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(c.amberSoft)
+                                .padding(10.dp),
+                        ) {
                             Text(
-                                text = if (isUr) rem.ingredients_ur else rem.ingredients_en,
-                                style = MaterialTheme.typography.labelMedium,
-                                color = c.accent,
+                                text = if (isUr) rem.caution_ur else rem.caution_en,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = c.amber,
                             )
-                            val steps = if (isUr) rem.steps_ur else rem.steps_en
-                            steps.forEachIndexed { idx, step ->
-                                Text("${idx + 1}. $step", style = MaterialTheme.typography.bodySmall, color = c.ink)
-                            }
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .clip(RoundedCornerShape(12.dp))
-                                    .background(c.amberSoft)
-                                    .padding(10.dp),
-                            ) {
-                                Text(
-                                    text = if (isUr) rem.caution_ur else rem.caution_en,
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = c.amber,
-                                )
-                            }
                         }
                     }
                 }
             }
         }
-        Spacer(Modifier.height(14.dp))
+        Spacer(Modifier.height(12.dp))
     }
 }

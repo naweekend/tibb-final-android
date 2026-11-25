@@ -7,10 +7,14 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -58,6 +62,7 @@ private enum class SighPhase(val durationMs: Long, val labelEn: String, val labe
     EXHALE(6000L, "3. Long Slow Exhale through Mouth", "3. منہ سے آہستہ لمبا سانس باہر نکالیں", 0.66f),
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CyclicSighingPacer(
     locale: AppLocale,
@@ -130,7 +135,7 @@ fun CyclicSighingPacer(
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Row(
@@ -151,7 +156,8 @@ fun CyclicSighingPacer(
                 }
                 TibbSecondaryPillButton(
                     onClick = { audioEnabled = !audioEnabled },
-                    modifier = Modifier.testTag("sigh_pacer_audio_toggle"),
+                    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 6.dp),
+                    modifier = Modifier.heightIn(min = 40.dp).testTag("sigh_pacer_audio_toggle"),
                 ) {
                     Icon(
                         imageVector = if (audioEnabled) Icons.Rounded.VolumeUp else Icons.Rounded.VolumeOff,
@@ -210,13 +216,14 @@ fun CyclicSighingPacer(
                 textAlign = TextAlign.Center,
             )
 
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
-                verticalAlignment = Alignment.CenterVertically,
+            FlowRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 TibbPrimaryPillButton(
                     onClick = { running = !running },
-                    modifier = Modifier.testTag("sigh_pacer_start_stop"),
+                    modifier = Modifier.heightIn(min = 48.dp).testTag("sigh_pacer_start_stop"),
                 ) {
                     Icon(
                         imageVector = if (running) Icons.Rounded.Stop else Icons.Rounded.PlayArrow,
@@ -225,8 +232,9 @@ fun CyclicSighingPacer(
                     )
                     Spacer(Modifier.size(6.dp))
                     Text(
-                        if (running) (if (isUr) "روکیں" else "Stop")
-                        else (if (isUr) "مشق شروع کریں" else "Start Pacer")
+                        text = if (running) (if (isUr) "روکیں" else "Stop")
+                        else (if (isUr) "مشق شروع کریں" else "Start Pacer"),
+                        textAlign = TextAlign.Center,
                     )
                 }
 
@@ -236,7 +244,8 @@ fun CyclicSighingPacer(
                             running = false
                             cyclesCompleted = 0
                         },
-                        modifier = Modifier.testTag("sigh_pacer_reset"),
+                        contentPadding = PaddingValues(horizontal = 14.dp, vertical = 10.dp),
+                        modifier = Modifier.heightIn(min = 48.dp).testTag("sigh_pacer_reset"),
                     ) {
                         Icon(Icons.Rounded.Refresh, contentDescription = "Reset cycles", modifier = Modifier.size(16.dp))
                     }

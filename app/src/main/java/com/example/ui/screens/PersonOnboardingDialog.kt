@@ -6,17 +6,22 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -47,6 +52,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.data.model.AppLocale
 import com.example.data.model.BloodGroup
@@ -212,15 +219,15 @@ fun PersonOnboardingDialog(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .statusBarsPadding()
-                .navigationBarsPadding(),
+                .safeDrawingPadding()
+                .imePadding(),
             contentAlignment = Alignment.TopCenter,
         ) {
             Column(
                 modifier = Modifier
                     .widthIn(max = 640.dp)
                     .fillMaxSize()
-                    .padding(horizontal = 20.dp, vertical = 14.dp),
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
             ) {
                 // Header & Progress
                 Row(
@@ -356,20 +363,31 @@ fun PersonOnboardingDialog(
                             }
 
                             Text(if (isUr) "جنس" else "Biological Sex", style = MaterialTheme.typography.labelLarge, color = c.ink)
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            ) {
                                 listOf("M" to "Male", "F" to "Female", "O" to "Other").forEach { (code, lbl) ->
                                     val sel = sex == code
                                     Box(
                                         modifier = Modifier
                                             .weight(1f)
+                                            .fillMaxHeight()
+                                            .heightIn(min = 48.dp)
                                             .clip(RoundedCornerShape(12.dp))
                                             .background(if (sel) c.ctaBg else c.surfaceMuted)
                                             .clickable { sex = code }
-                                            .padding(vertical = 12.dp)
+                                            .padding(horizontal = 8.dp, vertical = 12.dp)
                                             .testTag("onboard_sex_$code"),
                                         contentAlignment = Alignment.Center,
                                     ) {
-                                        Text(lbl, color = if (sel) c.ctaInk else c.ink, style = MaterialTheme.typography.labelLarge)
+                                        Text(
+                                            text = lbl,
+                                            color = if (sel) c.ctaInk else c.ink,
+                                            style = MaterialTheme.typography.labelLarge,
+                                            textAlign = TextAlign.Center,
+                                            maxLines = 2,
+                                        )
                                     }
                                 }
                             }
@@ -396,12 +414,16 @@ fun PersonOnboardingDialog(
                         }
 
                         2 -> {
-                            Row(
+                            FlowRow(
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.SpaceBetween,
-                                verticalAlignment = Alignment.CenterVertically,
+                                verticalArrangement = Arrangement.spacedBy(8.dp),
                             ) {
-                                Text(if (isUr) "جسم کی پیمائش اور ہدف" else "Height, Weight & Goal", style = MaterialTheme.typography.titleMedium, color = c.ink)
+                                Text(
+                                    text = if (isUr) "جسم کی پیمائش اور ہدف" else "Height, Weight & Goal",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    color = c.ink,
+                                )
                                 Row(
                                     modifier = Modifier
                                         .clip(RoundedCornerShape(999.dp))
@@ -415,7 +437,7 @@ fun PersonOnboardingDialog(
                                                 .clip(RoundedCornerShape(999.dp))
                                                 .background(if (sel) c.ctaBg else c.surfaceMuted)
                                                 .clickable { switchUnits(u) }
-                                                .padding(horizontal = 10.dp, vertical = 6.dp)
+                                                .padding(horizontal = 10.dp, vertical = 7.dp)
                                                 .testTag("onboard_unit_${u.name.lowercase()}"),
                                         ) {
                                             Text(lbl, color = if (sel) c.ctaInk else c.ink, style = MaterialTheme.typography.labelSmall)
@@ -425,7 +447,7 @@ fun PersonOnboardingDialog(
                             }
 
                             if (unitSystem == UnitSystem.METRIC) {
-                                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                                Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.fillMaxWidth()) {
                                     OutlinedTextField(
                                         value = heightCmText,
                                         onValueChange = { heightCmText = it.filter { ch -> ch.isDigit() || ch == '.' } },
@@ -444,31 +466,64 @@ fun PersonOnboardingDialog(
                                     )
                                 }
                             } else {
-                                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                    OutlinedTextField(
-                                        value = feetText,
-                                        onValueChange = { feetText = it.filter(Char::isDigit) },
-                                        label = { Text("Feet") },
-                                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                                        singleLine = true,
-                                        modifier = Modifier.weight(1f),
-                                    )
-                                    OutlinedTextField(
-                                        value = inchesText,
-                                        onValueChange = { inchesText = it.filter(Char::isDigit) },
-                                        label = { Text("Inches") },
-                                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                                        singleLine = true,
-                                        modifier = Modifier.weight(1f),
-                                    )
-                                    OutlinedTextField(
-                                        value = lbsText,
-                                        onValueChange = { lbsText = it.filter { ch -> ch.isDigit() || ch == '.' } },
-                                        label = { Text("Weight (lbs)") },
-                                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                                        singleLine = true,
-                                        modifier = Modifier.weight(1.3f),
-                                    )
+                                BoxWithConstraints(modifier = Modifier.fillMaxWidth()) {
+                                    if (maxWidth >= 440.dp) {
+                                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                            OutlinedTextField(
+                                                value = feetText,
+                                                onValueChange = { feetText = it.filter(Char::isDigit) },
+                                                label = { Text("Feet") },
+                                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                                singleLine = true,
+                                                modifier = Modifier.weight(1f),
+                                            )
+                                            OutlinedTextField(
+                                                value = inchesText,
+                                                onValueChange = { inchesText = it.filter(Char::isDigit) },
+                                                label = { Text("Inches") },
+                                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                                singleLine = true,
+                                                modifier = Modifier.weight(1f),
+                                            )
+                                            OutlinedTextField(
+                                                value = lbsText,
+                                                onValueChange = { lbsText = it.filter { ch -> ch.isDigit() || ch == '.' } },
+                                                label = { Text("Weight (lbs)") },
+                                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                                                singleLine = true,
+                                                modifier = Modifier.weight(1.3f),
+                                            )
+                                        }
+                                    } else {
+                                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                                OutlinedTextField(
+                                                    value = feetText,
+                                                    onValueChange = { feetText = it.filter(Char::isDigit) },
+                                                    label = { Text("Feet") },
+                                                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                                    singleLine = true,
+                                                    modifier = Modifier.weight(1f),
+                                                )
+                                                OutlinedTextField(
+                                                    value = inchesText,
+                                                    onValueChange = { inchesText = it.filter(Char::isDigit) },
+                                                    label = { Text("Inches") },
+                                                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                                    singleLine = true,
+                                                    modifier = Modifier.weight(1f),
+                                                )
+                                            }
+                                            OutlinedTextField(
+                                                value = lbsText,
+                                                onValueChange = { lbsText = it.filter { ch -> ch.isDigit() || ch == '.' } },
+                                                label = { Text("Weight (lbs)") },
+                                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                                                singleLine = true,
+                                                modifier = Modifier.fillMaxWidth(),
+                                            )
+                                        }
+                                    }
                                 }
                             }
 
@@ -563,17 +618,18 @@ fun PersonOnboardingDialog(
                 // Bottom Navigation Buttons
                 Spacer(Modifier.height(10.dp))
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
                     if (step > 1) {
                         TibbSecondaryPillButton(
                             onClick = { step-- },
-                            modifier = Modifier.weight(1f).height(50.dp).testTag("onboarding_back_btn"),
+                            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 10.dp),
+                            modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 50.dp).testTag("onboarding_back_btn"),
                         ) {
                             Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = null)
                             Spacer(Modifier.padding(2.dp))
-                            Text(if (isUr) "پیچھے" else "Back")
+                            Text(if (isUr) "پیچھے" else "Back", textAlign = TextAlign.Center, maxLines = 2, overflow = TextOverflow.Ellipsis)
                         }
                     }
 
@@ -582,11 +638,15 @@ fun PersonOnboardingDialog(
                         onClick = {
                             if (step < 4) step++ else finishSave()
                         },
-                        modifier = Modifier.weight(1.4f).height(50.dp).testTag("onboarding_next_save_btn"),
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 10.dp),
+                        modifier = Modifier.weight(1.4f).fillMaxHeight().heightIn(min = 50.dp).testTag("onboarding_next_save_btn"),
                     ) {
                         Text(
-                            if (step < 4) (if (isUr) "اگلا مرحلہ" else "Continue")
-                            else (if (isUr) "پروفائل محفوظ کریں" else "Save Profile")
+                            text = if (step < 4) (if (isUr) "اگلا مرحلہ" else "Continue")
+                            else (if (isUr) "پروفائل محفوظ کریں" else "Save Profile"),
+                            textAlign = TextAlign.Center,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis,
                         )
                         Spacer(Modifier.padding(4.dp))
                         Icon(

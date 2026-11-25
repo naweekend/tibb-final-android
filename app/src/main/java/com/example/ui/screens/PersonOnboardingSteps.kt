@@ -12,9 +12,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -40,6 +45,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import com.example.data.model.AppLocale
@@ -118,6 +125,7 @@ fun OnboardingStep3Medical(
                 else "Currently Pregnant or Breastfeeding (enables WHO maternal danger checks)",
                 style = MaterialTheme.typography.bodySmall,
                 color = c.ink,
+                modifier = Modifier.weight(1f),
             )
         }
     }
@@ -162,6 +170,8 @@ fun OnboardingStep3Medical(
                     onCustomAllergyChange("")
                 }
             },
+            contentPadding = PaddingValues(horizontal = 14.dp, vertical = 10.dp),
+            modifier = Modifier.heightIn(min = 48.dp),
         ) {
             Icon(Icons.Rounded.Add, contentDescription = "Add Allergy")
         }
@@ -221,7 +231,10 @@ fun OnboardingStep4Places(
         color = c.ink,
     )
 
-    Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+    ) {
         TibbSecondaryPillButton(
             onClick = {
                 val fine = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
@@ -229,18 +242,30 @@ fun OnboardingStep4Places(
                 if (fine || coarse) onRequestGps()
                 else locPermLauncher.launch(arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION))
             },
-            modifier = Modifier.weight(1f).testTag("onboard_gps_btn"),
+            contentPadding = PaddingValues(horizontal = 10.dp, vertical = 8.dp),
+            modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp).testTag("onboard_gps_btn"),
         ) {
             Icon(Icons.Rounded.MyLocation, contentDescription = null, modifier = Modifier.size(16.dp))
             Spacer(Modifier.width(6.dp))
-            Text(if (gpsLocating) "Locating..." else if (userGpsCoords != null) "GPS Ready" else "Attach GPS")
+            Text(
+                text = if (gpsLocating) "Locating..." else if (userGpsCoords != null) "GPS Ready" else "Attach GPS",
+                textAlign = TextAlign.Center,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+            )
         }
 
         TibbSecondaryPillButton(
             onClick = { customCityMode = !customCityMode },
-            modifier = Modifier.weight(1f),
+            contentPadding = PaddingValues(horizontal = 10.dp, vertical = 8.dp),
+            modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp),
         ) {
-            Text(if (customCityMode) "District List" else "+ Custom City")
+            Text(
+                text = if (customCityMode) "District List" else "+ Custom City",
+                textAlign = TextAlign.Center,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+            )
         }
     }
 
@@ -320,10 +345,10 @@ fun OnboardingStep4Places(
                             )
                         }
                         .padding(horizontal = 12.dp, vertical = 10.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Text(anchor.label, style = MaterialTheme.typography.bodyMedium, color = c.ink)
+                    Text(anchor.label, style = MaterialTheme.typography.bodyMedium, color = c.ink, modifier = Modifier.weight(1f))
                     Icon(Icons.Rounded.Add, contentDescription = "Add ${anchor.label}", tint = c.accent, modifier = Modifier.size(18.dp))
                 }
             }

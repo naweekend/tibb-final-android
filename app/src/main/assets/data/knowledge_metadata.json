@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0-offline",
+  "lastReviewedDate": "2025-02-01",
+  "titleEn": "Tibb Offline Clinical Reference & Rule Engine",
+  "titleUr": "طب آف لائن طبی رہنمائی اور حفاظتی اصولی نظام",
+  "authoritativeSources": [
+    "WHO Integrated Management of Childhood Illness (IMCI)",
+    "WHO Emergency Triage Assessment and Treatment (ETAT) & Basic Emergency Care",
+    "WHO Oral Rehydration & Primary Burn Care Guidelines",
+    "NHS Health A-Z Patient Guidance",
+    "CDC Clinical & First Aid Guidance",
+    "MedlinePlus Medical Encyclopedia",
+    "DRAP Pakistan Antimicrobial Stewardship Principles"
+  ],
+  "coveredDomainsEn": [
+    "Common everyday illnesses (viral cold, fever, mild dehydration, seasonal allergies)",
+    "Respiratory (bronchitis, pneumonia danger signs, asthma flare, sore throat)",
+    "Digestive (acute watery diarrhea, acid reflux/gastritis, gastroenteritis, acute abdomen red flags)",
+    "Skin & Allergies (contact dermatitis, mild hives, fungal skin infection, cellulitis, anaphylaxis)",
+    "Eye & Ear (viral/bacterial conjunctivitis, acute earache, vision-threatening red eye)",
+    "Musculoskeletal (muscle strain/sprain, mechanical low back pain, inflammatory joint pain)",
+    "Neurological (tension headache, migraine, stroke FAST warnings, seizures, severe head injury)",
+    "Cardiovascular (orthostatic dizziness, hypertensive warning, acute cardiac chest pain)",
+    "Infectious (suspected dengue warning evaluation, enteric fever warning, suspected TB cough >14d)",
+    "Injuries & Trauma (minor cuts/abrasions, minor thermal burns, severe burns, uncontrolled bleeding, animal bites)",
+    "Urinary & Chronic Conditions (uncomplicated UTI warning, kidney/flank infection alert, hypoglycemia, hyperglycemia)",
+    "Pediatrics, Older Adults & Pregnancy (infant <2m fever, croup/stridor, senior delirium/falls, preeclampsia/maternal bleeding)"
+  ],
+  "coveredDomainsUr": [
+    "عام روزمرہ بیماریاں (نزلہ زکام، بخار، ہلکی پانی کی کمی، موسمی الرجی)",
+    "سانس کی بیماریاں (گلے کی خراش، برونکائٹس، نمونیہ کی خطرے والی علامات، دمہ)",
+    "ہاضمے کے مسائل (اسہال، تیزابیت/گیس، پیٹ کا انفیکشن، شدید پیٹ درد کی ایمرجنسی)",
+    "جلد اور الرجی (خارش، فنگل انفیکشن، جراثیمی سوجن، شدید الرجی/انافائلیکسس)",
+    "آنکھ اور کان (آشوبِ چشم، کان کا درد، آنکھ کی ایمرجنسی علامات)",
+    "پٹھے، ہڈیاں اور جوڑ (موچ/کھنچاؤ، کمر درد، جوڑوں کا درد)",
+    "اعصابی نظام اور سر درد (ٹینشن سر درد، آدھے سر کا درد، فالج، دورے، سر کی چوٹ)",
+    "دل اور بلڈ پریشر (کم بی پی چکر، ہائی بی پی، سینے کا شدید درد)",
+    "متعدی امراض (ڈینگی، ٹائیفائیڈ، 14 دن سے زائد کھانسی)",
+    "زخم، جلنا اور چوٹیں (معمولی کٹ، ہلکا جلنا، شدید جلنا، خون بہنا، جانور کا کاٹنا)",
+    "پیشاب اور دائمی امراض (پیشاب کی جلن، گردے کا درد، کم/زیادہ شوگر)",
+    "بچے، بزرگ اور حمل کی احتیاطی علامات"
+  ],
+  "limitationsEn": [
+    "NOT EXHAUSTIVE: This database covers 37 curated common and high-priority conditions across 16 categories. Many rare, complex, autoimmune, oncological, or specialist conditions are NOT included.",
+    "NOT A MEDICAL DIAGNOSIS: Rule-based symptom matching identifies possible explanations only. Multiple diseases can share identical symptoms.",
+    "NO LAB OR IMAGING ANALYSIS: Offline symptom rules cannot replace blood tests, X-rays, ECGs, ultrasound, or physical examination by a doctor.",
+    "CONSERVATIVE EMERGENCY PRIORITY: When danger signs are present, routine home guidance is intentionally suppressed so urgent hospital care is never delayed.",
+    "NO PRESCRIPTIONS OR DOSAGES: Following DRAP safety principles, this system never recommends antibiotics, prescription medications, or milligram dosages."
+  ],
+  "limitationsUr": [
+    "مکمل فہرست نہیں: اس آف لائن نظام میں 16 شعبوں کی 37 اہم اور عام بیماریاں شامل ہیں۔ نایاب یا پیچیدہ بیماریاں اس میں شامل نہیں ہو سکتیں۔",
+    "حتمی تشخیص نہیں: علامات کی جانچ صرف ممکنہ وجوہات بتاتی ہے۔ مختلف بیماریوں کی علامات ایک جیسی ہو سکتی ہیں۔",
+    "ٹیسٹ کا متبادل نہیں: یہ نظام خون کے ٹیسٹ، ایکسرے یا ڈاکٹر کے جسمانی معائنے کی جگہ نہیں لے سکتا۔",
+    "ایمرجنسی کو اولین ترجیح: خطرناک علامت ظاہر ہونے پر گھریلو مشورے روک دیے جاتے ہیں تاکہ فوری ہسپتال جانے میں تاخیر نہ ہو۔",
+    "ادویات یا خوراک کی تجویز نہیں: ڈریپ حفاظتی اصولوں کے تحت اینٹی بائیوٹک یا دوا کی مقدار ہرگز تجویز نہیں کی جاتی۔"
+  ],
+  "medicalDisclaimerEn": "Tibb operates 100% offline using local rule-based guidance adapted from WHO, NHS, CDC, and MedlinePlus references. It provides educational and triage support only and never replaces professional medical evaluation.",
+  "medicalDisclaimerUr": "طب 100 فیصد آف لائن اصولی نظام پر کام کرتا ہے جو ڈبلیو ایچ او اور مستند طبی رہنما اصولوں سے ماخوذ ہے۔ یہ صرف معلوماتی رہنمائی ہے، ڈاکٹر کے معائنے کا متبادل نہیں۔"
+}

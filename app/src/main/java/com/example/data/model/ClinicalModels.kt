@@ -12,7 +12,67 @@ enum class UnitSystem { METRIC, IMPERIAL }
 
 enum class WorkspaceMode { GHARANA, BHU }
 
-enum class TriageTier { RED, AMBER, GREEN }
+enum class TriageTier {
+    RED,
+    AMBER,
+    GREEN,
+    BLUE,
+    ;
+
+    val displayCode: String
+        get() = when (this) {
+            RED -> "RED"
+            AMBER -> "YELLOW"
+            GREEN -> "GREEN"
+            BLUE -> "BLUE"
+        }
+
+    fun shortLabel(locale: AppLocale): String = when (this) {
+        RED -> when (locale) {
+            AppLocale.EN -> "RED (Emergency)"
+            AppLocale.UR -> "RED (ہنگامی)"
+            AppLocale.ROMAN -> "RED (Emergency)"
+        }
+        AMBER -> when (locale) {
+            AppLocale.EN -> "YELLOW (Urgent)"
+            AppLocale.UR -> "YELLOW (فوری معائنہ)"
+            AppLocale.ROMAN -> "YELLOW (Urgent)"
+        }
+        GREEN -> when (locale) {
+            AppLocale.EN -> "GREEN (Home Care)"
+            AppLocale.UR -> "GREEN (گھریلو نگہداشت)"
+            AppLocale.ROMAN -> "GREEN (Home Care)"
+        }
+        BLUE -> when (locale) {
+            AppLocale.EN -> "BLUE (Wellness)"
+            AppLocale.UR -> "BLUE (تندرستی و بچاؤ)"
+            AppLocale.ROMAN -> "BLUE (Wellness)"
+        }
+    }
+
+    fun subtitle(locale: AppLocale): String = when (this) {
+        RED -> when (locale) {
+            AppLocale.EN -> "Immediate hospital dispatch & 1122 rescue."
+            AppLocale.UR -> "فوری ہسپتال منتقلی اور 1122 ریسکیو۔"
+            AppLocale.ROMAN -> "Fori haspatal rawangi aur 1122 rescue."
+        }
+        AMBER -> when (locale) {
+            AppLocale.EN -> "Same-day BHU or RHC doctor visit."
+            AppLocale.UR -> "اسی دن BHU یا RHC ڈاکٹر سے معائنہ۔"
+            AppLocale.ROMAN -> "Usi din BHU ya RHC doctor se muaina."
+        }
+        GREEN -> when (locale) {
+            AppLocale.EN -> "Safe WHO home protocols & ORS dosing."
+            AppLocale.UR -> "محفوظ WHO گھریلو اصول اور ORS خوراک۔"
+            AppLocale.ROMAN -> "Mehfooz WHO gharelu usool aur ORS."
+        }
+        BLUE -> when (locale) {
+            AppLocale.EN -> "Preventive nutrition, hydration & sleep."
+            AppLocale.UR -> "حفاظتی غذا، پانی اور نیند کا توازن۔"
+            AppLocale.ROMAN -> "Hifazati ghaza, paani aur neend."
+        }
+    }
+}
 
 enum class BodyRegion { HEAD_NECK, CHEST, ABDOMEN, SKIN_LIMBS, GENERAL_FEVER }
 
@@ -47,6 +107,10 @@ enum class EmergencyCategory {
     UNCONSCIOUS_FAINTING,
     MATERNAL_EMERGENCY,
     PEDIATRIC_DANGER,
+    ANAPHYLAXIS,
+    SERIOUS_HEAD_INJURY,
+    SEVERE_DEHYDRATION,
+    ACUTE_SEVERE_ABDOMEN,
 }
 
 enum class RelationshipType(val labelEn: String, val labelUr: String) {

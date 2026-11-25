@@ -43,7 +43,13 @@ data class TibbExtendedColors(
     val dangerSoft: Color,
     val amber: Color,
     val amberSoft: Color,
+    val urgentYellow: Color,
+    val urgentYellowSwatch: Color,
+    val urgentYellowSoft: Color,
     val safeGreen: Color,
+    val safeGreenSoft: Color,
+    val wellnessBlue: Color,
+    val wellnessBlueSoft: Color,
 )
 
 private val DarkExtended = TibbExtendedColors(
@@ -71,7 +77,13 @@ private val DarkExtended = TibbExtendedColors(
     dangerSoft = EmergencyRedSoftDark,
     amber = WarningAmberLight,
     amberSoft = WarningAmberSoftDark,
+    urgentYellow = UrgentYellowLight,
+    urgentYellowSwatch = UrgentYellowSwatch,
+    urgentYellowSoft = UrgentYellowSoftDark,
     safeGreen = SafeGreen,
+    safeGreenSoft = SafeGreenSoftDark,
+    wellnessBlue = WellnessBlueLight,
+    wellnessBlueSoft = WellnessBlueSoftDark,
 )
 
 private val LightExtended = TibbExtendedColors(
@@ -99,7 +111,13 @@ private val LightExtended = TibbExtendedColors(
     dangerSoft = EmergencyRedSoftLight,
     amber = WarningAmber,
     amberSoft = WarningAmberSoftLight,
+    urgentYellow = UrgentYellow,
+    urgentYellowSwatch = UrgentYellowSwatch,
+    urgentYellowSoft = UrgentYellowSoftLight,
     safeGreen = SafeGreen,
+    safeGreenSoft = SafeGreenSoftLight,
+    wellnessBlue = WellnessBlue,
+    wellnessBlueSoft = WellnessBlueSoftLight,
 )
 
 val LocalTibbColors = staticCompositionLocalOf { DarkExtended }

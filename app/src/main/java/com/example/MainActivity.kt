@@ -7,8 +7,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
@@ -145,6 +149,7 @@ private fun TibbAppRoot(
 
                     Scaffold(
                         containerColor = Color.Transparent,
+                        contentWindowInsets = WindowInsets.safeDrawing,
                         snackbarHost = { SnackbarHost(snackbarHostState) },
                         topBar = {
                             TibbTopBar(
@@ -174,7 +179,9 @@ private fun TibbAppRoot(
                         Row(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .padding(innerPadding),
+                                .padding(innerPadding)
+                                .consumeWindowInsets(innerPadding)
+                                .imePadding(),
                         ) {
                             if (isWideScreen) {
                                 TibbNavigationRail(
@@ -225,35 +232,26 @@ private fun TibbAppRoot(
                                                 onRequestGps = viewModel::requestCurrentGpsLocation,
                                                 onOpenDialer = viewModel::openEmergencyDialer,
                                                 onNavigateTab = viewModel::setActiveTab,
-                                                onStartStructuredCheckup = { viewModel.setCheckupSubMode(1) },
+                                                onStartStructuredCheckup = { viewModel.setCheckupSubMode(0) },
                                             )
 
                                             MainNavTab.CHECKUP_CHAT -> CheckupAndChatScreen(
                                                 locale = state.locale,
-                                                accountId = state.session?.accountId ?: "acc_local_family_default",
                                                 activePerson = activePerson,
                                                 checkupSubMode = state.checkupSubMode,
-                                                chatThreads = state.chatThreads,
-                                                activeThreadId = state.activeThreadId,
-                                                activeEvaluation = state.activeEvaluation,
+                                                activeGuidanceAssessment = state.activeGuidanceAssessment,
+                                                guidanceEngine = viewModel.guidanceEngine,
                                                 triageEngine = viewModel.triageEngine,
                                                 audioManager = viewModel.audioManager,
                                                 userGpsCoords = state.userGpsCoords,
                                                 gpsLocating = state.gpsLocating,
                                                 onSetSubMode = viewModel::setCheckupSubMode,
-                                                onSelectThread = viewModel::selectChatThread,
-                                                onCreateNewThread = { viewModel.createNewChatThread() },
-                                                onDetectCrossPerson = viewModel::detectCrossPersonMention,
-                                                onSwitchPersonAndSend = { target, msg, uri, path, kind ->
-                                                    viewModel.selectActivePerson(target.id)
-                                                    viewModel.sendChatMessage(msg, uri, path, kind)
-                                                },
-                                                onSendMessage = viewModel::sendChatMessage,
-                                                onCompleteEpisode = viewModel::completeTriageEpisode,
-                                                onClearEvaluation = viewModel::clearActiveEvaluation,
+                                                onCompleteStructuredAssessment = viewModel::completeStructuredAssessment,
+                                                onClearGuidanceAssessment = viewModel::clearGuidanceAssessment,
                                                 onRequestGps = viewModel::requestCurrentGpsLocation,
                                                 onOpenDialer = viewModel::openEmergencyDialer,
                                                 onShowToast = viewModel::showToast,
+                                                onOpenWellnessCoach = { viewModel.setActiveTab(MainNavTab.COACH) },
                                             )
 
                                             MainNavTab.COACH -> WellnessCoachScreen(

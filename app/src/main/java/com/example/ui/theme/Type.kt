@@ -29,29 +29,62 @@ val NotoNastaliqUrduFamily = FontFamily(
 val TibbTypography = Typography(
     displayLarge = TextStyle(
         fontFamily = OutfitFontFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 34.sp,
-        lineHeight = 40.sp,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 30.sp,
+        lineHeight = 36.sp,
         letterSpacing = (-0.5).sp,
     ),
-    headlineMedium = TextStyle(
+    displayMedium = TextStyle(
+        fontFamily = OutfitFontFamily,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 26.sp,
+        lineHeight = 32.sp,
+        letterSpacing = (-0.35).sp,
+    ),
+    displaySmall = TextStyle(
         fontFamily = OutfitFontFamily,
         fontWeight = FontWeight.Medium,
+        fontSize = 22.sp,
+        lineHeight = 28.sp,
+        letterSpacing = (-0.2).sp,
+    ),
+    headlineLarge = TextStyle(
+        fontFamily = OutfitFontFamily,
+        fontWeight = FontWeight.SemiBold,
         fontSize = 24.sp,
         lineHeight = 30.sp,
         letterSpacing = (-0.3).sp,
     ),
+    headlineMedium = TextStyle(
+        fontFamily = OutfitFontFamily,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 21.sp,
+        lineHeight = 27.sp,
+        letterSpacing = (-0.25).sp,
+    ),
+    headlineSmall = TextStyle(
+        fontFamily = OutfitFontFamily,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 18.sp,
+        lineHeight = 24.sp,
+    ),
     titleLarge = TextStyle(
         fontFamily = OutfitFontFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 20.sp,
-        lineHeight = 26.sp,
+        fontSize = 18.sp,
+        lineHeight = 24.sp,
     ),
     titleMedium = TextStyle(
         fontFamily = OutfitFontFamily,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 16.sp,
-        lineHeight = 22.sp,
+        fontSize = 15.sp,
+        lineHeight = 21.sp,
+    ),
+    titleSmall = TextStyle(
+        fontFamily = OutfitFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp,
+        lineHeight = 19.sp,
     ),
     bodyLarge = TextStyle(
         fontFamily = OutfitFontFamily,
@@ -88,7 +121,7 @@ val TibbTypography = Typography(
         fontWeight = FontWeight.Medium,
         fontSize = 11.sp,
         lineHeight = 14.sp,
-        letterSpacing = 0.4.sp,
+        letterSpacing = 0.25.sp,
     ),
 )
 

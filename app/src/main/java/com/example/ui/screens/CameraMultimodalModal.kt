@@ -19,15 +19,18 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.BurstMode
@@ -52,6 +55,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
@@ -157,8 +162,7 @@ fun CameraMultimodalModal(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
-            .statusBarsPadding()
-            .navigationBarsPadding(),
+            .safeDrawingPadding(),
     ) {
         if (hasPermission) {
             AndroidView(
@@ -220,14 +224,18 @@ fun CameraMultimodalModal(
                 modifier = Modifier.fillMaxSize(),
             )
         } else {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Box(modifier = Modifier.fillMaxSize().padding(24.dp), contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     Text(
                         text = if (isUr) "کیمرہ استعمال کرنے کی اجازت درکار ہے" else "Camera permission required",
                         color = Color.White,
+                        textAlign = TextAlign.Center,
                     )
-                    TibbPrimaryPillButton(onClick = { permLauncher.launch(Manifest.permission.CAMERA) }) {
-                        Text("Grant Camera Permission")
+                    TibbPrimaryPillButton(
+                        onClick = { permLauncher.launch(Manifest.permission.CAMERA) },
+                        modifier = Modifier.heightIn(min = 48.dp),
+                    ) {
+                        Text("Grant Camera Permission", textAlign = TextAlign.Center)
                     }
                 }
             }
@@ -239,20 +247,28 @@ fun CameraMultimodalModal(
                 .fillMaxWidth()
                 .align(Alignment.TopCenter)
                 .padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Box(
                 modifier = Modifier
-                    .clip(RoundedCornerShape(999.dp))
+                    .weight(1f)
+                    .clip(RoundedCornerShape(18.dp))
                     .background(Color.Black.copy(alpha = 0.65f))
                     .padding(horizontal = 14.dp, vertical = 8.dp),
             ) {
-                Text(statusText, style = MaterialTheme.typography.labelMedium, color = Color.White)
+                Text(
+                    text = statusText,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = Color.White,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                )
             }
             IconButton(
                 onClick = onDismiss,
                 modifier = Modifier
+                    .size(48.dp)
                     .clip(RoundedCornerShape(999.dp))
                     .background(Color.Black.copy(alpha = 0.65f))
                     .testTag("camera_modal_close"),
@@ -268,7 +284,8 @@ fun CameraMultimodalModal(
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
                     .background(Color.Black.copy(alpha = 0.72f))
-                    .padding(16.dp),
+                    .padding(16.dp)
+                    .height(IntrinsicSize.Max),
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
@@ -282,11 +299,12 @@ fun CameraMultimodalModal(
                             onCapturedPhoto(path, "CAMERA_FRAME")
                         }
                     },
-                    modifier = Modifier.weight(1f).testTag("camera_capture_photo_btn"),
+                    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 10.dp),
+                    modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp).testTag("camera_capture_photo_btn"),
                 ) {
                     Icon(Icons.Rounded.CameraAlt, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(Modifier.size(6.dp))
-                    Text("Capture Photo")
+                    Text("Capture Photo", textAlign = TextAlign.Center, maxLines = 2, overflow = TextOverflow.Ellipsis)
                 }
 
                 TibbSecondaryPillButton(
@@ -307,11 +325,12 @@ fun CameraMultimodalModal(
                             lastPath?.let { onCapturedPhoto(it, "VIDEO_BURST") }
                         }
                     },
-                    modifier = Modifier.weight(1f).testTag("camera_capture_burst_btn"),
+                    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 10.dp),
+                    modifier = Modifier.weight(1f).fillMaxHeight().heightIn(min = 48.dp).testTag("camera_capture_burst_btn"),
                 ) {
                     Icon(Icons.Rounded.BurstMode, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(Modifier.size(6.dp))
-                    Text("3s Burst")
+                    Text("3s Burst", textAlign = TextAlign.Center, maxLines = 2, overflow = TextOverflow.Ellipsis)
                 }
             }
         } else if (hasPermission && qrOnlyMode) {

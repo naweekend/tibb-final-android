@@ -5,18 +5,26 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -48,11 +56,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.data.model.AccountRecord
 import com.example.data.model.AppLocale
 import com.example.data.model.WorkspaceMode
-import androidx.compose.foundation.shape.CircleShape
 import com.example.engine.HelpTopic
 import com.example.engine.TrilingualStrings
 import com.example.ui.components.OfflineStatusBadge
@@ -60,12 +69,13 @@ import com.example.ui.components.SectionHelpButton
 import com.example.ui.components.TibbBrandMark
 import com.example.ui.components.TibbGlobe
 import com.example.ui.theme.LocalTibbColors
+import com.example.ui.theme.TibbExpandableSection
 import com.example.ui.theme.TibbGlassCard
 import com.example.ui.theme.TibbGradientScaffoldBackground
 import com.example.ui.theme.TibbPrimaryPillButton
-import com.example.ui.theme.TibbSecondaryPillButton
 import com.example.ui.theme.urduTextStyle
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun AuthLockScreen(
     locale: AppLocale,
@@ -98,68 +108,75 @@ fun AuthLockScreen(
     }
 
     TibbGradientScaffoldBackground {
-        Box(
+        BoxWithConstraints(
             modifier = Modifier
                 .fillMaxSize()
-                .statusBarsPadding()
-                .navigationBarsPadding()
+                .safeDrawingPadding()
+                .imePadding()
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = 20.dp, vertical = 16.dp),
+                .padding(horizontal = 20.dp, vertical = 14.dp),
             contentAlignment = Alignment.TopCenter,
         ) {
+            val isNarrow = maxWidth < 380.dp
             Column(
-                modifier = Modifier.widthIn(max = 560.dp),
+                modifier = Modifier.widthIn(max = 540.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
+                // Clean Header
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    TibbBrandMark()
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        OfflineStatusBadge(label = s.offlineEncryptedLabel)
-                        IconButton(
-                            onClick = onOpenHelp,
-                            modifier = Modifier
-                                .size(38.dp)
-                                .clip(CircleShape)
-                                .background(c.surface.copy(alpha = 0.72f))
-                                .border(1.dp, c.accent.copy(alpha = 0.42f), CircleShape)
-                                .testTag("auth_help_btn"),
-                        ) {
-                            Icon(
-                                imageVector = Icons.AutoMirrored.Rounded.HelpOutline,
-                                contentDescription = "Open Simple Help Guide",
-                                tint = c.accent,
-                                modifier = Modifier.size(18.dp),
-                            )
-                        }
+                    TibbBrandMark(modifier = Modifier.weight(1f, fill = false))
+                    IconButton(
+                        onClick = onOpenHelp,
+                        modifier = Modifier
+                            .size(40.dp)
+                            .clip(CircleShape)
+                            .background(c.surface)
+                            .border(1.dp, c.border, CircleShape)
+                            .testTag("auth_help_btn"),
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Rounded.HelpOutline,
+                            contentDescription = "Open Simple Help Guide",
+                            tint = c.accent,
+                            modifier = Modifier.size(19.dp),
+                        )
                     }
                 }
 
-                // Locale Pills
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                // Compact Language & Trust Strip
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
+                ) {
                     AppLocale.entries.forEach { loc ->
                         val selected = loc == locale
                         Box(
                             modifier = Modifier
                                 .clip(RoundedCornerShape(999.dp))
-                                .background(if (selected) c.ctaBg else c.surface)
+                                .background(if (selected) c.ctaBg else c.surfaceMuted)
                                 .border(1.dp, if (selected) c.ctaBg else c.border, RoundedCornerShape(999.dp))
                                 .clickable { onSetLocale(loc) }
-                                .padding(horizontal = 14.dp, vertical = 8.dp)
+                                .padding(horizontal = 12.dp, vertical = 7.dp)
                                 .testTag("auth_locale_${loc.code}"),
                         ) {
                             Text(
                                 text = loc.label,
-                                style = MaterialTheme.typography.labelMedium,
-                                color = if (selected) c.ctaInk else c.ink,
+                                style = MaterialTheme.typography.labelSmall,
+                                color = if (selected) c.ctaInk else c.muted,
+                                maxLines = 1,
+                                softWrap = false,
                             )
                         }
                     }
+                    OfflineStatusBadge(label = s.offlineEncryptedLabel)
                 }
 
+                // Focused Headline + Subtle Emblem
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
@@ -167,7 +184,7 @@ fun AuthLockScreen(
                 ) {
                     Column(
                         modifier = Modifier.weight(1f),
-                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
                     ) {
                         Text(
                             text = s.authHeadline,
@@ -180,10 +197,11 @@ fun AuthLockScreen(
                             color = c.muted,
                         )
                     }
-                    TibbGlobe(size = 128.dp)
+                    TibbGlobe(size = if (isNarrow) 56.dp else 72.dp)
                 }
 
-                TibbGlassCard(padding = 20.dp) {
+                // Primary Lock / Create Vault Card
+                TibbGlassCard(padding = 18.dp, backgroundColor = c.surfaceElevated) {
                     Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -199,12 +217,15 @@ fun AuthLockScreen(
                             SectionHelpButton(topic = HelpTopic.AUTH_VAULT, locale = locale)
                         }
 
+                        // Existing vs New Account Tabs
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
+                                .height(IntrinsicSize.Max)
                                 .clip(RoundedCornerShape(999.dp))
                                 .background(c.surfaceMuted)
-                                .padding(4.dp),
+                                .border(1.dp, c.border, RoundedCornerShape(999.dp))
+                                .padding(3.dp),
                             horizontalArrangement = Arrangement.spacedBy(4.dp),
                         ) {
                             listOf(
@@ -215,20 +236,25 @@ fun AuthLockScreen(
                                 Box(
                                     modifier = Modifier
                                         .weight(1f)
+                                        .fillMaxHeight()
+                                        .heightIn(min = 40.dp)
                                         .clip(RoundedCornerShape(999.dp))
                                         .background(if (active) c.ctaBg else c.surfaceMuted)
                                         .clickable {
                                             modeTab = idx
                                             pin = ""
                                         }
-                                        .padding(vertical = 10.dp)
+                                        .padding(horizontal = 8.dp, vertical = 8.dp)
                                         .testTag(if (idx == 0) "auth_tab_existing" else "auth_tab_new"),
                                     contentAlignment = Alignment.Center,
                                 ) {
                                     Text(
                                         text = label,
-                                        style = MaterialTheme.typography.labelLarge,
-                                        color = if (active) c.ctaInk else c.ink,
+                                        style = MaterialTheme.typography.labelMedium,
+                                        color = if (active) c.ctaInk else c.muted,
+                                        textAlign = TextAlign.Center,
+                                        maxLines = 2,
+                                        overflow = TextOverflow.Ellipsis,
                                     )
                                 }
                             }
@@ -237,7 +263,7 @@ fun AuthLockScreen(
                         if (modeTab == 0) {
                             if (accounts.isEmpty()) {
                                 Text(
-                                    text = if (isUr) "ابھی کوئی پِن اکاؤنٹ موجود نہیں، نیا اکاؤنٹ بنائیں۔" else "No PIN vaults created yet. Switch to New Account or open quick local vault.",
+                                    text = if (isUr) "ابھی کوئی پِن اکاؤنٹ موجود نہیں، نیا اکاؤنٹ بنائیں۔" else "No PIN vaults yet. Switch to New Account or open Quick Local Vault.",
                                     style = MaterialTheme.typography.bodySmall,
                                     color = c.muted,
                                 )
@@ -261,6 +287,9 @@ fun AuthLockScreen(
                                             text = "${activeAcc.displayName} (${activeAcc.workspace.name})",
                                             style = MaterialTheme.typography.bodyLarge,
                                             color = c.ink,
+                                            maxLines = 1,
+                                            overflow = TextOverflow.Ellipsis,
+                                            modifier = Modifier.weight(1f),
                                         )
                                         Icon(Icons.Rounded.ArrowDropDown, contentDescription = "Select Account", tint = c.muted)
                                     }
@@ -286,20 +315,29 @@ fun AuthLockScreen(
                                 horizontalArrangement = Arrangement.SpaceBetween,
                                 verticalAlignment = Alignment.CenterVertically,
                             ) {
-                                Text(s.workspaceRoleLabel, style = MaterialTheme.typography.labelMedium, color = c.muted)
+                                Text(
+                                    text = s.workspaceRoleLabel,
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = c.muted,
+                                    modifier = Modifier.weight(1f),
+                                )
                                 SectionHelpButton(topic = HelpTopic.PIN_SECURITY, locale = locale)
                             }
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Max),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            ) {
                                 WorkspaceMode.entries.forEach { mode ->
                                     val selected = selectedWorkspace == mode
                                     Box(
                                         modifier = Modifier
                                             .weight(1f)
+                                            .fillMaxHeight()
                                             .clip(RoundedCornerShape(14.dp))
-                                            .background(if (selected) c.accent.copy(alpha = 0.2f) else c.surfaceMuted)
+                                            .background(if (selected) c.accentSoft else c.surfaceMuted)
                                             .border(1.dp, if (selected) c.accent else c.border, RoundedCornerShape(14.dp))
                                             .clickable { selectedWorkspace = mode }
-                                            .padding(vertical = 12.dp)
+                                            .padding(horizontal = 8.dp, vertical = 12.dp)
                                             .testTag("auth_workspace_${mode.name.lowercase()}"),
                                         contentAlignment = Alignment.Center,
                                     ) {
@@ -307,6 +345,7 @@ fun AuthLockScreen(
                                             text = if (mode == WorkspaceMode.GHARANA) s.gharanaMode else s.bhuMode,
                                             style = MaterialTheme.typography.labelLarge,
                                             color = c.ink,
+                                            textAlign = TextAlign.Center,
                                         )
                                     }
                                 }
@@ -359,9 +398,10 @@ fun AuthLockScreen(
                                     onCreateAccount(displayName, pin, selectedWorkspace)
                                 }
                             },
+                            contentPadding = PaddingValues(horizontal = 18.dp, vertical = 14.dp),
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(52.dp)
+                                .heightIn(min = 52.dp)
                                 .testTag("auth_submit_btn"),
                         ) {
                             Icon(
@@ -370,22 +410,39 @@ fun AuthLockScreen(
                                 modifier = Modifier.size(18.dp),
                             )
                             Spacer(Modifier.size(8.dp))
-                            Text(if (modeTab == 0) s.unlockBtn else s.createBtn)
+                            Text(
+                                text = if (modeTab == 0) s.unlockBtn else s.createBtn,
+                                style = MaterialTheme.typography.titleMedium,
+                                textAlign = TextAlign.Center,
+                            )
                         }
 
-                        TibbSecondaryPillButton(
-                            onClick = onQuickGuestVault,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .testTag("auth_quick_local_btn"),
-                        ) {
-                            Text(if (isUr) "بغیر پِن فوری مقامی والٹ کھولیں" else "Continue with Quick Local Vault (No PIN)")
+                        Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                            TextButton(
+                                onClick = onQuickGuestVault,
+                                modifier = Modifier
+                                    .heightIn(min = 48.dp)
+                                    .testTag("auth_quick_local_btn"),
+                            ) {
+                                Text(
+                                    text = if (isUr) "بغیر پِن فوری مقامی والٹ کھولیں" else "Continue without PIN (Quick Local Vault)",
+                                    style = MaterialTheme.typography.labelLarge,
+                                    color = c.accent,
+                                    textAlign = TextAlign.Center,
+                                )
+                            }
                         }
                     }
                 }
 
-                // Security guarantees
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                // Collapsed by default Security Details
+                TibbExpandableSection(
+                    title = if (isUr) "رازداری اور انکرپشن کی تفصیلات" else "Local Encryption & Security Details",
+                    summary = "PBKDF2 · AES-GCM-256 · 100% On-Device",
+                    icon = Icons.Rounded.Shield,
+                    initiallyExpanded = false,
+                    headerTestTag = "auth_security_expand_btn",
+                ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Icon(Icons.Rounded.Shield, contentDescription = null, tint = c.accent, modifier = Modifier.size(18.dp))
                         Text(s.authFeature1, style = MaterialTheme.typography.bodySmall, color = c.muted)
@@ -396,15 +453,17 @@ fun AuthLockScreen(
                     }
                 }
 
-                TextButton(
-                    onClick = onOpenLegal,
-                    modifier = Modifier.testTag("auth_legal_btn"),
-                ) {
-                    Text(
-                        text = if (isUr) "طبی احتیاط اور رازداری کا معاہدہ" else "Medical Disclaimer & Local Encryption Info",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = c.accent,
-                    )
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                    TextButton(
+                        onClick = onOpenLegal,
+                        modifier = Modifier.heightIn(min = 48.dp).testTag("auth_legal_btn"),
+                    ) {
+                        Text(
+                            text = if (isUr) "طبی احتیاط اور رازداری کا معاہدہ" else "Medical Disclaimer & Local Encryption Info",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = c.accent,
+                        )
+                    }
                 }
             }
         }
